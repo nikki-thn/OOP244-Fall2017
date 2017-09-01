@@ -7,7 +7,19 @@
 
 namespace sict {
 
+	class CRA_Account {
 
+		char lastName[MAX_NAME_LENGTH + 1];
+		char firstName[MAX_NAME_LENGTH + 1];
+		int sinNum;
+
+	public:
+
+		void set(const char* familyName, const char* givenName, int sin);
+		bool isValid() const;
+		void display() const;
+
+	};
 
 
 
