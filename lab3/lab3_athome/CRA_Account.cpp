@@ -80,17 +80,17 @@ namespace sict {
 
 				if (m_balance[i] > 2.0 ) {
 
-					cout << "Year" << m_year[i] << "balance owing: " << m_balance[i] << endl;
+					cout << "Year " << m_year[i] << " balance owing: " << m_balance[i] << endl;
 				}
 
 				else if (m_balance[i] < 2.0 ) {
 
-					cout << "Year" << m_year[i] << "refund due: " << m_balance[i] << endl;
+					cout << "Year " << m_year[i] << " refund due: " << m_balance[i] << endl;
 				}
 
 				else {
 
-					cout << "Year" << m_year[i] << "No balance owing or refund due!" << endl;
+					cout << "Year " << m_year[i] << " No balance owing or refund due!" << endl;
 				}
 			}
 		}
@@ -101,7 +101,6 @@ namespace sict {
 	void CRA_Account::set(int year, double balance) {
 
 		bool valid;
-		int count = 0;
 
 		valid = isValid();
 
@@ -110,12 +109,12 @@ namespace sict {
 
 		if (valid == true) {
 
-			if (count < MAX_YRS) {
+			if (m_years < MAX_YRS) {
 				
-				m_year[count] = year;
-				m_balance[count] = balance;
+				m_year[m_years] = year;
+				m_balance[m_years] = balance;
 
-				count++;
+				m_years++;
 
 			
 			}
