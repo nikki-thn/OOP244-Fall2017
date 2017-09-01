@@ -10,31 +10,73 @@ namespace sict {
 		
 		bool valid = true;
 
-		if (sin < MIN_SIN && sin > MAX_SIN)
+		if (sin < MIN_SIN || sin > MAX_SIN) {
+
 			valid = false;
 
-		if (valid) {
+		}
 
-			SIN = sin;
-			*lastName = *familyName;
-			*firstName = *givenName;
+		if (valid == true) {
+
+			firstName[MAX_NAME_LENGTH + 1] = NULL;
+			lastName[MAX_NAME_LENGTH + 1] = NULL;
+			
+			//cout << "l" << lastName << endl;
+			//cout << "f" << firstName << endl;
+
+			sinNum = sin;
+
+			cout << "here" << *familyName << endl;
+
+				*lastName = *familyName;
+				*firstName = *givenName;
+
+			
 
 		}
+
 		else {
-			SIN = 0;
+
+			sinNum = 0;
 		}
 
 
 	}
 
 	bool CRA_Account::isValid() const {
-		bool isValid =  
-		if (SIN != 0) {
+		
+		bool isValid = false;
 
+		if (sinNum != 0) {
+
+			isValid = true;
 		}
+
+		return isValid;
+
 	}
 
 	void CRA_Account::display() const {
+
+		bool check;
+
+		check = isValid();
+
+		cout << "Value " << check << endl;
+
+		if (check == false) {
+
+			cout << "Account object is empty!" << endl;
+
+		}
+
+		if (check == true) {
+
+			cout << "Family Name: " << lastName << endl;
+			cout << "Given Name: " << firstName << endl;
+			cout << "CRA Account: " << sinNum << endl;
+
+		}
 
 
 	}
