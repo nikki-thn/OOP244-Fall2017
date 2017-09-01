@@ -78,19 +78,19 @@ namespace sict {
 
 			for (int i = 0; i < MAX_YRS; i++) {
 
-				if (m_balance[i] > 2.0 ) {
+				if (m_balance[i] > 2.0) {
 
-					cout << "Year " << m_year[i] << " balance owing: " << m_balance[i] << endl;
+					cout << "Year" << m_year[i] << "balance owing: " << m_balance[i] << endl;
 				}
 
-				else if (m_balance[i] < 2.0 ) {
+				else if (m_balance[i] < 2.0) {
 
-					cout << "Year " << m_year[i] << " refund due: " << m_balance[i] << endl;
+					cout << "Year" << m_year[i] << "refund due: " << m_balance[i] << endl;
 				}
 
 				else {
 
-					cout << "Year " << m_year[i] << " No balance owing or refund due!" << endl;
+					cout << "Year" << m_year[i] << "No balance owing or refund due!" << endl;
 				}
 			}
 		}
@@ -102,6 +102,8 @@ namespace sict {
 
 		bool valid;
 
+		cout << "num years " << m_years << endl;
+
 		valid = isValid();
 
 		m_year[MAX_YRS] = 0;
@@ -110,13 +112,13 @@ namespace sict {
 		if (valid == true) {
 
 			if (m_years < MAX_YRS) {
-				
+
 				m_year[m_years] = year;
 				m_balance[m_years] = balance;
 
 				m_years++;
 
-			
+
 			}
 
 		}
