@@ -41,3 +41,4 @@ void printGraph(int samples[], int noOfSamples) {
 	for (int i = 0; i < noOfSamples; i++) {
 		printBar(samples[i], max);
 	}
+}
