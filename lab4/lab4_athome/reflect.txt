@@ -3,3 +3,13 @@ Nikki Truong - 112 214 174
 OOP244 - Fall 2017
 Workshop 4 - Reflect
 */
+
+
+1)	What is meant by a safe empty state? What other safe empty states could you choose for the Passenger type? Explain why.
+2)	Describe how you would modify the code to minimize duplication using the syntax that you have covered in the course to date.
+3)	Explain the principal benefit of minimizing code duplication.
+4)	Explain why the canTravelWith(...) member function can access the pri-vate data variables of the referenced object.
+5)	Describe how you would improve your code to allow for changes in the siz-es of the arrays holding the name and destination data.
+6)	What do you need to correct when you use the strncpy(...) function?
+7)	Explain what you have learned in this workshop.
+
