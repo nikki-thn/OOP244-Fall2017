@@ -28,7 +28,7 @@ namespace sict {
 
 	};
 
-
+	void bubbleSort(int a[], int n);
 
 }
 
