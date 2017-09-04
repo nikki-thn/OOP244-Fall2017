@@ -6,10 +6,18 @@ Workshop 2 - Reflect
 
 
 
-
 1)	What happens to dynamic memory if it is not deallocated?
+    Neglecting memory deallocation will cause the memory inaccessible and irrreverable until the application exists. The deallocated memory remains available for subsequent dynamic allocations. The system only reclaims all synamic memories when program has returned control to the system.
+    
 2)	Why do you need to allocate new dynamic memory when you increase the size of an existing array of dynamically allocated memory?
+    Because dynamic memory only locates enough memory from intiniatl allocation. When increase the size without new allocated memory will cause memory insuffiency. 
+
 3)	The Kingdom structure stores the name in an array of characters. At the end of the program, we do not use the delete operator to deallocate the memory occupied by the name. Do we have a memory leak there? Ex-plain.
-4)	In your program, there are two display(...) functions. How does the compiler know which one should be called from your main? Explain.
+    A memory leak occurs when application loses address of dynamic memory before the memory has been deallocated. Since array in in object, there should be relocated of address when we deallocated and allocated new address as a whole.
+
+4)	In your program, there are two display(...) functions. How does the compiler know which one should be called from your main? Explain. 
+    When two functions have the same name, the compiler will compare the parameters of each function and determine which one is being called. Compiler identifies functions based on the followings: the function identifiers (names), function's paramters and order of the parameter.
+    
 5)	Explain what have you learned in this workshop.
+    
 
