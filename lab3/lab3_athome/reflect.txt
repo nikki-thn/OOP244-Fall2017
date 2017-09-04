@@ -9,12 +9,14 @@ Workshop 3 - Reflect
 
 
 2)	Using examples from your own code explain which features of object orientation you used.
+    Encapulation, by hiding data and only be accessed through member functions.
 
 
 3)	Your class declares two member functions named set(...).  In C, this would generate an error.  Explain why this is allowed in C++.
-
+    Because C++ can regconize functions using their name, parameters and order of parameters. By compare and distinguishes functions, C++ allows functions with same names as long as they are not identical in all above aspects.
 
 4)	How do you ensure that the balance/refund displays to 2 decimal places?
+    We have to set or select the fixed format (cout.setf(ios::fixed)), this will set format and persist until we changed by cout.unsetf(ios::fixed). Within the format, we specify we want the precision of 2.
 
 
 5)	What do you need to check before storing data for a tax year?
