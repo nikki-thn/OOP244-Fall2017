@@ -1,0 +1,2 @@
+Reference vs Pointers:
+Reference is alias to an object, it is an object itself. Reference must be initialize to point to an object and cannot be point to another object. We canèt take address of pointer
