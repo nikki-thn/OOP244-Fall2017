@@ -3,3 +3,11 @@ Nikki Truong - 112 214 174
 OOP244 - Fall 2017
 Workshop 5 - Reflect
 */
+
+
+1.	Discuss why the operator+= should return a reference to Fraction.
+2.	List your uses of the pointer to the current object to simplify your code.
+3.	Identify the temporary objects in the tester module.
+4.	Identify simplifications that you could make to your class without affecting the interface to the client code.
+5.	Explain what you have learned in this workshop.
+
