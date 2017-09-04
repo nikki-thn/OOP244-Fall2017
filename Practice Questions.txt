@@ -1,0 +1,107 @@
+1.	List the core concepts of Object orientated programming and define them.
+a.	Encapsulation - shields the details of an object's implementation, used for data-hiding
+b.	Polymorphism - a single interface provides multiple implementations
+c.	Inheritance - one class inherits the structure of another class
+
+2.	Compare the features of C with C++
+C	C++
+•	General purpose, imperative (no object-orientated features)
+•	Static , weak typing
+•	scanf(), printf()	•	General purpose, imperative, object-orientated, generic
+•	Static, strong typing
+•	iostreams
+
+
+3.	What is the difference between a function declaration and a function definition.
+a.	A function declaration is the function prototype. It tells you the return type, the name, and the parameters of the function.
+b.	A function definition is the “body” of the function. It contains the executable statements of the function
+
+4.	What are the 3 stages of compilation?
+a.	Preprocessing
+b.	Compiling
+c.	Linking
+
+1.	What is the difference between a function declaration and a function definition?
+a.	A declaration associates an entity with a type
+b.	A definition is a declaration that associates a meaning with an identifier. Definitions contain executable code
+
+2.	What is the cause of memory leaks?
+a.	A memory leak occurs if an application loses the address of dynamically allocated memory that has not deallocated
+
+
+3.	List the 3 Integral Types in c++.
+a.	Bool
+b.	Integer
+c.	char
+
+4.	List the 2 Floating Point Types in c++
+a.	Floating point
+b.	doubles
+
+
+5.	List the 2 Compound Types in c++
+a.	Structs
+b.	classes
+
+
+6.	What is the primary difference between Integral Types and Floating Point Types when it comes to their representation in memory?
+a.	Integgral types store data exactly in equivalent binary form where Floating Point Types (store data to a specified precision - can store very small and very large values)
+
+7.	Explain what is wrong with the following function declarations.
+
+a.	int sum(int, int, int);
+int sum(int*, int*, int*);
+int sum(int&, int&, int&);
+The pass by reference and pass by copy conflict. Both are called with the exact same syntax and the compiler cannot tell the difference. 
+
+
+b.	void wrote_to_file(char* name, char* data = nullptr, int size);
+The parameter with the default value has to be at the end of the function declaration. 
+
+
+8.	Is this code valid? If not, why?
+a.	int a = 10;
+int b[a];
+No, you cannot use a variable when defining the size of a static array. You can only use constant values
+
+b.	int* a;
+int b = 42;
+a = &b;
+Yes this is valid code
+
+c.	double* d = new double[10];
+for (int i = 0; i <= 10; i++)
+	d[i] = i;
+This will cause undefined behaviour because you allocate 10 spaces for the array d, but you try to write to the 11th place in the array.
+
+1.	What concept of object orientated programming are we implementing when we make data members private and use member functions to access and modify them?
+Encapsulation
+
+
+2.	True or false – A classes member functions do not have access to the classes private data members.
+False
+
+3.	What does it mean to put an object into a safe and empty state?
+To put an object in a safe and empty state means that an object, upon instantiation/creation, all of its data members are in a well defined, valid state. 
+Pointers to nullptr, integers to 0 or -1, etc
+4.	What are the accessibility levels in a class?
+
+Private
+Public
+
+5.	True or false – You can have private member function.
+True
+
+1.	When is the objects constructor called?
+When the object is instantiated/created. 
+2.	When is the objects destructor called?
+When the object is destroyed, by either reaching the end of its scope, or when it is deallocated.
+
+3.	What concept of object orientated programming do we use when we make data members private and use member functions to access and modify them?
+Encapsulation
+4.	What state should an object be in after the constructor is completed running?
+
+A safe state.
+
+
+
