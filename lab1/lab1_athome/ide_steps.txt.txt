@@ -1,0 +1,7 @@
+1. Goes to File, goes to New and select Project (or Ctrl + Shift + N)
+2. Select Visual C++, choose Win32 Console Application, Browse to select desire location for project, put name
+3. Unselect "Create directory for solution", click OK
+4. A Wizard appears, click on Next, make sure Console application is selected in Application Type
+5. In additional options: unselect Precompiled header and Security Development, check Empty Project
+5. Click Finish
+6. To add/create new file(s), click File, choose New then Files (or Ctrl + Shift + A) 
