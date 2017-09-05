@@ -23,21 +23,17 @@ int main()
 		Passenger(nullptr, nullptr, 0, 0, 0),
 		Passenger()
 	};
-
 	cout << "----------------------------------------" << endl;
 	cout << "Testing the validation logic" << endl;
 	cout << "(only passengers 5, 8 and 11 should be valid)" << endl;
 	cout << "----------------------------------------" << endl;
-
 	for (unsigned int i = 0; i < 15; ++i)
 	{
 		cout << "Passenger " << i + 1 << ": "
 			<< (travellers[i].isEmpty() ? "not valid" : "valid") << endl;
 	}
-
 	cout << "----------------------------------------" << endl << endl;
 
-/*
 	Passenger david("David", "Toronto", 2018, 4, 20);
 	Passenger friends[] = {
 		Passenger("Vanessa", "Toronto", 2018, 4, 20),
@@ -64,6 +60,6 @@ int main()
 			cout << david.name() << " can travel with " << friends[i].name() << endl;
 	}
 	cout << "----------------------------------------" << endl << endl;
-*/
+
 	return 0;
 }
