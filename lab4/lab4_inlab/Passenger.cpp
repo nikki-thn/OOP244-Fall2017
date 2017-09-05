@@ -11,44 +11,40 @@ using namespace sict;
 // TODO: implement the default constructor here
 Passenger::Passenger() {
 
-
+	name[0] = '\0';
+	destination[0] = '\0';
+	cout << "name" << name << endl;
 
 }
 
 // TODO: implement the constructor with 2 parameters here
 Passenger::Passenger(const char* name_, const char* destination_) {
 
-	bool valid = name_ != "";
-	//&& name_ != nullptr && destination_ != "" && destination_ != nullptr;
+	if (name_ != nullptr && destination_ != nullptr) {
+		
+		strcpy(name, name_);
+		strcpy(destination, destination_);
 
-		cout << valid << endl;
-		if (valid == true) {
+	}
 
-			cout << name_ << endl;
-		//	strcpy(name, name_);
-		//	strcpy(destination, destination_);
+	else {
 
-		}
+		name[0] = '\0';
+		destination[0] = '\0';
+	}
 
-		else {
-
-			strcpy(name, nullptr);
-			strcpy(destination, nullptr);
-
-		}
-
-		cout << "n" << name << destination << endl;
 
 }
 
 
 // TODO: implement isEmpty query here
 bool Passenger::isEmpty() const {
-	bool isEmpty = false;
 
-	if (name != nullptr && destination != nullptr) {
+	bool isEmpty = true;
 
-		isEmpty = true;
+	if (name[0] != '\0' && destination[0] != '\0') {
+
+		isEmpty = false;
 
 	}
 
@@ -59,7 +55,6 @@ bool Passenger::isEmpty() const {
 // TODO: implement display query here
 void Passenger::display() const {
 
-	cout << name << "-" << destination;
+	cout << name << " - " << destination << endl;
 
 }
-
