@@ -17,10 +17,9 @@ namespace sict {
 		departMonth = 0;
 		departYear = 0;
 
-	}
+	}     
 
 	//Constructor with 5 parameters here
-
 	Passenger::Passenger(const char *name_, const char* destination_, int year, int month, int day) {
 
 		if (name_ != nullptr && destination_ != nullptr &&
@@ -34,17 +33,12 @@ namespace sict {
 			departMonth = month;
 			departYear = year;
 			departDay = day;
-
-	
 		}
 
 		else {
 
 			passengerName[0] = '\0';
-
 		}
-
-
 
 	}
 
@@ -56,13 +50,10 @@ namespace sict {
 			departDay = 1;
 			departMonth = 7;
 			departYear = 2017;
-
 		}
 
 		else {
-
 			passengerName[0] = '\0';
-
 		}
 
 	}
@@ -72,14 +63,10 @@ namespace sict {
 	bool Passenger::isEmpty() const {
 
 		bool isEmpty = true;
-
+		
 		if (passengerName[0] != '\0') {
-
 			isEmpty = false;
-
 		}
-
-		//cout << "empty" << isEmpty << endl;
 
 		return isEmpty;
 	}
@@ -89,34 +76,33 @@ namespace sict {
 	void Passenger::display() const {
 
 		cout << passengerName << " - " << destination;
-		cout << " on" << departYear << "/";
+		cout << " on " << departYear << "/";
 		cout.fill('0');
 		cout.width(2);
 		cout << departMonth << "/" << departDay << endl;
 
 	}
-/*
-	const char* Passenger::name() const {
 
-		bool validCheck = isEmpty();
-		char* addressOfName = nullptr;
+	const Passenger& Passenger::name() const {
 
-		if (validCheck == true) {
+		return *this;
 
-		
+	}
+
+
+	bool Passenger::canTravelWith(const Passenger& b) const {
+
+		Passenger a = *this;
+		bool isTravelWith = false;
+
+		if (a.destination == b.destination) {
+			isTravelWith = true;
 		}
 
-		return addressOfName;
+		cout << isTravelWith << endl;
 
-	}
-
-
-	bool Passenger::canTravelWith(const Passenger & name) const {
+		return isTravelWith;
 		
-		bool canTravel = true;
-		char* currentPassenger = nullptr;
-
-		if (name.destination == david.destincation)
 	}
-	*/
+
 }
