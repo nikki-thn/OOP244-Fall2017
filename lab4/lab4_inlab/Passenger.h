@@ -22,6 +22,7 @@ namespace sict {
 		bool isEmpty() const;
 		void display() const;
 
+
 	};
 
 }
