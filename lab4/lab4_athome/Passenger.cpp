@@ -94,12 +94,15 @@ namespace sict {
 
 		Passenger a = *this;
 		bool isTravelWith = false;
+		
+		cout << "des" << a.destination << b.destination << endl;
 
-		if (a.destination == b.destination) {
+		if (b.destination == a.destination) {
 			isTravelWith = true;
 		}
 
-		cout << isTravelWith << endl;
+	
+		cout << "tra" << isTravelWith << endl;
 
 		return isTravelWith;
 		
