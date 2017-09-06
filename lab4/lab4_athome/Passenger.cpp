@@ -83,7 +83,12 @@ namespace sict {
 
 	}
 
-	const Passenger& Passenger::name() const {
+	const char* Passenger::name() const {
+
+		//return this;
+	}
+
+	const Passenger& Passenger::address() const {
 
 		return *this;
 
