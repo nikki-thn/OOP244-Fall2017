@@ -37,7 +37,7 @@ namespace sict {
 
 		else {
 
-			passengerName[0] = '\0';
+			Passenger();
 		}
 
 	}
