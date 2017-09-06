@@ -84,12 +84,12 @@ namespace sict {
 	}
 
 	const char* Passenger::name() const {
-
+		//***don't know what this is
 		//return this;
 	}
 
 	const Passenger& Passenger::address() const {
-
+		//Code seems to be fine but it is not what asked to do
 		return *this;
 
 	}
@@ -101,7 +101,8 @@ namespace sict {
 		bool isTravelWith = false;
 		
 		cout << "des" << a.destination << b.destination << endl;
-
+		
+		//***If statement doesn't work even values are correctly passed
 		if (b.destination == a.destination) {
 			isTravelWith = true;
 		}
