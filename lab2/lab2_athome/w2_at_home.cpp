@@ -14,6 +14,22 @@
 //
 ///////////////////////////////////////////////////////////
 ***********************************************************/
+/***********************************************************
+// OOP244 Workshop 2: Dynamic Memory
+// File w2_at_home.cpp
+// Version 1.0
+// Date ???????????
+// Author ?????????
+// Description
+// ?????????????????????
+//
+//
+// Revision History
+///////////////////////////////////////////////////////////
+// Name     Date    Reason
+//
+///////////////////////////////////////////////////////////
+***********************************************************/
 
 #include <iostream>
 #include "Kingdom.h"
@@ -26,7 +42,7 @@ void read(Kingdom&);
 int main() {
 	int count = 0; // the number of kingdoms in the array
 
-	// TODO: declare the pKingdom pointer here (don't forget to initialize it)
+				   // TODO: declare the pKingdom pointer here (don't forget to initialize it)
 	Kingdom* pKingdom = nullptr;
 
 	cout << "==========\n"
@@ -58,27 +74,36 @@ int main() {
 	cout << "------------------------------" << endl << endl;
 
 	// expand the array of Kingdoms by 1 element
-	pKingdom = new Kingdom[count + 1];
-	// TODO: allocate dynamic memory for count + 1 Kingdoms
 	Kingdom* pKingdom2 = nullptr;
-	pKingdom2 = new Kingdom[count + 1];
-	// TODO: copy elements from original array into this newly allocated array
-	/*for (int i = 0; i < count + 1; i++) {
 
-		//pKingdom2[i].m_name = pKingdom[i].m_name;
+
+	// TODO: allocate dynamic memory for count + 1 Kingdoms
+	pKingdom2 = new Kingdom[count + 1];
+
+	// TODO: copy elements from original array into this newly allocated array
+	for (int i = 0; i < count; i++) {
+
+		strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
 		pKingdom2[i].m_population = pKingdom[i].m_population;
-		cout << pKingdom[i].m_name << pKingdom[i].m_population << endl;
+
+		cout << pKingdom2[i].m_name << pKingdom2[i].m_population << endl;
 	}
-	*/
+	
+
+
 	// TODO: deallocate the dynamic memory for the original array
 	delete[] pKingdom;
+	pKingdom = new Kingdom[count + 1];
+
 	// TODO: copy the address of the newly allocated array into pKingdom pointer
 	pKingdom = pKingdom2;
+
 	// add the new Kingdom
 	cout << "==========\n"
 		<< "Input data\n"
 		<< "==========\n"
 		<< "Kingdom #" << count + 1 << ": " << endl;
+
 	// TODO: accept input for the new element in the array
 	cout << "Enter the name of the kingdom: ";
 	cin >> pKingdom[count].m_name;
