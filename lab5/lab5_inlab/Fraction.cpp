@@ -44,54 +44,51 @@ namespace sict {
 	// max returns the maximum of the numerator and denominator
 	//
 	int Fraction::max() const {
-		int greater = 0;
 
-		if (numer >= deno) {
-
-			greater = numer;
-		}
+		int max = numer;
 
 		if (numer < deno) {
 
-			greater = deno;
-		}
+			max = deno;
 
-		return greater;
+		}
+		
+
+		return max;
 	}
 
 	// TODO: implement the min query
 	// min returns the minimum of the numerator and denominator
 	//
 	int Fraction::min() const {
-		int lesser = 0;
 
-		if (numer >= deno) {
+		int min = numer;
 
-			lesser = deno;
+		if (numer > deno) {
+
+			min = deno;
 		}
 
-		if (numer < deno) {
-
-			lesser = numer;
-		}
-
-		return lesser;
+		return min;
 	}
 
 	// gcd returns the greatest common divisor of num and denom
 	//
 	int Fraction::gcd() const {
+
 		int mn = min();  // min of numerator and denominator
 		int mx = max();  // max of numerator and denominator
 		int g_c_d = 1;
 		bool found = false;
 
 		for (int x = mn; !found && x > 0; --x) { // from mn decrement until divisor found
+
 			if (mx % x == 0 && mn % x == 0) {
 				found = true;
 				g_c_d = x;
 			}
 		}
+
 		return g_c_d;
 	}
 
@@ -101,6 +98,9 @@ namespace sict {
 	void Fraction::reduce() {
 
 		int g_c_d = gcd();
+
+		cout << "gcd" << g_c_d << endl;
+		cout << "current" << numer << deno << endl;
 
 		numer /= g_c_d;
 		deno /= g_c_d;
@@ -118,6 +118,8 @@ namespace sict {
 
 		if (empty == false) {
 
+		
+			
 			cout << numer << "/" << deno << endl;
 
 			if (deno == 1) {
@@ -160,9 +162,12 @@ namespace sict {
 		int addedNumer = 0;
 		int addedDeno = 0;
 
+	//	cout << "sent" << num.numer << num.deno << endl;
+	
+
 		if (empty == false) {
-			addedNumer = numer + num.numer;
-			addedDeno = deno + num.deno;
+			addedNumer = (numer * num.deno) + (num.numer * deno);
+			addedDeno = deno * num.deno;
 		}
 
 
