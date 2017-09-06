@@ -14,8 +14,8 @@ namespace sict {
 
 	// TODO: implement the default constructor
 	Fraction::Fraction() {
-		numer = 0;
-		deno = 0;
+		numer = -1;
+		deno = -1;
 	}
 
 	// TODO: implement the two-argument constructor
@@ -24,16 +24,19 @@ namespace sict {
 		//data valid if numerator is non-negative and denomeator is positive
 		bool valid = nn >= 0 && nd > 0;
 
-		if (valid == true) {
+		//cout << "bool" << valid << nn << nd << endl;
+
+		if (valid == 1) {
 			
 			//copy data to object when valid
 			numer = nn;
 			deno = nd;
 		}
 
-		if (valid == false) {
+		if (valid == 0) {
 
-			Fraction(); //set object to safety state if data are invalid
+			numer = -1;
+			deno = -1; //set object to safety state if data are invalid
 		}
 	}
 
@@ -97,6 +100,10 @@ namespace sict {
 	//
 	void Fraction::reduce() {
 
+		int g_c_d = gcd();
+
+		numer /= g_c_d;
+		deno /= g_c_d;
 
 	}
 
@@ -107,11 +114,16 @@ namespace sict {
 
 		bool empty = isEmpty();
 
-		cout << numer << "/" << deno << endl;
+	//	cout << "empty" << empty << endl;
 
-		if (deno == 1) {
+		if (empty == false) {
 
-			cout << numer << endl;
+			cout << numer << "/" << deno << endl;
+
+			if (deno == 1) {
+
+				cout << numer << endl;
+			}
 		}
 
 		if (empty == true) {
@@ -127,11 +139,12 @@ namespace sict {
 	//
 	bool Fraction::isEmpty() const {
 
-		bool emptyCheck = true;
+		bool emptyCheck = false;
 
-		if (numer != 0 && deno != 0) {
+		if (numer == -1) {
 
-			emptyCheck = false;
+			emptyCheck = true;
+
 		}
 
 		return emptyCheck;
@@ -141,12 +154,19 @@ namespace sict {
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
 	//
-	Fraction Fraction::operator+ (int& num) {
+	Fraction Fraction::operator+ (Fraction& num) {
 
-		int result = 0;
+		bool empty = isEmpty();
+		int addedNumer = 0;
+		int addedDeno = 0;
+
+		if (empty == false) {
+			addedNumer = numer + num.numer;
+			addedDeno = deno + num.deno;
+		}
 
 
-		return Fraction(numer, deno);
+		return Fraction(addedNumer, addedDeno);
 	}
 
 
