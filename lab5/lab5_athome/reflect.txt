@@ -11,3 +11,8 @@ Workshop 5 - Reflect
 4.	Identify simplifications that you could make to your class without affecting the interface to the client code.
 5.	Explain what you have learned in this workshop.
 
+
+Quiz Reflection
+
+
+
