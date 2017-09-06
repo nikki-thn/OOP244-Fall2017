@@ -95,6 +95,7 @@ namespace sict {
 	// TODO: implement the reduce modifier
 	// reduce simplifies the fraction by dividing the numerator and denominator by the greatest common divisor
 	//
+	//***reduce function is not called, need to call it somewhere
 	void Fraction::reduce() {
 
 		int g_c_d = gcd();
@@ -117,8 +118,6 @@ namespace sict {
 	//	cout << "empty" << empty << endl;
 
 		if (empty == false) {
-
-		
 			
 			cout << numer << "/" << deno << endl;
 
