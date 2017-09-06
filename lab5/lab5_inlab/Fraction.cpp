@@ -20,14 +20,12 @@ namespace sict {
 
 	// TODO: implement the two-argument constructor
 	Fraction::Fraction(int nn, int nd) {
-		
+
 		//data valid if numerator is non-negative and denomeator is positive
 		bool valid = nn >= 0 && nd > 0;
 
-		//cout << "bool" << valid << nn << nd << endl;
-
 		if (valid == 1) {
-			
+
 			//copy data to object when valid
 			numer = nn;
 			deno = nd;
@@ -35,8 +33,7 @@ namespace sict {
 
 		if (valid == 0) {
 
-			numer = -1;
-			deno = -1; //set object to safety state if data are invalid
+			*this = Fraction(); //set object to safety state if data are invalid
 		}
 	}
 
@@ -50,9 +47,7 @@ namespace sict {
 		if (numer < deno) {
 
 			max = deno;
-
 		}
-		
 
 		return max;
 	}
@@ -100,12 +95,8 @@ namespace sict {
 
 		int g_c_d = gcd();
 
-		cout << "gcd" << g_c_d << endl;
-		cout << "current" << numer << deno << endl;
-
 		numer /= g_c_d;
 		deno /= g_c_d;
-
 	}
 
 	// TODO: implement the display query
@@ -113,20 +104,25 @@ namespace sict {
 	//
 	void Fraction::display() const {
 
+		Fraction a = *this;
+
+		a.reduce();
+
 		bool empty = isEmpty();
 
-	//	cout << "empty" << empty << endl;
-
+		//print out when object is not empty
 		if (empty == false) {
-			
-			cout << numer << "/" << deno << endl;
 
-			if (deno == 1) {
+			if (a.deno != 1) {
+				cout << a.numer << "/" << a.deno << endl;
+			}
 
-				cout << numer << endl;
+			if (a.deno == 1) {
+				cout << a.numer << endl;
 			}
 		}
 
+		//print out error message if object is empty
 		if (empty == true) {
 
 			cout << "no fraction stored" << endl;
@@ -145,33 +141,26 @@ namespace sict {
 		if (numer == -1) {
 
 			emptyCheck = true;
-
 		}
 
 		return emptyCheck;
-
 	}
 
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
-	//
+	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
 	Fraction Fraction::operator+ (Fraction& num) {
 
 		bool empty = isEmpty();
 		int addedNumer = 0;
 		int addedDeno = 0;
 
-	//	cout << "sent" << num.numer << num.deno << endl;
-	
-
 		if (empty == false) {
 			addedNumer = (numer * num.deno) + (num.numer * deno);
 			addedDeno = deno * num.deno;
 		}
 
-
 		return Fraction(addedNumer, addedDeno);
 	}
-
 
 }
