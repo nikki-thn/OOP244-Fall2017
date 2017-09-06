@@ -26,7 +26,8 @@ namespace sict {
 		bool isEmpty() const;
 		void display() const;
 
-		const Passenger& Passenger::name() const;
+		const char* name() const;
+		const Passenger& Passenger::address() const;
 		bool canTravelWith(const Passenger&) const;
 
 
