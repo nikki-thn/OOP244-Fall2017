@@ -6,9 +6,19 @@ Workshop 5 - Reflect
 
 
 1.	Discuss why the operator+= should return a reference to Fraction.
+    We return a reference because we want to keep changes to the current object
+    
+    
 2.	List your uses of the pointer to the current object to simplify your code.
+    I have used the current object *this whenever asked to set safety state, I also used it when I need to assign a copy of current object to a temporary address, I used it to return a refence to Fraction
+    
+
 3.	Identify the temporary objects in the tester module.
+    object a, c
+
 4.	Identify simplifications that you could make to your class without affecting the interface to the client code.
+    
+
 5.	Explain what you have learned in this workshop.
 
 
