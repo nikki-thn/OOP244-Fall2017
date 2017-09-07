@@ -16,6 +16,7 @@
 ***********************************************************/
 
 #include <iostream>
+#include <cstring>
 #include "Kingdom.h"
 
 using namespace std;
