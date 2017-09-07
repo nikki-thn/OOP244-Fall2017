@@ -16,7 +16,7 @@
 ***********************************************************/
 
 #include <iostream>
-#include <cstring>
+#include <cstring> //***Ask if cstring is allowed, seems matrix doesn't compile without cstring library
 #include "Kingdom.h"
 
 using namespace std;
@@ -70,8 +70,6 @@ int main() {
 
 		std::strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
 		pKingdom2[i].m_population = pKingdom[i].m_population;
-
-		cout << pKingdom2[i].m_name << pKingdom2[i].m_population << endl;
 	}
 	
 
