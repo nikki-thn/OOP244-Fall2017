@@ -1,38 +1,27 @@
 #include <iostream>
+#include <cstring>
 #include "CRA_Account.h"
+
 
 
 using namespace std;
 
 namespace sict {
 
-	void CRA_Account::set (const char* familyName, const char* givenName, int sin) {
-		
+	void CRA_Account::set(const char* familyName, const char* givenName, int sin) {
+
 		bool valid = true;
 
 		if (sin < MIN_SIN || sin > MAX_SIN) {
 
 			valid = false;
-
 		}
 
 		if (valid == true) {
 
-			firstName[MAX_NAME_LENGTH + 1] = NULL;
-			lastName[MAX_NAME_LENGTH + 1] = NULL;
-			
-			//cout << "l" << lastName << endl;
-			//cout << "f" << firstName << endl;
-
+			strcpy(firstName, givenName);
+			strcpy(lastName, familyName);
 			sinNum = sin;
-
-			cout << "here" << *familyName << endl;
-
-				*lastName = *familyName;
-				*firstName = *givenName;
-
-			
-
 		}
 
 		else {
@@ -44,7 +33,7 @@ namespace sict {
 	}
 
 	bool CRA_Account::isValid() const {
-		
+
 		bool isValid = false;
 
 		if (sinNum != 0) {
@@ -58,27 +47,21 @@ namespace sict {
 
 	void CRA_Account::display() const {
 
-		bool check;
+		bool valid;
 
-		check = isValid();
+		valid = isValid();
 
-		cout << "Value " << check << endl;
-
-		if (check == false) {
+		if (valid == false) {
 
 			cout << "Account object is empty!" << endl;
-
 		}
 
-		if (check == true) {
+		if (valid == true) {
 
 			cout << "Family Name: " << lastName << endl;
 			cout << "Given Name: " << firstName << endl;
 			cout << "CRA Account: " << sinNum << endl;
-
 		}
-
-
 	}
 
 
