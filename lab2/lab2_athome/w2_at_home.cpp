@@ -67,7 +67,7 @@ int main() {
 	// TODO: copy elements from original array into this newly allocated array
 	for (int i = 0; i < count; i++) {
 
-		strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
+		std::strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
 		pKingdom2[i].m_population = pKingdom[i].m_population;
 
 		cout << pKingdom2[i].m_name << pKingdom2[i].m_population << endl;
