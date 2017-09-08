@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstring>
 #include "CRA_Account.h"
+
 
 
 using namespace std;
@@ -13,26 +15,14 @@ namespace sict {
 		if (sin < MIN_SIN || sin > MAX_SIN) {
 
 			valid = false;
-
 		}
 
 		if (valid == true) {
 
-			firstName[MAX_NAME_LENGTH + 1] = NULL;
-			lastName[MAX_NAME_LENGTH + 1] = NULL;
-
-			//cout << "l" << lastName << endl;
-			//cout << "f" << firstName << endl;
-
+			strcpy(firstName, givenName);
+			strcpy(lastName, familyName);
 			sinNum = sin;
-
-			//cout << "here" << *familyName << endl;
-
-			*lastName = *familyName;
-			*firstName = *givenName;
-
-			//m_years = 0;
-
+			
 		}
 
 		else {
@@ -53,11 +43,10 @@ namespace sict {
 		int difference = 0;
 
 		if (sinNum != 0) {
-
-			cout << sinNum << endl;
-
+			
+			//Extract numbers and assigns them into arrays
 			remain[0] = sinNum % 100000000;
-			digits[0] = (sinNum - remain[0])/100000000;
+			digits[0] = (sinNum - remain[0]) / 100000000;
 
 			remain[1] = remain[0] % 10000000;
 			alternate[0] = (remain[0] - remain[1]) / 10000000;
@@ -80,7 +69,6 @@ namespace sict {
 			digits[4] = remain[6] % 10;
 			alternate[3] = (remain[6] - digits[4]) / 10;
 
-
 			int total = 0;
 
 			for (int i = 0; i < 4; i++) {
@@ -90,33 +78,33 @@ namespace sict {
 				int firstDigit = 0;
 				int secondDigit = 0;
 
-			//	cout << "alternates " << alternate[i] << endl;
+				//	cout << "alternates " << alternate[i] << endl;
 
 				sum = alternate[i] * 2;
 				secondDigit = (sum % 10);
 				firstDigit = (sum - secondDigit) / 10;
 
-			//	cout << "first " << firstDigit << "second " << secondDigit << endl;
+				//	cout << "first " << firstDigit << "second " << secondDigit << endl;
 
 				alternateSum = firstDigit + secondDigit;
 
-			//	cout << "alternatesSum " << alternateSum << endl;
+				//	cout << "alternatesSum " << alternateSum << endl;
 
 				total += alternateSum;
 
 			}
 
-			cout << "total1 " << total << endl;
+		//	cout << "total1 " << total << endl;
 
 			for (int i = 0; i < 4; i++) {
 
 				bubbleSort(digits, 4);
-	
-				cout << "digits " << digits[i] << endl;
+
+			//	cout << "digits " << digits[i] << endl;
 
 				total += digits[i];
 
-				}
+			}
 
 			//Take highest integer in the alternates set and multiply by 10
 			multiple = digits[2] * 10;
@@ -126,14 +114,14 @@ namespace sict {
 
 			if (difference == digits[4]) {
 
-				cout << "SIN is valid" << endl;
+		//		cout << "SIN is valid" << endl;
 
 				isValid = true;
 			}
 
 			else {
 
-				cout << "SIN is not valid" << endl;
+		//		cout << "SIN is not valid" << endl;
 			}
 
 		}
@@ -163,20 +151,15 @@ namespace sict {
 	}
 
 
-
-
 	void CRA_Account::display() const {
 
 		bool valid;
 
 		valid = isValid();
 
-		cout << "Value " << valid << endl;
-
 		if (valid == false) {
 
 			cout << "Account object is empty!" << endl;
-
 		}
 
 		if (valid == true) {
@@ -184,37 +167,17 @@ namespace sict {
 			cout << "Family Name: " << lastName << endl;
 			cout << "Given Name: " << firstName << endl;
 			cout << "CRA Account: " << sinNum << endl;
-
-			for (int i = 0; i < MAX_YRS; i++) {
-
-				if (m_balance[i] > 2.0) {
-
-					cout << "Year" << m_year[i] << "balance owing: " << m_balance[i] << endl;
-				}
-
-				else if (m_balance[i] < 2.0) {
-
-					cout << "Year" << m_year[i] << "refund due: " << m_balance[i] << endl;
-				}
-
-				else {
-
-					cout << "Year" << m_year[i] << "No balance owing or refund due!" << endl;
-				}
-			}
 		}
-
-
 	}
 
 	void CRA_Account::set(int year, double balance) {
 
 		bool valid;
 
-		int count;
+		m_years = 0;
 
-		cout << "num years " << m_years << endl;
-		cout << year << balance << endl;
+	//	cout << "num years " << m_years << endl;
+	//	cout << year << balance << endl;
 
 		valid = isValid();
 
@@ -223,27 +186,26 @@ namespace sict {
 
 		if (valid == true) {
 
-			if (count < MAX_YRS) {
+			if (m_years < MAX_YRS) {
 
-				m_year[count] = year;
-				m_balance[count] = balance;
+				m_year[m_years] = year;
+				m_balance[m_years] = balance;
 
-				cout << m_year[count] << m_balance[count] << endl;
+				cout << m_year[m_years] << m_balance[m_years] << endl;
 
-				cout << "count" << count << endl;
+				cout << "m_years" << m_years << endl;
 
-				count++; // **value doesn't change??
+				m_years++; // **value doesn't change??
 			
 			}
 
-			cout << "count" << count << endl;
+			cout << "m_years" << m_years << endl;
 		}
 
 
-		//m_years = count;
-		//cout << "num years " << m_balance[count] << endl;
+		//m_years = m_years;
+		cout << "num years " << m_balance[m_years] << endl;
 	}
-
 
 
 }
