@@ -1,2 +1,14 @@
 Reference vs Pointers:
 Reference is alias to an object. Reference must be initialize to point to an object and cannot be point to another object. We can't take address of reference like we can with pointer. There's no "reference arithmetics"
+
+3 stages of compilation: preprocessing: deal with instruction starts with # (compiler will go and check #include, replace the thing in # with the content => the result file will get to go compilation), compiling (the result file will compile every modular files into a binary object file) and linking (objects intermediare files and combine them into one executable file)
+
+An OOP language has 3 characteristics: encapsulation (put together and compile, encapsulate data into one logical unit), inheritance(refer to reusing from the base object + extra) and polymorphism (doing same thing in different ways)
+
+cout = console output, to use c function , do include <ctsdio>
+never put using namespace in header file
+
+Debug
+Step over: execute the line/function
+Step into: go to but don't execute the line/function, Watch1 can be function or expressions
+
