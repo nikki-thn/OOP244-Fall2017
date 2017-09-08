@@ -1,5 +1,3 @@
-
-// TODO: header file guard
 #ifndef SICT_FRACTION_H
 #define SICT_FRACTION_H
 
@@ -10,8 +8,8 @@ namespace sict {
 	// TODO: define the Fraction class
 	class Fraction {
 
-		int numerator;
-		int denominator;
+		int numer;
+		int deno;
 
 		int gcd() const; // returns the greatest common divisor of num and denom
 		int max() const; // returns the maximum of num and denom
@@ -29,7 +27,7 @@ namespace sict {
 
 
 		// TODO: declare the + operator overload
-		Fraction& operator+();
+		Fraction Fraction::operator + (Fraction& num);
 	};
 
 }
