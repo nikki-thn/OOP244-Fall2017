@@ -22,12 +22,17 @@ namespace sict {
 			strcpy(firstName, givenName);
 			strcpy(lastName, familyName);
 			sinNum = sin;
-			
+
+			m_year[MAX_YRS] = 0;
+			m_balance[MAX_YRS] = 0;
+			m_years = 0;
+
 		}
 
 		else {
 
 			sinNum = 0;
+		
 		}
 
 
@@ -43,7 +48,7 @@ namespace sict {
 		int difference = 0;
 
 		if (sinNum != 0) {
-			
+
 			//Extract numbers and assigns them into arrays
 			remain[0] = sinNum % 100000000;
 			digits[0] = (sinNum - remain[0]) / 100000000;
@@ -94,13 +99,13 @@ namespace sict {
 
 			}
 
-		//	cout << "total1 " << total << endl;
+			//	cout << "total1 " << total << endl;
 
 			for (int i = 0; i < 4; i++) {
 
 				bubbleSort(digits, 4);
 
-			//	cout << "digits " << digits[i] << endl;
+				//	cout << "digits " << digits[i] << endl;
 
 				total += digits[i];
 
@@ -114,14 +119,14 @@ namespace sict {
 
 			if (difference == digits[4]) {
 
-		//		cout << "SIN is valid" << endl;
+				//		cout << "SIN is valid" << endl;
 
 				isValid = true;
 			}
 
 			else {
 
-		//		cout << "SIN is not valid" << endl;
+				//		cout << "SIN is not valid" << endl;
 			}
 
 		}
@@ -167,6 +172,24 @@ namespace sict {
 			cout << "Family Name: " << lastName << endl;
 			cout << "Given Name: " << firstName << endl;
 			cout << "CRA Account: " << sinNum << endl;
+
+			for (int i = 0; i < m_years; i++) {
+				if (m_balance[i] > 2.0)  {
+
+					cout << "Year " << m_year[i] << " owning: " << m_balance[i] << endl;
+				}
+
+				else if (m_balance[i] < -2.0) {
+
+					cout << "Year " << m_year[i] << "refund due: " << m_balance[i] << endl;
+				}
+
+				else if (m_balance[i] <= 2.0 && m_balance[i] >= -2.0) {
+
+					cout << "Year " << m_year[i] << " no balance owning or refund due!" << endl;
+				}
+			}
+
 		}
 	}
 
@@ -174,37 +197,43 @@ namespace sict {
 
 		bool valid;
 
-		m_years = 0;
+		int count = m_years;
 
-	//	cout << "num years " << m_years << endl;
-	//	cout << year << balance << endl;
+		//CRA_Account temp;
+
+			cout << "num years " << m_years << endl;
+		//	cout << year << balance << endl;
 
 		valid = isValid();
-
-		m_year[MAX_YRS] = 0;
-		m_balance[MAX_YRS] = 0;
 
 		if (valid == true) {
 
 			if (m_years < MAX_YRS) {
 
-				m_year[m_years] = year;
-				m_balance[m_years] = balance;
+				m_year[count] = year;
+				m_balance[count] = balance;
 
-				cout << m_year[m_years] << m_balance[m_years] << endl;
+				//cout << m_year[count] << m_balance[count] << endl;
 
-				cout << "m_years" << m_years << endl;
+				//cout << "m_years" << m_years << endl;
 
-				m_years++; // **value doesn't change??
-			
+				count++; // **value doesn't change??
+
 			}
 
-			cout << "m_years" << m_years << endl;
+			else {
+
+				m_year[count] = 0;
+			}
+
+			//cout << "m_years" << m_years << endl;
 		}
 
-
+	//	cout << "balance " << m_balance[count] << endl;
+		m_years = count;
+	
+		cout << "m_years" << m_years << endl;
 		//m_years = m_years;
-		cout << "num years " << m_balance[m_years] << endl;
 	}
 
 
