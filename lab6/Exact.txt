@@ -1,0 +1,67 @@
+
+	long long sourcePhone = 12416345678;
+
+
+	//for (int i = 0; i < size; i++) {
+
+	int countryCode;
+	int areaCode;
+	int last3Digits;
+	int last4Digits = 0;
+	long double temp;
+
+
+
+	//phone number with 1 digits country code
+	if (sourcePhone >= 10000000000 && sourcePhone <= 99999999999) {
+
+		//cout.precision(15);
+
+		countryCode = sourcePhone / 10000000000;
+		temp = (long double)sourcePhone / 10000000000;
+
+		areaCode = (temp - countryCode) * 1000;
+		temp = (temp - (double)countryCode) * 1000;
+
+		last3Digits = (temp - areaCode) * 1000;
+		temp = (temp - (double)areaCode) * 1000;
+
+		last4Digits = (temp - last3Digits) * 10000;
+
+
+
+
+
+
+
+	//	cout << "country " << countryCode << " area " << areaCode << " lastdigit " << last3Digits
+	//		<< "last4Di" << last4Digits << endl;
+
+	}
+
+	//phone number with 2 digits country code
+	if (sourcePhone >= 100000000000 && sourcePhone <= 999999999999) {
+
+/*		cout.precision(15);
+
+		countryCode = sourcePhone / 10000000000;
+		temp = (long double)sourcePhone / 10000000000;
+
+		areaCode = (temp - countryCode) * 1000;
+		temp = (temp - (double)countryCode) * 1000;
+		
+		last3Digits = (temp - areaCode) * 1000;
+		temp = (temp - (double)areaCode) * 1000;
+	//	cout << "temp " << temp;
+
+		last4Digits = (temp - last3Digits) * 10000;
+
+
+
+
+
+
+
+		cout << "country " << countryCode << " area " << areaCode << " lastdigit " << last3Digits
+			<< "last4Di" << last4Digits << endl;*/
+	}
