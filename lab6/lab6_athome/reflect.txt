@@ -1,0 +1,4 @@
+1)	Explain why the copy assignment operator checks for self-assignment be-fore doing anything else.
+2)	Explain why a class that uses dynamic memory to hold its resources needs custom definitions of its copy constructor and its copy assignment opera-tor.
+3)	How did you avoid duplication of code?
+4)	List what you have learned in completing this workshop
