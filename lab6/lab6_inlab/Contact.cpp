@@ -19,21 +19,24 @@ namespace sict {
 		if (sourceName != nullptr && sourcePhone != nullptr && size != 0) {
 
 		phoneNum = new long long[size];
-		int countryCode = 0;
-		int areaCode = 0;
-		int last3Digits = 0;
-		int last4Digits = 0;
-		long double temp;
 
 
-				int count = 0;
+		int count = 0;
+
 			for (int i = 0; i < size; i++) {
+
+				int countryCode = 0;
+				int areaCode = 0;
+				int last3Digits = 0;
+				int last4Digits = 0;
+				long double temp;
+
+
+				cout << "source" << sourcePhone[i] << endl;
 
 				//phone number with 1 digits country code
 				if (sourcePhone[i] >= 10000000000 && sourcePhone[i] <= 99999999999) {
 
-		
-
 					countryCode = sourcePhone[i] / 10000000000;
 					temp = (long double)sourcePhone[i] / 10000000000;
 
@@ -44,47 +47,61 @@ namespace sict {
 					temp = (temp - (double)areaCode) * 1000;
 
 					last4Digits = (temp - last3Digits) * 10000;
+
+					//cout << "country " << countryCode << " area " << areaCode << " lastdigit " << last3Digits
+				//	<< "last4Di " << last4Digits << endl;
 
 				}
 
 				//phone number with 2 digits country code
-				if (sourcePhone[i] >= 100000000000 && sourcePhone[i] <= 999999999999) {
+				else if (sourcePhone[i] >= 100000000000 && sourcePhone[i] <= 999999999999) {
 
 
 					countryCode = sourcePhone[i] / 10000000000;
 					temp = (long double)sourcePhone[i] / 10000000000;
 
 					areaCode = (temp - countryCode) * 1000;
-					temp = (temp - (double)countryCode) * 1000;
+					temp = (temp - (long double)countryCode) * 1000;
 
 					last3Digits = (temp - areaCode) * 1000;
-					temp = (temp - (double)areaCode) * 1000;
+					temp = (temp - (long double)areaCode) * 1000;
 					//	cout << "temp " << temp;
 
 					last4Digits = (temp - last3Digits) * 10000;
 
-
-
 				}
-				//cout << "country " << countryCode << " area " << areaCode << " lastdigit " << last3Digits
-					//<< "last4Di " << last4Digits << endl;
+
+				else {
+					int countryCode = -1;
+					int areaCode = -1;
+					int last3Digits = -1;
+
+				} 
+
+				cout << "i" << i <<  "country " << countryCode << " area " << areaCode << " lastdigit " << last3Digits
+					<< "last4Di " << last4Digits << endl;
 
 
-				bool valid = areaCode > 100 && countryCode > 1 && last3Digits > 100;
+				bool valid = areaCode >= 100 && countryCode >= 1 && last3Digits >= 100;
+
+				cout << "valid" << valid << endl;
 
 				if (valid == true) {
 
 					strcpy(name, sourceName);
 					phoneNum[count] = sourcePhone[i];
-					cout << sourcePhone[i] << "-----" << phoneNum[count] << endl;
+				//	cout << sourcePhone[i] << "-----" << phoneNum[count] << endl;
 					count++;
 
-					numOfPhones++;
+					numOfPhones = count;
+					
+					cout << "count" << count << "\n\n" << endl;
 
 				}
 
 
 			}
+
 		}
 
 		if (sourceName == nullptr || sourcePhone == nullptr || size == 0) {
@@ -97,7 +114,7 @@ namespace sict {
 		}
 
 
-		cout << numOfPhones;
+		//cout << numOfPhones;
 	}
 
 
@@ -110,14 +127,17 @@ namespace sict {
 
 	bool Contact::isEmpty() const {
 
-		bool isEmpty = false;
+		bool isEmpty;
 
-		if (name[0] == '\0') {
+		if (name[0] == '\0' || phoneNum == nullptr || numOfPhones == 0) {
 
 			isEmpty = true;
 
-			long long *phoneNum = nullptr;
+		}
 
+		else {
+		      
+			isEmpty = false;
 		}
 
 		return isEmpty;
@@ -142,6 +162,7 @@ namespace sict {
 
 			for (int i = 0; i < numOfPhones; i++) {
 
+			//	cout << phoneNum[i] << endl;
 
 				countryCode = phoneNum[i] / 10000000000;
 				temp = (long double)phoneNum[i] / 10000000000;
