@@ -9,7 +9,7 @@ namespace sict {
 		char name[21];
 		int numOfPhones;
 	
-		long long* phoneNum = new long long [numOfPhones];
+		long long* phoneNum;
 
 	public:
 
