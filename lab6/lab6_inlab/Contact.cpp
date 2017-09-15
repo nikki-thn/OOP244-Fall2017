@@ -46,6 +46,7 @@ namespace sict {
 
 				if (valid == true) {
 
+					//****problem, can't copy oversize character
 					strcpy_s(name, sourceName);
 					phoneNum[count] = sourcePhone[i];
 
