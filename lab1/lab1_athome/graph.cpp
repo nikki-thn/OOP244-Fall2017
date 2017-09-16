@@ -1,5 +1,10 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 1 - Reflect
+*/
+
 #include <iostream>
-#include <cstdio>
 #include "graph.h"
 #include "tools.h"
 
