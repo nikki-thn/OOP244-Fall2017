@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 314 174
+OOP244 - Section B
+Lab 11 - in lab
+*/ 
+
 #include <iostream>
 #include "tools.h"
 
