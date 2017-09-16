@@ -77,24 +77,23 @@ namespace sict {
 
 	Contact& Contact::operator+=(const long long newPhone) {
 
-		//create temporary object and copy existing object to temp
+		//create temporary object and copy existing object 
 		Contact temp = *this;
 
 		bool valid = validCheck(newPhone);
 		int count = numOfPhones;
-		cout << "num " << numOfPhones;
+		cout << "num " << numOfPhones << endl;
 		if (valid == true) {
 
 			phoneNum = new long long[numOfPhones++];
 
-			//transfer (or copy) existing data
 			for (int i = 0; i < numOfPhones; i++) {
 				phoneNum[i] = temp.phoneNum[i];
 			}
 
 			phoneNum[count] = newPhone;
 
-			cout << "new" << newPhone << "phoneNum" << phoneNum << endl;
+
 		}
 
 		return *this;
