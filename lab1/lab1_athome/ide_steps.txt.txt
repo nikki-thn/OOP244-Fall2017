@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 1 - Reflect
+*/
+
 1. Goes to File, goes to New and select Project (or Ctrl + Shift + N)
 2. Select Visual C++, choose Win32 Console Application, Browse to select desire location for project, put name
 3. Unselect "Create directory for solution", click OK
