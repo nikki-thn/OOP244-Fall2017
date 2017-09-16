@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdio>
 #include "graph.h"
 #include "tools.h"
 
