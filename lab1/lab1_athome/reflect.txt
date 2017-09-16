@@ -6,27 +6,22 @@ Workshop 1 - Reflect
 
 
 1.	What is a namespace? Explain its purpose.
-    
-    Namespace is a scope in which variables or entities have their effectiveness. Namespace is used to avoid same name identifier       conflicts accross different namespaces.
+    Namespace is a scope in which variables or entities have their effectiveness. Namespace is also used to avoid same name identifier      conflicts accross different namespaces.
 
 2.	Why are header files needed? Explain.
-
-Header files tell the compiler where to look and what to included when it compiles. 
+    Header files tell the compiler where to look and what to included when it compiles. 
 
 3.	In the instructions above, you were directed to compile only .cpp files but not the .h files. Explain why you should never compile header files.
-
-Header files only contents the directions, there are no code to compile hence should not be compiled
+    Header files only content the directions, there are no code to compile hence we don't compile header files.
 
 4.	Explain why you should never include .cpp files in another file.
-
+    When we included a file, the compiler will replace it with an actual code. Hence, by including the cpp file, we will duplicate our source code and will cause error.
+    
 5.	Is there any benefit to put the source code of a program in modules or should we put everything in a single file? Explain.
-Putting source code in modules is benefitial for large and complex program. Dividing code into modulas are easy to handle or upgrade and to maintain should the need arise. 
+    Putting source code in modules is benefitial for large and complex program. Seperatibngcode into modulas will allow more than one person to work on the project simultaneously. Breaking down code is also easy to handle, upgrade and maintain in the future. 
 
 6.	Explain what have you learned on this workshop.
-
     I have learned how to seperate source code into modulas and what goes into header files, what goes into the implementation files. How to compile each module and create or add new files in Visual studio. 
-
     I also learned how to clone a repository from github and how to keep it up-to-date. 
-
-    I learned how to use namespace, how to safeguard header files from being compiled multiple times 
+    I learned how to use namespace, how to safeguard header files from being compiled more than once
 
