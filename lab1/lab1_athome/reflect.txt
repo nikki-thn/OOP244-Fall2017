@@ -7,7 +7,7 @@ Workshop 1 - Reflect
 
 1.	What is a namespace? Explain its purpose.
     
-Namespace is a scope in which variables or entities have their effectiveness. Namespace is used to avoid same name identifier conflicts accross different namespaces.
+    Namespace is a scope in which variables or entities have their effectiveness. Namespace is used to avoid same name identifier       conflicts accross different namespaces.
 
 2.	Why are header files needed? Explain.
 
