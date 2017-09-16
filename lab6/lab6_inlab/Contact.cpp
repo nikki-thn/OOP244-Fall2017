@@ -43,20 +43,6 @@ namespace sict {
 		//default destructor will delete all dynamic allocated memory
 	}
 
-	/*	Contact::Contact(const Contact&) {
-	}
-	Contact& Contact::operator=(const Contact&) {
-	return *this;
-	}
-	Contact& Contact::operator+=(const long long newPhone) {
-	bool empty = isEmpty();
-	bool valid = validCheck(newPhone);
-	if (empty == false) {
-	phoneNum[numOfPhones++] = newPhone;
-	}
-	return *this;
-	}*/
-
 	bool Contact::validCheck(const long long toCheck) {
 
 		bool isValid = NULL;
@@ -68,8 +54,7 @@ namespace sict {
 
 		extractNum(toCheck, countryCode, areaCode, last3Digits, last4Digits);
 		isValid = areaCode >= 100 && countryCode >= 1 && countryCode <=99 && last3Digits >= 100;
-		//cout << "(+" << countryCode << ") " << areaCode << " " << last3Digits << "-" << last4Digits << endl;
-	//	cout << "is valid" << isValid << endl;
+
 		return isValid;
 	}
 
