@@ -5,11 +5,16 @@
 using namespace std;
 
 namespace sict{
+
     //////////////////////////////////////////////
     // Default constructor
     //
     Hero::Hero () 
     {
+		m_name[0] = '\0';
+		m_maximumHealth = 0;
+		m_attack = 0;
+		m_health = 0;
     }
 
     ///////////////////////////////////////////////////
@@ -17,7 +22,18 @@ namespace sict{
     // 
     Hero::Hero (const char name[], int maximumHealth, int attack) 
     {
+		if (name != "" || name != '\0') {
 
+			strcpy(m_name, name);
+			m_maximumHealth = maximumHealth;
+			m_health = maximumHealth;
+			m_attack = attack;
+		}
+
+		else {
+
+			*this = Hero();
+		}
     }
 
     /////////////////////////////////////////////////////////
@@ -25,6 +41,7 @@ namespace sict{
     // 
     ostream& operator<<(ostream& out, const Hero& h) 
     {
+
     }
 
 
@@ -35,7 +52,14 @@ namespace sict{
     //
     bool Hero::isEmpty () const 
     {
+		bool empty = false;
 
+		if (m_name[0] == '\0') {
+
+			empty = true;
+		}
+
+		return empty;
     }
 
     /////////////////////////////////////////////////
@@ -43,10 +67,12 @@ namespace sict{
     //
     void Hero::respawn() 
     {
+		m_health = m_maximumHealth;
     }
 
     void Hero::deductHealth(int attack) 
     {
+		damage
     }
 
     //////////////////////////////////////////////////////////////////
