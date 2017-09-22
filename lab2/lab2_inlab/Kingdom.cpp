@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 2 - in lab
+*/
+
 #include<iostream>
 #include "Kingdom.h"
 
