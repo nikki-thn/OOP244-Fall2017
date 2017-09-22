@@ -13,10 +13,12 @@ namespace sict {
 	//declare struct Kingdom
 	struct Kingdom {
 
-		char m_name[32];
+		char m_name[31 + 1];
 		int m_population;
 	};
 
+	//the function receive a unmodifiable reference to object type Kingdom
+	//and display kingdom's name and poppulation
 	void display (const Kingdom&);
 
 
