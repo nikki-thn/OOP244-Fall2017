@@ -1,6 +1,6 @@
 /*
 Nikki Truong - 112 214 174
-OOP244 - Fall 2017
+OOP244 - Section B
 Workshop 2 - in lab
 */
 
@@ -11,7 +11,7 @@ using namespace std;
 
 namespace sict {
 
-
+	//print out data members in specify format
 	void display(const Kingdom kingdom) {
 
 		cout << kingdom.m_name << ", population " << kingdom.m_population << endl;
