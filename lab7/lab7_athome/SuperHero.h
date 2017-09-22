@@ -10,6 +10,7 @@ namespace sict{
         int m_superPowerDefendBonus;      // superpower:  defense
 
     public:
+
         // constructors  
         SuperHero();
         SuperHero(const char* name, 
