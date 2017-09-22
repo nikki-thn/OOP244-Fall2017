@@ -12,7 +12,7 @@ using namespace std;
 namespace sict {
 
 	//print out data members in specify format
-	void display(const Kingdom kingdom) {
+	void display(const Kingdom& kingdom) {
 
 		cout << kingdom.m_name << ", population " << kingdom.m_population << endl;
 
