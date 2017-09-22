@@ -1,3 +1,4 @@
+
 /*
 Nikki Truong - 112 214 174
 OOP244 - Fall 2017
@@ -19,12 +20,9 @@ namespace sict {
 
 	//the function receive a unmodifiable reference to object type Kingdom
 	//and print out kingdom's name and poppulation
-	void display (const Kingdom&);
+	void display(const Kingdom);
 
 
 
 }
-
-
-#endif 
 
