@@ -1,19 +1,8 @@
-/***********************************************************
-// OOP244 Workshop 2: Dynamic Memory
-// File w2_in_lab.cpp
-// Version 1.0
-// Date ???????????
-// Author ?????????
-// Description
-// ?????????????????????
-//
-//
-// Revision History
-///////////////////////////////////////////////////////////
-// Name     Date    Reason
-//
-///////////////////////////////////////////////////////////
-***********************************************************/
+/*
+Nikki Truong - 112 214 174
+OOP244 - SectionB
+Workshop 2 - In lab
+*/
 
 #include <iostream>
 #include "Kingdom.h"
@@ -26,8 +15,8 @@ void read(sict::Kingdom&);
 int main() {
 	int count = 0; // the number of kingdoms in the array
 
-
-				   // TODO: declare the pKingdom pointer here (don't forget to initialize it)
+	
+	// TODO: declare the pKingdom pointer here (don't forget to initialize it)
 	Kingdom* pKingdom = nullptr;
 
 	cout << "==========\n"
@@ -44,6 +33,7 @@ int main() {
 
 	for (int i = 0; i < count; ++i) {
 		cout << "Kingdom #" << i + 1 << ": " << endl;
+		
 		// TODO: add code to accept user input for Kingdom i
 		cout << "Enter the name of the kingdom: ";
 		cin >> pKingdom[i].m_name;
@@ -61,17 +51,14 @@ int main() {
 	cout << "------------------------------" << endl << endl;
 
 	// TODO: deallocate the dynamic memory here
-
 	delete [] pKingdom;
-
-	pKingdom = nullptr;
 
 	return 0;
 }
 
 // read accepts data for a Kingdom from standard input
 //
-void read(Kingdom& kingdom) {
+void read(const Kingdom& kingdom) {
 
 	cout << "Enter the name of the kingdom: ";
 	cin.get(kingdom.m_name, 32, '\n');
