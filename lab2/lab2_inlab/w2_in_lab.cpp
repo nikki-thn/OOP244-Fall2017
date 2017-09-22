@@ -15,8 +15,8 @@ void read(sict::Kingdom&);
 int main() {
 	int count = 0; // the number of kingdoms in the array
 
-	
-	// TODO: declare the pKingdom pointer here (don't forget to initialize it)
+
+				   // TODO: declare the pKingdom pointer here (don't forget to initialize it)
 	Kingdom* pKingdom = nullptr;
 
 	cout << "==========\n"
@@ -29,11 +29,11 @@ int main() {
 	if (count < 1) return 1;
 
 	// TODO: allocate dynamic memory here for the pKingdom pointer
-	pKingdom = new Kingdom [count];
+	pKingdom = new Kingdom[count];
 
 	for (int i = 0; i < count; ++i) {
 		cout << "Kingdom #" << i + 1 << ": " << endl;
-		
+
 		// TODO: add code to accept user input for Kingdom i
 		cout << "Enter the name of the kingdom: ";
 		cin >> pKingdom[i].m_name;
@@ -51,14 +51,14 @@ int main() {
 	cout << "------------------------------" << endl << endl;
 
 	// TODO: deallocate the dynamic memory here
-	delete [] pKingdom;
+	delete[] pKingdom;
 
 	return 0;
 }
 
 // read accepts data for a Kingdom from standard input
 //
-void read(const Kingdom& kingdom) {
+void read(Kingdom& kingdom) {
 
 	cout << "Enter the name of the kingdom: ";
 	cin.get(kingdom.m_name, 32, '\n');
