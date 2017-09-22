@@ -18,7 +18,7 @@ namespace sict {
 	};
 
 	//the function receive a unmodifiable reference to object type Kingdom
-	//and display kingdom's name and poppulation
+	//and print out kingdom's name and poppulation
 	void display (const Kingdom&);
 
 
