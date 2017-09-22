@@ -6,7 +6,6 @@ namespace sict{
 
 	//////////////////////////////////////////////
 	// Default constructor
-	//
 	SuperHero::SuperHero() : Hero()
 	{
 		m_superPowerAttackBonus = 0; // superpower:  attack bonus
@@ -15,24 +14,27 @@ namespace sict{
 	        
 	//////////////////////////////////////////////
 	// Constructor
-	//
 	SuperHero::SuperHero( const char* name, int maximumHealth, int attack,
 	                int superPowerAttack, int superPowerDefend
 	        )  : Hero(name, maximumHealth, attack)
 	{ 
-	  
+
+		m_superPowerAttackBonus = superPowerAttack; 
+		m_superPowerDefendBonus = superPowerDefend;
 	}
 
 
 	//////////////////////////////////////////////
 	// member function in SuperHero
 	// shadows member function in Hero
-	// 
+	//
 	// Call the function Hero::getAttack and 
 	// add the superpowerAttackBonus to it
 	int SuperHero::getAttack() const 
 	{ 
 
+		int superHeroAttack = Hero::getAttack() + m_superPowerAttackBonus;
+		return superHeroAttack;
 	}
 
 
@@ -44,6 +46,7 @@ namespace sict{
 	int SuperHero::getDefend() const 
 	{ 
 
+		return m_superPowerDefendBonus;
 	}
 
 
