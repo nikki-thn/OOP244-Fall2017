@@ -17,7 +17,7 @@ namespace sict {
 		int m_population;
 	};
 
-	void display (const Kingdom);
+	void display (const Kingdom&);
 
 
 
