@@ -59,15 +59,15 @@ int main() {
 	// TODO: copy elements from original array into this newly allocated array
 	for (int i = 0; i < count; i++) {
 
-		std::strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
+		strcpy(pKingdom2[i].m_name, pKingdom[i].m_name);
 		pKingdom2[i].m_population = pKingdom[i].m_population;
 	}
 	
 
 
 	// TODO: deallocate the dynamic memory for the original array
-	delete[] pKingdom;
-	pKingdom = new Kingdom[count + 1];
+	delete [] pKingdom;
+	pKingdom = new Kingdom [count + 1];
 
 	// TODO: copy the address of the newly allocated array into pKingdom pointer
 	pKingdom = pKingdom2;
@@ -91,7 +91,7 @@ int main() {
 	cout << endl;
 
 	// TODO: deallocate the dynamic memory here
-	delete[] pKingdom2;
+	delete [] pKingdom;
 
 
 	return 0;
