@@ -28,10 +28,12 @@ int main() {
 
 	if (count < 1) return 1;
 
+	// TODO: allocate dynamic memory here for the pKingdom pointer
 	pKingdom = new Kingdom[count];
 
 	for (int i = 0; i < count; ++i) {
 		cout << "Kingdom #" << i + 1 << ": " << endl;
+		
 		// TODO: add code to accept user input for Kingdom i
 		cout << "Enter the name of the Kingdom: ";
 		cin >> pKingdom[i].m_name;
@@ -48,6 +50,7 @@ int main() {
 	cout << "------------------------------" << endl << endl;
 
 	// expand the array of Kingdoms by 1 element
+	//by creating a new pointer to store existing data
 	Kingdom* pKingdom2 = nullptr;
 
 	// TODO: allocate dynamic memory for count + 1 Kingdoms
@@ -76,9 +79,9 @@ int main() {
 		<< "Kingdom #" << count + 1 << ": " << endl;
 
 	// TODO: accept input for the new element in the array
-	cout << "Enter the name of the kingdom: ";
+	cout << "Enter the name of the Kingdom: ";
 	cin >> pKingdom[count].m_name;
-	cout << "Enter the number people living in " << pKingdom[count].m_name << ": ";
+	cout << "Enter the number of people living in " << pKingdom[count].m_name << ": ";
 	cin >> pKingdom[count].m_population;
 	count++;
 	cout << "==========\n" << endl;
@@ -89,6 +92,8 @@ int main() {
 
 	// TODO: deallocate the dynamic memory here
 	delete[] pKingdom2;
+	delete[] pKingdom;
+
 
 	return 0;
 }
@@ -97,10 +102,10 @@ int main() {
 //
 void read(Kingdom& kingdom) {
 
-	cout << "Enter the name of the kingdom: ";
+	cout << "Enter the name of the Kingdom: ";
 	cin.get(kingdom.m_name, 32, '\n');
 	cin.ignore(2000, '\n');
-	cout << "Enter the number people living in " << kingdom.m_name << ": ";
+	cout << "Enter the number of people living in " << kingdom.m_name << ": ";
 	cin >> kingdom.m_population;
 	cin.ignore(2000, '\n');
 }
