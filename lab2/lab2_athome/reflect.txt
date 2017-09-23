@@ -5,19 +5,35 @@ Workshop 2 - Reflect
 */
 
 
-
 1)	What happens to dynamic memory if it is not deallocated?
-    Neglecting memory deallocation will cause the memory inaccessible and irrreverable until the application exists. The deallocated memory remains available for subsequent dynamic allocations. The system only reclaims all synamic memories when program has returned control to the system.
+
+    Dynamic memory once allocated will be used until the program exits. Hence, deallocated of dynamic memory can be reused while the program is still running. Without deallocation, memmory that has been allocated cannot be reuse or irreversible until we exit the program.
+    
     
 2)	Why do you need to allocate new dynamic memory when you increase the size of an existing array of dynamically allocated memory?
-    Because dynamic memory only locates enough memory from intiniatl allocation. When increase the size without new allocated memory will cause memory insuffiency. 
+
+    Because dynamic memory only locates enough memory from initial allocation. When increase the size without new allocated memory will cause memory insuffiency. 
+    
 
 3)	The Kingdom structure stores the name in an array of characters. At the end of the program, we do not use the delete operator to deallocate the memory occupied by the name. Do we have a memory leak there? Ex-plain.
-    A memory leak occurs when application loses address of dynamic memory before the memory has been deallocated. Since array in in object, there should be relocated of address when we deallocated and allocated new address as a whole.
 
-4)	In your program, there are two display(...) functions. How does the compiler know which one should be called from your main? Explain. 
-    When two functions have the same name, the compiler will compare the parameters of each function and determine which one is being called. Compiler identifies functions based on the followings: the function identifiers (names), function's paramters and order of the parameter.
+    A memory leak occurs when application loses address of dynamic memory before the memory has been deallocated. Since array is part of the object, when we allocate and later dealloacte dynamic memory for the object, we have done the same for the array within. Hence, there is no memory leak. 
+    
+
+4)	In your program, there are two display(...) functions. How does the compiler know which one should be called from your main? Explain.
+
+    When two functions have the same name, the compiler will identigy a function by its signature which are: the function identifiers (names), function's paramters and order of the parameter. and determine which one is being called. 
+    
     
 5)	Explain what have you learned in this workshop.
     
+    In this workshop, how to construct a struct with data members and member functions. I learn how to allocate memory for any array with unknown size
+    
+    I have learnt to allocate and deallocate dynamic memory for an object. I understand the role of dynamic memory and static memory during a life time of a program. I learn about memory leak and memory insufficient issues and what errors it could cause during run time.
+    
+    I learn how compiler can identify same identifiers functions based on function's signature. I learn to use the keyword const can vary depend on its position and whether the function is a member function or a global function. 
 
+
+Quiz X Reflection
+
+I was confused between inheritance and polymorphism on the quiz. Now I understand that inheritance refers to the reusability logic of one class to another class (building on on top of other). While polymorphism means constructions of codes(or logic) so that it can be used in more than one way. 
