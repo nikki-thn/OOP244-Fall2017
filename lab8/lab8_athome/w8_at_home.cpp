@@ -49,7 +49,8 @@ int main()
 	}
 
 	cout << "WITHDRAW $ 1000 and $ 500 from Angelina Accounts ..." << endl ;
-
+	
+	//*******this one does not call function debit from Account or Checking
 	Angelina_Account[0]->debit(1000);
 
 	Angelina_Account[1]->debit(500);
