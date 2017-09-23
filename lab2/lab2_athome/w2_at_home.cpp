@@ -1,22 +1,11 @@
-/***********************************************************
-// OOP244 Workshop 2: Dynamic Memory
-// File w2_at_home.cpp
-// Version 1.0
-// Date ???????????
-// Author ?????????
-// Description
-// ?????????????????????
-//
-//
-// Revision History
-///////////////////////////////////////////////////////////
-// Name     Date    Reason
-//
-///////////////////////////////////////////////////////////
-***********************************************************/
+/*
+Nikki Truong - 112 214 174
+OOP244 - SectionB
+Workshop 2 - In lab
+*/
 
 #include <iostream>
-#include <cstring> //***Ask if cstring is allowed, seems matrix doesn't compile without cstring library
+#include <cstring> 
 #include "Kingdom.h"
 
 using namespace std;
@@ -27,13 +16,13 @@ void read(Kingdom&);
 int main() {
 	int count = 0; // the number of kingdoms in the array
 
-				   // TODO: declare the pKingdom pointer here (don't forget to initialize it)
+	// TODO: declare the pKingdom pointer here (don't forget to initialize it)
 	Kingdom* pKingdom = nullptr;
 
 	cout << "==========\n"
 		<< "Input data\n"
 		<< "==========\n"
-		<< "Enter the number of kingdoms: ";
+		<< "Enter the number of Kingdoms: ";
 	cin >> count;
 	cin.ignore();
 
@@ -44,23 +33,22 @@ int main() {
 	for (int i = 0; i < count; ++i) {
 		cout << "Kingdom #" << i + 1 << ": " << endl;
 		// TODO: add code to accept user input for Kingdom i
-		cout << "Enter the name of the kingdom: ";
+		cout << "Enter the name of the Kingdom: ";
 		cin >> pKingdom[i].m_name;
-		cout << "Enter the number people living in " << pKingdom[i].m_name << ": ";
+		cout << "Enter the number of people living in " << pKingdom[i].m_name << ": ";
 		cin >> pKingdom[i].m_population;
 	}
 	cout << "==========" << endl << endl;
 
 	// testing that "display(...)" works
 	cout << "------------------------------" << endl
-		<< "The first kingdom entered is" << endl
+		<< "The 1st kingdom entered is" << endl
 		<< "------------------------------" << endl;
 	display(pKingdom[0]);
 	cout << "------------------------------" << endl << endl;
 
 	// expand the array of Kingdoms by 1 element
 	Kingdom* pKingdom2 = nullptr;
-
 
 	// TODO: allocate dynamic memory for count + 1 Kingdoms
 	pKingdom2 = new Kingdom[count + 1];
