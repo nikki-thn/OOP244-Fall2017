@@ -6,13 +6,24 @@
 using namespace std;
 
 namespace ict{
+
 	class SavingsAccount : public Account{
+
 		private:
-    		double interestRate; // interest rate (percentage) 
+
+    		double m_interestRate; // interest rate (percentage) 
 		public:
 		
-			// TODO: put prototypes here
+		// TODO: put prototypes here
+		SavingsAccount(double, double);
 
+		//function returns amount of interest earns by an account
+		double calculateInterest ();
+
+		//function display account info
+		void display (ostream&) const;
    };
+
 };
 #endif
+
