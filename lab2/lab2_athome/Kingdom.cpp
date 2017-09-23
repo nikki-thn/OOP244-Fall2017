@@ -36,7 +36,7 @@ namespace sict {
 		}
 
 		cout << "------------------------------" << endl;
-		cout << "Total population of SICT:" << totalPopulation << endl;
+		cout << "Total population of SICT: " << totalPopulation << endl;
 		cout << "------------------------------" << endl;
 
 	}
