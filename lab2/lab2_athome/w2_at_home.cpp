@@ -44,7 +44,7 @@ int main() {
 
 	// testing that "display(...)" works
 	cout << "------------------------------" << endl
-		<< "The 1st kingdom entered is" << endl
+		<< "The 1st Kingdom entered is" << endl
 		<< "------------------------------" << endl;
 	display(pKingdom[0]);
 	cout << "------------------------------" << endl << endl;
