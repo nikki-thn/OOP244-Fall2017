@@ -6,12 +6,21 @@ using namespace safety;
 
 int main() {
 
-  Firestruck aTruck;
+  Firestruck aTruck, fancyTruck(1000, "magneta");
   Firestruck anotherTruck(10); //using the constructor with parameter
+  
+  {
   Firestruck thirdTruck(100, "Pink");
-  //aTruck.setEmpty();
+  thirdTrcuk.display(); //the object only exist in a block scope and will be destroyed when it's out of scope
+  } //destructor is default to destroy an object asa it goes out of scope
+  
+    //aTruck.setEmpty();
   aTruck.display();
   
+  Firestruck arr[3];
+  
+  
+  //a constructor cannot be called on an existing object
   
 return 0;
 }
@@ -34,6 +43,7 @@ short m_waterCap;
   Firestruck(); //constructor is special function beause it is called automatically by compiler
                 //it never returns a value
   Firestruck(short cap, const char* pCol = "red"); 
+  ~Firestruck();
   
   void setEmpty();
   void display() const;
@@ -68,16 +78,27 @@ namespace safety {
   strcpy(m_pColor,pCol); //copy one string to another  
   }
   
+  Firestruck::~Firestruck(){
+   
+   cout << "destructor is called" << endl;
+    //objects are destroyed in the reversed order that they were created
+   delete [] m_pColor;
+  }
+  
+  
  void Firestruck::setEmpty(){
  
  m_pColor = nullptr;
  m_waterCap = 0;  
  }
   
+  void display(const Firestruck *this) // first parameter of all member function is a hidden parameter (Firestruck *this)
+  //const inside the parameter to indicate we will not modify that particular parameter
+  //const outside to indicate we will not modify the current instance (or object)
   void Firestruck::display() const{
     //notes: we cannot print a nullptr, so we have to check
     if (nullptr != m_pColor) { // not neccessary in this order, but easier to detect error
-    cout << "The color is " << m_pColor << endl;
+    cout << "The color is " << this->m_pColor << endl;
     cout << "Water capacity is " << m_waterCap << endl;
     }
     else {
