@@ -12,3 +12,6 @@ Debug
 Step over: execute the line/function
 Step into: go to but don't execute the line/function, Watch1 can be function or expressions
 
+Turn off SDL in properties to prevent warnings
+
+
