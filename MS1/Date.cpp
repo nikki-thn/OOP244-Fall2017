@@ -151,6 +151,8 @@ namespace sict {
 
 		char a;
 		istr >> year_ >> a >> mon_ >> a >> day_;
+		
+		//mdays(); ****don't know how
 
 		if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			readErrorCode_ = CIN_FAILED;
