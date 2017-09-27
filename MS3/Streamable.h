@@ -4,16 +4,21 @@
 #include <iostream>
 #include <fstream>
 
-namespace sict{
+namespace sict {
 
 	class Streamable {
 
-		virtual std::fstream& store(std::fstream& file, bool addNewLine)const;
-		virtual std::fstream& load(std::fstream& file);
-		virtual std::ostream& write(std::ostream& os, bool linear)const;
+	public:
+		Streamable();
+		//~Streamable();
+		virtual std::fstream& store(std::fstream& file, bool addNewLine = true)const;
+		virtual std::fstream& load(std::fstream& );
+		virtual std::ostream& write(std::ostream& , bool)const;
 		virtual std::istream& read(std::istream& is);
 
 	};
+
+
 }
 
 #endif
