@@ -163,21 +163,19 @@ namespace sict {
 	}
 
 	std::istream& Date::read(std::istream& istr) {
-		int year, mon, day;
+	//	int year, mon, day;
 
-		istr >> year;
-		istr >> mon;
-		istr >> day;
+		istr >> year_;
+		istr >> mon_;
+		istr >> day_;
 
-		if (year == 0 || mon == 0 || day == 0) {
+		if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			readErrorCode_ = CIN_FAILED;
 		}
 
-		if (year >= MIN_YEAR && year <= MAX_YEAR && day >= 1 && day <= 31
-			&& mon >= 1 && mon <= 12) {
-			year_ = year;
-			mon_ = mon;
-			day_ = day;
+		if (year_ >= MIN_YEAR && year_ <= MAX_YEAR && day_ >= 1 && day_ <= 31
+			&& mon_ >= 1 && mon_ <= 12) {
+			readErrorCode_ = NO_ERROR;
 		}
 		return istr;
 	}
