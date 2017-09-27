@@ -21,10 +21,13 @@ namespace sict {
 		bool isClear() const;
 		void message(const char*);
 		const char* message()const;
-
-		std::ostream& write(std::ostream& ostr) const;
-
+		std::ostream& ErrorMessage::display(std::ostream& os)const;
 	};
+
+
+		std::ostream& operator<<(std::ostream&,  ErrorMessage&);
+		
+	
 
 
 }
