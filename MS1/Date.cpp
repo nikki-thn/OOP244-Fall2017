@@ -1,17 +1,4 @@
-// Final Project Milestone 1
-//
-// Version 1.0
-// Date
-// Author
-// Description
-//
-//
-//
-//
-// Revision History
-// -----------------------------------------------------------
-// Name               Date                 Reason
-/////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include "Date.h"
 #include "general.h"
@@ -37,11 +24,6 @@ namespace sict {
 			readErrorCode_ = NO_ERROR;
 		}
 
-		else {
-
-			*this = Date();
-		}
-
 	}
 
 	bool Date::operator==(const Date& D)const {
@@ -50,7 +32,7 @@ namespace sict {
 		if (year_ == D.year_ && mon_ == D.mon_ && day_ == D.day_) {
 			isTrue = true;
 		}
-			
+
 		return isTrue;
 	}
 
@@ -67,7 +49,7 @@ namespace sict {
 	bool Date::operator<(const Date& D)const {
 		bool isTrue = false;
 
-		if (year_ <  D.year_) {
+		if (year_ < D.year_) {
 			isTrue = true;
 		}
 
@@ -91,7 +73,7 @@ namespace sict {
 	bool Date::operator>(const Date& D)const {
 		bool isTrue = false;
 
-		if (year_ >  D.year_) {
+		if (year_ > D.year_) {
 			isTrue = true;
 		}
 
@@ -115,7 +97,7 @@ namespace sict {
 	bool Date::operator<=(const Date& D)const {
 		bool isTrue = false;
 
-		if (year_ <=  D.year_ && mon_ <= D.mon_ && day_ <= D.day_) {
+		if (year_ <= D.year_ && mon_ <= D.mon_ && day_ <= D.day_) {
 			isTrue = true;
 		}
 
@@ -129,6 +111,7 @@ namespace sict {
 
 		return isTrue;
 	}
+
 	bool Date::operator>=(const Date& D)const {
 		bool isTrue = false;
 
@@ -146,13 +129,15 @@ namespace sict {
 
 		return isTrue;
 	}
+
 	//Returns the readErrorCode_ value.
-	int Date::errCode()const { 	
+	int Date::errCode()const {
+
 		return readErrorCode_;
 	}
 
 	//Returns true if readErrorCode_ is not equal to zero
-	bool Date::bad()const {   
+	bool Date::bad()const {
 		bool isNotZero = false;
 
 		if (readErrorCode_ != 0) {
@@ -163,11 +148,9 @@ namespace sict {
 	}
 
 	std::istream& Date::read(std::istream& istr) {
-	//	int year, mon, day;
 
-		istr >> year_;
-		istr >> mon_;
-		istr >> day_;
+		char a;
+		istr >> year_ >> a >> mon_ >> a >> day_;
 
 		if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			readErrorCode_ = CIN_FAILED;
@@ -177,12 +160,30 @@ namespace sict {
 			&& mon_ >= 1 && mon_ <= 12) {
 			readErrorCode_ = NO_ERROR;
 		}
+
+		if (year_ != 0 && (year_ < MIN_YEAR || year_ > MAX_YEAR)) {
+			readErrorCode_ = YEAR_ERROR;
+		}
+		
+		if (year_ != 0 && mon_ != 0 && (mon_ < 1 || mon_ > 12)) {
+			readErrorCode_ = MON_ERROR;
+		}
+		
+		if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
+			readErrorCode_ = DAY_ERROR;
+		}
+		
 		return istr;
 	}
 
 	std::ostream& Date::write(std::ostream& ostr)const {
-
-			ostr << year_ << "/" << mon_ << "/" << day_ << endl;
+			
+		ostr << year_ << "/";
+		ostr.fill('0');
+		ostr.width(2);
+		ostr << mon_ << "/";
+		ostr.width(2);
+		ostr << day_ << endl;
 
 		return ostr;
 	}
