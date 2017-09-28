@@ -1,7 +1,8 @@
 #ifndef SICT_PRODUCT_H
 #define SICT_PRODUCT_H
-#include<iostream>
-//#include"Streamable.h"
+
+#include"Streamable.h"
+
 #define MAX_SKU_LEN 4
 
 namespace sict {
@@ -19,12 +20,13 @@ namespace sict {
 
 		Product();
 		Product(char*, char*, bool, double, int);
+		Product(const char*,const char*);
 		virtual ~Product();
 
 		Product(const Product&);
 		Product& operator= (const Product&);
 	
-		void sku(char);
+		void sku(char*);
 		void price(double);
 		void name(char*);
 		void taxed(bool);
@@ -38,10 +40,10 @@ namespace sict {
 		int quantity() const { return quantity_; }
 		int qtyNeeded() const { return qtyNeeded_; }
 
-		double cost();
-		bool isEmpty();
+		double cost() const;
+		bool isEmpty() const;
 
-		bool operator+= (const char*);
+		bool operator== (const char*);
 		int operator+= (int);
 		int operator-= (int);
 
