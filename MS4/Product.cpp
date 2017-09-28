@@ -20,7 +20,7 @@ namespace sict {
 	Product::Product(char* sku, char* name, bool taxed, double price, int qtyNeeded) {
 
 		strncpy(sku_, sku, MAX_SKU_LEN);
-
+	
 		name_ = new char[strlen(name) + 1];
 		strcpy(name_, name);
 
@@ -28,6 +28,7 @@ namespace sict {
 		price_ = price;
 		qtyNeeded_ = qtyNeeded;
 
+		cout << "tax" << taxed << endl;
 		if (taxed != NULL) {
 			taxed_ = taxed;
 		}
@@ -41,7 +42,7 @@ namespace sict {
 	Product::Product(const char* sku, const char* name) {
 
 		strncpy(sku_, sku, MAX_SKU_LEN);
-
+		//delete[] name_;
 		name_ = new char[strlen(name) + 1];
 		strcpy(name_, name);
 
@@ -49,7 +50,7 @@ namespace sict {
 
 	Product::~Product() {
 
-		delete[] name_;
+		//delete[] name_;
 	}
 
 	Product::Product(const Product& temp) {
@@ -94,6 +95,7 @@ namespace sict {
 		return *this;
 	}
 
+	
 	void Product::sku(char sku[]) {
 		strcpy(sku_, sku);
 	}
@@ -119,9 +121,10 @@ namespace sict {
 	}
 
 	double Product::cost() const {
+
 		double cost = 0;
 		if (taxed_ == true) {
-			cost = price_ * 1.13;
+			cost = price_ * (TAX + 1);
 		}
 
 		return cost;
@@ -163,15 +166,6 @@ namespace sict {
 		return quantity_;
 	}
 
-	std::istream& Product::read(std::istream& istr) {
-	
-		return istr;
-	}
-
-	std::ostream& Product::write(std::ostream& ostr)const {
-	
-		return ostr;
-	}
 
 	double operator+= (double& value, const Product& temp) {
 		
@@ -181,6 +175,17 @@ namespace sict {
 		totalCost += value;
 
 		return totalCost;
+	}
+	
+	std::istream& Product::read(std::istream& istr) {
+	
+		
+		return istr;
+	}
+
+	std::ostream& Product::write(std::ostream& ostr)const {
+	
+		return ostr;
 	}
 
 	//to input
