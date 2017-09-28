@@ -94,7 +94,7 @@ namespace sict {
 
 		return *this;
 	}
-
+	
 	
 	void Product::sku(char sku[]) {
 		strcpy(sku_, sku);
@@ -184,7 +184,8 @@ namespace sict {
 	}
 
 	std::ostream& Product::write(std::ostream& ostr)const {
-	
+
+		cout << name_ << endl;
 		return ostr;
 	}
 
