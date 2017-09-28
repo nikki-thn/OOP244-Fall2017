@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include"Product.h"
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -34,6 +35,15 @@ namespace sict {
 		else {
 			taxed_ = true;
 		}
+
+	}
+
+	Product::Product(const char* sku, const char* name) {
+
+		strncpy(sku_, sku, MAX_SKU_LEN);
+
+		name_ = new char[strlen(name) + 1];
+		strcpy(name_, name);
 
 	}
 
@@ -81,20 +91,43 @@ namespace sict {
 			strcpy(name_, temp.name_);
 		}
 
+		return *this;
 	}
 
-	void Product::sku(char) {}
-	void Product::price(double) {}
-	void Product::name(char*) {}
-	void Product::taxed(bool) {}
-	void Product::quantity(int) {}
-	void Product::qtyNeeded(int) {}
-
-	double Product::cost() {
-
+	void Product::sku(char sku[]) {
+		strcpy(sku_, sku);
 	}
 
-	bool Product::isEmpty() {
+	void Product::price(double price) {
+		price_ = price;
+	}
+
+	void Product::name(char* name) {
+		strcpy(name_, name);
+	}
+
+	void Product::taxed(bool taxed) {
+		taxed_ = taxed;
+	}
+
+	void Product::quantity(int quantity) {
+		quantity_ = quantity;
+	}
+
+	void Product::qtyNeeded(int qtyNeeded) {
+		qtyNeeded_ = qtyNeeded;
+	}
+
+	double Product::cost() const {
+		double cost = 0;
+		if (taxed_ == true) {
+			cost = price_ * 1.13;
+		}
+
+		return cost;
+	}
+
+	bool Product::isEmpty() const {
 
 		bool empty = false;
 
@@ -106,9 +139,29 @@ namespace sict {
 		return empty;
 	}
 
-	bool Product::operator+= (const char*) {}
-	int Product::operator+= (int) {}
-	int Product::operator-= (int) {}
+	bool Product::operator== (const char* sku) {
+
+		bool isSame = false;
+		if (sku_ == sku) {
+			isSame = true;
+		}
+
+		return isSame;
+	}
+
+	int Product::operator+= (int value) {
+	
+		quantity_ += value;
+
+		return quantity_;
+	}
+
+	int Product::operator-= (int value) {
+	
+		quantity_ -= value;
+
+		return quantity_;
+	}
 
 	std::istream& Product::read(std::istream& istr) {
 	
@@ -120,7 +173,15 @@ namespace sict {
 		return ostr;
 	}
 
-	double operator+= (double&, const Product&) {}
+	double operator+= (double& value, const Product& temp) {
+		
+		double totalCost = 0;
+		totalCost = temp.quantity() * temp.price();
+
+		totalCost += value;
+
+		return totalCost;
+	}
 
 	//to input
 	std::istream& operator>> (std::istream& is, Product& s) {
