@@ -2,12 +2,11 @@
 #define SICT_PRODUCT_H
 
 #include"Streamable.h"
-
-#define MAX_SKU_LEN 4
+#include"general.h"
 
 namespace sict {
 
-	class Product {
+	class Product : public Streamable {
 
 		char sku_[MAX_SKU_LEN + 1];
 		char* name_;
