@@ -10,16 +10,15 @@ Workshop 3 - in lab
 
 namespace sict {
 	
-	
-#define MAX_NAME_LENGTH 40
-#define MIN_SIN 100000000
-#define MAX_SIN 999999999
+const int max_name_length = 40;
+const int min_sin = 100000000;
+const int min_sin = 999999999;
 
 
 	class CRA_Account {
 
-		char m_lastName [MAX_NAME_LENGTH + 1];
-		char m_firstName [MAX_NAME_LENGTH + 1];
+		char m_lastName [max_name_length + 1];
+		char m_firstName [max_name_length + 1];
 		int m_sin;
 
 	public:
