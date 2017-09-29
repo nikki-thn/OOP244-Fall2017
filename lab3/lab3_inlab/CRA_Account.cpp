@@ -64,7 +64,7 @@ namespace sict {
 		if (valid == false) {
 
 			cout << "Family Name: " << m_lastName << endl;
-			cout << "Given Name: " << m_firstName << endl;
+			cout << "Given Name : " << m_firstName << endl;
 			cout << "CRA Account: " << m_sin << endl;
 		}
 	}
