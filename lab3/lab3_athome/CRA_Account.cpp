@@ -12,26 +12,26 @@ namespace sict {
 
 		bool valid = true;
 
-		if (sin < MIN_SIN || sin > MAX_SIN) {
+		if (sin < min_sin || sin > max_sin) {
 
 			valid = false;
 		}
 
 		if (valid == true) {
 
-			strcpy(firstName, givenName);
-			strcpy(lastName, familyName);
-			sinNum = sin;
+			strcpy(m_firstName, givenName);
+			strcpy(m_lastName, familyName);
+			m_sin = sin;
 
-			m_year[MAX_YRS] = 0;
-			m_balance[MAX_YRS] = 0;
+			m_year[max_yrs] = 0;
+			m_balance[max_yrs] = 0;
 			m_years = 0;
 
 		}
 
 		else {
 
-			sinNum = 0;
+			m_sin = 0;
 		
 		}
 
@@ -49,7 +49,7 @@ namespace sict {
 
 		if (sinNum != 0) {
 
-			//Extract numbers and assigns them into arrays
+			//Extract all numbers and assigns them into 2 arrays for validation
 			remain[0] = sinNum % 100000000;
 			digits[0] = (sinNum - remain[0]) / 100000000;
 
@@ -83,30 +83,19 @@ namespace sict {
 				int firstDigit = 0;
 				int secondDigit = 0;
 
-				//	cout << "alternates " << alternate[i] << endl;
-
 				sum = alternate[i] * 2;
 				secondDigit = (sum % 10);
 				firstDigit = (sum - secondDigit) / 10;
 
-				//	cout << "first " << firstDigit << "second " << secondDigit << endl;
-
 				alternateSum = firstDigit + secondDigit;
 
-				//	cout << "alternatesSum " << alternateSum << endl;
-
 				total += alternateSum;
-
 			}
-
-			//	cout << "total1 " << total << endl;
 
 			for (int i = 0; i < 4; i++) {
 
 				bubbleSort(digits, 4);
-
-				//	cout << "digits " << digits[i] << endl;
-
+				
 				total += digits[i];
 
 			}
@@ -119,20 +108,11 @@ namespace sict {
 
 			if (difference == digits[4]) {
 
-				//		cout << "SIN is valid" << endl;
-
 				isValid = true;
 			}
-
-			else {
-
-				//		cout << "SIN is not valid" << endl;
-			}
-
 		}
 
 		return isValid;
-
 	}
 
 	// bubbleSort sorts the elements of a[n] in ascending order 
@@ -160,7 +140,7 @@ namespace sict {
 
 		bool valid;
 
-		valid = isValid();
+		valid = isEmpty();
 
 		if (valid == false) {
 
@@ -169,9 +149,9 @@ namespace sict {
 
 		if (valid == true) {
 
-			cout << "Family Name: " << lastName << endl;
-			cout << "Given Name: " << firstName << endl;
-			cout << "CRA Account: " << sinNum << endl;
+			cout << "Family Name: " << m_lastName << endl;
+			cout << "Given Name : " << m_firstName << endl;
+			cout << "CRA Account: " << m_sin << endl;
 
 			for (int i = 0; i < m_years; i++) {
 				if (m_balance[i] > 2.0)  {
@@ -199,11 +179,8 @@ namespace sict {
 
 		int count = m_years;
 
-		//CRA_Account temp;
-
 			cout << "num years " << m_years << endl;
-		//	cout << year << balance << endl;
-
+	
 		valid = isValid();
 
 		if (valid == true) {
@@ -213,28 +190,18 @@ namespace sict {
 				m_year[count] = year;
 				m_balance[count] = balance;
 
-				//cout << m_year[count] << m_balance[count] << endl;
-
-				//cout << "m_years" << m_years << endl;
-
-				count++; // **value doesn't change??
-
+				count++; 
 			}
 
 			else {
 
 				m_year[count] = 0;
 			}
-
-			//cout << "m_years" << m_years << endl;
 		}
 
-	//	cout << "balance " << m_balance[count] << endl;
 		m_years = count;
 	
 		cout << "m_years" << m_years << endl;
-		//m_years = m_years;
+
 	}
-
-
 }
