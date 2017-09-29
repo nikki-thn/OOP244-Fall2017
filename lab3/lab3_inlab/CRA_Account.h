@@ -7,13 +7,12 @@ Workshop 3 - in lab
 #ifndef SICT_CRA_ACCOUNT_H
 #define SICT_CRA_ACCOUNT_H
 
-
-namespace sict {
 	
 const int max_name_length = 40;
 const int min_sin = 100000000;
 const int min_sin = 999999999;
 
+namespace sict {
 
 	class CRA_Account {
 
@@ -28,9 +27,6 @@ const int min_sin = 999999999;
 		void display() const;
 
 	};
-
-
-
 }
 
 
