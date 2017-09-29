@@ -179,9 +179,9 @@ namespace sict {
 
 		int count = m_years;
 
-			cout << "num years " << m_years << endl;
+		cout << "num years " << m_years << endl;
 	
-		valid = isValid();
+		valid = isEmpty();
 
 		if (valid == true) {
 
