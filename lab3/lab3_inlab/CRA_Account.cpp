@@ -13,6 +13,7 @@ using namespace std;
 
 namespace sict {
 
+	//mutator to set value for object
 	void CRA_Account::set(const char* familyName, const char* givenName, int sin) {
 
 		bool valid = true;
@@ -34,7 +35,8 @@ namespace sict {
 			m_sin = 0;
 		}
 	}
-
+        
+	//check if object is empty
 	bool CRA_Account::isEmpty() const {
 
 		bool isValid = false;
@@ -47,11 +49,12 @@ namespace sict {
 		return isValid;
 	}
 
+	//query
 	void CRA_Account::display() const {
 
 		bool valid;
 
-		valid = isValid();
+		valid = isEmpty();
 
 		if (valid == false) {
 
