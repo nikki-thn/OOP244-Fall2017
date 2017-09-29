@@ -17,11 +17,11 @@ const int max_yrs = 4;
 	
 	class CRA_Account {
 
-		char lastName[max_name_length + 1];
-		char firstName[max_name_length + 1];
-		int sinNum;
-		int m_year[max_yrs];
-		double m_balance[max_yrs];
+		char m_lastName [max_name_length + 1];
+		char m_firstName [max_name_length + 1];
+		int m_sin;
+		int m_year [max_yrs];
+		double m_balance [max_yrs];
 		int m_years;
 
 
