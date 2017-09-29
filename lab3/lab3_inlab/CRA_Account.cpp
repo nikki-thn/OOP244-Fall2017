@@ -33,11 +33,9 @@ namespace sict {
 
 			m_sin = 0;
 		}
-
-
 	}
 
-	bool CRA_Account::isValid() const {
+	bool CRA_Account::isEmpty() const {
 
 		bool isValid = false;
 
@@ -47,7 +45,6 @@ namespace sict {
 		}
 
 		return isValid;
-
 	}
 
 	void CRA_Account::display() const {
@@ -68,6 +65,5 @@ namespace sict {
 			cout << "CRA Account: " << m_sin << endl;
 		}
 	}
-
 
 }
