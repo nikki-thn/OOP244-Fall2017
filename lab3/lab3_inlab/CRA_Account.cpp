@@ -41,7 +41,7 @@ namespace sict {
 
 		bool empty = true;
 
-		if (m_sin < max_sin && m_sin > min_sin) {
+		if (m_sin != 0) {
 
 			empty = false;
 		}
