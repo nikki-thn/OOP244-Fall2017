@@ -12,7 +12,7 @@ namespace sict {
 	
 const int max_name_length = 40;
 const int min_sin = 100000000;
-const int min_sin = 999999999;
+const int max_sin = 999999999;
 
 	class CRA_Account {
                   
