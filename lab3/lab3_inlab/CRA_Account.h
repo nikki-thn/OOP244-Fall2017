@@ -23,7 +23,7 @@ namespace sict {
 	public:
 
 		void set(const char* familyName, const char* givenName, int sin);
-		bool isValid() const;
+		bool isEmpty() const;
 		void display() const;
 
 	};
