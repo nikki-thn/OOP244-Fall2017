@@ -185,7 +185,7 @@ namespace sict {
 
 		if (valid == true) {
 
-			if (m_years < MAX_YRS) {
+			if (m_years < max_yrs) {
 
 				m_year[count] = year;
 				m_balance[count] = balance;
