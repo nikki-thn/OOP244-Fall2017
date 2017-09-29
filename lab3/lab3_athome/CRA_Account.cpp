@@ -38,7 +38,7 @@ namespace sict {
 
 	}
 
-	bool CRA_Account::isValid() const {
+	bool CRA_Account::isEmpty() const {
 
 		bool isValid = false;
 		int digits[5] = { 0 };
