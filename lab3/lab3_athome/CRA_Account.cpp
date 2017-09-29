@@ -47,11 +47,11 @@ namespace sict {
 		int multiple = 0;
 		int difference = 0;
 
-		if (sinNum != 0) {
+		if (m_sin != 0) {
 
 			//Extract all numbers and assigns them into 2 arrays for validation
-			remain[0] = sinNum % 100000000;
-			digits[0] = (sinNum - remain[0]) / 100000000;
+			remain[0] = m_sin % 100000000;
+			digits[0] = (m_sin - remain[0]) / 100000000;
 
 			remain[1] = remain[0] % 10000000;
 			alternate[0] = (remain[0] - remain[1]) / 10000000;
