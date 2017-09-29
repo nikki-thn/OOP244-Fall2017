@@ -18,7 +18,7 @@ namespace sict {
 
 		bool valid = false;
 
-		if (sin > min_sin || sin < max_sin) {
+		if (sin > min_sin && sin < max_sin) {
 
 			valid = true;
 		}
