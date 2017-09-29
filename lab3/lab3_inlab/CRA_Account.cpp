@@ -21,7 +21,6 @@ namespace sict {
 		if (sin < min_sin || sin > max_sin) {
 
 			valid = false;
-			cout << "Invalid Input! Try again." << endl;
 		}
 
 		if (valid == true) {
