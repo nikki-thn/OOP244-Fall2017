@@ -15,16 +15,16 @@ const int min_sin = 100000000;
 const int min_sin = 999999999;
 
 	class CRA_Account {
-
+                  
 		char m_lastName [max_name_length + 1];
 		char m_firstName [max_name_length + 1];
 		int m_sin;
 
 	public:
-
-		void set(const char* familyName, const char* givenName, int sin);
-		bool isEmpty() const;
-		void display() const;
+                  
+		void set(const char* familyName, const char* givenName, int sin); //to set values for an object
+		bool isEmpty() const; //check if the object is empty
+		void display() const; //print out data members
 
 	};
 }
