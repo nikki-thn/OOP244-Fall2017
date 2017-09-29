@@ -56,12 +56,12 @@ namespace sict {
 
 		valid = isEmpty();
 
-		if (valid == false) {
+		if (valid == true) {
 
 			cout << "Account object is empty!" << endl;
 		}
 
-		if (valid == true) {
+		if (valid == false) {
 
 			cout << "Family Name: " << m_lastName << endl;
 			cout << "Given Name: " << m_firstName << endl;
