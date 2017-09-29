@@ -1,7 +1,12 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Section B
+Workshop 2 - in lab
+*/
+
 #include <iostream>
 #include <cstring>
 #include "CRA_Account.h"
-
 
 
 using namespace std;
@@ -19,14 +24,14 @@ namespace sict {
 
 		if (valid == true) {
 
-			strcpy(firstName, givenName);
-			strcpy(lastName, familyName);
-			sinNum = sin;
+			strcpy(m_firstName, givenName);
+			strcpy(m_lastName, familyName);
+			m_sin = sin;
 		}
 
 		else {
 
-			sinNum = 0;
+			m_sin = 0;
 		}
 
 
@@ -36,7 +41,7 @@ namespace sict {
 
 		bool isValid = false;
 
-		if (sinNum != 0) {
+		if (m_sin != 0) {
 
 			isValid = true;
 		}
@@ -58,9 +63,9 @@ namespace sict {
 
 		if (valid == true) {
 
-			cout << "Family Name: " << lastName << endl;
-			cout << "Given Name: " << firstName << endl;
-			cout << "CRA Account: " << sinNum << endl;
+			cout << "Family Name: " << m_lastName << endl;
+			cout << "Given Name: " << m_firstName << endl;
+			cout << "CRA Account: " << m_sin << endl;
 		}
 	}
 
