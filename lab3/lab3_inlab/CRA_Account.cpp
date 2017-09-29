@@ -16,11 +16,11 @@ namespace sict {
 	//mutator to set value for object
 	void CRA_Account::set(const char* familyName, const char* givenName, int sin) {
 
-		bool valid = true;
+		bool valid = false;
 
-		if (sin < min_sin || sin > max_sin) {
+		if (sin > min_sin || sin < max_sin) {
 
-			valid = false;
+			valid = true;
 		}
 
 		if (valid == true) {
@@ -39,14 +39,14 @@ namespace sict {
 	//check if object is empty
 	bool CRA_Account::isEmpty() const {
 
-		bool isValid = false;
+		bool empty = true;
 
-		if (m_sin > max_sin || m_sin < min_sin) {
+		if (m_sin < max_sin && m_sin > min_sin) {
 
-			isValid = true;
+			empty = false;
 		}
 
-		return isValid;
+		return empty;
 	}
 
 	//query
