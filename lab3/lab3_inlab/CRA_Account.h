@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Section B
+Workshop 3 - in lab
+*/
+
 #ifndef SICT_CRA_ACCOUNT_H
 #define SICT_CRA_ACCOUNT_H
 
@@ -9,9 +15,9 @@ namespace sict {
 
 	class CRA_Account {
 
-		char lastName[MAX_NAME_LENGTH + 1];
-		char firstName[MAX_NAME_LENGTH + 1];
-		int sinNum;
+		char m_lastName [MAX_NAME_LENGTH + 1];
+		char m_firstName [MAX_NAME_LENGTH + 1];
+		int m_sin;
 
 	public:
 
