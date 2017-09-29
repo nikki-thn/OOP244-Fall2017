@@ -24,14 +24,12 @@ namespace sict {
 		double m_balance[max_yrs];
 		int m_years;
 
-
 	public:
 
 		void set(const char* familyName, const char* givenName, int sin); //to set values for an object or set empty state
 		void set(int year, double balance); //to set values of newly added data members
 		bool isEmpty() const; //check if the object is empty
 		void display() const; //print out data members
-
 
 	};
 
