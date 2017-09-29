@@ -41,7 +41,7 @@ namespace sict {
 
 		bool isValid = false;
 
-		if (m_sin != 0) {
+		if (m_sin > max_sin || m_sin < min_sin) {
 
 			isValid = true;
 		}
