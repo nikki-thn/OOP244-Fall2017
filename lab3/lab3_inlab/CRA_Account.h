@@ -22,7 +22,7 @@ const int min_sin = 999999999;
 
 	public:
                   
-		void set(const char* familyName, const char* givenName, int sin); //to set values for an object
+		void set(const char* familyName, const char* givenName, int sin); //to set values for an object or set empty state
 		bool isEmpty() const; //check if the object is empty
 		void display() const; //print out data members
 
