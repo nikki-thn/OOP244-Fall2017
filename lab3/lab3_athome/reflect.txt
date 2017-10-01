@@ -6,21 +6,29 @@ Workshop 3 - Reflect
 
 
 1)	What is the size of each C-style character string that stores a name for the account? Why?
-
+    The size of each string is the number of byte per character in the string input by user + one byte for the '\0' character. For example, if user input is Doe, the size of string is 3 + 1 = 4.
+    
 
 2)	Using examples from your own code explain which features of object orientation you used.
-    Encapulation, by hiding data and only be accessed through member functions.
+    Encapulation, by hiding data and only be accessed through member functions. 
 
 
 3)	Your class declares two member functions named set(...).  In C, this would generate an error.  Explain why this is allowed in C++.
-    Because C++ can regconize functions using their name, parameters and order of parameters. By compare and distinguishes functions, C++ allows functions with same names as long as they are not identical in all above aspects.
+    Because C++ allows functions with same name (overloading) using their signature which recognized by function identifier, parameters type and order of parameters (return type and parameters name are not included as functionès signature). C++ distinguishes functions and rename them so compiler can regconize which one is being called (mangling).
+    
 
 4)	How do you ensure that the balance/refund displays to 2 decimal places?
     We have to set or select the fixed format (cout.setf(ios::fixed)), this will set format and persist until we changed by cout.unsetf(ios::fixed). Within the format, we specify we want the precision of 2.
 
 
 5)	What do you need to check before storing data for a tax year?
-    We need to check the data member m_years. 
+    We need to check the value m_years and make sure it is not over the max_yrs value which is 4. 
     
     
 6)	What have you learned during this workshop?
+    I learned how to construct member functions as a query and mutator to display or to set value for data members, how to check for user input and validate them before accepting into program. I understand the different between define a constant and declare a variable as constant.
+    
+
+
+Quiz 2 reflection
+I got perfect mark on quiz 2.
