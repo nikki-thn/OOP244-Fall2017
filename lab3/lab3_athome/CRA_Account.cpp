@@ -139,19 +139,20 @@ namespace sict {
 
 				if (m_balance[i] > 2.0) {
 
-					//cout.precision(2);
+					cout.setf(ios::fixed);
+					cout.precision(2);
 					cout << "Year (" << m_year[i] << ") balance owning: " << m_balance[i] << endl;
 				}
 
 				else if (m_balance[i] < -2.0) {
 
-					//cout.precision(2);
-					cout << "Year (" << m_year[i] << ") refund due: " << m_balance[i]*(-1) << endl;
+				
+					cout << "Year (" << m_year[i] << ") refund due: " << (m_balance[i])*(-1) << endl;
 				}
 
 				else if (m_balance[i] <= 2.0 && m_balance[i] >= -2.0) {
 
-					//cout.precision(2);
+				
 					cout << "Year (" << m_year[i] << ") No balance owning or refund due!" << endl;	
 				}
 			}
