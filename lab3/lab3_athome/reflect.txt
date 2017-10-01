@@ -26,7 +26,7 @@ Workshop 3 - Reflect
     
     
 6)	What have you learned during this workshop?
-    I learned how to construct member functions as a query and mutator to display or to set value for data members, how to check for user input and validate them before accepting into program. I understand the different between define a constant and declare a variable as constant.
+    I learned how to construct member functions as a query and mutator to display or to set value for data members. I learned how to check for user input and validate them before accepting into data members. I understand the different between define a constant and declare a variable as constant.
     
 
 
