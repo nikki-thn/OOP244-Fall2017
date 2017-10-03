@@ -44,7 +44,7 @@ namespace sict {
 		}
 
 		else {
-			sku_[MAX_SKU_LEN + 1] = { '\0' };
+			sku_ [0] = '\0';
 			price_ = 0;
 			name_ = nullptr;
 			quantity_ = 0;
