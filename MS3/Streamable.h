@@ -9,8 +9,9 @@ namespace sict {
 	class Streamable {
 
 	public:
-		virtual Streamable() = default;
-		//~Streamable();
+		Streamable();
+		virtual ~Streamable();
+		
 		virtual std::fstream& store(std::fstream& file, bool addNewLine = true)const;
 		virtual std::fstream& load(std::fstream& );
 		virtual std::ostream& write(std::ostream& , bool)const;
