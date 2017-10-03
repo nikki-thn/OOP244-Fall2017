@@ -55,10 +55,10 @@ namespace sict {
 
 
 
-//	Product::~Product() {
+	Product::~Product() {
 
-//		delete[] name_;
-//	}
+		delete [] name_;
+	}
 
 	Product::Product(const Product& temp) {
 
