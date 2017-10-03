@@ -12,10 +12,10 @@ namespace sict {
 		Streamable();
 		virtual ~Streamable() = default;
 		
-		virtual std::fstream& store(std::fstream& file, bool addNewLine = true)const;
-		virtual std::fstream& load(std::fstream& );
-		virtual std::ostream& write(std::ostream& , bool)const;
-		virtual std::istream& read(std::istream& is);
+		virtual std::fstream& store(std::fstream& file, bool addNewLine = true)const = 0;
+		virtual std::fstream& load(std::fstream& ) = 0;
+		virtual std::ostream& write(std::ostream& , bool)const = 0;
+		virtual std::istream& read(std::istream& is) = 0;
 
 	};
 
