@@ -27,6 +27,11 @@ namespace sict {
 		if (strlen(sku) < MAX_SKU_LEN && sku != nullptr) {
 			strcpy(sku_, sku);
 		}
+		
+		taxed_ = true;
+		price_ = 0;
+		quantity_ = 0;
+		qtyNeeded_ = 0;
 	}
 
 	Product::Product(char* sku, char* name, bool taxed, double price, int qtyNeeded) {
