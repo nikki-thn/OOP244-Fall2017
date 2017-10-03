@@ -18,8 +18,8 @@ namespace sict {
 	public:
 
 		Product();
-		Product(char*, char*, bool, double, int);
 		Product(const char*,const char*);
+		Product(char*, char*, bool, double, int);
 		virtual ~Product();
 
 		Product(const Product&);
@@ -46,8 +46,8 @@ namespace sict {
 		int operator+= (int);
 		int operator-= (int);
 
-		std::istream& read(std::istream& istr);
-		std::ostream& write(std::ostream& ostr)const;
+		std::ostream& write(std::ostream&, bool)const;
+		std::istream& read(std::istream& is) = 0;
 
 	};
 
