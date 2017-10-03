@@ -48,7 +48,7 @@ namespace sict {
 			price_ = 0;
 			name_ = nullptr;
 			quantity_ = 0;
-			qtyNeeded_;
+			qtyNeeded_ = 0;
 			taxed_ = true;
 		}
 	}
