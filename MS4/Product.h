@@ -8,7 +8,7 @@ namespace sict {
 
 	class Product : public Streamable {
 
-		char sku_[MAX_SKU_LEN + 1];
+		char sku_ [MAX_SKU_LEN + 1];
 		char* name_;
 		double price_;
 		bool taxed_;
