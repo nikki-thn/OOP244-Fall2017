@@ -9,31 +9,40 @@ namespace sict {
 
 	Product::Product() {
 
-		sku_ [0] =  '\0';
-		price_ = 0;
+		sku_ [0] = '\0';
 		name_ = nullptr;
+		taxed_ = true;
+		price_ = 0;
 		quantity_ = 0;
 		qtyNeeded_ = 0;
-		taxed_ = true;
 	}
 
 	Product::Product(const char* sku, const char* name) {
 
-		if (sku != " " && name != " ") {
-			strncpy(sku_, sku, MAX_SKU_LEN);
+		if (name != nullptr) {
 			name_ = new char[strlen(name) + 1];
 			strcpy(name_, name);
+		}
+
+		if (strlen(sku) < MAX_SKU_LEN && sku != nullptr) {
+			strcpy(sku_, sku);
 		}
 	}
 
 	Product::Product(char* sku, char* name, bool taxed, double price, int qtyNeeded) {
 
-		if (sku != " " && name != " ") {
-			strncpy(sku_, sku, MAX_SKU_LEN);
+		if (name != nullptr) {
 			name_ = new char[strlen(name) + 1];
 			strcpy(name_, name);
+		}
 
+		if (strlen(sku) < MAX_SKU_LEN && sku != nullptr) {
+			strcpy(sku_, sku);
+		}
 
+		bool cont = name_ != " " && sku_[0] != '\0';
+			
+		if (cont){
 			quantity_ = 0;
 			price_ = price;
 			qtyNeeded_ = qtyNeeded;
@@ -44,12 +53,13 @@ namespace sict {
 		}
 
 		else {
-			sku_ [0] = '\0';
-			price_ = 0;
+
+			sku_[0] = '\0';
 			name_ = nullptr;
+			taxed_ = true;
+			price_ = 0;
 			quantity_ = 0;
 			qtyNeeded_ = 0;
-			taxed_ = true;
 		}
 	}
 
@@ -62,20 +72,8 @@ namespace sict {
 
 	Product::Product(const Product& temp) {
 
-		//shallow copy
-		strncpy(sku_, temp.sku_, MAX_SKU_LEN);
-
-		quantity_ = temp.quantity_;
-		price_ = temp.price_;
-		qtyNeeded_ = temp.qtyNeeded_;
-		taxed_ = temp.taxed_;
-
-		//allocate memmory for name
-		if (temp.name_ != nullptr) {
-			delete[] name_;
-			name_ = new char[strlen(temp.name_) + 1];
-			strcpy(name_, temp.name_);
-		}
+		name_ = nullptr;
+		*this = temp;
 
 	}
 
@@ -83,21 +81,22 @@ namespace sict {
 
 		//check for self-assignment
 		if (this != &temp) {
-			strncpy(sku_, temp.sku_, MAX_SKU_LEN);
 
+			strcpy(sku_, temp.sku_);
 			quantity_ = temp.quantity_;
 			price_ = temp.price_;
 			qtyNeeded_ = temp.qtyNeeded_;
 			taxed_ = temp.taxed_;
-		}
 
-		//allocate memory
-		if (temp.name_ != nullptr) {
 			delete[] name_;
-			name_ = new char[strlen(temp.name_) + 1];
-			strcpy(name_, temp.name_);
-		}
 
+			//allocate memory
+			if (temp.name_ != nullptr) {
+
+				name_ = new char[strlen(temp.name_) + 1];
+				strcpy(name_, temp.name_);
+			}
+		}
 		return *this;
 	}
 	
@@ -152,7 +151,7 @@ namespace sict {
 	bool Product::operator== (const char* sku) {
 
 		bool isSame = false;
-		if (sku_ == sku) {
+		if (strcmp(sku_,sku)) {
 			isSame = true;
 		}
 
@@ -177,11 +176,11 @@ namespace sict {
 	double operator+= (double& value, const Product& temp) {
 		
 		double totalCost = 0;
-		totalCost = temp.quantity() * temp.price();
+		totalCost = temp.quantity() * temp.cost();
 
-		totalCost += value;
+		value += totalCost;
 
-		return totalCost;
+		return value;
 	}
 	
 	std::ostream& Product::write(std::ostream& os, bool linear ) const {
@@ -191,7 +190,7 @@ namespace sict {
 
 	std::istream& Product::read(std::istream& is) {
 
-		is >> name_ >> sku_ >> qtyNeeded_ >> quantity_;
+		//is >> name_ >> sku_ >> qtyNeeded_ >> quantity_;
 
 		return is;
 	}
