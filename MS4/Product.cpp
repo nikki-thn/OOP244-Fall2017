@@ -9,49 +9,56 @@ namespace sict {
 
 	Product::Product() {
 
-		sku_[MAX_SKU_LEN + 1] = { '\0' };
+		sku_ [0] =  '\0';
 		price_ = 0;
 		name_ = nullptr;
 		quantity_ = 0;
-		qtyNeeded_;
-		taxed_ = NULL;
-	}
-
-	Product::Product(char* sku, char* name, bool taxed, double price, int qtyNeeded) {
-
-		strncpy(sku_, sku, MAX_SKU_LEN);
-	
-		name_ = new char[strlen(name) + 1];
-		strcpy(name_, name);
-
-		quantity_ = 0;
-		price_ = price;
-		qtyNeeded_ = qtyNeeded;
-
-		cout << "tax" << taxed << endl;
-		if (taxed != NULL) {
-			taxed_ = taxed;
-		}
-
-		else {
-			taxed_ = true;
-		}
-
+		qtyNeeded_ = 0;
+		taxed_ = true;
 	}
 
 	Product::Product(const char* sku, const char* name) {
 
-		strncpy(sku_, sku, MAX_SKU_LEN);
-		//delete[] name_;
-		name_ = new char[strlen(name) + 1];
-		strcpy(name_, name);
-
+		if (sku != " " && name != " ") {
+			strncpy(sku_, sku, MAX_SKU_LEN);
+			name_ = new char[strlen(name) + 1];
+			strcpy(name_, name);
+		}
 	}
 
-	Product::~Product() {
+	Product::Product(char* sku, char* name, bool taxed, double price, int qtyNeeded) {
 
-		//delete[] name_;
+		if (sku != " " && name != " ") {
+			strncpy(sku_, sku, MAX_SKU_LEN);
+			name_ = new char[strlen(name) + 1];
+			strcpy(name_, name);
+
+
+			quantity_ = 0;
+			price_ = price;
+			qtyNeeded_ = qtyNeeded;
+
+			if (taxed == false) {
+				taxed_ = taxed;
+			}
+		}
+
+		else {
+			sku_[MAX_SKU_LEN + 1] = { '\0' };
+			price_ = 0;
+			name_ = nullptr;
+			quantity_ = 0;
+			qtyNeeded_;
+			taxed_ = true;
+		}
 	}
+
+
+
+//	Product::~Product() {
+
+//		delete[] name_;
+//	}
 
 	Product::Product(const Product& temp) {
 
@@ -84,7 +91,6 @@ namespace sict {
 			taxed_ = temp.taxed_;
 		}
 
-	
 		//allocate memory
 		if (temp.name_ != nullptr) {
 			delete[] name_;
