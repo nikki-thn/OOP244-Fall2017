@@ -10,7 +10,7 @@ namespace sict {
 
 	public:
 		Streamable();
-		//~Streamable();
+		~Streamable();
 		virtual std::fstream& store(std::fstream& file, bool addNewLine = true)const;
 		virtual std::fstream& load(std::fstream& );
 		virtual std::ostream& write(std::ostream& , bool)const;
