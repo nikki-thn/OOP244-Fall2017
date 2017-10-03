@@ -101,7 +101,6 @@ namespace sict {
 		return *this;
 	}
 	
-	
 	void Product::sku(char sku[]) {
 		strcpy(sku_, sku);
 	}
@@ -183,16 +182,16 @@ namespace sict {
 		return totalCost;
 	}
 	
-	std::istream& Product::read(std::istream& istr) {
-	
-		
-		return istr;
+	std::ostream& Product::write(std::ostream& os, bool linear ) const {
+
+		return os;
 	}
 
-	std::ostream& Product::write(std::ostream& ostr)const {
+	std::istream& Product::read(std::istream& is) {
 
-		cout << name_ << endl;
-		return ostr;
+		is >> name_ >> sku_ >> qtyNeeded_ >> quantity_;
+
+		return is;
 	}
 
 	//to input
@@ -203,7 +202,7 @@ namespace sict {
 
 	//to display
 	std::ostream& operator<< (std::ostream& os, const Product& s) {
-		s.write(os);
+		s.write(os, true);
 		return os;
 	}
 
