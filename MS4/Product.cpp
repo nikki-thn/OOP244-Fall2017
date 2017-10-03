@@ -110,6 +110,8 @@ namespace sict {
 	}
 
 	void Product::name(char* name) {
+	
+		name_ = new char[strlen(name) + 1];
 		strcpy(name_, name);
 	}
 
