@@ -33,13 +33,13 @@ namespace sict {
 
 	std::fstream& AmaProduct::store(std::fstream& file, bool addNewLine) const {
 
-		char a = ',';
+			char a = ',';
 
-		file << fileTag_ << a << sku() << a << name() << a << price() <<
-			a << taxed() << a << quantity() << a << unit() << a << qtyNeeded();
-
+		file << fileTag_ << a << sku() << a << name() << a << price() << a << taxed() <<
+			a << quantity() << a << unit_ << a << qtyNeeded();
+		
 		if (addNewLine) {
-			file << endl;
+			file << '\n';
 		}
 
 		return file;
