@@ -21,7 +21,7 @@ namespace sict {
 		bool isClear() const;
 		void message(const char*);
 		const char* message()const;
-		std::ostream& ErrorMessage::display(std::ostream& os)const;
+		std::ostream& display(std::ostream& os)const;
 	};
 
 
