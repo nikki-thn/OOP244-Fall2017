@@ -26,7 +26,7 @@ namespace sict {
 		void unit(const char* value);
 		fstream& store(fstream& file, bool addNewLine = true)const;
 		fstream& load(fstream& file);
-		ostream& write(ostream& os, bool linear)const;
+		ostream& write(ostream& os, bool linear = true)const;
 		istream& read(istream& istr);
 	};
 
