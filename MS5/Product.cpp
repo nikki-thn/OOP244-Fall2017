@@ -46,7 +46,7 @@ namespace sict {
 			strcpy(sku_, sku);
 		}
 
-		bool cont = name_ != " " && sku_[0] != '\0';
+			bool cont = (strcmp(name_, " "));
 			
 		if (cont){
 			quantity_ = 0;
