@@ -8,7 +8,6 @@ namespace sict {
 	AmaProduct::AmaProduct() {
 		unit_[0] = '\0';
 		fileTag_ = 'N';
-		err_ = 0;
 	}
 
 	AmaProduct::AmaProduct(const char fileTag) {
@@ -17,7 +16,8 @@ namespace sict {
 			fileTag_ = fileTag;
 		}
 		else {
-			*this = AmaProduct();
+			unit_[0] = '\0';
+			fileTag_ = 'N';
 		}
 	}
 
@@ -29,15 +29,6 @@ namespace sict {
 		else {
 			unit_[0] = '\0';
 		}
-	}
-
-	bool AmaProduct::isClear() const {
-
-		bool clear = false;
-		if (err_ == 0) {
-			clear = true;
-		}
-		return clear;
 	}
 
 	std::fstream& AmaProduct::store(std::fstream& file, bool addNewLine) const {
@@ -82,9 +73,9 @@ namespace sict {
 
 	std::ostream& AmaProduct::write(std::ostream& os, bool linear)const {
 
-		bool clear = isClear();
+		bool flag = isClear();
 
-		if (clear == true) {
+		if (flag != true) {
 			if (linear) {
 				os.setf(ios::left);
 				os.width(MAX_SKU_LEN);
@@ -124,18 +115,86 @@ namespace sict {
 				os << "Qty on hand: " << quantity() << std::endl;
 				os << "Quantity needed: " << qtyNeeded() << std::endl;
 			}
-
 		}
 
 		else {
-			os << err_;
+			err_.display(os);
 		}
-
 		return os;
 	}
 
 	std::istream& AmaProduct::read(std::istream& istr) {
 
+		double aDouble;
+		int anInt;
+		char nameIn[200];
+		char skuIn[MAX_SKU_LEN + 1];
+		char taxedIn;
+
+		while (!(istr.fail()) ){
+			std::cout << "Sku: ";
+			istr >> skuIn;
+			sku(skuIn);
+			cout << "Name: ";
+			istr >> nameIn;
+			name(nameIn);
+			cout << "Unit: ";
+			istr >> unit_;
+			cout << "Taxed? (y/n): ";
+			istr >> taxedIn;
+
+			if (taxedIn != 'N' || taxedIn != 'n' || taxedIn != 'Y' || taxedIn != 'y') {
+
+				err_.message("Only (Y)es or (N)o are acceptable");
+				istr.setstate(ios::failbit);
+			}
+		/*	else {
+
+				if (taxedIn == 'Y' || taxedIn == 'y') {
+					taxed(true);
+				}
+				else if (taxedIn == 'N' || taxedIn == 'n') {
+					taxed(false);
+				}
+
+			} */
+
+			//clear();
+
+			cout << "Price: ";
+			istr >> aDouble;
+
+			if (!(aDouble > 0.0)) {
+				err_.message("Invalid Price Entry");
+
+			}
+			else {
+				price(aDouble);
+			}
+
+			cout << "Quantity On Hand: ";
+			istr >> anInt;
+
+			if (!(anInt > 0)) {
+				err_.message("Invalid Quanity Entry");
+
+			}
+			else {
+				quantity(anInt);
+			}
+
+			cout << "Quanity Needed: ";
+			istr >> anInt;
+
+			if (!(anInt > 0)) {
+				err_.message("Invalid Quanity Needed Entry");
+
+			}
+			else {
+				qtyNeeded(anInt);
+			}
+
+		}
 		return istr;
 	}
 
