@@ -9,20 +9,19 @@ using namespace std;
 
 namespace sict {
 
-	class AmaProduct : public Product {
+	class AmaProduct : public Product , public ErrorMessage {
 		
 		char fileTag_;
 		char unit_[11];
 
 	protected:
-		int err_;
+		ErrorMessage err_;
 		AmaProduct(const char fileTag);
 
 	public:
 
 		AmaProduct();
 	
-		bool isClear() const;
 		const char* unit() const { return unit_; } //return type issue
 		void unit(const char* value);
 		fstream& store(fstream& file, bool addNewLine = true)const;
