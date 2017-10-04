@@ -40,7 +40,7 @@ namespace sict {
 	}
 
 	bool ErrorMessage::isClear() const {
-		bool isEmpty;
+		bool isEmpty = false;
 
 		if (message_ == nullptr) {
 			isEmpty = true;
