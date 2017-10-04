@@ -73,127 +73,140 @@ namespace sict {
 
 	std::ostream& AmaProduct::write(std::ostream& os, bool linear)const {
 
-		bool flag = isClear();
-
-		if (flag != true) {
-			if (linear) {
-				os.setf(ios::left);
-				os.width(MAX_SKU_LEN);
-				os << "|" << sku() << "|";
-				os.width(20);
-				os << name() << "|";
-				os.unsetf(ios::left);
-				os.setf(ios::right);
-				os.width(7);
-				os.precision(2);
-				os << "Cost: " << cost() << "|";
-				os.width(4);
-				os << "Qty on hand: " << quantity() << "|";
-				os.setf(ios::left);
-				os.width(10);
-				os << "Unit: " << unit_ << "|";
-				os.unsetf(ios::left);
-				os.setf(ios::right);
-				os.width(4);
-				os << "Quantity needed: " << qtyNeeded() << "|";
+		
+			if (!err_.isClear()) {
+				err_.display(os);
 			}
 
 			else {
-				os << "Sku: " << sku() << std::endl;
-				os << "Name: " << name() << std::endl;
-				os.setf(ios::fixed);
-				os.precision(2);
-				os << "Price: " << price();
-
-				if (taxed()) {
-					os << "Price after tax: " << cost();
+				if (linear) {
+					os.setf(ios::left);
+					os.width(MAX_SKU_LEN);
+					os << sku() << "|";
+					os.width(20);
+					os << name() << "|";
+					os.unsetf(ios::left);
+					os.setf(ios::right);
+					os.width(7);
+					os.setf(ios::fixed);
+					os.precision(2);
+					os << cost() << "|";
+					os.width(4);
+					os << quantity() << "|";
+					os.unsetf(ios::right);
+					os.setf(ios::left);
+					os.width(10);
+					os << unit_ << "|";
+					os.unsetf(ios::left);
+					os.setf(ios::right);
+					os.width(4);
+					os  << qtyNeeded() << "|";
 				}
+
 				else {
-					os << "Price after tax: N/A";
+					os << "Sku: " << sku() << std::endl;
+					os << "Name: " << name() << std::endl;
+					os.setf(ios::fixed);
+					os.precision(2);
+					os << "Price: " << price() << std::endl;;
+
+					if (taxed()) {
+						os << "Price after tax: " << cost() << std::endl;;
+					}
+					else {
+						os << "Price after tax: N/A" << std::endl;;
+					}
+
+					os << "Quantity on hand: " << quantity() << " " << unit_ << std::endl;
+					os << "Quantity needed: " << qtyNeeded() << std::endl;
 				}
-
-				os << "Qty on hand: " << quantity() << std::endl;
-				os << "Quantity needed: " << qtyNeeded() << std::endl;
 			}
-		}
-
-		else {
-			err_.display(os);
-		}
+		
 		return os;
 	}
 
 	std::istream& AmaProduct::read(std::istream& istr) {
 
 		double aDouble;
-		int anInt;
+		int qtyInput, qtyNeededInput;
 		char nameIn[200];
 		char skuIn[MAX_SKU_LEN + 1];
 		char taxedIn;
+		bool isValid = true;
 
-		while (!(istr.fail()) ){
-			std::cout << "Sku: ";
-			istr >> skuIn;
-			sku(skuIn);
-			cout << "Name: ";
-			istr >> nameIn;
-			name(nameIn);
-			cout << "Unit: ";
-			istr >> unit_;
-			cout << "Taxed? (y/n): ";
-			istr >> taxedIn;
+		std::cout << "Sku: ";
+		istr >> skuIn;
+		sku(skuIn);
+		cout << "Name: ";
+		istr >> nameIn;
+		name(nameIn);
+		cout << "Unit: ";
+		istr >> unit_;
+		cout << "Taxed? (y/n): ";
+		istr >> taxedIn;
+		std::cin.clear();
 
-			if (taxedIn != 'N' || taxedIn != 'n' || taxedIn != 'Y' || taxedIn != 'y') {
+		if (taxedIn != 'N' && taxedIn != 'n' && taxedIn != 'Y' && taxedIn != 'y') {
+			err_.message("Only (Y)es or (N)o are acceptable");
+			istr.setstate(ios::failbit); //-- istr.fail();
+			isValid = false;
+		}
+		else if (taxedIn == 'N' || taxedIn == 'n') {
+			taxed(false);
+			
+		}
+		else if (taxedIn == 'Y' || taxedIn == 'y') {
+			taxed(true);
+		}
 
-				err_.message("Only (Y)es or (N)o are acceptable");
-				istr.setstate(ios::failbit);
-			}
-		/*	else {
-
-				if (taxedIn == 'Y' || taxedIn == 'y') {
-					taxed(true);
-				}
-				else if (taxedIn == 'N' || taxedIn == 'n') {
-					taxed(false);
-				}
-
-			} */
-
-			//clear();
-
+		if (isValid != false) {
 			cout << "Price: ";
 			istr >> aDouble;
 
 			if (!(aDouble > 0.0)) {
 				err_.message("Invalid Price Entry");
-
+				istr.setstate(ios::failbit);
+				isValid = false;
 			}
 			else {
 				price(aDouble);
+				std::cin.clear();
 			}
+		}
 
+		if (isValid != false) {
 			cout << "Quantity On Hand: ";
-			istr >> anInt;
+			istr >> qtyInput;
 
-			if (!(anInt > 0)) {
-				err_.message("Invalid Quanity Entry");
-
+			if (!(qtyInput > 0)) {
+				err_.message("Invalid Quantity Entry");
+				istr.setstate(ios::failbit);
+				isValid = false;
 			}
 			else {
-				quantity(anInt);
+				quantity(qtyInput);
+				std::cin.clear();
 			}
+		}
 
-			cout << "Quanity Needed: ";
-			istr >> anInt;
+		if (isValid != false) {
+			cout << "Quantity Needed: ";
+			istr >> qtyNeededInput;
 
-			if (!(anInt > 0)) {
-				err_.message("Invalid Quanity Needed Entry");
-
+			if (!(qtyNeededInput > 0)) {
+				err_.message("Invalid Quantity Needed Entry");
+				istr.setstate(ios::failbit);
+				isValid = false;
 			}
 			else {
-				qtyNeeded(anInt);
+				qtyNeeded(qtyNeededInput);
+				std::cin.clear();
 			}
+		}
 
+
+		if (isValid == true) {
+			err_.clear();	
 		}
 		return istr;
 	}
