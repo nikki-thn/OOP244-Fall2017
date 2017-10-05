@@ -60,8 +60,8 @@ namespace sict {
 		file >> a >> a >> skuIn;
 		sku(skuIn); 
 		file.ignore(10, ',');
-		file >> nameIn;
-		name(nameIn);
+		//file >> nameIn;
+		//name(nameIn);
 	        file.ignore(10, ',');
 		
 		file >> aDouble >> a;
