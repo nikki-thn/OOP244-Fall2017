@@ -1,6 +1,7 @@
 // AmaProduct.cpp
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<cstring>
 #include"AmaProduct.h"
 
 namespace sict {
@@ -56,9 +57,7 @@ namespace sict {
 		
 		
 		file.getline(record, 200);
-		cout << record << endl;;
-		record.get(MAX_SKU_LEN);
-		record >> a >> a >> skuIn;
+
 		sku(skuIn); 
 		file.ignore(10, ',');
 		//file >> nameIn;
