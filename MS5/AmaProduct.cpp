@@ -60,10 +60,10 @@ namespace sict {
 		file.ignore(10, ',');
 		file >> nameIn >> a;
 		name(nameIn);
-			file.ignore(10, ',');
+			file.ignore(1, ',');
 		file >> aDouble >> a;
 		price(aDouble);
-			file.ignore(10, ',');
+			file.ignore(1, ',');
 		file >> aBool >> a;
 		taxed(aBool);
 			file.ignore(10, ',');
