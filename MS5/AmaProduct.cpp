@@ -51,14 +51,15 @@ namespace sict {
 		//double priceIn;
 		//bool taxedIn;
 		//int qtyIn, qtyNeededIn;
-		char skuIn[MAX_SKU_LEN + 1], nameIn[51];
+		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
 		char a;
 				
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		file.get(a);
 		sku(skuIn);
-		file.getline(nameIn, 50, ',');
+		file.getline(nameIn, 20, ',');
 		file.get(a);
+		cout << nameIn;;
 		name(nameIn);
 		/*file.getline(priceIn, ',');
 		file.get(a);
