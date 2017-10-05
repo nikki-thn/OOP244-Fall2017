@@ -55,8 +55,8 @@ namespace sict {
 		char a = ',';
 		
 		
-		file.getline(record, '\n');
-		cout << record;
+		file.getline(record);
+		cout << record << endl;;
 		file >> a >> a >> skuIn;
 		sku(skuIn); 
 		file.ignore(10, ',');
