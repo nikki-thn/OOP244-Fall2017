@@ -58,7 +58,7 @@ namespace sict {
 		file.get(a);
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
-		file.get(a);
+		//file.get(a);
 		cout << nameIn;;
 		name(nameIn);
 		/*file.getline(priceIn, ',');
