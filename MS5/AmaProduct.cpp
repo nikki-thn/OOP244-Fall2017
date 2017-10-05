@@ -54,9 +54,9 @@ namespace sict {
 		char skuIn[MAX_SKU_LEN + 1], nameIn[50], unitIn [11];
 		char a;
 		
-		file.get(a);
+		get(file, a);
 		//file.ignore();
-		file.getline(skuIn, MAX_SKU_LEN, ',');
+		getline(file, skuIn, ',');
 		file.ignore();
 		file.getline(nameIn, 50, ',');
 		file.getline(unitIn, 10, ',');
