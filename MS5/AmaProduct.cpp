@@ -23,8 +23,8 @@ namespace sict {
 
 	void AmaProduct::unit(const char* value) {
 
-		if (value != nullptr && strlen(value) < 11) {
-			strcpy(unit_, value);
+		if (value != nullptr && std::strlen(value) < 11) {
+			std::strcpy(unit_, value);
 		}
 		else {
 			unit_[0] = '\0';
@@ -55,9 +55,10 @@ namespace sict {
 		char a = ',';
 		
 		
-		file.getline(record, 200, '\n');
+		file.getline(record, 200);
 		cout << record << endl;;
-		file >> a >> a >> skuIn;
+		record.get(MAX_SKU_LEN);
+		record >> a >> a >> skuIn;
 		sku(skuIn); 
 		file.ignore(10, ',');
 		//file >> nameIn;
