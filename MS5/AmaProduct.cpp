@@ -58,7 +58,7 @@ namespace sict {
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
-		file.getline(priceIn, ',');
+		file >> priceIn >> a;
 		price(priceIn);
 		/*file.getline(taxedIn);
 		taxed(taxedIn);
