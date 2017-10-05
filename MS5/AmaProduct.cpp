@@ -48,9 +48,9 @@ namespace sict {
 
 	std::fstream& AmaProduct::load(std::fstream& file) {
 
-		double priceIn;
-		bool taxedIn;
-		int qtyIn, qtyNeededIn;
+		//double priceIn;
+		//bool taxedIn;
+		//int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[51];
 		char a;
 				
