@@ -52,7 +52,7 @@ namespace sict {
 		//bool taxedIn;
 		//int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
-		//char a;
+		char a;
 				
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		sku(skuIn);
