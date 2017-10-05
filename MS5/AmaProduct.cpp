@@ -60,7 +60,7 @@ namespace sict {
 		file.getline(nameIn, 50, ',');
 		file.get(a);
 		name(nameIn);
-		file.getline(priceIn, ',');
+		/*file.getline(priceIn, ',');
 		file.get(a);
 		price(priceIn);
 		file.getline(taxedIn);
@@ -73,11 +73,9 @@ namespace sict {
 		file.getline(qtyNeededIn, ',');
 		file.get(a);
 		qtyNeeded(qtyNeededin);
-		
+		*/
 		//cout << skuIn;
-		//file.ignore();
-		//file.getline(skuIn, 50, ',');
-		//file.getline(unitIn, 10, ',');
+		
 		
 		return file;
 	}
