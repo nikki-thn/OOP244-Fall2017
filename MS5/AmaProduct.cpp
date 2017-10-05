@@ -55,7 +55,7 @@ namespace sict {
 		char a = ',';
 		
 		//file.ignore(10, ',');
-		file >> a >> skuIn >> a;
+		file >> a >> a >> skuIn >> a;
 		sku(skuIn);
 		file >> nameIn >> a;
 		name(nameIn);
