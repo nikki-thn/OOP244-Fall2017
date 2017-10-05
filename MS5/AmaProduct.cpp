@@ -53,7 +53,9 @@ namespace sict {
 		//int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[50], unitIn [11];
 			
+		file.ignore();
 		file.get(skuIn, MAX_SKU_LEN, ',');
+		file.ignore();
 		file.get(nameIn, 50, ',');
 		file.get(unitIn, 10, ',');
 		
