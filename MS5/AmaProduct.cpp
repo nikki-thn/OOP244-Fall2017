@@ -55,7 +55,7 @@ namespace sict {
 		char a;
 				
 		file.getline(skuIn, MAX_SKU_LEN, ',');
-		file.get(a);
+		//file.get(a);
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
 		//file.get(a);
