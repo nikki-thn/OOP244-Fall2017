@@ -54,8 +54,8 @@ namespace sict {
 		char skuIn[MAX_SKU_LEN + 1];
 		char a = ',';
 		
-		file.ignore(10, ',');
-		file >> skuIn >> a;
+		//file.ignore(10, ',');
+		file >> ',' >> skuIn >> a;
 		sku(skuIn);
 		file >> nameIn >> a;
 		name(nameIn);
