@@ -56,10 +56,10 @@ namespace sict {
 		
 		file.get(a);
 		//file.ignore();
-		file.get(skuIn, MAX_SKU_LEN, ',');
+		file.getline(skuIn, MAX_SKU_LEN, ',');
 		file.ignore();
-		file.get(nameIn, 50, ',');
-		file.get(unitIn, 10, ',');
+		file.getline(nameIn, 50, ',');
+		file.getline(unitIn, 10, ',');
 		
 		return file;
 	}
