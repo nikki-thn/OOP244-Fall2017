@@ -55,11 +55,8 @@ namespace sict {
 		char a = ',';
 		
 	
-		file >> a >> a >> skuIn >> a;
-		sku(skuIn);
-		file.ignore(10, ',');
-		file >> nameIn >> a;
-		name(nameIn);
+		file >> a >> a >> skuIn >> a >> nameIn >> a;
+	
 			file.ignore(1, ',');
 		file >> aDouble >> a;
 		price(aDouble);
@@ -74,7 +71,8 @@ namespace sict {
 			file.ignore(10, ',');
 		file >> anInt >> a;
 		qtyNeeded(anInt);
-
+	sku(skuIn); 
+		name(nameIn);
 		return file;
 	}
 
