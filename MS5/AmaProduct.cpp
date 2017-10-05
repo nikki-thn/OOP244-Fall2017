@@ -50,12 +50,13 @@ namespace sict {
 		double aDouble;
 		bool aBool;
 		int anInt;
-		char nameIn[200];
+		char record[200];
 		char skuIn[MAX_SKU_LEN + 1];
 		char a = ',';
 		
 		
-		file.ignore(10, ',');
+		file.getline(record, '\n');
+		cout << record;
 		file >> a >> a >> skuIn;
 		sku(skuIn); 
 		file.ignore(10, ',');
