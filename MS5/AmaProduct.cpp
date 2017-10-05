@@ -54,9 +54,14 @@ namespace sict {
 		char skuIn[MAX_SKU_LEN + 1];
 		char a = ',';
 		
-	
-		file >> a >> a >> skuIn >> file.ignore(10, a) >> nameIn >> a;
-	
+		
+		file.ignore(10, ',');
+		file >> a >> a >> skuIn;
+		sku(skuIn); 
+		file.ignore(10, ',');
+		file >> nameIn;
+		name(nameIn);
+	        file.ignore(10, ',');
 		
 		file >> aDouble >> a;
 		price(aDouble);
@@ -71,8 +76,8 @@ namespace sict {
 			file.ignore(10, ',');
 		file >> anInt >> a;
 		qtyNeeded(anInt);
-	sku(skuIn); 
-		name(nameIn);
+	
+	
 		return file;
 	}
 
