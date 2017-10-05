@@ -25,13 +25,15 @@ namespace sict {
 		Product(const Product&);
 		Product& operator= (const Product&);
 	
+		//mutators to set values for data members
 		void sku(char*);
 		void price(double);
 		void name(char*);
 		void taxed(bool);
 		void quantity(int);
 		void qtyNeeded(int);
-
+		
+		//queries that return values of data members
 		char sku() const { return *sku_; }
 		double price() const { return price_; }
 		char* name() const { return name_; }
