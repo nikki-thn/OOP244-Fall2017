@@ -55,7 +55,7 @@ namespace sict {
 		char nameIn[50];
 		
 		//file.get(file, a);
-		//file.ignore();
+		file.ignore();
 		file.getline(nameIn, 50);
 		cout << nameIn;
 		//file.ignore();
