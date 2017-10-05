@@ -49,7 +49,7 @@ namespace sict {
 	std::fstream& AmaProduct::load(std::fstream& file) {
 
 		double priceIn;
-		bool taxedIn;
+		//bool taxedIn;
 		//int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
 		//char a;
@@ -60,9 +60,9 @@ namespace sict {
 		name(nameIn);
 		file.getline(priceIn, ',');
 		price(priceIn);
-		file.getline(taxedIn);
+		/*file.getline(taxedIn);
 		taxed(taxedIn);
-		/*
+		
 		file.getline(qtyIn, ',');
 		file.get(a);
 		file.getline(unit_, 10, ',');
