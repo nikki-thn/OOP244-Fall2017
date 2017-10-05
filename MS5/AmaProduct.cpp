@@ -55,18 +55,14 @@ namespace sict {
 		//char a;
 				
 		file.getline(skuIn, MAX_SKU_LEN, ',');
-		//file.get(a);
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
-		//file.get(a);
-		cout << nameIn;;
 		name(nameIn);
-		/*file.getline(priceIn, ',');
-		file.get(a);
+		file.getline(priceIn, ',');
 		price(priceIn);
 		file.getline(taxedIn);
-		file.get(a);
 		taxed(taxedIn);
+		/*
 		file.getline(qtyIn, ',');
 		file.get(a);
 		file.getline(unit_, 10, ',');
