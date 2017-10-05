@@ -51,12 +51,12 @@ namespace sict {
 		double aDouble;
 		bool aBool;
 		int anInt;
-		char record[200];
+		char record[20];
 		char skuIn[MAX_SKU_LEN + 1];
 		char a = ',';
 		
 		
-		file.getline(record, 200);
+		file.get(record, 20, ',');
 
 		sku(skuIn); 
 		file.ignore(10, ',');
