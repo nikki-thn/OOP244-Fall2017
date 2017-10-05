@@ -51,7 +51,8 @@ namespace sict {
 		//double priceIn;
 		//bool taxedIn;
 		//int qtyIn, qtyNeededIn;
-		char skuIn[MAX_SKU_LEN + 1], nameIn[50];
+		char skuIn[MAX_SKU_LEN + 1];
+		//nameIn[50];
 		//unitIn [11];
 		//char nameIn[50];
 		char a;
