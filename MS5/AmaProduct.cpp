@@ -53,11 +53,11 @@ namespace sict {
 		//int qtyIn, qtyNeededIn;
 		//char skuIn[MAX_SKU_LEN + 1], nameIn[50], unitIn [11];
 		char nameIn[50];
-		
+		char a;
 		//file.get(file, a);
 		
-		file.getline(nameIn, 50);
-		file.ignore(1, ',');
+		file.getline(nameIn, 50, ',');
+		file.get(a);
 		cout << nameIn;
 		//file.ignore();
 		//file.getline(skuIn, 50, ',');
