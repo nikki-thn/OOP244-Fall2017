@@ -82,7 +82,7 @@ namespace sict {
 				if (linear) {
 					os.setf(ios::left);
 					os.width(MAX_SKU_LEN);
-					cout << sku() << std::endl;
+					//cout << sku() << std::endl;
 					os << sku() << "|";
 					os.width(20);
 					os << name() << "|";
