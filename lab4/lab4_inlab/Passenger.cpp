@@ -24,7 +24,8 @@ Passenger::Passenger(const char* name, const char* destination) {
 		strcpy(m_destination, destination);
 	}
 	else {
-		this* = Passenger();
+		m_name[0] = '\0';
+	        m_destination[0] = '\0'
 	}
 }
 
@@ -50,4 +51,6 @@ void Passenger::display() const {
 	}
 	else {
 	cout << "No Passengers!" << endl;
+	}
+}
 }
