@@ -1,3 +1,8 @@
+// Workshop 4 - Constructors - Test Main
+// w4_in_lab.cpp
+// Chris Szalwinski
+// 9/23/2017
+//
 #include <iostream>
 #include "Passenger.h"
 #include "Passenger.h" // this is intentional
@@ -7,7 +12,7 @@ using namespace sict;
 
 int main()
 {
-	sict::Passenger travellers[] = {
+	Passenger travellers[] = {
 		Passenger(nullptr, "Toronto"),
 		Passenger("", "Toronto"),
 		Passenger("John Smith", nullptr),
@@ -27,8 +32,8 @@ int main()
 	cout << "----------------------------------------" << endl << endl;
 
 	Passenger vanessa("Vanessa", "Paris"),
-		mike("Mike", "Tokyo"),
-		alice("Alice", "Paris");
+		      mike("Mike", "Tokyo"),
+		      alice("Alice", "Paris");
 
 	cout << "----------------------------------------" << endl;
 	cout << "Testing the display function" << endl;
@@ -36,6 +41,7 @@ int main()
 	vanessa.display();
 	mike.display();
 	alice.display();
+	travellers[0].display();
 	cout << "----------------------------------------" << endl << endl;
 
 	return 0;
