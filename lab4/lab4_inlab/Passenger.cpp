@@ -25,7 +25,7 @@ Passenger::Passenger(const char* name, const char* destination) {
 	}
 	else {
 		m_name[0] = '\0';
-	        m_destination[0] = '\0'
+	        m_destination[0] = '\0';
 	}
 }
 
@@ -47,10 +47,12 @@ void Passenger::display() const {
 	
 	bool notEmpty = isEmpty();
 	if (notEmpty == true){
-	cout << m_name << " - " << m_destination << endl;
+		cout << m_name << " - " << m_destination << endl;
 	}
 	else {
-	cout << "No Passengers!" << endl;
+		cout << "No Passengers!" << endl;
 	}
 }
+
+
 }
