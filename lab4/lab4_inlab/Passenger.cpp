@@ -57,7 +57,7 @@ namespace sict {
 			cout << m_name << " - " << m_destination << endl;
 		}
 		else {
-			cout << "No Passenger!" << endl;
+			cout << "No passenger!" << endl;
 		}
 	}
 
