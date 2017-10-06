@@ -12,14 +12,14 @@ using namespace sict;
 // TODO: implement the default constructor here
 Passenger::Passenger() {
 
-	name[0] = '\0';
-	destination[0] = '\0';
+	m_name[0] = '\0';
+	m_destination[0] = '\0';
 }
 
 // TODO: implement the constructor with 2 parameters here
 Passenger::Passenger(const char* name, const char* destination) {
 
-	if (name_ != nullptr && destination_ != nullptr) {
+	if (m_name != nullptr && destination != nullptr) {
 		strcpy(m_name, name);
 		strcpy(m_destination, destination);
 	}
@@ -33,7 +33,7 @@ Passenger::Passenger(const char* name, const char* destination) {
 bool Passenger::isEmpty() const {
 
 	bool isEmpty = true;
-	if (name[0] != '\0' && destination[0] != '\0') {
+	if (m_name[0] != '\0' && m_destination[0] != '\0') {
 		isEmpty = false;
 	}
 
@@ -46,7 +46,7 @@ void Passenger::display() const {
 	
 	bool notEmpty = isEmpty();
 	if (notEmpty == true){
-	cout << name << " - " << destination << endl;
+	cout << m_name << " - " << m_destination << endl;
 	}
 	else {
 	cout << "No Passengers!" << endl;
