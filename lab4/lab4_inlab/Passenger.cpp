@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 4 - In_lab
+*/
+
 // TODO: add your headers here 
 #include<iostream>
 #include<cstring>
