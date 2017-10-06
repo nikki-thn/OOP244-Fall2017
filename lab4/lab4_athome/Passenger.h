@@ -19,16 +19,16 @@ namespace sict {
 		char m_name[SIZE];
 		char m_destination[SIZE];
 
-		int departYear;
-		int departMonth;
-		int departDay;
+		int m_departYear;
+		int m_departMonth;
+		int m_departDay;
 
 	public:
 
 		Passenger(); //default constructor
 		Passenger(const char *, const char*); //overload constructor with 2 parameters
-		Passenger(const char *name_, const char* destination_, int day, int month, int year); //constructor with 5 parameters
-		
+		Passenger(const char *, const char*, int , int , int ); //constructor with 5 parameters
+
 		bool isEmpty() const; //to check if object is empty
 		void display() const; //display
 
