@@ -11,11 +11,13 @@ class ArrayList {
  public:
      ArrayList(); //constructor and destructor are mutator
      ArrayList(short item);
+     ArrayList(const ArrayList&); //copy contructor, would call itself if there is no pass by reference
      ~ArrayList();
      
      void display() const; //query
      void add (short item); //not a query
      
+     ArrayList7 operator= (const ArrayList&); //copy assignment, almost identical to copy constructor
      ArrayList& operator+= (short item);
      ArrayList& operator+= (const ArrayList& aList);
      ArrayList operator+(short item); //no & sign because it is returned a completely new object
@@ -23,6 +25,7 @@ class ArrayList {
      operator bool() const; //we dont put return type because we know what it will return (true or false)
 };
 
+     std::ostream& operator <<(std::ostream&, const ArrayList&); //don't use namespace in header, that's why std:;
 }
 
 #endif
@@ -50,6 +53,16 @@ namespace collection {
           //Notes*** only use constructor when memory for object has not yet created
           this->add(item);
      }     
+     
+     ArrayList::ArrayList (const ArrayList& other){
+      
+          this->m_size = other.m_size; //copy for non resouce object first
+          this->m_pItems = new short[m_size];
+          
+          for (int i = 0; i < m_size; i++) {
+                this->m_pItems[i] = other.m-pItems[i];
+          }
+     }
      
      ArrayList::~ArrayList() {
      
@@ -88,6 +101,23 @@ namespace collection {
           this->m_size++; //should it be the other way around??          
      }     
 
+     ArrayList& ArrayList::operator=(const ArrayList& other){
+          
+           
+          //we need to prevent self-assignment or else we will delete the object before it is being copied
+          if (this != &other){
+               
+          delete [] this->m_pItems; //for copy constructor, we need delete because we don't know when it is called, unlike the copy constructor
+        
+          this->m_size = other.m_size; //copy for non resouce object first
+          this->m_pItems = new short[m_size]; //allocate new memory
+          
+          for (int i = 0; i < m_size; i++) {
+                this->m_pItems[i] = other.m-pItems[i];
+          }
+          }
+          return *this;
+     }
      ArrayList& ArrayList::operator+=(short item) {
       
           this->add(item); //resuse code
@@ -115,6 +145,10 @@ namespace collection {
           return this->m_size > 0; //alternative way to do
      }     
      
+     ostream& operator <<(std::ostream& out, const ArrayList& anArray){
+          lst.display();
+          return out; //return sth so we can express multiple expression on a continuous string, if don't we can only return a simple stream
+     }
 }
 
 //main.cpp
