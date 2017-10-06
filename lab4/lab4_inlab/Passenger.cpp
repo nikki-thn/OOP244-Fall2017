@@ -1,5 +1,6 @@
 // TODO: add your headers here 
 #include<iostream>
+#include<cstring>
 #include"Passenger.h"
 
 
@@ -13,27 +14,19 @@ Passenger::Passenger() {
 
 	name[0] = '\0';
 	destination[0] = '\0';
-	cout << "name" << name << endl;
-
 }
 
 // TODO: implement the constructor with 2 parameters here
-Passenger::Passenger(const char* name_, const char* destination_) {
+Passenger::Passenger(const char* name, const char* destination) {
 
 	if (name_ != nullptr && destination_ != nullptr) {
-		
-		strcpy(name, name_);
-		strcpy(destination, destination_);
-
+		strcpy(m_name, name);
+		strcpy(m_destination, destination);
 	}
 
 	else {
-
-		name[0] = '\0';
-		destination[0] = '\0';
+		this* = Passenger();
 	}
-
-
 }
 
 
@@ -43,18 +36,18 @@ bool Passenger::isEmpty() const {
 	bool isEmpty = true;
 
 	if (name[0] != '\0' && destination[0] != '\0') {
-
 		isEmpty = false;
-
 	}
-
+	
 	return isEmpty;
 }
 
 
 // TODO: implement display query here
 void Passenger::display() const {
-
+	
+	bool notEmpty = isEmpty();
+	if (notEmpty == true){
 	cout << name << " - " << destination << endl;
-
+	}
 }
