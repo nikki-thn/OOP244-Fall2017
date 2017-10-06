@@ -6,7 +6,8 @@
 
 // TODO: continue your namespace here
 using namespace std;
-using namespace sict;
+
+namespace sict{
 
 
 // TODO: implement the default constructor here
