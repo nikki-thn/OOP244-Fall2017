@@ -15,3 +15,6 @@ Step into: go to but don't execute the line/function, Watch1 can be function or 
 Turn off SDL in properties to prevent warnings
 
 
+When asked to construct a class with resouces, build a copy constructor and assignment constructor to avoid sharing resouces
+
+Insertion operator: to print out an object, can perform more complex print out statement, that's why we want to implement it so the client code can be simplified.
