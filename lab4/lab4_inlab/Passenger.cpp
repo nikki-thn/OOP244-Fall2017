@@ -23,7 +23,6 @@ Passenger::Passenger(const char* name, const char* destination) {
 		strcpy(m_name, name);
 		strcpy(m_destination, destination);
 	}
-
 	else {
 		this* = Passenger();
 	}
@@ -34,11 +33,10 @@ Passenger::Passenger(const char* name, const char* destination) {
 bool Passenger::isEmpty() const {
 
 	bool isEmpty = true;
-
 	if (name[0] != '\0' && destination[0] != '\0') {
 		isEmpty = false;
 	}
-	
+
 	return isEmpty;
 }
 
@@ -50,4 +48,6 @@ void Passenger::display() const {
 	if (notEmpty == true){
 	cout << name << " - " << destination << endl;
 	}
+	else {
+	cout << "No Passengers!" << endl;
 }
