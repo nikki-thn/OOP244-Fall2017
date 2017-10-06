@@ -7,7 +7,10 @@
 
 namespace sict{
   
- 
+ class AmaPerishable : public AmaProduct {
+  
+   
+ };
   
 }
 
