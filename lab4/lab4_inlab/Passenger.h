@@ -16,7 +16,7 @@ namespace sict {
 	public:
 
 		Passenger(); //default constructor
-		Passenger(const char *name_, const char* destination_); //overload constructor
+		Passenger(const char *, const char*); //overload constructor
 		
 		bool isEmpty() const; //to check if object is empty
 		void display() const; //display
