@@ -1,3 +1,8 @@
+// Workshop 4 - Constructors - Test Main
+// w4_at_home.cpp
+// Chris Szalwinski
+// 9/23/2017
+//
 #include <iostream>
 #include "Passenger.h"
 
@@ -29,8 +34,8 @@ int main()
 	cout << "----------------------------------------" << endl;
 	for (unsigned int i = 0; i < 15; ++i)
 	{
-		cout << "Passenger " << i + 1 << ": "
-			<< (travellers[i].isEmpty() ? "not valid" : "valid") << endl;
+		cout << "Passenger " << i + 1 << ": " 
+            << (travellers[i].isEmpty() ? "not valid" : "valid") << endl;
 	}
 	cout << "----------------------------------------" << endl << endl;
 
@@ -55,11 +60,11 @@ int main()
 	cout << "----------------------------------------" << endl;
 	cout << "Testing Passenger::canTravelWith(...)" << endl;
 	cout << "----------------------------------------" << endl;
-	for (int i = 0; i < 7; ++i) {
-		if (david.canTravelWith(friends[i]))
-			cout << david.name() << " can travel with " << friends[i].name() << endl;
-	}
+    for (int i = 0; i < 7; ++i) {
+        if (david.canTravelWith(friends[i]))
+            cout << david.name() << " can travel with " << friends[i].name() << endl;
+    }
 	cout << "----------------------------------------" << endl << endl;
 
-	return 0;
+	return 0; 
 }
