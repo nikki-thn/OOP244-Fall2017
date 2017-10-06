@@ -27,10 +27,12 @@ namespace sict {
 	Passenger::Passenger(const char* name, const char* destination) {
 
 		if (name != nullptr && destination != nullptr) {
+			
 			strcpy(m_name, name);
 			strcpy(m_destination, destination);
 		}
 		else {
+			
 			m_name[0] = '\0';
 			m_destination[0] = '\0';
 		}
@@ -41,7 +43,9 @@ namespace sict {
 	bool Passenger::isEmpty() const {
 
 		bool isEmpty = true;
+		
 		if (m_name[0] != '\0' && m_destination[0] != '\0') {
+			
 			isEmpty = false;
 		}
 
@@ -53,10 +57,13 @@ namespace sict {
 	void Passenger::display() const {
 
 		bool empty = isEmpty();
+		
 		if (empty == false) {
+			
 			cout << m_name << " - " << m_destination << endl;
 		}
 		else {
+			
 			cout << "No passenger!" << endl;
 		}
 	}
