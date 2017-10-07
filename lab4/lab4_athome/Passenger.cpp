@@ -1,5 +1,6 @@
 // TODO: add your headers here 
 #include<iostream>
+#include<cstring>
 #include"Passenger.h"
 
 // TODO: continue your namespace here
@@ -10,52 +11,45 @@ namespace sict {
 	// TODO: implement the default constructor here
 	Passenger::Passenger() {
 
-		passengerName[0] = '\0';
-		destination[0] = '\0';
-		
-		departDay = 0;
-		departMonth = 0;
-		departYear = 0;
+		m_name[0] = '\0';
+		m_destination[0] = '\0';
 
-	}     
-
-	//Constructor with 5 parameters here
-	Passenger::Passenger(const char *name_, const char* destination_, int year, int month, int day) {
-
-		if (name_ != nullptr && destination_ != nullptr &&
-			name_ != "" && destination_ != "" &&
-			day <= 31 && day >= 1 && 
-			month <= 12 && month >= 1 &&
-			year <= 2020 && year >= 2017){
-
-			strcpy(passengerName, name_);
-			strcpy(destination, destination_);
-			departMonth = month;
-			departYear = year;
-			departDay = day;
-		}
-
-		else {
-
-			Passenger();
-		}
-
+		m_departDay = 0;
+		m_departMonth = 0;
+		m_departYear = 0;
 	}
 
 	// TODO: implement the constructor with 2 parameters here
-	Passenger::Passenger(const char* name_, const char* destination_) {
-	
-		if (name_ != nullptr && destination_ != nullptr) {
+	Passenger::Passenger(const char* name, const char* destination) {
 
-			departDay = 1;
-			departMonth = 7;
-			departYear = 2017;
+		if (name != nullptr && destination != nullptr) {
+
+			strcpy(m_name, name);
+			strcpy(m_destination, destination);
+		}
+		else {
+			*this = Passenger();
+		}
+	}
+
+	//Constructor with 5 parameters here
+	Passenger::Passenger(const char *name, const char* destination, int year, int month, int day) {
+
+		*this = Passenger(name, destination);
+
+		if (name != nullptr && destination != nullptr &&
+			day <= 31 && day >= 1 &&
+			month <= 12 && month >= 1 &&
+			year <= 2020 && year >= 2017) {
+
+			m_departMonth = month;
+			m_departYear = year;
+			m_departDay = day;
 		}
 
 		else {
-			passengerName[0] = '\0';
+			*this = Passenger();
 		}
-
 	}
 
 
@@ -63,55 +57,45 @@ namespace sict {
 	bool Passenger::isEmpty() const {
 
 		bool isEmpty = true;
-		
-		if (passengerName[0] != '\0') {
+
+		if (m_name[0] != '\0' && m_destination[0] != '\0') {
 			isEmpty = false;
 		}
-
 		return isEmpty;
 	}
-
 
 	// TODO: implement display query here
 	void Passenger::display() const {
 
-		cout << passengerName << " - " << destination;
-		cout << " on " << departYear << "/";
-		cout.fill('0');
-		cout.width(2);
-		cout << departMonth << "/" << departDay << endl;
+		bool empty = isEmpty();
 
+		if (empty == false) {
+
+			cout << m_name << " - " << m_destination;
+			cout << " on " << m_departYear << "/";
+			cout.fill('0');
+			cout.width(2);
+			cout << m_departMonth << "/" << m_departDay << endl;
+		}
+		else {
+
+			cout << "No passenger!" << endl;
+		}
 	}
-
-	const char* Passenger::name() const {
-		//***don't know what this is
-		//return this;
-	}
-
-	const Passenger& Passenger::address() const {
-		//Code seems to be fine but it is not what asked to do
-		return *this;
-
-	}
-
 
 	bool Passenger::canTravelWith(const Passenger& b) const {
 
 		Passenger a = *this;
 		bool isTravelWith = false;
-		
-		cout << "des" << a.destination << b.destination << endl;
-		
-		//***If statement doesn't work even values are correctly passed
-		if (b.destination == a.destination) {
+
+		if (!(strcmp(b.m_destination, a.m_destination)) &&
+			b.m_departDay == a.m_departDay &&
+			b.m_departMonth == a.m_departMonth &&
+			b.m_departYear == a.m_departYear) {
+
 			isTravelWith = true;
 		}
-
-	
-		cout << "tra" << isTravelWith << endl;
-
 		return isTravelWith;
-		
 	}
 
 }
