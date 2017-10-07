@@ -22,10 +22,10 @@ namespace sict {
 	// TODO: implement the constructor with 2 parameters here
 	Passenger::Passenger(const char* name, const char* destination) {
 
-		if (name != nullptr && destination != nullptr) {
+		if (name != nullptr && destination != nullptr && strlen(name) < SIZE && strlen(destination) < SIZE) {
 
-			strcpy(m_name, name);
-			strcpy(m_destination, destination);
+			strncpy(m_name, name, SIZE);
+			strncpy(m_destination, destination, SIZE);
 		}
 		else {
 			*this = Passenger();
