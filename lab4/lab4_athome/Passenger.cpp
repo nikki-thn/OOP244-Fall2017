@@ -51,6 +51,11 @@ namespace sict {
 			*this = Passenger();
 		}
 	}
+	
+	const char* name() const{
+	
+		return m_name;
+	}
 
 
 	// TODO: implement isEmpty query here
