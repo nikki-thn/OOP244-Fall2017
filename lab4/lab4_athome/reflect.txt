@@ -6,25 +6,21 @@ Workshop 4 - Reflect
 
 
 1)	What is meant by a safe empty state? What other safe empty states could you choose for the Passenger type? Explain why.
-    Safe empty state is a well-defined state of an object from the time of its creation untill all of the object's instance variables are set (similar to initialization). This prevents object to break or behave unexpected even if they are being accessed before setting.
+    Safe empty state is a well-defined state of an object that is consisted of one or combination of values  initialize data members to avoid garbage values and bugs in the program.
 
 2)	Describe how you would modify the code to minimize duplication using the syntax that you have covered in the course to date.
-    By seperate codes into reusable porttion. For example, I use constructor with no parameter to set safety state for code, then next time to set safety state, I just call the constructor instead of re-write the block of codes.
+    By seperate codes into reusable porttion. For example, I use constructor with no parameter to set safety state for code, then next time to set safety state, I just call the constructor instead of re-write the block of codes. I also called the 2 parameters constructor to construct object in the constructor with 5 parameters.
     
-3)	Explain the principal benefit of minimizing code duplication.
-    Less code, less typing, less bugs, minimize typo, easy to maintain or to fix or to upgrade.
+3)	Explain why the canTravelWith(...) member function can access the private data variables of the referenced object.
+    Because of pass-by-reference pass the referenced object in the parameter, hence we can use the object.
+
+4)	What do you need to correct when you use the strncpy(...) function?
+    strncpy copy string up to a certain amount of characters. Hence, we need to check the length of name and destination strings that are passed by parameters should be less than SIZE before copy it into data members to avoid memory overflow
     
-4)	Explain why the canTravelWith(...) member function can access the pri-vate data variables of the referenced object.
-    Because of pass-by-reference
-
-5)	Describe how you would improve your code to allow for changes in the siz-es of the arrays holding the name and destination data.
-    Need a code to allow user to input the size, then we need to delete existing allocated memory, allocated new memory and re-assign
-
-6)	What do you need to correct when you use the strncpy(...) function?
-    strncpy copy string up to a certain amount of character without needing the '\0' character. We need to know how many bytes to copy.
+5)	Explain what you have learned in this workshop.
+    I learn how to build a constructor for a class to set safe empty state and to check values before accepting it into data members. I learned how to minimize code by reusing codes with same logic to reduce typo and errors and how to use one constructor to build another. I learn how to pass an object through parameter for binary operators.
     
-7)	Explain what you have learned in this workshop.
-
 
 Quiz X Relfection
 
+I haven't received the mark for my last quiz. 
