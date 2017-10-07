@@ -52,7 +52,7 @@ namespace sict {
 		}
 	}
 	
-	const char* name() const{
+	const char* Passenger::name() const{
 	
 		return m_name;
 	}
