@@ -34,7 +34,7 @@ namespace sict {
 		void qtyNeeded(int);
 		
 		//queries that return values of data members
-		char sku() const { return *sku_; }
+		const char* sku() const { return sku_; }
 		double price() const { return price_; }
 		char* name() const { return name_; }
 		bool taxed() const { return taxed_; }
