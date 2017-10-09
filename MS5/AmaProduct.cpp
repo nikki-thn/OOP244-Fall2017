@@ -57,7 +57,6 @@ namespace sict {
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		file.ignore();
 		sku(skuIn);
-		file >> skipws;
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
 		file.ignore();
@@ -68,6 +67,7 @@ namespace sict {
 		file >> qtyIn >> a;
 		quantity(qtyIn);
 		file.getline(unit_, 10, ',');
+		file.ignore();
 		file >> qtyNeededIn >> a;
 		qtyNeeded(qtyNeededIn);
 		
