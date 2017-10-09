@@ -1,7 +1,7 @@
 /*
 Nikki Truong - 112 214 174
 OOP244 - Fall 2017
-Workshop 4 - In_lab
+Workshop 4 - At_home
 */
 
 // TODO: add header file guard here 
@@ -33,7 +33,7 @@ namespace sict {
 		void display() const; //display
 
 		const char* name() const; //return address of name or empty address if object is empty
-		bool canTravelWith(const Passenger&) const;
+		bool canTravelWith(const Passenger&) const; //to check is a passenger can travel with another
 
 	};
 
