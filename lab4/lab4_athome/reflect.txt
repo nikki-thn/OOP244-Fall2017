@@ -6,10 +6,10 @@ Workshop 4 - Reflect
 
 
 1)	What is meant by a safe empty state? What other safe empty states could you choose for the Passenger type? Explain why.
-    Safe empty state is a well-defined state of an object that is consisted of one or combination of values  initialize data members to avoid garbage values and bugs in the program.
+    Safe empty state is a well-defined state of an object that is consisted of one or combination of values to initialize data members to avoid garbage values and bugs in the program. Safe empty state is also set to check is an object is empty.
 
 2)	Describe how you would modify the code to minimize duplication using the syntax that you have covered in the course to date.
-    By seperate codes into reusable porttion. For example, I use constructor with no parameter to set safety state for code, then next time to set safety state, I just call the constructor instead of re-write the block of codes. I also called the 2 parameters constructor to construct object in the constructor with 5 parameters.
+    By seperating codes into reusable portion to minimize code duplication. For example, I use constructor with no parameter to set safety state for code, then next time to set safety state, I just call the constructor instead of re-write the block of codes. I also called the 2 parameters constructor to construct object in the constructor with 5 parameters.
     
 3)	Explain why the canTravelWith(...) member function can access the private data variables of the referenced object.
     Because of pass-by-reference pass the referenced object in the parameter, hence we can use the object.
@@ -21,6 +21,6 @@ Workshop 4 - Reflect
     I learn how to build a constructor for a class to set safe empty state and to check values before accepting it into data members. I learned how to minimize code by reusing codes with same logic to reduce typo and errors and how to use one constructor to build another. I learn how to pass an object through parameter for binary operators.
     
 
-Quiz X Relfection
+Quiz 5 Relfection
 
-I haven't received the mark for my last quiz. 
+I got full mark on last quiz
