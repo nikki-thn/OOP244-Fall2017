@@ -53,8 +53,11 @@ namespace sict {
 		int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
 		char a;
+		char test [300];
 			
-		file >> skipws;
+		file >> test;
+		cout << test;
+		/*
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
@@ -68,7 +71,7 @@ namespace sict {
 		file.getline(unit_, 10, ',');
 		file >> qtyNeededIn >> a;
 		qtyNeeded(qtyNeededIn);
-
+*/
 		return file;
 	}
 
@@ -119,8 +122,8 @@ namespace sict {
 						os << "Price after tax: N/A" << std::endl;;
 					}
 
-					os << "Quantity on hand: " << quantity() << " " << unit_ << std::endl;
-					os << "Quantity needed: " << qtyNeeded() << std::endl;
+					os << "Quantity On Hand: " << quantity() << " " << unit_ << std::endl;
+					os << "Quantity Needed: " << qtyNeeded() << std::endl;
 				}
 			}
 		
