@@ -1,3 +1,10 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 4 - At home
+*/
+
+
 // TODO: add your headers here 
 #include<iostream>
 #include<cstring>
@@ -35,8 +42,10 @@ namespace sict {
 	//Constructor with 5 parameters here
 	Passenger::Passenger(const char *name, const char* destination, int year, int month, int day) {
 
+		//call 2 parameters constructors to set name and destination
 		*this = Passenger(name, destination);
-
+		
+		//check for validity of year, month and day
 		if (name != nullptr && destination != nullptr &&
 			day <= 31 && day >= 1 &&
 			month <= 12 && month >= 1 &&
@@ -46,7 +55,6 @@ namespace sict {
 			m_departYear = year;
 			m_departDay = day;
 		}
-
 		else {
 			*this = Passenger();
 		}
