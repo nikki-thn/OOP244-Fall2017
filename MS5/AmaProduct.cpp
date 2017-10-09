@@ -34,11 +34,11 @@ namespace sict {
 
 	std::fstream& AmaProduct::store(std::fstream& file, bool addNewLine) const {
 
-			char a = ',';
+		char a = ',';
 
 		file << fileTag_ << a << sku() << a << name() << a << price() << a << taxed() <<
 			a << quantity() << a << unit_ << a << qtyNeeded();
-		
+
 		if (addNewLine) {
 			file << '\n';
 		}
@@ -48,20 +48,19 @@ namespace sict {
 
 	std::fstream& AmaProduct::load(std::fstream& file) {
 
-		/*double priceIn;
+		double priceIn;
 		bool taxedIn;
 		int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
-		char a; */
-		char test [300];
-			
-		file >> test;
-		cout << test;
-		/*
+		char a;
+
 		file.getline(skuIn, MAX_SKU_LEN, ',');
+		file.ignore();
 		sku(skuIn);
+		file >> skipws;
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
+		file.ignore();
 		file >> priceIn >> a;
 		price(priceIn);
 		file >> taxedIn >> a;
@@ -71,62 +70,60 @@ namespace sict {
 		file.getline(unit_, 10, ',');
 		file >> qtyNeededIn >> a;
 		qtyNeeded(qtyNeededIn);
-*/
+		
 		return file;
 	}
 
 	std::ostream& AmaProduct::write(std::ostream& os, bool linear)const {
 
-		
-			if (!err_.isClear()) {
-				err_.display(os);
+
+		if (!err_.isClear()) {
+			err_.display(os);
+		}
+
+		else {
+			if (linear) {
+				os.setf(ios::left);
+				os.width(MAX_SKU_LEN);
+				os << sku() << "|";
+				os.width(20);
+				os << name() << "|";
+				os.unsetf(ios::left);
+				os.setf(ios::right);
+				os.width(7);
+				os.setf(ios::fixed);
+				os.precision(2);
+				os << cost() << "|";
+				os.width(4);
+				os << quantity() << "|";
+				os.unsetf(ios::right);
+				os.setf(ios::left);
+				os.width(10);
+				os << unit_ << "|";
+				os.unsetf(ios::left);
+				os.setf(ios::right);
+				os.width(4);
+				os << qtyNeeded() << "|";
 			}
 
 			else {
-				if (linear) {
-					os.setf(ios::left);
-					os.width(MAX_SKU_LEN);
-					//cout << sku() << std::endl;
-					os << sku() << "|";
-					os.width(20);
-					os << name() << "|";
-					os.unsetf(ios::left);
-					os.setf(ios::right);
-					os.width(7);
-					os.setf(ios::fixed);
-					os.precision(2);
-					os << cost() << "|";
-					os.width(4);
-					os << quantity() << "|";
-					os.unsetf(ios::right);
-					os.setf(ios::left);
-					os.width(10);
-					os << unit_ << "|";
-					os.unsetf(ios::left);
-					os.setf(ios::right);
-					os.width(4);
-					os  << qtyNeeded() << "|";
-				}
+				os << "Sku: " << sku() << std::endl;
+				os << "Name: " << name() << std::endl;
+				os.setf(ios::fixed);
+				os.precision(2);
+				os << "Price: " << price() << std::endl;;
 
+				if (taxed()) {
+					os << "Price after tax: " << cost() << std::endl;;
+				}
 				else {
-					os << "Sku: " << sku() << std::endl;
-					os << "Name: " << name() << std::endl;
-					os.setf(ios::fixed);
-					os.precision(2);
-					os << "Price: " << price() << std::endl;;
-
-					if (taxed()) {
-						os << "Price after tax: " << cost() << std::endl;;
-					}
-					else {
-						os << "Price after tax: N/A" << std::endl;;
-					}
-
-					os << "Quantity On Hand: " << quantity() << " " << unit_ << std::endl;
-					os << "Quantity Needed: " << qtyNeeded() << std::endl;
+					os << "Price after tax: N/A" << std::endl;;
 				}
+				os << "Quantity on hand: " << quantity() << " " << unit_ << std::endl;
+				os << "Quantity needed: " << qtyNeeded() << std::endl;
 			}
-		
+		}
+
 		return os;
 	}
 
@@ -134,18 +131,21 @@ namespace sict {
 
 		double aDouble;
 		int qtyInput, qtyNeededInput;
-		char nameIn[200];
+		char nameIn[50];
 		char skuIn[MAX_SKU_LEN + 1];
 		char taxedIn;
 		bool isValid = true;
 
 		std::cout << "Sku: ";
 		istr >> skuIn;
+		std::cin.clear();
 		sku(skuIn);
 		cout << "Name: ";
 		istr >> nameIn;
+		std::cin.clear();
 		name(nameIn);
 		cout << "Unit: ";
+		std::cin.clear();
 		istr >> unit_;
 		cout << "Taxed? (y/n): ";
 		istr >> taxedIn;
@@ -158,10 +158,11 @@ namespace sict {
 		}
 		else if (taxedIn == 'N' || taxedIn == 'n') {
 			taxed(false);
-			
+			std::cin.clear();
 		}
 		else if (taxedIn == 'Y' || taxedIn == 'y') {
 			taxed(true);
+			std::cin.clear();
 		}
 
 		if (isValid != false) {
@@ -211,7 +212,7 @@ namespace sict {
 
 
 		if (isValid == true) {
-			err_.clear();	
+			err_.clear();
 		}
 		return istr;
 	}
