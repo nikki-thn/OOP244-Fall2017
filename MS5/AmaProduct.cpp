@@ -53,7 +53,8 @@ namespace sict {
 		int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
 		char a;
-				
+			
+		file >> skipws;
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
