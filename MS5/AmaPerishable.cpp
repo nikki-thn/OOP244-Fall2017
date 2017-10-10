@@ -38,14 +38,16 @@ namespace sict {
 	}
 
 	std::ostream& AmaPerishable::write(std::ostream& os, bool linear = true)const {
-		AmaProduct::write(os, true);
+		
 
 		if (err_.isClear()) {
 			if (linear) {
-				os << "Expiry date: " << expiry_;
+				AmaProduct::write(os, true);
+				os << expiry_;
 			}
 			else {
-				os << expiry_;
+				AmaProduct::write(os, false);
+				os << "Expiry date: " << expiry_;
 			}
 		}
 		return os;
