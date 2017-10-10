@@ -56,8 +56,6 @@ namespace sict {
 		AmaProduct::read(istr);
 
 		Date temp;
-		int day, year, month;
-		char a;
 
 		if (err_.isClear()) {
 			cout << "Expirey date (YYYY/MM/DD): ";
