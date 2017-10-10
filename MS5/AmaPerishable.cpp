@@ -41,7 +41,7 @@ namespace sict {
 		AmaProduct::write(os, true);
 
 		if (err_.isClear()) {
-			if (!linear) {
+			if (linear) {
 				os << "Expiry date: " << expiry_;
 			}
 			else {
