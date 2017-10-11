@@ -13,7 +13,7 @@ namespace sict {
 
 	AmaProduct::AmaProduct(const char fileTag) {
 
-		if (fileTag != ' ') {
+		if (fileTag != 'N') {
 			fileTag_ = fileTag;
 		}
 		else {
@@ -157,11 +157,13 @@ namespace sict {
 		}
 		else if (taxedIn == 'N' || taxedIn == 'n') {
 			taxed(false);
-			std::cin.clear();
+			istr.clear();
+			istr.ignore(200, '\n');
 		}
 		else if (taxedIn == 'Y' || taxedIn == 'y') {
 			taxed(true);
-			std::cin.clear();
+			istr.clear();
+			istr.ignore(200, '\n');
 		}
 
 		if (isValid != false) {
@@ -175,7 +177,8 @@ namespace sict {
 			}
 			else {
 				price(aDouble);
-				std::cin.clear();
+				istr.clear();
+				istr.ignore(200, '\n');
 			}
 		}
 
@@ -190,7 +193,8 @@ namespace sict {
 			}
 			else {
 				quantity(qtyInput);
-				std::cin.clear();
+				istr.clear();
+				istr.ignore(200, '\n');
 			}
 		}
 
@@ -205,7 +209,8 @@ namespace sict {
 			}
 			else {
 				qtyNeeded(qtyNeededInput);
-				std::cin.clear();
+				istr.clear();
+				istr.ignore(200, '\n');
 			}
 		}
 
