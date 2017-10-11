@@ -70,7 +70,7 @@ namespace sict {
 		file.ignore();
 		file >> qtyNeededIn >> a;
 		qtyNeeded(qtyNeededIn);
-		
+
 		return file;
 	}
 
@@ -111,13 +111,12 @@ namespace sict {
 				os << "Name: " << name() << std::endl;
 				os.setf(ios::fixed);
 				os.precision(2);
-				os << "Price: " << price() << std::endl;;
-
+				os << "Price: " << price() << std::endl;
 				if (taxed()) {
-					os << "Price after tax: " << cost() << std::endl;;
+					os << "Price after tax: " << cost() << std::endl;
 				}
 				else {
-					os << "Price after tax: N/A" << std::endl;;
+					os << "Price after tax: N/A" << std::endl;
 				}
 				os << "Quantity on hand: " << quantity() << " " << unit_ << std::endl;
 				os << "Quantity needed: " << qtyNeeded() << std::endl;
