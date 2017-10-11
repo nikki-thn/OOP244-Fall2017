@@ -9,9 +9,9 @@ namespace sict {
 
 	void expiry(const Date &value) {
 
-		Date temp;
+		//Date temp;
 
-		temp = value;
+	//	temp = value;
 
 	}
 
@@ -20,7 +20,6 @@ namespace sict {
 
 		char a = ',';
 
-		
 		file.ignore();
 		file << a << expiry_;
 
@@ -62,8 +61,10 @@ namespace sict {
 		Date temp;
 
 		if (err_.isClear()) {
-			cout << "Expirey date (YYYY/MM/DD): ";
+
+			cout << "Expire date (YYYY/MM/DD): ";
 			istr >> temp;
+			cout << "cout" << temp.errCode();
 
 			if (temp.errCode() == CIN_FAILED) {
 				err_.message("Invalid Date Entry");
@@ -73,20 +74,20 @@ namespace sict {
 				err_.message("Invalid Year in Date Entry");
 				istr.setstate(ios::failbit);
 			}
-			if (temp.errCode() == MON_ERROR) {
-				err_.message("Invalid Month in Date Entryy");
+			 if (temp.errCode() == MON_ERROR) {
+				err_.message("Invalid Month in Date Entry");
 				istr.setstate(ios::failbit);
 			}
 			if (temp.errCode() == DAY_ERROR) {
 				err_.message("Invalid Day in Date Entry");
 				istr.setstate(ios::failbit);
 			}
-		}
-		else {
-			expiry_ = temp;
-		}
 
-
+			 if (temp.errCode() == NO_ERROR) {
+				 err_.clear();
+				expiry_ = temp;
+			}
+		}
 		return istr;
 	}
 
