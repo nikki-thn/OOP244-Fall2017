@@ -148,8 +148,8 @@ namespace sict {
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
 	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
-	Fraction Fraction::operator+ (Fraction& num) const {
-
+	Fraction Fraction::operator+ (const Fraction&) const {
+		
 		bool empty = isEmpty();
 		int addedNumer = 0;
 		int addedDeno = 0;
