@@ -94,7 +94,7 @@ namespace sict {
 
 		int g_c_d = gcd();
 
-		numer /= g_c_d;
+		m_numerator /= g_c_d;
 		m_denominator /= g_c_d;
 	}
 
@@ -148,7 +148,7 @@ namespace sict {
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
 	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
-	Fraction Fraction::operator+ (Fraction& num) {
+	Fraction Fraction::operator+ (Fraction& num) const {
 
 		bool empty = isEmpty();
 		int addedNumer = 0;
