@@ -19,7 +19,6 @@ namespace sict {
 
 		char a = ',';
 
-		file.ignore();
 		file << a << expiry_;
 
 		if (addNewLine) {
