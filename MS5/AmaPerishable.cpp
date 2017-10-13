@@ -27,8 +27,34 @@ namespace sict {
 	
 	std::fstream& AmaPerishable::load(std::fstream& file) {
 		
-		AmaProduct::load(file);
+		//AmaProduct::load(file);
 		//Date::read(file);
+		
+			double priceIn;
+		bool taxedIn;
+		int qtyIn, qtyNeededIn;
+		char skuIn[MAX_SKU_LEN + 1], nameIn[21], unit[30];
+		char a;
+
+		file.getline(skuIn, MAX_SKU_LEN, ',');
+		file.ignore();
+		sku(skuIn);
+		file.getline(nameIn, 20, ',');
+		name(nameIn);
+		file.ignore();
+		file >> priceIn >> a;
+		price(priceIn);
+		file >> taxedIn >> a;
+		taxed(taxedIn);
+		file >> qtyIn >> a;
+		quantity(qtyIn);
+		file.getline(unit, 10, ',');
+		file.ignore();
+		file >> qtyNeededIn >> a;
+		qtyNeeded(qtyNeededIn);
+
+		file.ignore();
+		
 
 		file.ignore();
 
