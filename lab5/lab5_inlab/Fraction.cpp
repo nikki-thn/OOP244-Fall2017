@@ -113,7 +113,7 @@ namespace sict {
 		if (empty == false) {
 
 			if (a.m_denominator != 1) {
-				cout << a.m_numerator << "/" << a.m_denominator << endl;
+				cout << a.m_numerator << "/" << a.m_denominator;
 			}
 
 			if (a.m_denominator == 1) {
