@@ -36,6 +36,8 @@ namespace sict {
 
 
 		file.ignore();
+		
+		cout << input << endl;
 
 		return file;
 	}
