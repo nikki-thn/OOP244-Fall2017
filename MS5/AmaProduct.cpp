@@ -1,15 +1,11 @@
 // AmaProduct.cpp
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
+#include<fstream>
 #include<cstring>
 #include"AmaProduct.h"
 
 namespace sict {
-
-	AmaProduct::AmaProduct() {
-		unit_[0] = '\0';
-		fileTag_ = 'N';
-	}
 
 	AmaProduct::AmaProduct(const char fileTag) {
 
@@ -24,7 +20,7 @@ namespace sict {
 
 	void AmaProduct::unit(const char* value) {
 
-		if (value != nullptr && std::strlen(value) < 11) {
+		if (value != nullptr && strlen(value) < 11) {
 			std::strcpy(unit_, value);
 		}
 		else {
@@ -36,7 +32,8 @@ namespace sict {
 
 		char a = ',';
 
-		file << fileTag_ << a << sku() << a << name() << a << price() << a << taxed() <<
+		file << fileTag_ << a;
+		file << sku() << a << name() << a << price() << a << taxed() <<
 			a << quantity() << a << unit_ << a << qtyNeeded();
 
 		if (addNewLine) {
@@ -93,7 +90,12 @@ namespace sict {
 				os.width(7);
 				os.setf(ios::fixed);
 				os.precision(2);
-				os << cost() << "|";
+				if (taxed()) {
+					os << cost() << "|";
+				}
+				else {
+					os << price() << "|";
+				}
 				os.width(4);
 				os << quantity() << "|";
 				os.unsetf(ios::right);
@@ -128,95 +130,94 @@ namespace sict {
 
 	std::istream& AmaProduct::read(std::istream& istr) {
 
-		double aDouble;
-		int qtyInput, qtyNeededInput;
-		char nameIn[50];
-		char skuIn[MAX_SKU_LEN + 1];
-		char taxedIn;
-		bool isValid = true;
+		if (!istr.fail()) {
+			double aDouble;
+			int qtyInput, qtyNeededInput;
+			char nameIn[50];
+			char skuIn[MAX_SKU_LEN + 1];
+			char taxedIn;
+			bool isValid = true;
 
-		std::cout << "Sku: ";
-		istr >> skuIn;
-		std::cin.clear();
-		sku(skuIn);
-		cout << "Name: ";
-		istr >> nameIn;
-		std::cin.clear();
-		name(nameIn);
-		cout << "Unit: ";
-		std::cin.clear();
-		istr >> unit_;
-		cout << "Taxed? (y/n): ";
-		istr >> taxedIn;
-		std::cin.clear();
+			std::cout << "Sku: ";
+			istr >> skuIn;
+			sku(skuIn);
 
-		if (taxedIn != 'N' && taxedIn != 'n' && taxedIn != 'Y' && taxedIn != 'y') {
-			err_.message("Only (Y)es or (N)o are acceptable");
-			istr.setstate(ios::failbit); //-- istr.fail();
-			isValid = false;
-		}
-		else if (taxedIn == 'N' || taxedIn == 'n') {
-			taxed(false);
-			istr.clear();
-			istr.ignore(200, '\n');
-		}
-		else if (taxedIn == 'Y' || taxedIn == 'y') {
-			taxed(true);
-			istr.clear();
-			istr.ignore(200, '\n');
-		}
+			cout << "Name: ";
+			istr >> nameIn;
+			name(nameIn);
 
-		if (isValid != false) {
-			cout << "Price: ";
-			istr >> aDouble;
+			cout << "Unit: ";
+			istr >> unit_;
 
-			if (!(aDouble > 0.0)) {
-				err_.message("Invalid Price Entry");
-				istr.setstate(ios::failbit);
+			cout << "Taxed? (y/n): ";
+			istr >> taxedIn;
+
+			if (taxedIn != 'N' && taxedIn != 'n' && taxedIn != 'Y' && taxedIn != 'y') {
+				err_.message("Only (Y)es or (N)o are acceptable");
+				istr.setstate(ios::failbit); //-- istr.fail();
 				isValid = false;
 			}
-			else {
-				price(aDouble);
+			else if (taxedIn == 'N' || taxedIn == 'n') {
+				taxed(false);
 				istr.clear();
 				istr.ignore(200, '\n');
 			}
-		}
-
-		if (isValid != false) {
-			cout << "Quantity On Hand: ";
-			istr >> qtyInput;
-
-			if (!(qtyInput > 0)) {
-				err_.message("Invalid Quantity Entry");
-				istr.setstate(ios::failbit);
-				isValid = false;
-			}
-			else {
-				quantity(qtyInput);
+			else if (taxedIn == 'Y' || taxedIn == 'y') {
+				taxed(true);
 				istr.clear();
 				istr.ignore(200, '\n');
 			}
-		}
 
-		if (isValid != false) {
-			cout << "Quantity Needed: ";
-			istr >> qtyNeededInput;
+			if (isValid != false) {
+				cout << "Price: ";
+				istr >> aDouble;
 
-			if (!(qtyNeededInput > 0)) {
-				err_.message("Invalid Quantity Needed Entry");
-				istr.setstate(ios::failbit);
-				isValid = false;
+				if (!(aDouble > 0.0)) {
+					err_.message("Invalid Price Entry");
+					istr.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					price(aDouble);
+					istr.clear();
+					istr.ignore(200, '\n');
+				}
 			}
-			else {
-				qtyNeeded(qtyNeededInput);
-				istr.clear();
-				istr.ignore(200, '\n');
+
+			if (isValid != false) {
+				cout << "Quantity On Hand: ";
+				istr >> qtyInput;
+
+				if (!(qtyInput > 0)) {
+					err_.message("Invalid Quantity Entry");
+					istr.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					quantity(qtyInput);
+					istr.clear();
+					istr.ignore(200, '\n');
+				}
 			}
-		}
+
+			if (isValid != false) {
+				cout << "Quantity Needed: ";
+				istr >> qtyNeededInput;
+
+				if (!(qtyNeededInput > 0)) {
+					err_.message("Invalid Quantity Needed Entry");
+					istr.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					qtyNeeded(qtyNeededInput);
+				}
+			}
 
 
-		if (isValid == true) {
-			err_.clear();
+			if (isValid == true) {
+				err_.clear();
+			}
 		}
 		return istr;
 	}
