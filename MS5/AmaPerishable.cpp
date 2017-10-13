@@ -15,7 +15,7 @@ namespace sict {
 	}
 
 	std::fstream& AmaPerishable::store(std::fstream& file, bool addNewLine)const {
-		AmaProduct::store(file, true);
+		AmaProduct::store(file, false);
 
 		char a = ',';
 
