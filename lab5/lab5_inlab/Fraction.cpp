@@ -148,15 +148,15 @@ namespace sict {
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
 	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
-	Fraction Fraction::operator+ (const Fraction&) const {
+	Fraction Fraction::operator+ (const Fraction& rhs) const {
 		
 		bool empty = isEmpty();
 		int addedNumer = 0;
 		int addedDeno = 0;
 
 		if (empty == false) {
-			addedNumer = (m_numerator * num.m_denominator) + (num.m_numerator * m_denominator);
-			addedDeno = m_denominator * num.m_denominator;
+			addedNumer = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * m_denominator);
+			addedDeno = m_denominator * rhs.m_denominator;
 		}
 
 		return Fraction(addedNumer, addedDeno);
