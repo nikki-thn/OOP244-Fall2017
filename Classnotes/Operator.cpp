@@ -20,7 +20,8 @@ class ArrayList {
      ArrayList7 operator= (const ArrayList&); //copy assignment, almost identical to copy constructor
      ArrayList& operator+= (short item);
      ArrayList& operator+= (const ArrayList& aList);
-     ArrayList operator+(short item); //no & sign because it is returned a completely new object
+     ArrayList operator+(short item) const; //no & sign because it is returned a completely new object
+                                            //const because the changes doesn't apply to current object, it creates a new object
      
      operator bool() const; //we dont put return type because we know what it will return (true or false)
 };
