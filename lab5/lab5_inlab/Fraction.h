@@ -27,7 +27,7 @@ namespace sict {
 
 
 		// TODO: declare the + operator overload
-		Fraction operator+ (const Fraction& num) const; //operator to add current object and another object 
+		Fraction operator+ (const Fraction&) const; //operator to add current object and another object 
 	};
 
 }
