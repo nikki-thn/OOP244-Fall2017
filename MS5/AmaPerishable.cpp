@@ -15,21 +15,20 @@ namespace sict {
 	}
 
 	std::fstream& AmaPerishable::store(std::fstream& file, bool addNewLine)const {
+		
 		AmaProduct::store(file, false);
 
 		char a = ',';
 
 		file << a << expiry_;
 
-		//if (addNewLine) {
-		//file << '\n';
-		//}
-
 		return file;
 	}
+	
 	std::fstream& AmaPerishable::load(std::fstream& file) {
+		
 		AmaProduct::load(file);
-		Date::read(file);
+		//Date::read(file);
 
 		file.ignore();
 
