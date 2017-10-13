@@ -9,26 +9,27 @@ Workshop 5 - In lab
 #include"Fraction.h"
 
 using namespace std;
+
 // TODO: continue the namespace
 namespace sict {
 
 	// TODO: implement the default constructor
 	Fraction::Fraction() {
-		numer = -1;
-		deno = -1;
+		m_numerator = -1;
+		m_denominator = -1;
 	}
 
 	// TODO: implement the two-argument constructor
-	Fraction::Fraction(int nn, int nd) {
+	Fraction::Fraction(int numerator, int denominator) {
 
 		//data valid if numerator is non-negative and denomeator is positive
-		bool valid = nn >= 0 && nd > 0;
+		bool valid = numerator >= 0 && denominator > 0;
 
 		if (valid == 1) {
 
 			//copy data to object when valid
-			numer = nn;
-			deno = nd;
+			m_numerator = numerator;
+			m_denominator = denominator;
 		}
 
 		if (valid == 0) {
@@ -39,14 +40,13 @@ namespace sict {
 
 	// TODO: implement the max query
 	// max returns the maximum of the numerator and denominator
-	//
 	int Fraction::max() const {
 
-		int max = numer;
+		int max = m_numerator;
 
-		if (numer < deno) {
+		if (m_numerator < m_denominator) {
 
-			max = deno;
+			max = m_denominator;
 		}
 
 		return max;
@@ -57,11 +57,11 @@ namespace sict {
 	//
 	int Fraction::min() const {
 
-		int min = numer;
+		int min = m_numerator;
 
-		if (numer > deno) {
+		if (m_numerator > m_denominator) {
 
-			min = deno;
+			min = m_denominator;
 		}
 
 		return min;
@@ -90,13 +90,12 @@ namespace sict {
 	// TODO: implement the reduce modifier
 	// reduce simplifies the fraction by dividing the numerator and denominator by the greatest common divisor
 	//
-	//***reduce function is not called, need to call it somewhere
 	void Fraction::reduce() {
 
 		int g_c_d = gcd();
 
 		numer /= g_c_d;
-		deno /= g_c_d;
+		m_denominator /= g_c_d;
 	}
 
 	// TODO: implement the display query
@@ -113,12 +112,12 @@ namespace sict {
 		//print out when object is not empty
 		if (empty == false) {
 
-			if (a.deno != 1) {
-				cout << a.numer << "/" << a.deno << endl;
+			if (a.m_denominator != 1) {
+				cout << a.m_numerator << "/" << a.m_denominator << endl;
 			}
 
-			if (a.deno == 1) {
-				cout << a.numer << endl;
+			if (a.m_denominator == 1) {
+				cout << a.m_numerator << endl;
 			}
 		}
 
@@ -138,7 +137,7 @@ namespace sict {
 
 		bool emptyCheck = false;
 
-		if (numer == -1) {
+		if (m_numerator == -1 && m_denominator == -1) {
 
 			emptyCheck = true;
 		}
@@ -156,8 +155,8 @@ namespace sict {
 		int addedDeno = 0;
 
 		if (empty == false) {
-			addedNumer = (numer * num.deno) + (num.numer * deno);
-			addedDeno = deno * num.deno;
+			addedNumer = (m_numerator * num.m_denominator) + (num.m_numerator * m_denominator);
+			addedDeno = m_denominator * num.m_denominator;
 		}
 
 		return Fraction(addedNumer, addedDeno);
