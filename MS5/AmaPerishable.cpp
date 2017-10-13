@@ -19,10 +19,10 @@ namespace sict {
 
 		char a = ',';
 
-		file << a << expiry_;
+		file << a << expiry_ << '\n';
 
-		if (addNewLine) {
-			file << '\n';
+		//if (addNewLine) {
+		//file << '\n';
 		}
 
 		return file;
