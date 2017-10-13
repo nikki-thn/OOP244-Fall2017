@@ -117,14 +117,14 @@ namespace sict {
 			}
 
 			if (a.m_denominator == 1) {
-				cout << a.m_numerator << endl;
+				cout << a.m_numerator;
 			}
 		}
 
 		//print out error message if object is empty
 		if (empty == true) {
 
-			cout << "no fraction stored" << endl;
+			cout << "no fraction stored";
 		}
 
 	}
