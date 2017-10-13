@@ -23,7 +23,7 @@ namespace sict {
 
 		//if (addNewLine) {
 		//file << '\n';
-		}
+		//}
 
 		return file;
 	}
