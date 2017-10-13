@@ -8,26 +8,26 @@ namespace sict {
 	// TODO: define the Fraction class
 	class Fraction {
 
-		int numer;
-		int deno;
+		int m_numerator;
+		int m_denominator;
 
 		int gcd() const; // returns the greatest common divisor of num and denom
 		int max() const; // returns the maximum of num and denom
 		int min() const; // returns the minimum of num and denom
 		void reduce();   // simplifies a Fraction by dividing the 
-						 // numerator and denominator to their greatest common divisor 
+				 // numerator and denominator to their greatest common divisor 
 
 	public:
 		// TODO: declare the member functions
-		Fraction();
-		Fraction(int nn, int nd);
+		Fraction(); //default constructor
+		Fraction(int nn, int nd); //2 parameters constructor
 
-		bool isEmpty() const;
-		void display() const;
+		bool isEmpty() const; //to check if the object is empty
+		void display() const; //query
 
 
 		// TODO: declare the + operator overload
-		Fraction Fraction::operator + (Fraction& num);
+		Fraction operator+ (const Fraction& num) const; //operator to add current object and another object 
 	};
 
 }
