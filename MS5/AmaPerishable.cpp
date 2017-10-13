@@ -1,17 +1,16 @@
-// AmaPersishable.cpp
 #include<iostream>
 #include"AmaPerishable.h"
 
 namespace sict {
 
 
-	AmaPerishable::AmaPerishable() : AmaProduct('P') {	}
+	AmaPerishable::AmaPerishable() : AmaProduct('P') {}
 
 	void expiry(const Date &value) {
 
-		//Date temp;
+		Date temp;
 
-	//	temp = value;
+		temp = value;
 
 	}
 
@@ -20,7 +19,6 @@ namespace sict {
 
 		char a = ',';
 
-		file.ignore();
 		file << a << expiry_;
 
 		if (addNewLine) {
@@ -39,18 +37,21 @@ namespace sict {
 	}
 
 	std::ostream& AmaPerishable::write(std::ostream& os, bool linear = true)const {
-		
+	
 
-		if (err_.isClear()) {
 			if (linear) {
 				AmaProduct::write(os, true);
-				os << expiry_;
+				if (err_.isClear()) {
+					os << expiry_;
+				}
 			}
 			else {
 				AmaProduct::write(os, false);
-				os << "Expiry date: " << expiry_;
+				if (err_.isClear()) {
+					os << "Expiry date: " << expiry_;
+				}
 			}
-		}
+		
 		return os;
 	}
 
@@ -61,10 +62,8 @@ namespace sict {
 		Date temp;
 
 		if (err_.isClear()) {
-
-			cout << "Expire date (YYYY/MM/DD): ";
+			cout << "Expirey date (YYYY/MM/DD): ";
 			istr >> temp;
-			cout << "cout" << temp.errCode();
 
 			if (temp.errCode() == CIN_FAILED) {
 				err_.message("Invalid Date Entry");
@@ -74,17 +73,16 @@ namespace sict {
 				err_.message("Invalid Year in Date Entry");
 				istr.setstate(ios::failbit);
 			}
-			 if (temp.errCode() == MON_ERROR) {
-				err_.message("Invalid Month in Date Entry");
+			if (temp.errCode() == MON_ERROR) {
+				err_.message("Invalid Month in Date Entryy");
 				istr.setstate(ios::failbit);
 			}
 			if (temp.errCode() == DAY_ERROR) {
 				err_.message("Invalid Day in Date Entry");
 				istr.setstate(ios::failbit);
 			}
-
-			 if (temp.errCode() == NO_ERROR) {
-				 err_.clear();
+			if (temp.errCode() == NO_ERROR) {
+				err_.clear();
 				expiry_ = temp;
 			}
 		}
