@@ -154,7 +154,7 @@ namespace sict {
 		Fraction temp;
 
 		if (empty == false) {
-			temp.m_numerator = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * this.m_denominator);
+			temp.m_numerator = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * m_denominator);
 			temp.m_denominator = m_denominator * rhs.m_denominator;
 		}
 
