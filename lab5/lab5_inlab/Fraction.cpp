@@ -151,15 +151,14 @@ namespace sict {
 	Fraction Fraction::operator+ (const Fraction& rhs) const {
 		
 		bool empty = isEmpty();
-		int addedNumer = 0;
-		int addedDeno = 0;
+		Fraction temp;
 
 		if (empty == false) {
-			addedNumer = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * m_denominator);
-			addedDeno = m_denominator * rhs.m_denominator;
+			temp.m_numerator = (this.m_numerator * rhs.m_denominator) + (rhs.m_numerator * this.m_denominator);
+			temp.m_denominator = this.m_denominator * rhs.m_denominator;
 		}
 
-		return Fraction(addedNumer, addedDeno);
+		return temp;
 	}
 
 }
