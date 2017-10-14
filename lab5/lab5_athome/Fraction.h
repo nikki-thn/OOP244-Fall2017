@@ -15,8 +15,8 @@ namespace sict {
 	// TODO: define the Fraction class
 	class Fraction {
 
-		int numer; //numerator
-		int deno; //denominator
+		int m_numerator;
+		int m_denominator;
 
 
 		int gcd() const; // returns the greatest common divisor of num and denom
@@ -28,18 +28,18 @@ namespace sict {
 	public:
 
 		// TODO: declare the member functions
-		Fraction();
-		Fraction(int nn, int nd);
+		Fraction(); //default constructor
+		Fraction(int nn, int nd); //2 parameters constructor
 
-		bool isEmpty() const;
-		void display() const;
+		bool isEmpty() const; //to check if the object is empty
+		void display() const; //query
 
 		// TODO: declare the + operator overload
-		Fraction operator+ (Fraction& num);
-		Fraction operator* (Fraction& num);
-		bool& operator== (Fraction& num);
-		bool& operator!= (Fraction& num);
-		Fraction operator+= (Fraction& num);
+		Fraction operator+ (const Fraction&) const; //operator to add current object and another object 
+		Fraction operator* (const Fraction& num) const;
+		bool operator== (const Fraction& num) const;
+		bool operator!= (const Fraction& num) const;
+		Fraction operator+= (const Fraction& num);
 
 	};
 
