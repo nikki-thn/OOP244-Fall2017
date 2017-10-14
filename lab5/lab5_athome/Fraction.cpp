@@ -209,6 +209,7 @@ namespace sict {
 		
 		if (empty == false) {
 			
+			rsh.reduce();
 			temp = operator+(rsh); //add temp object with the Fraction object passed by parameter 
 			temp.reduce(); //reduce object temp
 		}
