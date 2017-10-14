@@ -206,14 +206,9 @@ namespace sict {
 		bool empty = isEmpty();	
 		
 		Fraction temp = *this;
-		Fraction temp_rsh = rsh;
-		
-		if (empty == false) {
-			
-			temp_rsh.reduce();
-			temp = operator+(temp_rsh); //add temp object with the Fraction object passed by parameter 
-			temp.reduce(); //reduce object temp
-		}
+
+		temp = operator+(rsh); //add temp object with the Fraction object passed by parameter 
+		temp.reduce(); //reduce object temp
 
 		return temp;
 	}
