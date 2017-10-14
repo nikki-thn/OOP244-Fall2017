@@ -97,27 +97,26 @@ namespace sict {
 	// TODO: implement the display query
 	void Fraction::display() const {
 
-		Fraction a = *this;
+		Fraction temp = *this;
 
-		a.reduce();
+		temp.reduce();
 
 		bool empty = isEmpty();
 
 		//print out when object is not empty
 		if (empty == false) {
 
-			if (a.m_denominator != 1) {
-				cout << a.m_numerator << "/" << a.m_denominator;
+			if (temp.m_denominator != 1) {
+				cout << temp.m_numerator << "/" << temp.m_denominator;
 			}
 
-			if (a.m_denominator == 1) {
-				cout << a.m_numerator;
+			if (temp.m_denominator == 1) {
+				cout << temp.m_numerator;
 			}
 		}
 
 		//print out error message if object is empty
 		if (empty == true) {
-
 			cout << "no fraction stored";
 		}
 
@@ -130,6 +129,7 @@ namespace sict {
 
 		bool emptyCheck = false;
 
+		//check for safety state
 		if (m_numerator == -1 && m_denominator == -1) {
 
 			emptyCheck = true;
@@ -138,7 +138,7 @@ namespace sict {
 		return emptyCheck;
 	}
 
-	// TODO: implement the + operator
+	// TODO: implement the operator+
 	Fraction Fraction::operator+ (const Fraction& rhs) const {
 		
 		bool empty = isEmpty();
@@ -152,86 +152,63 @@ namespace sict {
 		return temp;
 	}
 
-	// TODO: implement the + operator
+	// TODO: implement the operator*
 	Fraction Fraction::operator* (const Fraction& rsh) const {
 
 		bool empty = isEmpty();
 		Fraction temp;
 	
+		//if object is not empty, perform calculation
 		if (empty == false) {
 
 			temp.m_numerator = m_numerator * rsh.m_numerator ;
 			temp.m_denominator = m_denominator * rsh.m_denominator;
 		}
 
-		if (empty == true) {
-
-			*this = Fraction();
-		}
 		return temp;
 	}
 
-	// TODO: implement the + operator
-	bool Fraction::operator== (Fraction& rsh) const {
+	// TODO: implement the operator== to compare two object
+	bool Fraction::operator== (const Fraction& rsh) const {
 
 		bool isEqual = false;
 		bool empty = isEmpty();
 
 		if (empty == false) {
-			if (m_numerator == rsh.m_numerator && m_denominator == rsh.m_denominator) {
 
+			if (m_numerator == rsh.m_numerator && m_denominator == rsh.m_denominator) {
 				isEqual = true;
 			}
 		}
 
-		if (empty == true) {
-
-			*this = Fraction();
-		}
 		return isEqual;
 	}
 
-	// TODO: implement the + operator
-	bool Fraction::operator!= (Fraction& rsh) const {
+	// TODO: implement the operator!= to compare two object
+	bool Fraction::operator!= (const Fraction& rsh) const {
 
 		bool isNotEqual = false;
 		bool empty = isEmpty();
 
 		if (empty == false) {
 			
-			if (m_numerator != rsh.m_numerator && m_denominator != rsh.deno) {
+			if (m_numerator != rsh.m_numerator && m_denominator != rsh.m_denominator) {
 				isNotEqual = true;
 			}
 		}
 
-		if (empty == true) {
-
-			*this = Fraction();
-		}
 		return isNotEqual;
 	}
 
-	// TODO: implement the + operator
-	Fraction Fraction::operator+= (Fraction& rsh) {
+	// TODO: implement the operator+=
+	Fraction Fraction::operator+= (const Fraction& rsh) const {
 
 		bool empty = isEmpty();	
 		
 		Fraction temp = *this;
-		temp = operator+(num);
-		
-		//call reduce() to reduce of current object and the parameter
-		rsh.reduce();
-		temp.reduce();
 
-		if (empty == false) {
-
-			*this = temp;
-		}
-
-		if (empty == true) {
-
-			*this = Fraction();
-		}
+		temp = operator+(rsh); //add temp object with the Fraction object passed by parameter 
+		temp.reduce(); //reduce object temp
 
 		return temp;
 	}
