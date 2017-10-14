@@ -53,7 +53,6 @@ namespace sict {
 
 	// TODO: implement the min query
 	// min returns the minimum of the numerator and denominator
-	//
 	int Fraction::min() const {
 
 		int min = m_numerator;
@@ -67,7 +66,6 @@ namespace sict {
 	}
 
 	// gcd returns the greatest common divisor of num and denom
-	//
 	int Fraction::gcd() const {
 
 		int mn = min();  // min of numerator and denominator
@@ -88,7 +86,6 @@ namespace sict {
 
 	// TODO: implement the reduce modifier
 	// reduce simplifies the fraction by dividing the numerator and denominator by the greatest common divisor
-	//
 	void Fraction::reduce() {
 
 		int g_c_d = gcd();
@@ -98,8 +95,6 @@ namespace sict {
 	}
 
 	// TODO: implement the display query
-	// display inserts num/denom into the output stream
-	//
 	void Fraction::display() const {
 
 		Fraction a = *this;
@@ -130,8 +125,7 @@ namespace sict {
 
 
 	// TODO: implement the isEmpty query
-	// isEmpty returns true if Fraction object is in a safe empty state
-	//
+	// isEmpty returns true if Fraction object is in safe empty state
 	bool Fraction::isEmpty() const {
 
 		bool emptyCheck = false;
@@ -145,8 +139,6 @@ namespace sict {
 	}
 
 	// TODO: implement the + operator
-	// + operator adds the rhs to the current object and reduces the result
-	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
 	Fraction Fraction::operator+ (const Fraction& rhs) const {
 		
 		bool empty = isEmpty();
@@ -160,6 +152,7 @@ namespace sict {
 		return temp;
 	}
 
+	// TODO: implement the + operator
 	Fraction Fraction::operator* (const Fraction& rsh) const {
 
 		bool empty = isEmpty();
@@ -175,10 +168,10 @@ namespace sict {
 
 			*this = Fraction();
 		}
-
 		return temp;
 	}
 
+	// TODO: implement the + operator
 	bool Fraction::operator== (Fraction& rsh) const {
 
 		bool isEqual = false;
@@ -195,18 +188,18 @@ namespace sict {
 
 			*this = Fraction();
 		}
-
 		return isEqual;
 	}
 
+	// TODO: implement the + operator
 	bool Fraction::operator!= (Fraction& rsh) const {
 
 		bool isNotEqual = false;
 		bool empty = isEmpty();
 
 		if (empty == false) {
+			
 			if (m_numerator != rsh.m_numerator && m_denominator != rsh.deno) {
-
 				isNotEqual = true;
 			}
 		}
@@ -215,10 +208,10 @@ namespace sict {
 
 			*this = Fraction();
 		}
-
 		return isNotEqual;
 	}
 
+	// TODO: implement the + operator
 	Fraction Fraction::operator+= (Fraction& rsh) {
 
 		bool empty = isEmpty();	
@@ -226,7 +219,7 @@ namespace sict {
 		Fraction temp = *this;
 		temp = operator+(num);
 		
-		//call reduce() to reduce of current object and the unmodifiable reference
+		//call reduce() to reduce of current object and the parameter
 		rsh.reduce();
 		temp.reduce();
 
