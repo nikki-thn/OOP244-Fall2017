@@ -14,6 +14,7 @@ namespace sict {
 
 	// TODO: implement the default constructor
 	Fraction::Fraction() {
+		
 		m_numerator = -1;
 		m_denominator = -1;
 	}
@@ -76,6 +77,7 @@ namespace sict {
 		for (int x = mn; !found && x > 0; --x) { // from mn decrement until divisor found
 
 			if (mx % x == 0 && mn % x == 0) {
+				
 				found = true;
 				g_c_d = x;
 			}
@@ -117,6 +119,7 @@ namespace sict {
 
 		//print out error message if object is empty
 		if (empty == true) {
+			
 			cout << "no fraction stored";
 		}
 
@@ -145,6 +148,7 @@ namespace sict {
 		Fraction temp;
 
 		if (empty == false) {
+			
 			temp.m_numerator = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * m_denominator);
 			temp.m_denominator = m_denominator * rhs.m_denominator;
 		}
@@ -200,17 +204,22 @@ namespace sict {
 		return isNotEqual;
 	}
 
+
 	// TODO: implement the operator+=
 	Fraction& Fraction::operator+= (const Fraction& rsh) {
 
 		bool empty = isEmpty();	
 		
+		Fraction temp = *this;
+
 		if (empty == false) {
 
-			*this = operator+(rsh); //add temp object with the Fraction object passed by parameter 
-			*this.reduce(); //reduce object temp
-		
+			temp = operator+(rsh); //add temp object with the Fraction object passed by parameter 
+			temp.reduce(); //reduce object temp
 		}
+
+		*this = temp;
+
 		return *this;
 	}
 
