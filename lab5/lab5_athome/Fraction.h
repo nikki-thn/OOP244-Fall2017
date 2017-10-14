@@ -23,7 +23,7 @@ namespace sict {
 		int max() const; // returns the maximum of num and denom
 		int min() const; // returns the minimum of num and denom
 		void reduce();   // simplifies a Fraction by dividing the 
-						 // numerator and denominator to their greatest common divisor 
+				// numerator and denominator to their greatest common divisor 
 
 	public:
 
@@ -35,11 +35,11 @@ namespace sict {
 		void display() const; //query
 
 		// TODO: declare the + operator overload
-		Fraction operator+ (const Fraction&) const; //operator to add current object and another object 
-		Fraction operator* (const Fraction& num) const;
-		bool operator== (const Fraction& num) const;
-		bool operator!= (const Fraction& num) const;
-		Fraction operator+= (const Fraction& num);
+		Fraction operator+ (const Fraction&) const; //operator to add current object and another object, return a new object
+		Fraction operator* (const Fraction& ) const; //operator to multiply current object ane one from parameter, return a new object
+		bool operator== (const Fraction& ) const; //return true if two fractions are equal
+		bool operator!= (const Fraction& ) const; //retrun true if two fractions are not equal
+		Fraction operator+= (const Fraction& ); // increment existing fraction by the fraction 
 
 	};
 
