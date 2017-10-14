@@ -1,15 +1,14 @@
-// OOP244 Workshop 5: operators overloading
+// Workshop 5: operator overloading
 // File: w5_in_lab.cpp
-// Version: 1.0
-// Date: 2016/01/22
-// Author: Heidar Davoudi
+// Version: 2.0
+// Date: 2017/10/03
+// Author: Chris Szalwinski
 // Description:
 // This file tests in-lab section of your workshop
 /////////////////////////////////////////////
 
 #include <iostream>
 #include "Fraction.h"
-
 using namespace sict;
 using namespace std;
 
@@ -72,6 +71,6 @@ int main() {
     cout << "(a != c) equals ";
     cout << ((a != c) ? "true" : "false");
     cout << endl;
-
+   
     return 0;
 }
