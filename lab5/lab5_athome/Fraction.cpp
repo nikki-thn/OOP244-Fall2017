@@ -1,34 +1,34 @@
 /*
 Nikki Truong - 112 214 174
 OOP244 - Fall 2017
-Workshop 5 - In lab
+Workshop 5 - at home
 */
-
 // TODO: insert header files
 #include<iostream>
 #include"Fraction.h"
 
 using namespace std;
+
 // TODO: continue the namespace
 namespace sict {
 
 	// TODO: implement the default constructor
 	Fraction::Fraction() {
-		numer = -1;
-		deno = -1;
+		m_numerator = -1;
+		m_denominator = -1;
 	}
 
 	// TODO: implement the two-argument constructor
-	Fraction::Fraction(int nn, int nd) {
+	Fraction::Fraction(int numerator, int denominator) {
 
 		//data valid if numerator is non-negative and denomeator is positive
-		bool valid = nn >= 0 && nd > 0;
+		bool valid = numerator >= 0 && denominator > 0;
 
 		if (valid == 1) {
 
 			//copy data to object when valid
-			numer = nn;
-			deno = nd;
+			m_numerator = numerator;
+			m_denominator = denominator;
 		}
 
 		if (valid == 0) {
@@ -39,14 +39,13 @@ namespace sict {
 
 	// TODO: implement the max query
 	// max returns the maximum of the numerator and denominator
-	//
 	int Fraction::max() const {
 
-		int max = numer;
+		int max = m_numerator;
 
-		if (numer < deno) {
+		if (m_numerator < m_denominator) {
 
-			max = deno;
+			max = m_denominator;
 		}
 
 		return max;
@@ -57,11 +56,11 @@ namespace sict {
 	//
 	int Fraction::min() const {
 
-		int min = numer;
+		int min = m_numerator;
 
-		if (numer > deno) {
+		if (m_numerator > m_denominator) {
 
-			min = deno;
+			min = m_denominator;
 		}
 
 		return min;
@@ -90,13 +89,12 @@ namespace sict {
 	// TODO: implement the reduce modifier
 	// reduce simplifies the fraction by dividing the numerator and denominator by the greatest common divisor
 	//
-	//***reduce function is not called, need to call it somewhere
 	void Fraction::reduce() {
 
 		int g_c_d = gcd();
 
-		numer /= g_c_d;
-		deno /= g_c_d;
+		m_numerator /= g_c_d;
+		m_denominator /= g_c_d;
 	}
 
 	// TODO: implement the display query
@@ -106,26 +104,26 @@ namespace sict {
 
 		Fraction a = *this;
 
-		a.reduce(); //???why reduce() takes effective in operator+ function???
+		a.reduce();
 
 		bool empty = isEmpty();
 
 		//print out when object is not empty
 		if (empty == false) {
 
-			if (a.deno != 1) {
-				cout << a.numer << "/" << a.deno << endl;
+			if (a.m_denominator != 1) {
+				cout << a.m_numerator << "/" << a.m_denominator;
 			}
 
-			if (a.deno == 1) {
-				cout << a.numer << endl;
+			if (a.m_denominator == 1) {
+				cout << a.m_numerator;
 			}
 		}
 
 		//print out error message if object is empty
 		if (empty == true) {
 
-			cout << "no fraction stored" << endl;
+			cout << "no fraction stored";
 		}
 
 	}
@@ -138,7 +136,7 @@ namespace sict {
 
 		bool emptyCheck = false;
 
-		if (numer == -1) {
+		if (m_numerator == -1 && m_denominator == -1) {
 
 			emptyCheck = true;
 		}
@@ -149,15 +147,28 @@ namespace sict {
 	// TODO: implement the + operator
 	// + operator adds the rhs to the current object and reduces the result
 	// https://www.codingunit.com/cplusplus-tutorial-unary-and-binary-operator-overloading-and-static-members
-	Fraction Fraction::operator+ (Fraction& num) {
-
+	Fraction Fraction::operator+ (const Fraction& rhs) const {
+		
 		bool empty = isEmpty();
-		int addedNumer = 0;
-		int addedDeno = 0;
+		Fraction temp;
 
 		if (empty == false) {
-			addedNumer = (numer * num.deno) + (num.numer * deno);
-			addedDeno = deno * num.deno;
+			temp.m_numerator = (m_numerator * rhs.m_denominator) + (rhs.m_numerator * m_denominator);
+			temp.m_denominator = m_denominator * rhs.m_denominator;
+		}
+
+		return temp;
+	}
+
+	Fraction Fraction::operator* (const Fraction& rsh) const {
+
+		bool empty = isEmpty();
+		Fraction temp;
+	
+		if (empty == false) {
+
+			temp.m_numerator = m_numerator * rsh.m_numerator ;
+			temp.m_denominator = m_denominator * rsh.m_denominator;
 		}
 
 		if (empty == true) {
@@ -165,36 +176,16 @@ namespace sict {
 			*this = Fraction();
 		}
 
-		return Fraction(addedNumer, addedDeno);
+		return temp;
 	}
 
-	Fraction Fraction::operator* (Fraction& num) {
-
-		bool empty = isEmpty();
-		int multipliedNumer = 0;
-		int multipliedDeno = 0;
-
-		if (empty == false) {
-
-			multipliedNumer = numer * num.numer ;
-			multipliedDeno = deno * num.deno;
-		}
-
-		if (empty == true) {
-
-			*this = Fraction();
-		}
-
-		return Fraction(multipliedNumer, multipliedDeno);
-	}
-
-	bool& Fraction::operator== (Fraction& num) {
+	bool Fraction::operator== (Fraction& rsh) const {
 
 		bool isEqual = false;
 		bool empty = isEmpty();
 
 		if (empty == false) {
-			if (numer == num.numer && deno == num.deno) {
+			if (m_numerator == rsh.m_numerator && m_denominator == rsh.m_denominator) {
 
 				isEqual = true;
 			}
@@ -208,13 +199,13 @@ namespace sict {
 		return isEqual;
 	}
 
-	bool& Fraction::operator!= (Fraction& num) {
+	bool Fraction::operator!= (Fraction& rsh) const {
 
 		bool isNotEqual = false;
 		bool empty = isEmpty();
 
 		if (empty == false) {
-			if (numer != num.numer && deno != num.deno) {
+			if (m_numerator != rsh.m_numerator && m_denominator != rsh.deno) {
 
 				isNotEqual = true;
 			}
@@ -228,7 +219,7 @@ namespace sict {
 		return isNotEqual;
 	}
 
-	Fraction Fraction::operator+= (Fraction& num) {
+	Fraction Fraction::operator+= (Fraction& rsh) {
 
 		bool empty = isEmpty();	
 		
@@ -236,7 +227,7 @@ namespace sict {
 		temp = operator+(num);
 		
 		//call reduce() to reduce of current object and the unmodifiable reference
-		num.reduce();
+		rsh.reduce();
 		temp.reduce();
 
 		if (empty == false) {
@@ -250,8 +241,6 @@ namespace sict {
 		}
 
 		return temp;
-
 	}
-
 
 }
