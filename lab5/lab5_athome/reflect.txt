@@ -5,24 +5,20 @@ Workshop 5 - Reflect
 */
 
 
-1.	Discuss why the operator+= should return a reference to Fraction.
-    We return a reference because we want to keep changes to the current object
+1.	Discuss why the operator+ should return a Fraction object and not a reference to a Fraction object
+    Because the operator+ return a complete new object 
+
+2.	Identify the temporary objects in the tester module
+    (a+b), (b+d) and (b+=d)
+
+3.	Identify the simplifications that you made to your class without affecting the in-terface to the client code
+    The operators implementation are to simplify the client code, for example, the operator+ allows us to add two objects using a simple + sign in the interface.
     
+4.  Explain what you have learned in this workshop.
+    I this workshop, I learned a deeper understanding the usage of & in object qualifier and when to use const. I learned how to construct overload operator to simplify client code and reduce code repeatation for client. I learned how to implement overload operators and when to use const for query (vs modifier)
     
-2.	List your uses of the pointer to the current object to simplify your code.
-    I have used the current object *this whenever asked to set safety state, I also used it when I need to assign a copy of current object to a temporary address, I used it to return a refence to Fraction
-    
+    Quiz Reflection
 
-3.	Identify the temporary objects in the tester module.
-    object a, c
-
-4.	Identify simplifications that you could make to your class without affecting the interface to the client code.
-    
-
-5.	Explain what you have learned in this workshop.
-
-
-Quiz Reflection
-
+Quiz 4 hasn't been marked
 
 
