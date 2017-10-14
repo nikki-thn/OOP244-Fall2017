@@ -37,9 +37,9 @@ namespace sict {
 		// TODO: declare the + operator overload
 		Fraction operator+ (const Fraction&) const; //operator to add current object and another object, return a new object
 		Fraction operator* (const Fraction& ) const; //operator to multiply current object ane one from parameter, return a new object
-		bool operator== (const Fraction& ) const; //return true if two fractions are equal
+		bool operator== (const Fraction& ) const ; //return true if two fractions are equal
 		bool operator!= (const Fraction& ) const; //retrun true if two fractions are not equal
-		Fraction operator+= (const Fraction& ); // increment existing fraction by the fraction 
+		Fraction operator+= ( const Fraction& ) const; // increment existing fraction by the fraction 
 
 	};
 
