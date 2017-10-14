@@ -201,7 +201,7 @@ namespace sict {
 	}
 
 	// TODO: implement the operator+=
-	Fraction Fraction::operator+= (const Fraction& rsh) const {
+	Fraction& Fraction::operator+= (const Fraction& rsh) {
 
 		bool empty = isEmpty();	
 		
