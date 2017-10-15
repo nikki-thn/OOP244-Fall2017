@@ -28,8 +28,7 @@ namespace sict {
 	std::fstream& AmaPerishable::load(std::fstream& file) {
 		
 		AmaProduct::load(file);
-		
-	//	Date temp;
+		Date::read(file);
 		
 	//	file >> temp;
 	//	Date::read(file);
@@ -39,7 +38,7 @@ namespace sict {
 	//	file.getline(input, 100, '\n');
 
 
-	//	file.ignore();
+		file.ignore();
 		
 	//	cout << input << endl;
 
