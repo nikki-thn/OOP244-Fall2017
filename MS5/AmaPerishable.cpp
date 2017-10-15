@@ -65,37 +65,33 @@ namespace sict {
 	}
 
 	std::istream& AmaPerishable::read(std::istream& istr) {
+		
+	double priceIn;
+		bool taxedIn;
+		int qtyIn, qtyNeededIn;
+		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
+		char a;
+		char date[20];
 
-		AmaProduct::read(istr);
+		file.getline(skuIn, MAX_SKU_LEN, ',');
+		file.ignore();
+		sku(skuIn);
+		file.getline(nameIn, 20, ',');
+		name(nameIn);
+		file.ignore();
+		file >> priceIn >> a;
+		price(priceIn);
+		file >> taxedIn >> a;
+		taxed(taxedIn);
+		file >> qtyIn >> a;
+		quantity(qtyIn);
+		file.getline(unit_, 10, ',');
+		file.ignore();
+		file >> qtyNeededIn >> a;
+		qtyNeeded(qtyNeededIn);
+		fille.get;ine(date, 29, ',');
 
-		Date temp;
-
-		if (err_.isClear()) {
-			cout << "Expirey date (YYYY/MM/DD): ";
-			istr >> temp;
-
-			if (temp.errCode() == CIN_FAILED) {
-				err_.message("Invalid Date Entry");
-				istr.setstate(ios::failbit);
-			}
-			if (temp.errCode() == YEAR_ERROR) {
-				err_.message("Invalid Year in Date Entry");
-				istr.setstate(ios::failbit);
-			}
-			if (temp.errCode() == MON_ERROR) {
-				err_.message("Invalid Month in Date Entryy");
-				istr.setstate(ios::failbit);
-			}
-			if (temp.errCode() == DAY_ERROR) {
-				err_.message("Invalid Day in Date Entry");
-				istr.setstate(ios::failbit);
-			}
-			if (temp.errCode() == NO_ERROR) {
-				err_.clear();
-				expiry_ = temp;
-			}
-		}
-		return istr;
+		return file;
 	}
 
 	std::istream& operator>> (std::istream& is, AmaPerishable& s) {
