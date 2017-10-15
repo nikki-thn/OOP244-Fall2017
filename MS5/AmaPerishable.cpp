@@ -11,7 +11,6 @@ namespace sict {
 		Date temp;
 
 		temp = value;
-
 	}
 
 	std::fstream& AmaPerishable::store(std::fstream& file, bool addNewLine)const {
@@ -19,9 +18,7 @@ namespace sict {
 		AmaProduct::store(file, false);
 
 		char a = ',';
-
 		file << a << expiry_;
-
 		return file;
 	}
 
@@ -32,6 +29,7 @@ namespace sict {
 
 		//file.getline(input, 20, ',');
 		file >> expiry_;
+		cout << "expiry_" << expiry_;
 		file.ignore();
 
 		return file;
