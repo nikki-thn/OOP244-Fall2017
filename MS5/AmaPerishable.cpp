@@ -30,9 +30,9 @@ namespace sict {
 		AmaProduct::load(file);
 		Date::read(file);
 	
-		char input[100]; 
+	//	char input[100]; 
 
-		file.getline(input, 100, '\n');
+	//	file.getline(input, 100, '\n');
 
 
 		file.ignore();
