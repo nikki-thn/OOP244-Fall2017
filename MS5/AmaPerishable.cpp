@@ -29,9 +29,9 @@ namespace sict {
 		
 		AmaProduct::load(file);
 		
-		Date temp;
+	//	Date temp;
 		
-		file >> temp;
+	//	file >> temp;
 	//	Date::read(file);
 	
 	//	char input[100]; 
@@ -39,9 +39,9 @@ namespace sict {
 	//	file.getline(input, 100, '\n');
 
 
-		file.ignore();
+	//	file.ignore();
 		
-		cout << input << endl;
+	//	cout << input << endl;
 
 		return file;
 	}
