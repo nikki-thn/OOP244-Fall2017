@@ -31,7 +31,7 @@ namespace sict {
 		Date::read(file);
 		
 	//	file >> temp;
-	//	Date::read(file);
+		read(file);
 	
 	//	char input[100]; 
 
