@@ -15,7 +15,7 @@ namespace sict {
 	}
 
 	std::fstream& AmaPerishable::store(std::fstream& file, bool addNewLine)const {
-		
+
 		AmaProduct::store(file, false);
 
 		char a = ',';
@@ -24,74 +24,70 @@ namespace sict {
 
 		return file;
 	}
-	
+
 	std::fstream& AmaPerishable::load(std::fstream& file) {
-		
+
 		AmaProduct::load(file);
-		Date::read(file);
-		
-	//	file >> temp;
-		read(file);
-	
-	//	char input[100]; 
+		char input[20]; 
 
-	//	file.getline(input, 100, '\n');
-
+		file.getline(input, 20, ',');
 
 		file.ignore();
-		
-	//	cout << input << endl;
 
 		return file;
 	}
 
 	std::ostream& AmaPerishable::write(std::ostream& os, bool linear = true)const {
-	
 
-			if (linear) {
-				AmaProduct::write(os, true);
-				if (err_.isClear()) {
-					os << expiry_;
-				}
+
+		if (linear) {
+			AmaProduct::write(os, true);
+			if (err_.isClear()) {
+				os << expiry_;
 			}
-			else {
-				AmaProduct::write(os, false);
-				if (err_.isClear()) {
-					os << "Expiry date: " << expiry_;
-				}
+		}
+		else {
+			AmaProduct::write(os, false);
+			if (err_.isClear()) {
+				os << "Expiry date: " << expiry_;
 			}
-		
+		}
+
 		return os;
 	}
 
 	std::istream& AmaPerishable::read(std::istream& istr) {
-		
-	double priceIn;
-		bool taxedIn;
-		int qtyIn, qtyNeededIn;
-		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
-		char a;
-		char date[20];
 
-		file.getline(skuIn, MAX_SKU_LEN, ',');
-		file.ignore();
-		sku(skuIn);
-		file.getline(nameIn, 20, ',');
-		name(nameIn);
-		file.ignore();
-		file >> priceIn >> a;
-		price(priceIn);
-		file >> taxedIn >> a;
-		taxed(taxedIn);
-		file >> qtyIn >> a;
-		quantity(qtyIn);
-		file.getline(unit_, 10, ',');
-		file.ignore();
-		file >> qtyNeededIn >> a;
-		qtyNeeded(qtyNeededIn);
-		fille.get;ine(date, 29, ',');
+		AmaProduct::read(istr);
 
-		return file;
+		Date temp;
+
+		if (err_.isClear()) {
+			cout << "Expirey date (YYYY/MM/DD): ";
+			istr >> temp;
+
+			if (temp.errCode() == CIN_FAILED) {
+				err_.message("Invalid Date Entry");
+				istr.setstate(ios::failbit);
+			}
+			if (temp.errCode() == YEAR_ERROR) {
+				err_.message("Invalid Year in Date Entry");
+				istr.setstate(ios::failbit);
+			}
+			if (temp.errCode() == MON_ERROR) {
+				err_.message("Invalid Month in Date Entryy");
+				istr.setstate(ios::failbit);
+			}
+			if (temp.errCode() == DAY_ERROR) {
+				err_.message("Invalid Day in Date Entry");
+				istr.setstate(ios::failbit);
+			}
+			if (temp.errCode() == NO_ERROR) {
+				err_.clear();
+				expiry_ = temp;
+			}
+		}
+		return istr;
 	}
 
 	std::istream& operator>> (std::istream& is, AmaPerishable& s) {
