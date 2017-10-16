@@ -187,7 +187,7 @@ namespace sict {
 		ostr << year_ << "/";
 		//ostr.setf(ios::fixed);
 		ostr.width(2);
-		ostr.fill('0');
+		//ostr.fill('0');
 		ostr << mon_ << "/";
 		ostr.width(2);
 		ostr << day_ << endl;
