@@ -63,6 +63,7 @@ namespace sict {
 		name(nameIn);
 		//file.ignore();
 		file >> priceIn;
+		file.ignore();
 		price(priceIn);
 		file >> taxedIn >> a;
 		taxed(taxedIn);
