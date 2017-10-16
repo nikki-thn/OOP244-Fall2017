@@ -147,17 +147,21 @@ namespace sict {
 			std::cout << "Sku: ";
 			istr >> skuIn;
 			sku(skuIn);
+			istr.ignore(200, '\n');
 
 			cout << "Name: ";
 			istr >> nameIn;
 			name(nameIn);
+			istr.ignore(200, '\n');
 
 			cout << "Unit: ";
 			istr >> unit_;
+			istr.ignore(200, '\n');
 
 			cout << "Taxed? (y/n): ";
 			istr >> taxedIn;
-
+			istr.ignore(200, '\n');
+			
 			if (taxedIn != 'N' && taxedIn != 'n' && taxedIn != 'Y' && taxedIn != 'y') {
 				err_.message("Only (Y)es or (N)o are acceptable");
 				istr.setstate(ios::failbit); //-- istr.fail();
@@ -166,12 +170,12 @@ namespace sict {
 			else if (taxedIn == 'N' || taxedIn == 'n') {
 				taxed(false);
 				//istr.clear();
-				istr.ignore(200, '\n');
+				//istr.ignore(200, '\n');
 			}
 			else if (taxedIn == 'Y' || taxedIn == 'y') {
 				taxed(true);
 				//istr.clear();
-				istr.ignore(200, '\n');
+				//istr.ignore(200, '\n');
 			}
 
 			if (isValid != false) {
