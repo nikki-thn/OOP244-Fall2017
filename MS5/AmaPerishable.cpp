@@ -11,47 +11,53 @@ namespace sict {
 		Date temp;
 
 		temp = value;
+
 	}
 
 	std::fstream& AmaPerishable::store(std::fstream& file, bool addNewLine)const {
-
+		
 		AmaProduct::store(file, false);
 
 		char a = ',';
+
 		file << a << expiry_;
+
 		return file;
 	}
-
+	
 	std::fstream& AmaPerishable::load(std::fstream& file) {
-
-		AmaProduct::load(file);
+		
+		//AmaProduct::load(file);
 		//Date::read(file);
-		//char input[20]; 
+	
+		char input[100]; 
+
+		file.getline(input, 100, '\n');
+
+
 		file.ignore();
-		//file.getline(input, 20, ',');
-		file >> expiry_;
-		cout << "expiry_" << expiry_;
-		file.ignore();
+		
+		cout << input << endl;
 
 		return file;
 	}
 
 	std::ostream& AmaPerishable::write(std::ostream& os, bool linear = true)const {
+	
 
-
-		if (linear) {
-			AmaProduct::write(os, true);
-			if (err_.isClear()) {
-				os << expiry_;
+			if (linear) {
+				AmaProduct::write(os, true);
+				if (err_.isClear()) {
+					os << expiry_;
+				}
 			}
-		}
-		else {
-			AmaProduct::write(os, false);
-			if (err_.isClear()) {
-				os << "Expiry date: " << expiry_;
+			else {
+				AmaProduct::write(os, false);
+				if (err_.isClear()) {
+					os << "Expiry date: " << expiry_;
+				}
 			}
-		}
-
+		
 		return os;
 	}
 
