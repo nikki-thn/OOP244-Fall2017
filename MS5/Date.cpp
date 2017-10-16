@@ -152,7 +152,9 @@ namespace sict {
 	std::istream& Date::read(std::istream& istr) {
 
 		char a;
-		istr >> year_ >> a >> mon_ >> a >> day_;
+		istr >> year_ >> a >> mon_ >> a;
+		
+		day_ = mdays();
 		
 		//mdays(); ****don't know how
 
