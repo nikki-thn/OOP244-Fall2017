@@ -27,6 +27,7 @@ namespace sict {
 	std::fstream& AmaPerishable::load(std::fstream& file) {
 		
 		AmaProduct::load(file);
+		cout << file << endl;
 		//Date::read(file);
 	
 		//char input[100]; 
@@ -36,7 +37,7 @@ namespace sict {
 
 		//file.ignore();
 		
-		//cout << input << endl;
+		cout << input << endl;
 
 		return file;
 	}
