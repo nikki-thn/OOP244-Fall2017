@@ -25,11 +25,12 @@ namespace sict {
 	std::fstream& AmaPerishable::load(std::fstream& file) {
 
 		AmaProduct::load(file);
+		Date::read(file);
 		//char input[20]; 
 
 		//file.getline(input, 20, ',');
-		//file >> expiry_;
-		//cout << "expiry_" << expiry_;
+		file >> expiry_;
+		cout << "expiry_" << expiry_;
 		file.ignore();
 
 		return file;
