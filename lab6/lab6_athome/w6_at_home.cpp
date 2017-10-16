@@ -32,5 +32,9 @@ int main() {
     cout << endl;
     theContact.display();
 
+	theContact = Contact("", nullptr, 0);
+	theContact += 14161230002LL;
+	theContact.display();
+
     return 0;
 }
