@@ -1,12 +1,14 @@
 #include <iostream>
+#include <cstring>
 #include "AidApp.h"
+#define _CRT_SECURE_NO_WARNINGS
 
 namespace sict {
 
 	AidApp::AidApp(const char* filename) {
 
 		int size = strlen(filename); //enhancement
-		if (filename != nullptr && size < 256) {
+		if (filename != "" && size < 256) {
 			strncpy(filename_, filename, size);
 		}
 
@@ -51,22 +53,22 @@ namespace sict {
 	void AidApp::loadRecs() { //opens the data file for reading
 		int readIndex = 0;
 
-		fstream textFile(filename_, ios::in);
-		textFile.open(filename_);
+		fstream datafile_(filename_, ios::in);
+		datafile_.open(filename_);
 
-		if (!textFile.is_open()) {
+		if (!datafile_.is_open()) {
 
-			textFile.clear(); //clear the failure **** HOW?
-			textFile.close(); //close file
-			fstream textFile(filename_, ios::out); //open new file for writting
-			textFile.close(); //close file
+			datafile_.clear(); //clear the failure **** HOW?
+			datafile_.close(); //close file
+			fstream datafile_(filename_, ios::out); //open new file for writting
+			datafile_.close(); //close file
 		}
 		else {
-			while (textFile) {
+			while (datafile_) {
 				char productType;
 				delete[] product_[readIndex];
 
-				textFile >> productType;
+				datafile_ >> productType;
 
 				if (productType == 'P') {
 
@@ -79,7 +81,7 @@ namespace sict {
 				}
 
 				else {
-					textFile.ignore();
+					datafile_.ignore();
 					//Product::load(product_[readIndex]);
 					//load the product from the file (using its load method)
 					readIndex++;
@@ -88,19 +90,19 @@ namespace sict {
 				noOfProducts_ = readIndex;
 			} //while loop
 
-			textFile.close();
+			datafile_.close();
 		}// else
 	} //function
 
 	void AidApp::saveRecs() { //opens the data file for writting
 
-		fstream textFile(filename_, ios::out);
-		if (textFile.is_open()) {
+		fstream datafile_(filename_, ios::out);
+		if (datafile_.is_open()) {
 			for (int i = 0; i < noOfProducts_; i++) {
-				textFile << product_[i] << endl;
+				datafile_ << product_[i] << endl;
 			}
 		}
-		textFile.close();
+		datafile_.close();
 	}
 
 	void AidApp::listProducts() const { //print stuff
@@ -232,12 +234,11 @@ namespace sict {
 
 		return 0;
 	}
-int main() {
-	
-	AidApp::runs();
-	return 0; 
-}
+
+	int main() {
 	
 
+		return 0;
+	}
 
 }
