@@ -30,7 +30,7 @@ namespace sict {
 	
                 file >> expiry_;
 
-		file.ignore();
+		//file.ignore();
 
 		return file;
 	}
