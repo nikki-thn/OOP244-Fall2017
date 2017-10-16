@@ -7,7 +7,7 @@
 
 namespace sict {
 
-	class AidApp : public AmaProduct, public AmaPerishable, public Product, public Date, public ErrorMessage {
+	class AidApp : public AmaProduct, public AmaPerishable{
 
 		char filename_[256]; //holds name of the text file
 		Product* product_[MAX_NO_RECS]; //an array of product pointers
