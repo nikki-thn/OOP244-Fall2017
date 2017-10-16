@@ -232,6 +232,12 @@ namespace sict {
 
 		return 0;
 	}
+int main() {
+	
+	AidApp::runs();
+	return 0; 
+}
+	
 
 
 }
