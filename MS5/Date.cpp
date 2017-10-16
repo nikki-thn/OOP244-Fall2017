@@ -183,7 +183,7 @@ namespace sict {
 	std::ostream& Date::write(std::ostream& ostr)const {
 			
 		ostr << year_ << "/";
-		ostr.fill('0');
+		//ostr.fill('0');
 		ostr.width(2);
 		ostr << mon_ << "/";
 		ostr.width(2);
