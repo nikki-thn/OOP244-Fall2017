@@ -165,12 +165,12 @@ namespace sict {
 			}
 			else if (taxedIn == 'N' || taxedIn == 'n') {
 				taxed(false);
-				istr.clear();
+				//istr.clear();
 				istr.ignore(200, '\n');
 			}
 			else if (taxedIn == 'Y' || taxedIn == 'y') {
 				taxed(true);
-				istr.clear();
+				//istr.clear();
 				istr.ignore(200, '\n');
 			}
 
@@ -185,8 +185,8 @@ namespace sict {
 				}
 				else {
 					price(aDouble);
-					istr.clear();
-					istr.ignore(200, '\n');
+					//istr.clear();
+					//istr.ignore(200, '\n');
 				}
 			}
 
@@ -201,8 +201,8 @@ namespace sict {
 				}
 				else {
 					quantity(qtyInput);
-					istr.clear();
-					istr.ignore(200, '\n');
+					//istr.clear();
+					//istr.ignore(200, '\n');
 				}
 			}
 
