@@ -8,7 +8,7 @@ namespace sict {
 	AidApp::AidApp(const char* filename) {
 
 		int size = strlen(filename); //enhancement
-		if (filename != "" && size < 256) {
+		if (filename != nullptr && size < 256) {
 			strncpy(filename_, filename, size);
 		}
 
