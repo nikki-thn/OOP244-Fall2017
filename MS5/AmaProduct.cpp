@@ -61,7 +61,7 @@ namespace sict {
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
-		file.ignore();
+		//file.ignore();
 		file >> priceIn >> a;
 		price(priceIn);
 		file >> taxedIn >> a;
@@ -69,7 +69,7 @@ namespace sict {
 		file >> qtyIn >> a;
 		quantity(qtyIn);
 		file.getline(unit_, 10, ',');
-		file.ignore();
+		//file.ignore();
 		file >> qtyNeededIn >> a;
 		qtyNeeded(qtyNeededIn);
 
