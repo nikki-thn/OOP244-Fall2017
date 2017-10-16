@@ -28,8 +28,8 @@ namespace sict {
 		//char input[20]; 
 
 		//file.getline(input, 20, ',');
-		file >> expiry_;
-		cout << "expiry_" << expiry_;
+		//file >> expiry_;
+		//cout << "expiry_" << expiry_;
 		file.ignore();
 
 		return file;
