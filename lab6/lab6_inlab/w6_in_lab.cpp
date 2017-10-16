@@ -1,3 +1,7 @@
+// Workshop 6 - Class with a Resource
+// w6_in_lab.cpp
+// Chris Szalwinski
+// 2017/06/14
 #include <iostream>
 #include "Contact.h"
 
@@ -32,9 +36,10 @@ int main()
     cout << "----------------------------------------" << endl;
     cout << "Testing a valid contact!" << endl;
     cout << "----------------------------------------" << endl;
-    long long phoneNumbers[] = { 1416123456LL, 14161234567LL, 1416234567890LL,
-        14162345678LL, -1LL, 124163456789LL };
-    Contact someContact("John Doe", phoneNumbers, 6);
+	long long phoneNumbers[] = { 1416123456LL, 14161234567LL, 1416234567890LL,
+		14162345678LL, -1LL, 124163456789LL,
+		14161230002LL };
+	Contact someContact("John Doe", phoneNumbers, 7);
     someContact.display();
     cout << "----------------------------------------" << endl << endl;
 
