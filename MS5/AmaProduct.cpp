@@ -62,7 +62,7 @@ namespace sict {
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
 		//file.ignore();
-		file >> priceIn >> a;
+		file >> priceIn;
 		price(priceIn);
 		file >> taxedIn >> a;
 		taxed(taxedIn);
