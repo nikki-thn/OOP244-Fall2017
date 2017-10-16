@@ -90,10 +90,10 @@ namespace sict {
 				os << sku() << "|";
 				os.width(20);
 				os << name() << "|";
-				os.unsetf(ios::left);
-				//os.setf(ios::right);
+				//os.unsetf(ios::left);
+				os.setf(ios::right);
 				os.width(7);
-				//os.setf(ios::fixed);
+				os.setf(ios::fixed);
 				os.precision(2);
 				if (taxed()) {
 					os << cost() << "|";
