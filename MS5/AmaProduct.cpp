@@ -6,6 +6,11 @@
 #include"AmaProduct.h"
 
 namespace sict {
+	
+	AmaProduct::AmaProduct() {
+		unit_[0] = '\0';
+		fileTag_ = 'N';
+	}
 
 	AmaProduct::AmaProduct(const char fileTag) {
 
