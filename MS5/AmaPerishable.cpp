@@ -33,7 +33,7 @@ namespace sict {
 		//char input[100]; 
 
 		//file.getline(input, 100, '\n');
-                //file >> expiry_;
+                file >> expiry_;
 
 		//file.ignore();
 		
