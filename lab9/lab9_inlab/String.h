@@ -45,6 +45,8 @@ namespace sict
         // true if string *this and s2 are equal
         bool        operator==(const String& s2)const;
         
+        void display (std::ostream& ) const;
+        
    };
 
     // global helper functions
