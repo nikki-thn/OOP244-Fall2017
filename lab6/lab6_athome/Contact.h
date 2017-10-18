@@ -6,38 +6,28 @@ namespace sict {
 
 	class Contact {
 
-		char name[21];
-		int numOfPhones;
-	
-		long long* phoneNum;
+		char m_name[20];
+		int m_numOfPhones;
+		long long* m_phoneNum;
 
 	public:
 
-		Contact();
-		Contact(const char*, const long long*, int);
-		~Contact();
+		Contact(); //no parameter constructor
+		Contact(const char*, const long long*, int); //3 parameter constructor
+		~Contact(); //destructor
 
-	/*	Contact(const Contact&);
-		Contact& operator=(const Contact&);
-		Contact& operator+=(const long long); */
-		
-		//check phone's validity 
-		bool validCheck(const long long);
-		void extractNum (const long long, int&, int&, int&, int&) const;
-		bool isEmpty() const;
-		void display() const;
+		Contact (const Contact&); //copy constructor
+		Contact& operator= (const Contact&); //copy operator
+		Contact& operator+= (const long long); //+=operator
+	
+		bool validCheck(const long long);	//check phone's validity 
+		void extractNum(const long long, int&, int&, int&, int&); //to break down phone number
+		bool isEmpty() const; //returns true if object is empty
+		void display(); //query
 
 	};
-
-	//exact number
-	//bool exact(long long);
-
 
 }
 
 
 #endif
-
-
-//Dynamic allocated array http://www.cs.fsu.edu/~jestes/cop3330/notes/dma.html 
-//Another link https://stackoverflow.com/questions/15369913/dynamic-arrays-inside-a-class
