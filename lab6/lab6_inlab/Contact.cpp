@@ -130,7 +130,7 @@ namespace sict {
 		}
 		else {
 
-			cout << "Empty Contact!" << endl;
+			cout << "Empty contact!" << endl;
 		}
 	}
 
