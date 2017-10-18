@@ -43,13 +43,13 @@ namespace sict {
 		int errCode()const; 	//Returns the readErrorCode_ value.
 		bool bad()const;   	//Returns true if readErrorCode_ is not equal to zero.
 
-		std::istream& read(std::istream& istr); //read from stream
-		std::ostream& write(std::ostream& ostr)const; //print to stream
+		std::istream& read(std::istream& istr); //read from input stream
+		std::ostream& write(std::ostream& ostr)const; //print to output stream
 
 	};
 
-	std::istream& operator>> (std::istream& is, Date& s);
-	std::ostream& operator<< (std::ostream& is, const Date& s);
+	std::istream& operator>> (std::istream& is, Date& s); // >> overload operator for Date class
+	std::ostream& operator<< (std::ostream& is, const Date& s); // << overload operator for Data class
 
 
 }
