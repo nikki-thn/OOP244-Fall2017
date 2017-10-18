@@ -62,8 +62,8 @@ namespace sict {
 
 	Contact::~Contact() {
 
-		cout << "	Contact::~Contact() {" << endl;
-		//delete [] m_phoneNum;
+		//cout << "	Contact::~Contact() {" << endl;
+		delete [] m_phoneNum;
 		
 	}
 
