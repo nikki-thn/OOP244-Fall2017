@@ -6,104 +6,116 @@ using namespace std;
 
 namespace sict {
 
-	Contact::Contact() {
+	Contact::Contact() { //set object to safe empty state
 
-		name[0] = '\0';
-		numOfPhones = 0;
-		long long *phoneNum = nullptr;
+		m_name[0] = '\0';
+		m_numOfPhones = 0;
+		long long *m_phoneNum = nullptr;
 	}
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
 		*this = Contact();
-		phoneNum = new long long[size];
-		bool valid;
 
-		if (sourceName != nullptr) {
+		int count = 0;
 
-			strcpy(name, sourceName); //***problem
-		}
-		else if (sourceName == nullptr) {
+		//if not empty, copy value into data members accordingly
+		if (sourceName != nullptr || sourceName == "") {
 
-			*this = Contact();
-		}
+			strncpy(m_name, sourceName, 19);
+			m_name[19] = '\0';
 
-		for (int i = 0; i < size; i++) {
+			for (int i = 0; i < size; i++) {
+	
+				if (validCheck(sourcePhone[i])) { //call validCheck function to check phone	
+					m_numOfPhones++; //count number of valid number for memory allocation
+				}
+			}
 
-			valid = validCheck(sourcePhone[i]);
+			m_phoneNum = new long long[m_numOfPhones]; //allocate memory for valid phone number
 
-			if (valid == true) {
+			for (int j = 0; j < size; j++) {
 
-				phoneNum[numOfPhones] = sourcePhone[i];
-				numOfPhones++;
+				if (validCheck(sourcePhone[j])) {
+
+					//copy into array m_phoneNum
+					m_phoneNum[count] = sourcePhone[j];
+					count++;
+				}
 			}
 		}
+		//else *this = Contact(); // else set object to safety state
+		
 	}
 
 	Contact::~Contact() {
 
-		//default destructor will delete all dynamic allocated memory
+		//cout << "	Contact::~Contact() {" << endl;
+		//delete [] m_phoneNum;
 	}
 
+	//Copy constructor
 	Contact::Contact(const Contact& newContact) {
 
-		phoneNum = nullptr;
-		*this = newContact;
+		if (this != &newContact) {
+			*this = newContact;
+		}
 	}
 
+	//Copy operator
 	Contact& Contact::operator=(const Contact& newContact) {
 
 		//self-assignment to check for address of the newContact, make sure they are not same
 		if (this != &newContact) {
 			//shallow copies
-			strcpy(name, newContact.name);
-			numOfPhones = newContact.numOfPhones;
+			strcpy(m_name, newContact.m_name);
+			m_numOfPhones = newContact.m_numOfPhones;
 
 			//allocate memory for phoneNum array
-			if (newContact.phoneNum != nullptr) {
-				phoneNum = new long long[numOfPhones];
+			if (newContact.m_phoneNum != nullptr) {
 
-				for (int i = 0; i < numOfPhones; i++) {
-					phoneNum[i] = newContact.phoneNum[i];
+				m_phoneNum = new long long[m_numOfPhones];
+
+				//copy contact from newContact to current object
+				for (int i = 0; i < m_numOfPhones; i++) {
+					m_phoneNum[i] = newContact.m_phoneNum[i];
 				}
 			}
-
-			else {
-				*this = Contact();
-			}
+		}
+		else {
+			*this = Contact();
 		}
 		return *this;
 	}
 
+	//+= operator to add a new number into the existing array phoneNum
 	Contact& Contact::operator+=(const long long newPhone) {
 
-		//create temporary object and copy existing object 
 		Contact temp = *this;
 
-		bool valid = validCheck(newPhone);
-		int count = numOfPhones;
-		cout << "num " << numOfPhones << endl;
-		if (valid == true) {
+		int count = m_numOfPhones;
 
-			phoneNum = new long long[numOfPhones++];
+		//if the newPhone is valid, accept it into array
+		if (validCheck(newPhone)) {
 
-			for (int i = 0; i < numOfPhones; i++) {
-				phoneNum[i] = temp.phoneNum[i];
+			//increase the memory by one
+			m_phoneNum = new long long[m_numOfPhones++];
+
+			//copy all existing contact to the array of new size
+			for (int i = 0; i < m_numOfPhones; i++) {
+				m_phoneNum[i] = temp.m_phoneNum[i];
 			}
 
-			phoneNum[count] = newPhone;
-
-
+			//assign newPhone to the last element of array
+			m_phoneNum[count] = newPhone;
 		}
-
 		return *this;
 	}
 
-
+	//check for valid phone number
 	bool Contact::validCheck(const long long toCheck) {
 
-		bool isValid = NULL;
-
+		bool isValid = false;
 		int countryCode = 0;
 		int areaCode = 0;
 		int last3Digits = 0;
@@ -111,12 +123,11 @@ namespace sict {
 
 		extractNum(toCheck, countryCode, areaCode, last3Digits, last4Digits);
 		isValid = areaCode >= 100 && countryCode >= 1 && countryCode <= 99 && last3Digits >= 100;
-		//cout << "(+" << countryCode << ") " << areaCode << " " << last3Digits << "-" << last4Digits << endl;
-	//	cout << "is valid" << isValid << endl;
+
 		return isValid;
 	}
 
-
+	//break down number 
 	void Contact::extractNum(const long long phone, int& country, int& area, int& last3, int& last4) {
 
 		int temp = 0;
@@ -129,19 +140,19 @@ namespace sict {
 		country = (temp - area) / 1000;
 	}
 
-
+	//returns true if object is empty
 	bool Contact::isEmpty() const {
 
 		bool isEmpty = true;
 
-		if (name[0] != '\0') {
+		if (m_name[0] != '\0') {
 			isEmpty = false;
 		}
 
 		return isEmpty;
 	}
 
-
+	//query
 	void Contact::display() {
 
 		bool empty = isEmpty();
@@ -151,17 +162,20 @@ namespace sict {
 		int last3Digits = 0;
 		int last4Digits = 0;
 
-		if (empty == false) {
+		if (empty != true) {
 
-			cout << name << endl;
+			cout << m_name << endl;
 
-			for (int i = 0; i < numOfPhones; i++) {
-				extractNum(phoneNum[i], countryCode, areaCode, last3Digits, last4Digits);
-				cout << "(+" << countryCode << ") " << areaCode << " " << last3Digits << "-" << last4Digits << endl;
+			for (int i = 0; i < m_numOfPhones; i++) {
+				extractNum(m_phoneNum[i], countryCode, areaCode, last3Digits, last4Digits);
+				cout << "(+" << countryCode << ") " << areaCode << " " << last3Digits << "-";
+				cout.width(4);
+				cout.fill('0');
+				cout << last4Digits << endl;
 			}
 		}
-
 		else {
+
 			cout << "Empty Contact!" << endl;
 		}
 	}
