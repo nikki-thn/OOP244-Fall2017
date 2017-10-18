@@ -16,27 +16,28 @@ using namespace std;
 namespace sict {
 
 	Contact::Contact() { //set object to safe empty state
-
+		//cout << "Contact::Contact()" << endl;
 		m_name[0] = '\0';
 		m_numOfPhones = 0;
-		long long* m_phoneNum = nullptr;
+		long long *m_phoneNum = nullptr;
 	}
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
+		//cout << "Contact::Contact(const char* sourceName, const long long*" << endl;
 		*this = Contact(); //have to call this first because I tried to use m_numOfPhones before it was initialized
-			           //Ask if it's okay??
+						   //Ask if it's okay??
 
 		int count = 0;
 
 		//if not empty, copy value into data members accordingly
-		if (sourceName != nullptr || strcmp(sourceName, "")) {
+		if (sourceName != nullptr) {
 
 			strncpy(m_name, sourceName, 19);
 			m_name[19] = '\0';
 
 			for (int i = 0; i < size; i++) {
-	
+
 				if (validCheck(sourcePhone[i])) { //call validCheck function to check phone	
 					m_numOfPhones++; //count number of valid number for memory allocation
 				}
@@ -53,18 +54,16 @@ namespace sict {
 					count++;
 				}
 			}
-
-			cout << "m_numOfPhones" << m_numOfPhones << endl;
 		}
 		//else *this = Contact(); // else set object to safety state
-		
+
 	}
 
 	Contact::~Contact() {
 
 		//cout << "	Contact::~Contact() {" << endl;
-		delete [] m_phoneNum;
-		
+		//delete[] m_phoneNum;
+
 	}
 
 	//check for valid phone number
