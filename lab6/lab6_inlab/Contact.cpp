@@ -3,6 +3,10 @@ Nikki Truong - 112 214 174
 OOP244 - Fall 2017
 Workshop 6 - In lab
 */
+
+//****Program crashes when delete in destructor is called
+//ask about the number of times a destructor is called, number of constructor is called
+
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
@@ -20,7 +24,8 @@ namespace sict {
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
-		*this = Contact();
+		*this = Contact(); //have to call this first because I tried to use m_numOfPhones before it was initialized
+			           //Ask if it's okay??
 
 		int count = 0;
 
@@ -37,13 +42,13 @@ namespace sict {
 				}
 			}
 
-
-			m_phoneNum = new long long[m_numOfPhones];
+			m_phoneNum = new long long[m_numOfPhones]; //allocate memory for valid phone number
 
 			for (int j = 0; j < size; j++) {
 
 				if (validCheck(sourcePhone[j])) {
 
+					//copy into array m_phoneNum
 					m_phoneNum[count] = sourcePhone[j];
 					count++;
 				}
@@ -51,25 +56,21 @@ namespace sict {
 
 			cout << "m_numOfPhones" << m_numOfPhones << endl;
 		}
-
-
-		else {
-
-			*this = Contact(); // else set object to safety state
-		}
+		//else *this = Contact(); // else set object to safety state
+		
 	}
 
 	Contact::~Contact() {
 
-			cout << "	Contact::~Contact() {" << endl;
+		cout << "	Contact::~Contact() {" << endl;
 		//delete [] m_phoneNum;
 		
 	}
 
+	//check for valid phone number
 	bool Contact::validCheck(const long long toCheck) {
 
-		bool isValid = NULL;
-
+		bool isValid = false;
 		int countryCode = 0;
 		int areaCode = 0;
 		int last3Digits = 0;
@@ -81,7 +82,7 @@ namespace sict {
 		return isValid;
 	}
 
-
+	//break down number 
 	void Contact::extractNum(const long long phone, int& country, int& area, int& last3, int& last4) {
 
 		int temp = 0;
@@ -94,6 +95,7 @@ namespace sict {
 		country = (temp - area) / 1000;
 	}
 
+	//returns true if object is empty
 	bool Contact::isEmpty() const {
 
 		bool isEmpty = true;
@@ -105,7 +107,7 @@ namespace sict {
 		return isEmpty;
 	}
 
-
+	//query
 	void Contact::display() {
 
 		bool empty = isEmpty();
@@ -115,7 +117,7 @@ namespace sict {
 		int last3Digits = 0;
 		int last4Digits = 0;
 
-		if (empty == false) {
+		if (empty != true) {
 
 			cout << m_name << endl;
 
@@ -127,8 +129,8 @@ namespace sict {
 				cout << last4Digits << endl;
 			}
 		}
-
 		else {
+
 			cout << "Empty Contact!" << endl;
 		}
 	}
