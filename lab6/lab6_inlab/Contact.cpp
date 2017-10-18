@@ -19,7 +19,7 @@ namespace sict {
 		//cout << "Contact::Contact()" << endl;
 		m_name[0] = '\0';
 		m_numOfPhones = 0;
-		*m_phoneNum = nullptr;
+		m_phoneNum = nullptr;
 	}
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
