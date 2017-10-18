@@ -6,22 +6,20 @@ namespace sict {
 
 	class Contact {
 
-		char name[21];
-		int numOfPhones;
-
-		long long* phoneNum;
+		char m_name[20];
+		int m_numOfPhones;
+		long long* m_phoneNum;
 
 	public:
 
-		Contact();
-		Contact(const char*, const long long*, int);
-		~Contact();
+		Contact(); //no parameter constructor
+		Contact(const char*, const long long*, int); //3 parameter constructor
+		~Contact(); //destructor
 
-		//check phone's validity 
-		bool validCheck(const long long);
-		void extractNum(const long long, int&, int&, int&, int&);
-		bool isEmpty() const;
-		void display() ;
+		bool validCheck(const long long);	//check phone's validity 
+		void extractNum(const long long, int&, int&, int&, int&); //to break down phone number
+		bool isEmpty() const; //returns true if object is empty
+		void display(); //query
 
 	};
 
