@@ -10,7 +10,7 @@ namespace sict {
 
 		m_name[0] = '\0';
 		m_numOfPhones = 0;
-		long long *m_phoneNum = nullptr;
+		m_phoneNum = nullptr;
 	}
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
@@ -20,7 +20,7 @@ namespace sict {
 		int count = 0;
 
 		//if not empty, copy value into data members accordingly
-		if (sourceName != nullptr || sourceName == "") {
+		if (sourceName != nullptr) {
 
 			strncpy(m_name, sourceName, 19);
 			m_name[19] = '\0';
@@ -49,9 +49,9 @@ namespace sict {
 	}
 
 	Contact::~Contact() {
-
+		
 		//cout << "	Contact::~Contact() {" << endl;
-		//delete [] m_phoneNum;
+		delete [] m_phoneNum;
 	}
 
 	//Copy constructor
