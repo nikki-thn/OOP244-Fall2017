@@ -4,8 +4,7 @@ OOP244 - Fall 2017
 Workshop 6 - In lab
 */
 
-//****Program crashes when delete in destructor is called
-//ask about the number of times a destructor is called, number of constructor is called
+//***ask about the number of times a destructor, constructor is called and when
 
 #include <iostream>
 #include <cstring>
@@ -55,7 +54,6 @@ namespace sict {
 			}
 		}
 		//else *this = Contact(); // else set object to safety state
-
 	}
 
 	Contact::~Contact() {
