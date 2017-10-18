@@ -59,9 +59,8 @@ namespace sict {
 	}
 
 	Contact::~Contact() {
-
-		delete[] m_phoneNum;
-
+		
+		delete[] m_phoneNum; //delete allocated memory 
 	}
 
 	//check for valid phone number
