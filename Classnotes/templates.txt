@@ -1,1 +1,48 @@
-templates helps to write something that can be used in a wide variety of contexts. Templates resolves at compile time (speed advantage)
+templates helps to write something that can be used in a wide variety of contexts. Templates resolves at compile time (speed advantage). the idea is to write a class or function once and use it for a variety of types. Often rely on operator overloads. Standard Library is template-based.
+
+template <class T> //this line is just declare we are creating a template, can be anything in this line, does not matter
+T max (T& t1, T& t2) { //this line means whatever T template (or whatever) of anything class, int, double, etc declare above
+                       //its name is max, it takes the 2 T references t1, t2
+    return t1 < t2 ? t2 : t1; //here we say, if t1 is less than t2 is true (t1 < t2), return t2 which is the bigger one
+}
+
+int main() {
+    
+    cout << "max of 33 and 44 is " << max (33, 44) << endl; //return 44 which is an int
+    cout << "max of 'Hello' and 'World' is " << max (33, 44) << endl; //return World because W came after H
+    cout << "max of Kate and Tyler is << max (Kate, Tyler) << endl; //return whatever we implememted to define the operator< for that                                                                             specific object of their class
+    //if we try to use the same template on some class that doesn't have the operator to take, we're gonna get an error
+}
+
+template <class T>
+class Accum {
+    T total; //a data member of type T, we don't declare type because we don't
+    
+public:
+    
+    Accum(T start): total (value) {}; //a constructor for T, takes one value 'value' and assign to T start
+    T operator+= (const T& t) {return total = total + t;}; //add value of t to total
+    T GetTotal () {return total; }; //returns value of total
+};
+
+Template Speacilization: we can ask C++ to write a compiler to work with only certain class
+template <> //we put nothing here
+class Accum <Person> { //we specify to use for this particular Person class
+    int total; //a data member will be type int now 
+    
+public:
+    
+    Accum(int start): total (value) {}; //a constructor for T, takes one value 'value' and assign to T start
+    int operator+= (Person& t) {return total = total + t.GetNumber();}; //add value of t to total
+    int GetTotal () {return total; }; //returns value of total
+};
+
+int main() {
+  Accum <Person> people (0); //new instance of type Person with total value of 0 to begin with
+  Person p1("Kate", "G", 123);
+  Person p2("John", "H", 456);
+  person += p1;
+  person += p2;
+  cout << people.GetTotal() << endl; //will return 579 (which is 123 + 456)  
+
+}
