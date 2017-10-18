@@ -16,7 +16,7 @@ using namespace std;
 namespace sict {
 
 	Contact::Contact() { //set object to safe empty state
-		//cout << "Contact::Contact()" << endl;
+
 		m_name[0] = '\0';
 		m_numOfPhones = 0;
 		m_phoneNum = nullptr;
@@ -24,7 +24,6 @@ namespace sict {
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
-		//cout << "Contact::Contact(const char* sourceName, const long long*" << endl;
 		*this = Contact(); //have to call this first because I tried to use m_numOfPhones before it was initialized
 						   //Ask if it's okay??
 
@@ -61,8 +60,7 @@ namespace sict {
 
 	Contact::~Contact() {
 
-		//cout << "	Contact::~Contact() {" << endl;
-		//delete[] m_phoneNum;
+		delete[] m_phoneNum;
 
 	}
 
