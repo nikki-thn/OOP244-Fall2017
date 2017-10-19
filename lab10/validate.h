@@ -1,31 +1,38 @@
 #ifndef ICT_VALIDATE_H
 #define ICT_VALIDATE_H
 
+#include "Car.h"
+#include "Displayable.h"
+#include "Employee.h"
+#include "Student.h"
+
 namespace ict {
 
 	template <class T>
-
-	bool validate(T min, T max, T testArr[], int numElement, bool arr[]) {
+	bool validate(T min, T max, T* arr, int arrSize, bool* boolArr) {
 
 		bool isValid = false;
+		bool isTrue = true;
 
-		cout << "min " << min << "max " << max << endl;
-		for (int i = 0; i < numElement; i++) {
+		for (int i = 0; i < arrSize; i++) {
 
-			if (testArr[i] <= max && testArr[i] >= min) {
-				cout << "test " << testArr[i] << endl;
+			if (arr[i] >= min  && arr[i] <= max) {
+				
 				isValid = true;
-				arr[i] = true;
+				boolArr[i] = isValid;
 			}
-			else {
-				arr[i] = false;
+			else if (arr[i] <= min || arr[i] >= max) {
+				isValid = false;
+				boolArr[i] = isValid;
 			}
 		}
-
-		return isValid;
-	}
-
+			for (int j = 0; j < arrSize; j++) {
+				if (boolArr[j] != true) {
+					isTrue = false;
+				}
+		}
+		
+		return isTrue;
+	};
 }
-#endif // !VALIDATE_H
-
-
+#endif
