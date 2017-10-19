@@ -9,7 +9,7 @@
 namespace ict {
 
 	template <class T>
-	bool validate(T min, T max, T* arr, int arrSize, bool* boolArr) {
+	bool validate(T& min, T& max, T* arr, int arrSize, bool* boolArr) {
 
 		bool isValid = false;
 		bool isTrue = true;
