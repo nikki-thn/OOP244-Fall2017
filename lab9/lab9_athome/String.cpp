@@ -38,15 +38,17 @@ namespace sict {
 	String::String(const char* pSource, int size) {
 
 		if (pSource != nullptr) {
-			m_capacity = strlen(pSource);
 
-			if (size >= m_capacity + 1) {
+			int length = strlen(pSource);
 
-				m_pString = new char[size + 1];
+			if (size >= length + 1) {
+				m_capacity = size;
+				m_pString = new char[m_capacity + 1];
 				strcpy(m_pString, pSource);
-			}
-			else if (size < m_capacity + 1) {
 
+			}
+			else if (size < length + 1) {
+				m_capacity = length + 1;
 				m_pString = new char[m_capacity + 1];
 				strcpy(m_pString, pSource);
 			}
@@ -69,16 +71,21 @@ namespace sict {
 	// 
 	String::String(const String& other, int size)
 	{
-		int length = strlen(other.m_pString);
-		if (size >= length + 1) {
-			m_pString = new char[size];
-			strcpy(m_pString, other.m_pString);
+		if (this != &other) {
+			int length = strlen(other.m_pString);
+			if (size >= length + 1) {
+				m_capacity = size;
+				m_pString = new char[m_capacity];
+				strcpy(m_pString, other.m_pString);
+			}
+
+			else if (size < length + 1) {
+				m_capacity = length + 1;
+				m_pString = new char[m_capacity];
+				strcpy(m_pString, other.m_pString);
+			}
 		}
 
-		else if (size < length + 1) {
-			m_pString = new char[length + 1];
-			strcpy(m_pString, other.m_pString);
-		}
 	}
 
 
@@ -111,11 +118,21 @@ namespace sict {
 	String& String::operator=(const String& other)
 	{
 		if (this != &other) {
-			delete[] m_pString;
-			m_pString = new char[strlen(other.m_pString) + 1];
-			strcpy(m_pString, other.m_pString);
+			int length = strlen(other.m_pString);
+			if (m_capacity >= length) {
+				//delete[] m_pString;
+				m_pString = new char[m_capacity];
+				strcpy(m_pString, other.m_pString);
+			}
 
+			else if (m_capacity < length) {
+				//delete[] m_pString;
+				m_capacity = length;
+				m_pString = new char[m_capacity];
+				strcpy(m_pString, other.m_pString);
+			}
 		}
+
 		return *this;
 	}
 
@@ -207,15 +224,10 @@ namespace sict {
 	bool String::operator==(const String& s2) const
 	{
 		bool isSame = false;
-		if (!s2.empty() && !this->empty()) {
 
-			//strcmp(this->m_pString, s2.m_pString)
-			//	cout << this->m_pString;
-			//cout << s2.m_pString;
-			//cout << "isSame" << isSame << endl;
-			if (strcmp(m_pString, s2.m_pString)) {
-				isSame = true;
-			}
+		if (!(strcmp(m_pString, s2.m_pString))) {
+
+			isSame = true;
 		}
 		return isSame;
 	}
