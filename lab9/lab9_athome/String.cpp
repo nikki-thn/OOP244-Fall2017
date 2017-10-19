@@ -233,21 +233,11 @@ namespace sict {
 	// 
 	String& String::operator+=(const String& s2)
 	{
-		String temp = *this;
 		if (this != &s2) {
-			int size = strlen(s2.m_pString);
-			//if (size < m_capacity) {
-			cout << m_capacity;
-			cout << "String& String::operator+=(const String& s2)" << endl;
-			delete[] m_pString;
-			m_pString = new char[m_capacity];
-			strcpy(this->m_pString, temp.m_pString);
 			strcat(this->m_pString, s2.m_pString);
-			//cout << "*****" << m_pString;
-
 		}
-
 		return *this;
+
 	}
 
 
@@ -297,9 +287,9 @@ namespace sict {
 	// that is an error
 	// 
 	//String String::substr(int index, int len) const
-//	{
-		//return *this;
-//	}
+	//	{
+	//return *this;
+	//	}
 
 	void String::display(std::ostream& os) const {
 		cout << m_pString;
