@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace sict {
+namespace ict {
 
 
 
@@ -41,17 +41,15 @@ namespace sict {
 
 			int length = strlen(pSource);
 
-			if (size >= length + 1) {
-				m_capacity = size;
-				m_pString = new char[m_capacity + 1];
-				strcpy(m_pString, pSource);
-
+			if (size >= length) {
+				m_capacity = size + 1;	
 			}
-			else if (size < length + 1) {
+			else if (size < length) {
 				m_capacity = length + 1;
-				m_pString = new char[m_capacity + 1];
-				strcpy(m_pString, pSource);
 			}
+
+			m_pString = new char[m_capacity + 1];
+			strcpy(m_pString, pSource);
 		}
 		else {
 
@@ -73,19 +71,16 @@ namespace sict {
 	{
 		if (this != &other) {
 			int length = strlen(other.m_pString);
-			if (size >= length + 1) {
-				m_capacity = size;
-				m_pString = new char[m_capacity];
-				strcpy(m_pString, other.m_pString);
+			if (size >= length) {
+				m_capacity = size + 1;
 			}
 
-			else if (size < length + 1) {
+			else if (size < length) {
 				m_capacity = length + 1;
-				m_pString = new char[m_capacity];
-				strcpy(m_pString, other.m_pString);
 			}
+			m_pString = new char[m_capacity + 1];
+			strcpy(m_pString, other.m_pString);
 		}
-
 	}
 
 
@@ -101,9 +96,9 @@ namespace sict {
 	//    
 	void String::resize(int newsize)
 	{
-		if (newsize > m_capacity) {
-			m_capacity = newsize + 1;
-		}
+			m_capacity += (newsize + 1);
+			delete[] m_pString;
+			m_pString = new char[m_capacity];
 	}
 
 
@@ -118,16 +113,18 @@ namespace sict {
 	String& String::operator=(const String& other)
 	{
 		if (this != &other) {
+
 			int length = strlen(other.m_pString);
-			if (m_capacity >= length) {
-				//delete[] m_pString;
-				m_pString = new char[m_capacity];
-				strcpy(m_pString, other.m_pString);
+
+			if (m_capacity <= length) {
+				m_capacity = length + 1;
 			}
 
-			else if (m_capacity < length) {
-				//delete[] m_pString;
-				m_capacity = length;
+			if (m_pString != other.m_pString) {
+				delete[] m_pString;
+
+				//	else { m_capacity = m_capacity + 1;	}
+
 				m_pString = new char[m_capacity];
 				strcpy(m_pString, other.m_pString);
 			}
@@ -147,7 +144,7 @@ namespace sict {
 	// 
 	String::~String()
 	{
-		//delete[] m_pString;
+		delete[] m_pString;
 	}
 
 	//////////////////////////////////////////////////////
@@ -245,11 +242,16 @@ namespace sict {
 	// 
 	String& String::operator+=(const String& s2)
 	{
+		String temp = *this;
 		if (this != &s2) {
-			strcat(this->m_pString, s2.m_pString);
+			int size = strlen(s2.m_pString);
+			temp.resize(size);
+			strcpy(temp.m_pString, this->m_pString);
+			strcat(temp.m_pString, s2.m_pString);
 		}
-		return *this;
 
+		*this = temp;
+		return *this;
 	}
 
 
@@ -266,6 +268,11 @@ namespace sict {
 	String String::operator+(const String& s2) const
 	{
 		String temp = *this;
+		if (this != &s2) {
+			int size = strlen(s2.m_pString);
+			temp.resize(size);
+			strcpy(temp.m_pString, this->m_pString);
+		}
 		return strcat(temp.m_pString, s2.m_pString);
 	}
 
@@ -278,6 +285,7 @@ namespace sict {
 	//  
 	String& String::operator+= (char c)
 	{
+		this->resize(1);
 		int size = strlen(m_pString);
 		m_pString[size] = c;
 		m_pString[size + 1] = '\0';
@@ -350,3 +358,71 @@ namespace sict {
 
 
 }
+
+
+/*#define CATCH_CONFIG_MAIN
+
+
+#include <iostream>
+//#include <cassert>
+//#include "String.h"
+#include "catch.hpp"
+#include "String.h"
+
+
+//using namespace std;
+using namespace ict;
+
+
+
+
+TEST_CASE("Test for lab 9", "[Tag to classify tests]") { //using TEST_CASE to create a unit test
+													     //[Tag] is optional
+	char a[] = "Hello";
+	String newString (a);
+	//String bString = newString;
+//	String cString(" World");
+	newString += 'A';
+//	String bString = newString + cString;
+
+//	String dString("Hello World");
+//	bool abool = (bString == dString);
+	int length = strlen("HelloA");
+
+//	REQUIRE(abool); //this is where we specify the results we want if test runs successfully
+	REQUIRE(newString.length() == length);
+	//REQUIRE(cString.resize(10) == (length + 11));
+}
+
+TEST_CASE("Another test") {
+
+	String aString("Hello");
+	String bString("World");
+	bString += aString;
+	bString.resize(10);
+
+	REQUIRE(bString.resize(10) == 16);
+	REQUIRE(aString.length() == 5);
+}
+
+
+TEST_CASE("Test for lab 9") {
+
+String newString("Hello");
+String aString(" World");
+String cString("Hello World");
+newString += aString;
+
+//	String bString = newString + cString;
+
+//	String dString("Hello World");
+bool abool = (newString == cString);
+
+int length = strlen(cString);
+
+REQUIRE(abool); //this is where we specify the results we want if test runs successfully
+REQUIRE(newString.length() == length);
+//REQUIRE(cString.resize(10) == (length + 11));
+}
+
+*/
