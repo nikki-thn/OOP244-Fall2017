@@ -1,10 +1,10 @@
-#ifndef ICT_STRING_H_
-#define ICT_STRING_H_
+#ifndef SICT_STRING_H_
+#define SICT_STRING_H_
 
 //#include <iostream>
 
 
-namespace ict
+namespace sict
 {
 	class String
 	{
