@@ -1,0 +1,45 @@
+INTRODUCTION ABOUT CATCH AND UNIT TEST:
+
+Unit Test: codes to test SPECIFIC functionality (focus) with clearly define pass/fail criteria, runs in isolation. Write Automated Tests provide quick feedback, avoid stupid bugs, immune to Regression, change your code without fear, a form of documentation.
+
+CATCH: stands for C++ Automated Cases in Headers. Why use CATCH? Easy to deploy (just include a header), no external dependencies (system and platforms independence), tests names are strings (we can give meaningful name for tests), powerful, excellent error messages, sections(enable sth without compromise)
+
+TAGS: Special Tags [!hide] or [.] : skip/ignore test
+                   [.][integration] -> [.integration]
+                   [!throws]
+                   [!shouldfail]
+                   [!mayfail] does not fail 
+
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
+
+TEST_CASE("Test for lab 9", "[Tag to classify tests]") { //using TEST_CASE to create a unit test
+													    //[Tag] is optional, can be more than one tags "[tags][tag2]" case-sensitive
+
+	MyClass myClass;
+
+	REQUIRE(myClass.MeaningfulResult() == true; //this is where we specify the results we want if test runs successfully
+
+}
+
+ORGANIZING YOUR TESTS USING CATCH:
+  + Use meaningful name for your tests
+  + Organiza and categorize with names and tags (by module names, test type, execution peed, etc)
+  + Running Catch from the command line
+ 
+CATCH USING COMMAND LINE:
+  + Run a specific test name: syntax > "Test name goes here"
+  + Run group of tests: syntax > GroupTest*
+                               > *GroupTest
+  + Run all tests except: syntax > Exclude:someTest 
+                                 > ~otherTest
+                                 > ~*someTest*
+                                 
+  + Mix and match: syntax > aGroupTest* ~groupTest* "Run this test"
+  + Options for command line: file.exe -l :list all test including names and tags (if applicable) 
+
+ASSERRTION USING CATCH:
+
+CHECK: let the test finish before failing it while REQUIRE abort and fail test right away
+
+
