@@ -285,10 +285,14 @@ namespace ict {
 	//  
 	String& String::operator+= (char c)
 	{
+		String temp = *this;
+
 		this->resize(1);
-		int size = strlen(m_pString);
-		m_pString[size] = c;
+		int size = strlen(temp.m_pString);
+		strcpy(this->m_pString, temp.m_pString);
+		this->m_pString[size] = c;
 		m_pString[size + 1] = '\0';
+	
 		return *this;
 	}
 
