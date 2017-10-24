@@ -8,9 +8,9 @@ namespace sict {
 	AidApp::AidApp(const char* filename) {
 
 		if (filename != nullptr) {
-			//int size = strlen(filename);
+	
 			strcpy(filename_, filename);
-			//cout << size << "*********";
+
 			*product_ = nullptr;
 			noOfProducts_ = 0;
 			loadRecs();//loads the Records by calling loadRecs
