@@ -15,7 +15,6 @@ namespace sict {
 		char unit_[11];
 
 	protected:
-
 		ErrorMessage err_;
 		AmaProduct(const char fileTag);
 

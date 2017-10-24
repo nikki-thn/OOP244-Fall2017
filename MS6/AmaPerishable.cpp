@@ -28,10 +28,8 @@ namespace sict {
 		
 		AmaProduct::load(file);
 	
-                file >> expiry_;
-
-		//file.ignore();
-
+        file >> expiry_;
+		
 		return file;
 	}
 
@@ -47,7 +45,7 @@ namespace sict {
 			else {
 				AmaProduct::write(os, false);
 				if (err_.isClear()) {
-					os << "Expiry date: " << expiry_;
+					os << "Expiry date: " << expiry_ ;
 				}
 			}
 		

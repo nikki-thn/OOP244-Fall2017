@@ -1,5 +1,5 @@
 P,1234,water,1.5,0,1,liter,5,2017/10/31
-N,4567,apple,1.5,1,1,liter,5
-P,1234,water,1.5,0,1,liter,5,2017/10/31
-N,4567,apple,1.5,1,1,liter,5
-
+H,5896,waffle,1.5,0,1,liter,5
+P,5685,bun,1.5,0,1,liter,5,2017/10/31
+K,5125,cracker,1.5,0,1,liter,5
+P,7895,candy,1.5,0,1,liter,5,2017/10/31

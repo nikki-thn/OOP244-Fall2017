@@ -54,11 +54,14 @@ namespace sict {
 		bool taxedIn;
 		int qtyIn, qtyNeededIn;
 		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
-		char a;
-	
+		char a, b;
+
+		//file >> a >> b;
+		//file.ignore();
 		file.getline(skuIn, MAX_SKU_LEN, ',');
 		//file.ignore();
 		sku(skuIn);
+
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
 		//file.ignore();
@@ -70,8 +73,8 @@ namespace sict {
 		file >> qtyIn >> a;
 		quantity(qtyIn);
 		file.getline(unit_, 10, ',');
-		//file.ignore();
-		file >> qtyNeededIn >> a;
+		file >> qtyNeededIn;
+		file.ignore();
 		qtyNeeded(qtyNeededIn);
 
 		return file;
@@ -86,13 +89,17 @@ namespace sict {
 
 		else {
 			if (linear) {
+				
 				os.setf(ios::left);
 				os.width(MAX_SKU_LEN);
 				os << sku() << "|";
+				os.unsetf(ios::left);
+				os.setf(ios::left);
 				os.width(20);
 				os << name() << "|";
 				//os.unsetf(ios::left);
-				os.setf(ios::right);
+				os.unsetf(ios::left);
+			
 				os.width(7);
 				os.setf(ios::fixed);
 				os.precision(2);
@@ -104,12 +111,12 @@ namespace sict {
 				}
 				os.width(4);
 				os << quantity() << "|";
-				os.unsetf(ios::right);
+			
 				os.setf(ios::left);
 				os.width(10);
 				os << unit_ << "|";
 				os.unsetf(ios::left);
-				os.setf(ios::right);
+				
 				os.width(4);
 				os << qtyNeeded() << "|";
 			}

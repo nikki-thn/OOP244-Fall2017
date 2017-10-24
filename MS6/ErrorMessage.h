@@ -11,10 +11,10 @@ namespace sict {
 	
 		ErrorMessage();
 		ErrorMessage(const char*);
-		ErrorMessage(const ErrorMessage&) = delete;
+		ErrorMessage(const ErrorMessage&);
 		virtual ~ErrorMessage();
 
-		ErrorMessage& operator= (const ErrorMessage& ) = delete;
+		ErrorMessage& operator= (const ErrorMessage& );
 		ErrorMessage& operator= (const char* );
 
 		void clear();
