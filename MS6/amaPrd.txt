@@ -1,2 +1,5 @@
-N,dfs,dfs,1,1,0,dfsdfs,0
-N,dfs,dfs,1,1,0,dfsdfs,0
+P,1234,water,1.5,0,1,liter,5,2017/10/31
+N,4567,apple,1.5,1,1,liter,5
+P,1234,water,1.5,0,1,liter,5,2017/10/31
+N,4567,apple,1.5,1,1,liter,5
+
