@@ -63,33 +63,50 @@ namespace sict {
 			datafile_.close();
 		}
 		else {
-			while (!datafile_.eof()) {
-				product_[readIndex] = nullptr;
-				char a = 'A';
-				datafile_ >> a;
-				datafile_.ignore();
-				//cout << "type" << a << "file is open";
-				if (a == 'P') {
-					cout << "File is P\n";
-					product_[readIndex] = new AmaPerishable;
-					//product_[readIndex]->load(datafile_);
-				//	cout << product_[readIndex];
-			
-				}
-				else if (a == 'N') {
-					cout << "File is N\n";
-					product_[readIndex] = new AmaProduct;
-				//	product_[readIndex]->load(datafile_);
-				
-				}
-				else {
-					//cout << "File is None\n";
-					//datafile_ >> a;
-					//product_[readIndex]->load(datafile_);
-					//readIndex++;
-				}
-			//	noOfProducts_ = readIndex;
+			//while (!datafile_.eof()) {
+			//delete product_[readIndex];
+			//	product_[readIndex] = nullptr;
+
+			/*
+			//	char a = 'A';
+			//	datafile_ >> a;
+			//	datafile_.ignore();
+			//cout << "type" << a << "file is open";
+			if (a == 'P') {
+			cout << "File is P\n";
+			product_[readIndex] = new AmaPerishable;
+			datafile_.ignore(2000, '\n');
+			//product_[readIndex]).load(datafile_);
+			readIndex++;
+
 			}
+			else if (a == 'N') {
+			cout << "File is N\n";
+			product_[readIndex] = new AmaProduct;
+			datafile_.ignore(2000, '\n');
+			readIndex++;
+			}
+			else if (a != 'N' && a != 'P') {
+			cout << "File is None\n";
+			//datafile_.getline (50, '\n');
+			//	datafile_.ignore();
+			//	product_[readIndex]->load(datafile_);
+			//	datafile_ >> a;
+			datafile_.ignore(2000, '\n');
+			readIndex++;
+			}
+			//cout << noOfProducts_ << endl;
+
+			noOfProducts_ = readIndex;
+			}*/
+			char a[500];
+			AmaProduct aptr;
+			aptr.load(datafile_);
+			cout << aptr;
+
+			cout << noOfProducts_ << endl;
+
+			//datafile_.close();
 		}// else
 	} //function
 	
