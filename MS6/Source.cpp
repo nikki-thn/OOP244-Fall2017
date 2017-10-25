@@ -40,11 +40,29 @@ int main() {
 		}
 	} while (!file.eof() && ok);
 
-	
+	char sku[MAX_SKU_LEN];
+	cout << "Enter a sku to search for" << endl;
+	cin >> sku;
+	int index;
 	for (int i = 0; i < n; i++) {
-		cout << *ama[i] << endl;
+		//cout << *ama[i] << endl;
+		//cout << ama[i]->sku() << endl;
+		if (strcmp(ama[i]->sku(),sku) == 0) {
+			//cout << i << "item found" << endl;
+			index = i;
+		}
+		else index = -1;
 	}
-	
 
+
+
+
+
+
+
+/*	AidApp app("amaPrd.txt");
+	//app.loadRecs();
+	int n = app.searchProducts("5896");
+	*/
 	return 0;
 }
