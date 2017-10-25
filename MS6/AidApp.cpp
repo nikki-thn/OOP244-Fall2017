@@ -1,17 +1,20 @@
 #include <iostream>
 #include <cstring>
 #include "AidApp.h"
+#include "Product.h"
 #define _CRT_SECURE_NO_WARNINGS
-using namespace std;
-namespace sict {
 
+namespace sict {
+	
 	AidApp::AidApp(const char* filename) {
 
 		if (filename != nullptr) {
-	
-			strcpy(filename_, filename);
 
-			*product_ = nullptr;
+			strcpy(filename_, filename);
+			for (int i = 0; i < MAX_NO_RECS; i++) {
+				product_[i] = nullptr;
+			}
+
 			noOfProducts_ = 0;
 			loadRecs();//loads the Records by calling loadRecs
 		}
@@ -19,14 +22,14 @@ namespace sict {
 
 	void AidApp::pause() const { //print "Press enter to continue..."\n
 
-		cout << "Press Enter to continue..." << endl;
+		cout << "Press Enter to continue...\n";
+	
 		cin.ignore(2000, '\n');
 	}
 
 	int AidApp::menu() {
 
-		int select;
-		int input = -1;
+		int input = -2;
 		cout << "Disaste Aid Supply Management Program" << endl;
 		cout << "1- List products" << endl;
 		cout << "2- Display Product" << endl;
@@ -37,86 +40,62 @@ namespace sict {
 
 		cin >> input;
 
-		if (input >= 0 && input <= 5) {
-			select = input;
+		if (input < 0 || input > 5) {
+			input = -1;
 		}
-		else {
-			select = -1;
-		}
-
 		cin.ignore(2000, '\n');
 
-		return select;
+		return input;
 	}
-
-//http://www.dreamincode.net/forums/topic/256999-how-do-i-dynamically-create-a-new-object/
 	
 	void AidApp::loadRecs() { //opens the data file for reading
-		int readIndex = noOfProducts_;
+		
+		//int readIndex = noOfProducts_;
 
 		datafile_.open(filename_, ios::in);
 
-		if (datafile_.fail()) {
-			datafile_.clear();
-			datafile_.close();
-			datafile_.open(filename_, ios::out);
-			datafile_.close();
-		}
-		else {
-			//while (!datafile_.eof()) {
-			//delete product_[readIndex];
-			//	product_[readIndex] = nullptr;
+		bool ok = !datafile_.fail();
+		int readIndex = 0;
+		char a;
+		do {
+			datafile_ >> a;
+			datafile_.ignore();
 
-			/*
-			//	char a = 'A';
-			//	datafile_ >> a;
-			//	datafile_.ignore();
-			//cout << "type" << a << "file is open";
 			if (a == 'P') {
-			cout << "File is P\n";
-			product_[readIndex] = new AmaPerishable;
-			datafile_.ignore(2000, '\n');
-			//product_[readIndex]).load(datafile_);
-			readIndex++;
+
+				AmaPerishable* temp = new AmaPerishable;
+				temp->load(datafile_);
+			//	cout << *temp << endl;
+				product_[readIndex++] = temp;
 
 			}
 			else if (a == 'N') {
-			cout << "File is N\n";
-			product_[readIndex] = new AmaProduct;
-			datafile_.ignore(2000, '\n');
-			readIndex++;
+				AmaProduct* temp = new AmaProduct;
+				temp->load(datafile_);
+			//	cout << *temp << endl;
+				product_[readIndex++] = temp;
+
 			}
-			else if (a != 'N' && a != 'P') {
-			cout << "File is None\n";
-			//datafile_.getline (50, '\n');
-			//	datafile_.ignore();
-			//	product_[readIndex]->load(datafile_);
-			//	datafile_ >> a;
-			datafile_.ignore(2000, '\n');
-			readIndex++;
+			else if (a != 'N' || a != 'P') {
+				datafile_.close();
 			}
-			//cout << noOfProducts_ << endl;
+		} while (!datafile_.eof() && ok);
 
-			noOfProducts_ = readIndex;
-			}*/
-			char a[500];
-			AmaProduct aptr;
-			aptr.load(datafile_);
-			cout << aptr;
+		noOfProducts_ = readIndex;
 
-			cout << noOfProducts_ << endl;
+	/*	for (int i = 0; i < noOfProducts_; i++) {
+			cout << *product_[i] << endl;
+		}*/
 
-			//datafile_.close();
-		}// else
-	} //function
 	
+	} //function
 
 	void AidApp::saveRecs() { //opens the data file for writting
-
+	
 		datafile_.open(filename_, ios::out);
 		if (datafile_.is_open()) {
 			for (int i = 0; i < noOfProducts_; i++) {
-				datafile_ << product_[i] << endl;
+			(*product_[i]).store(datafile_);
 			}
 		}
 		datafile_.close();
@@ -124,18 +103,18 @@ namespace sict {
 
 	void AidApp::listProducts() const { //print stuff
 
-		double totalCost = 0;
+		double totalCost = 0.0;
 
-		cout << " Row | SKU    | Product Name       | Cost  | QTY| Unit     |Need| Expire   " << endl;
-		cout << "-----|--------|--------------------|-------|----|----------|----|----------" << endl;
+		cout << " Row | SKU   | Product Name       | Cost  | QTY| Unit     |Need| Expiry   " << endl;
+		cout << "-----|-------|--------------------|-------|----|----------|----|----------" << endl;
 
 		for (int i = 0; i < noOfProducts_; i++) {
 			cout.width(4);
-			cout << i << "|" << product_[i] << endl;
-			if (i == 10) {
-				pause();
-			}
-			totalCost += Product::cost();
+			cout << i + 1 << " |" << *product_[i] << endl;
+		//	if (i == 9) {
+		//		pause();
+		//	}
+			totalCost = totalCost += *product_[i];
 		}
 		cout << "---------------------------------------------------------------------------" << endl;
 
@@ -152,10 +131,6 @@ namespace sict {
 		for (int i = 0; i < noOfProducts_; i++) {
 			if (product_[i]->sku() == sku) {
 				index = i;
-				cout << product_[i];
-			}
-			else {
-				cout << "Not found!";
 			}
 		}
 		return index;
@@ -181,7 +156,7 @@ namespace sict {
 			}
 
 			if (qty <= product_[index]->qtyNeeded()) {
-				product_[index] += qty;
+				product_[index]+= qty;
 				cout << "Updated!" << endl;
 			}
 
@@ -192,24 +167,24 @@ namespace sict {
 					"is needed, please return the extra" << extraQty << " items " << endl;
 				product_[index] += acceptQty;
 				cout << "Updated!" << endl;
-			}
+			}	
 		}
 	}
 
 	void AidApp::addProduct(bool isPerishable) { //add a product
-
+		
 		if (isPerishable == true) {
-			AmaPerishable newPerishable;
-			cin >> newPerishable;
-			product_[noOfProducts_] = &newPerishable;
-			saveRecs();
+			AmaPerishable* temp = new AmaPerishable;
+			temp->read(datafile_);
+			//	cout << *temp << endl;
+			product_[noOfProducts_++] = temp;
 		}
 		else {
-			AmaProduct newNonPerishable;
-			cin >> newNonPerishable;
-			product_[noOfProducts_] = &newNonPerishable;
-			saveRecs();
-		}
+			AmaProduct* temp = new AmaProduct;
+			temp->read(datafile_);
+			//	cout << *temp << endl;
+			product_[noOfProducts_++] = temp;
+		}	
 	}
 
 
@@ -217,20 +192,20 @@ namespace sict {
 
 		int flag = 1;
 		int choice;
-		char sku[MAX_NO_RECS];
-
+		char sku[7] = { '\0' };
 
 		while (flag != 0) {
-
-			choice = menu();
-
+		choice = menu();
+			 
 			switch (choice) {
-
+			
 			case 1:
-				listProducts();
+				cout << "test" << endl;
+			//	listProducts();
+				//pause();
 				break;
 			case 2:
-				cout << "Please enter the SKU: ";
+				cout << "Please enter the SKU: " << endl;
 				cin >> sku;
 				searchProducts(sku);
 				break;
@@ -238,13 +213,14 @@ namespace sict {
 				addProduct(false);
 				loadRecs();
 				break;
-			case 4:
+			case 4: 
 				addProduct(true);
 				loadRecs();
 				break;
 			case 5:
 				cout << "Please enter the SKU: " << endl;
 				cin >> sku;
+				cin.ignore(2000, '\n');
 				addQty(sku);
 				break;
 			case 0:
@@ -254,40 +230,13 @@ namespace sict {
 			default:
 				cout << "===Invalid Selection, try again.===" << endl;
 				pause();
+				break;
 			}
-			pause();
+
 		}
 
 		return 0;
 	}
 
-	fstream& AidApp::store(fstream& file, bool addNewLine) const {
-
-		return file;
-	}
-
-	fstream& AidApp::load(fstream& file) {
-
-		return file;
-	}
-
-	ostream& AidApp::write(ostream& os, bool linear) const {
-
-		return os;
-	}
-
-	istream& AidApp::read(istream& istr) {
-
-		return istr;
-	}
-
-	std::istream& operator>> (std::istream& is, AidApp& s) {
-		s.read(is);
-		return is;
-	}
-	std::ostream& operator<< (std::ostream& os, const AidApp& s) {
-		s.write(os, true);
-		return os;
-	}
-
+	
 }
