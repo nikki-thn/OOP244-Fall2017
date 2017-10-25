@@ -24,14 +24,14 @@ int main() {
 
 			AmaPerishable* temp = new AmaPerishable;
 			temp->load(file);
-			cout << *temp << endl;
+		//	cout << *temp << endl;
 			ama[n++] = temp;
 
 		}
 		else if (a == 'N') {
 			AmaProduct* temp = new AmaProduct;
 			temp->load(file);
-			cout << *temp << endl;
+		//	cout << *temp << endl;
 			ama[n++] = temp;
 
 		}
@@ -40,29 +40,28 @@ int main() {
 		}
 	} while (!file.eof() && ok);
 
-	char sku[MAX_SKU_LEN];
-	cout << "Enter a sku to search for" << endl;
-	cin >> sku;
-	int index;
-	for (int i = 0; i < n; i++) {
-		//cout << *ama[i] << endl;
-		//cout << ama[i]->sku() << endl;
-		if (strcmp(ama[i]->sku(),sku) == 0) {
-			//cout << i << "item found" << endl;
-			index = i;
+	AmaPerishable ath;
+	
+	fstream file1;
+	file1.open("psh.txt", ios::out);
+
+	bool ok1 = !file1.fail() && file1.is_open();
+	if (ok1) {
+		for (int j = 0; j < n; j++) {
+			//ath.store(file1);
+			cout << *ama[j] << endl;
+			ama[j]->store(file1);
+			cout << "success" << endl;
 		}
-		else index = -1;
+		
 	}
 
 
-
-
-
-
-
-/*	AidApp app("amaPrd.txt");
-	//app.loadRecs();
-	int n = app.searchProducts("5896");
-	*/
+//	AidApp app("amaPrd.txt");
+//	app.addQty("132");
+//	app.addQty("5678");
+//	app.runs();
+	//int n = app.searchProducts("5896");
+	
 	return 0;
 }

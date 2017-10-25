@@ -221,14 +221,16 @@ namespace sict {
 	std::ostream& Date::write(std::ostream& ostr)const {
 
 		ostr << year_ << "/";
-		//ostr.setf(ios::fixed);
 		ostr.width(2);
-		//ostr.fill('0');
+
+	//	ostr.fill('0');
 		ostr << mon_ << "/";
+
 		ostr.width(2);
+	//	ostr.setf(ios::fixed);
 		ostr << day_;
-		// ostr.unsetf(ios::fixed);
-		
+	//	ostr.unsetf(ios::fixed);
+
 		return ostr;
 	}
 

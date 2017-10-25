@@ -1,5 +1,7 @@
-P,1234,water,1.5,0,1,liter,5,2017/10/31
-N,5896,waffle,1.5,0,1,liter,5
-P,5685,bun,1.5,0,1,liter,5,2017/10/31
-N,5125,cracker,1.5,0,1,liter,5
-P,7895,candy,1.5,0,1,liter,5,2017/10/31
+P,132,Banana,0.99,0,6,Kilos,10,2015/ 5/31
+N,122,Bucket,11.3,1,150,unit,300
+P,124,Corn,4,0,0,Packs,140,2018/04/03
+N,200,Sand Bags,3.38,1,20,Packs,1000
+P,5678,Sugar,6.78,1,0,1kg bags,100,2017/09/20
+N,111,Water Container,12.79,1,500,Packs,5000
+P,1111,Milk,3.99,0,10,bag,100,2017/09/20

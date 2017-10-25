@@ -8,8 +8,8 @@
 namespace sict {
 
 	class AidApp : public Product{
-
 		char filename_[256]; //holds name of the text file
+	public:
 		Product* product_[MAX_NO_RECS]; //an array of product pointers
 		fstream datafile_; // an fstream instance to create and access a file
 		int noOfProducts_; //number of products
