@@ -17,9 +17,11 @@ namespace sict {
 		
 		AmaProduct::store(file, false);
 
-		char a = ',';
+		file << ',' << expiry_;
 
-		file << a << expiry_;
+		if (addNewLine) {
+			file << '\n';
+		}
 
 		return file;
 	}
@@ -28,7 +30,7 @@ namespace sict {
 		
 		AmaProduct::load(file);
 	
-                file >> expiry_;
+       file >> expiry_;
 
 		//file.ignore();
 
@@ -61,7 +63,7 @@ namespace sict {
 		Date temp;
 
 		if (err_.isClear()) {
-			cout << "Expirey date (YYYY/MM/DD): ";
+			cout << "Expiry date (YYYY/MM/DD): ";
 			istr >> temp;
 
 			if (temp.errCode() == CIN_FAILED) {

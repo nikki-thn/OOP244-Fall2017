@@ -91,25 +91,20 @@ namespace sict {
 				os << sku() << "|";
 				os.width(20);
 				os << name() << "|";
-				//os.unsetf(ios::left);
-				os.setf(ios::right);
+				os.unsetf(ios::left);
 				os.width(7);
 				os.setf(ios::fixed);
 				os.precision(2);
-				if (taxed()) {
-					os << cost() << "|";
-				}
-				else {
-					os << price() << "|";
-				}
+				os << cost() << "|";
+
 				os.width(4);
 				os << quantity() << "|";
-				os.unsetf(ios::right);
+
 				os.setf(ios::left);
 				os.width(10);
 				os << unit_ << "|";
 				os.unsetf(ios::left);
-				os.setf(ios::right);
+
 				os.width(4);
 				os << qtyNeeded() << "|";
 			}
@@ -155,8 +150,7 @@ namespace sict {
 			istr.ignore(200, '\n');
 
 			cout << "Unit: ";
-			istr >> unit_;
-			istr.ignore(200, '\n');
+			istr.getline(unit_, '\n');
 
 			cout << "Taxed? (y/n): ";
 			istr >> taxedIn;
