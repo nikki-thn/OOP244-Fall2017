@@ -27,6 +27,13 @@ namespace sict {
 		cin.ignore(2000, '\n');
 	}
 
+	AidApp::~AidApp() {
+
+		
+		//close fil;e, deletre memory, save files
+	
+	}
+
 	int AidApp::menu() {
 
 		int input = -2;
@@ -82,10 +89,10 @@ namespace sict {
 		} while (!datafile_.eof() && ok);
 
 		noOfProducts_ = readIndex;
-
-	/*	for (int i = 0; i < noOfProducts_; i++) {
+		cout << "noOfProducts" << noOfProducts_ << endl;
+		for (int i = 0; i < noOfProducts_; i++) {
 			cout << *product_[i] << endl;
-		}*/
+		}
 
 	
 	} //function
@@ -129,10 +136,18 @@ namespace sict {
 
 		int index = -1;
 		for (int i = 0; i < noOfProducts_; i++) {
-			if (product_[i]->sku() == sku) {
+			//cout << *ama[i] << endl;
+			//cout << ama[i]->sku() << endl;
+			if (strcmp(product_[i]->sku(), sku) == 0) {
+			//	cout << i << "item found" << endl;
 				index = i;
 			}
 		}
+
+		//cout << index << "index" << endl;
+		//cout << *product_[index] << endl;
+
+
 		return index;
 	}
 
@@ -200,9 +215,8 @@ namespace sict {
 			switch (choice) {
 			
 			case 1:
-				cout << "test" << endl;
-			//	listProducts();
-				//pause();
+				listProducts();
+				pause();
 				break;
 			case 2:
 				cout << "Please enter the SKU: " << endl;
