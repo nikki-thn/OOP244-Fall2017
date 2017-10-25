@@ -3,42 +3,48 @@
 #include "AmaProduct.h"
 #include "AmaPerishable.h"
 #include "Product.h"
+#include "AidApp.h"
 
 using namespace std;
 using namespace sict;
 
 int main() {
 
+	Product* ama[10];
 	fstream file;
 	file.open("amaPrd.txt", ios::in);
-	sict::Product* ama;
-	int count = 0;
-	
-	while (!file.fail()) {
+	bool ok = !file.eof();
+	int n = 0;
 	char a;
-	 int size = 0;
-	file >> a;
-	file.ignore();
-	if (a == 'P') {
-		
-		ama = new AmaPerishable[size + 1];
-		ama[size].load(file);
-		cout << ama[size] << endl;
-		size++;
-	}
-	else {
-		ama = new AmaProduct [size + 1];
-		ama[size].load(file);
-		cout << ama[size] << endl;
-		size++;
-	}
+	do {
+		file >> a;
+		file.ignore();
 
-	//cout << "fcffcf" << size << endl;
-	count = size;
-	}
+		if (a == 'P') {
 
-//	for (int i = 0; i < 5; i++) {
-//		cout << ama[i] << endl;
-//	}
+			AmaPerishable* temp = new AmaPerishable;
+			temp->load(file);
+			cout << *temp << endl;
+			ama[n++] = temp;
+
+		}
+		else if (a == 'N') {
+			AmaProduct* temp = new AmaProduct;
+			temp->load(file);
+			cout << *temp << endl;
+			ama[n++] = temp;
+
+		}
+		else if (a != 'N' || a != 'P') {
+			file.close();
+		}
+	} while (!file.eof() && ok);
+
+	
+	for (int i = 0; i < n; i++) {
+		cout << *ama[i] << endl;
+	}
+	
+
 	return 0;
 }
