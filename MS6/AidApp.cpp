@@ -55,7 +55,7 @@ namespace sict {
 	void AidApp::loadRecs() { //opens the data file for reading
 
 		datafile_.open(filename_, ios::in);
-
+		datafile_.seekg(0);
 		bool ok = !datafile_.fail();
 		int readIndex = 0;
 		char a;
@@ -94,18 +94,19 @@ namespace sict {
 
 	void AidApp::saveRecs() { //opens the data file for writting
 
-		fstream file1;
-		file1.open("amaPrd.txt", ios::out);
+		
+		datafile_.open("amaPrd.txt", ios::out|ios::trunc);
+		datafile_.seekp(0);
 
-		if (file1.is_open()) {
+		if (datafile_.is_open()) {
 			for (int i = 0; i < noOfProducts_ - 1; i++) {
-				product_[i]->store(file1);
+				product_[i]->store(datafile_);
 			}
 
-			product_[noOfProducts_ - 1]->store(file1, false);
+			product_[noOfProducts_ - 1]->store(datafile_, false);
 		}
 
-		file1.close();
+		datafile_.close();
 
 		loadRecs();
 	}
