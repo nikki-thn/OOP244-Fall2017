@@ -149,9 +149,9 @@ namespace sict {
 			istr.ignore(200, '\n');
 
 			cout << "Name: ";
-			istr >> nameIn;
+		//	istr >> nameIn;
+			istr.getline(nameIn, 200, '\n');
 			name(nameIn);
-			istr.ignore(200, '\n');
 
 			cout << "Unit: ";
 			istr.getline(unit_, '\n');
@@ -180,7 +180,7 @@ namespace sict {
 				cout << "Price: ";
 				istr >> aDouble;
 
-				if (!(aDouble > 0.0)) {
+				if (!(aDouble >= 0.0)) {
 					err_.message("Invalid Price Entry");
 					istr.setstate(ios::failbit);
 					isValid = false;

@@ -39,7 +39,6 @@ namespace sict {
 
 	std::ostream& AmaPerishable::write(std::ostream& os, bool linear = true)const {
 	
-
 			if (linear) {
 				AmaProduct::write(os, true);
 				if (err_.isClear()) {

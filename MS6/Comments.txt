@@ -1,0 +1,14 @@
+Credits:
+
+https://ariya.io/2015/01/c-class-and-preventing-object-copy
+
+Enhancement:
+
+Check for String length on sku, unit, name, accept white space on names
+check for max quantity
+Check for valid date, expiry cannot be greater than 3 months for non-perishable
+Check for existing item before entered new item
+Search a product by name or expiry date
+Notify user when item is low stock
+Update all values
+Delete an item

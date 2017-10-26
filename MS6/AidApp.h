@@ -1,9 +1,7 @@
-#include "AmaPerishable.h"
-#include "AmaProduct.h"
-
-
 #ifndef SICT_AIDAPP_H
 #define SICT_AIDAPP_H
+
+#include"AmaPerishable.h"
 
 namespace sict {
 
@@ -13,18 +11,20 @@ namespace sict {
 		Product* product_[MAX_NO_RECS]; //an array of product pointers
 		fstream datafile_; // an fstream instance to create and access a file
 		int noOfProducts_; //number of products
+		AidApp (const AidApp&); //use private setting to restrict copy
+		AidApp& operator= (const AidApp&); //use private setting to restrict copy
+	
 	public:
-		AidApp (const char* filename);
-		~AidApp();
-		//AidApp (const AidApp&) = delete;
-		//AidApp& operator= (const AidApp&) = delete;
 
-		void pause() const; //print "Press enter to continue..."\n
+		AidApp (const char* filename); //constructor
+		~AidApp(); //seems unncessary
 
-		int menu();
-		void loadRecs(); //opens the data file for reading
-		void saveRecs(); //opens the data file for writting
-		void listProducts() const; //print stuff
+		void pause() const; //pause program and wait for user
+
+		int menu(); //print out menu
+		void loadRecs(); //load data from file (reading in)
+		void saveRecs(); //save data to file (writting to)
+		void listProducts() const; //list all products from file
 		int searchProducts(const char* sku) const; //search a product by sku
 		void addQty(const char* sku); //update Qty of a product
 		void addProduct(bool isPerishable); //add a product
@@ -34,6 +34,5 @@ namespace sict {
 
 }
 
-
-#endif // !SICT_AIDAPP_H
+#endif 
 
