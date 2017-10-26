@@ -8,7 +8,7 @@
 
 namespace sict {
 
-	class AmaPerishable : public AmaProduct, public Date {
+	class AmaPerishable : public AmaProduct {
 
 		Date expiry_;
 

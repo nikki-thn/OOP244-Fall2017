@@ -186,8 +186,8 @@ namespace sict {
 
 		char a;
 
-		istr >> year_ >> a >> mon_ >> a >> day_ ;
-		istr.ignore();
+		istr >> year_ >> a >> mon_ >> a >> day_;
+		//istr.ignore();
 
 		if (istr.fail()) {
 			errCode(CIN_FAILED);
@@ -223,13 +223,13 @@ namespace sict {
 		ostr << year_ << "/";
 		ostr.width(2);
 
-	//	ostr.fill('0');
+		//	ostr.fill('0');
 		ostr << mon_ << "/";
 
 		ostr.width(2);
-	//	ostr.setf(ios::fixed);
+		//	ostr.setf(ios::fixed);
 		ostr << day_;
-	//	ostr.unsetf(ios::fixed);
+		//	ostr.unsetf(ios::fixed);
 
 		return ostr;
 	}

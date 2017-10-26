@@ -53,29 +53,33 @@ namespace sict {
 		double priceIn;
 		bool taxedIn;
 		int qtyIn, qtyNeededIn;
-		char skuIn[MAX_SKU_LEN + 1], nameIn[21];
-		char a;
-	
+		char skuIn[MAX_SKU_LEN], nameIn[21];
+
+
 		file.getline(skuIn, MAX_SKU_LEN, ',');
-		//file.ignore();
+
 		sku(skuIn);
 		file.getline(nameIn, 20, ',');
 		name(nameIn);
-		//file.ignore();
+
 		file >> priceIn;
-		file.ignore();
+		file.ignore(1);
 		price(priceIn);
-		file >> taxedIn >> a;
+		file >> taxedIn;
+		file.ignore(1);
 		taxed(taxedIn);
-		file >> qtyIn >> a;
+		file >> qtyIn;
+		file.ignore(1);
 		quantity(qtyIn);
 		file.getline(unit_, 10, ',');
-		//file.ignore();
-		file >> qtyNeededIn >> a;
+
+		file >> qtyNeededIn;
+		file.ignore(1);
 		qtyNeeded(qtyNeededIn);
 
 		return file;
 	}
+
 
 	std::ostream& AmaProduct::write(std::ostream& os, bool linear)const {
 
@@ -91,25 +95,20 @@ namespace sict {
 				os << sku() << "|";
 				os.width(20);
 				os << name() << "|";
-				//os.unsetf(ios::left);
-				os.setf(ios::right);
+				os.unsetf(ios::left);
 				os.width(7);
 				os.setf(ios::fixed);
 				os.precision(2);
-				if (taxed()) {
-					os << cost() << "|";
-				}
-				else {
-					os << price() << "|";
-				}
+				os << cost() << "|";
+
 				os.width(4);
 				os << quantity() << "|";
-				os.unsetf(ios::right);
+
 				os.setf(ios::left);
 				os.width(10);
 				os << unit_ << "|";
 				os.unsetf(ios::left);
-				os.setf(ios::right);
+
 				os.width(4);
 				os << qtyNeeded() << "|";
 			}
@@ -127,7 +126,7 @@ namespace sict {
 					os << "Price after tax: N/A" << std::endl;
 				}
 				os << "Quantity on hand: " << quantity() << " " << unit_ << std::endl;
-				os << "Quantity needed: " << qtyNeeded() << std::endl;
+				os << "Quantity needed: " << qtyNeeded() << endl;
 			}
 		}
 
@@ -155,12 +154,11 @@ namespace sict {
 			istr.ignore(200, '\n');
 
 			cout << "Unit: ";
-			istr >> unit_;
-			istr.ignore(200, '\n');
+			istr.getline(unit_, '\n');
 
 			cout << "Taxed? (y/n): ";
 			istr >> taxedIn;
-			istr.ignore(200, '\n');
+
 			
 			if (taxedIn != 'N' && taxedIn != 'n' && taxedIn != 'Y' && taxedIn != 'y') {
 				err_.message("Only (Y)es or (N)o are acceptable");

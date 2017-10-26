@@ -5,7 +5,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 namespace sict {
-	
+
 	AidApp::AidApp(const char* filename) {
 
 		if (filename != nullptr) {
@@ -23,15 +23,11 @@ namespace sict {
 	void AidApp::pause() const { //print "Press enter to continue..."\n
 
 		cout << "Press Enter to continue...\n";
-	
 		cin.ignore(2000, '\n');
 	}
 
 	AidApp::~AidApp() {
-
-		
 		//close fil;e, deletre memory, save files
-	
 	}
 
 	int AidApp::menu() {
@@ -50,11 +46,12 @@ namespace sict {
 		if (input < 0 || input > 5) {
 			input = -1;
 		}
+
 		cin.ignore(2000, '\n');
 
 		return input;
 	}
-	
+
 	void AidApp::loadRecs() { //opens the data file for reading
 
 		datafile_.open(filename_, ios::in);
@@ -77,7 +74,6 @@ namespace sict {
 				AmaProduct* temp = new AmaProduct;
 				temp->load(datafile_);
 				product_[readIndex++] = temp;
-
 			}
 			else if (a != 'N' || a != 'P') {
 				datafile_.close();
@@ -85,32 +81,36 @@ namespace sict {
 		} while (!datafile_.eof() && ok);
 
 		noOfProducts_ = readIndex;
-	
-	//	cout << "noOfProducts" << noOfProducts_ << endl;
+
+		cout << "noOfProducts" << noOfProducts_ << endl;
 		for (int i = 0; i < noOfProducts_; i++) {
 			cout << *product_[i] << endl;
 		}
+		
 
-	
+
+
 	} //function
 
 	void AidApp::saveRecs() { //opens the data file for writting
-	
-		datafile_.open(filename_, ios::out);
-		bool ok = !datafile_.fail();
 
-		if (datafile_.is_open() && ok) {
+		fstream file1;
+		file1.open("amaPrd.txt", ios::out);
 
-			for (int i = 0; i < noOfProducts_; i++) {
-			cout << *product_[i] << endl;
-			product_[i]->store(datafile_);
+		if (file1.is_open()) {
+			for (int i = 0; i < noOfProducts_ - 1; i++) {
+				product_[i]->store(file1);
 			}
+
+			product_[noOfProducts_ - 1]->store(file1, false);
 		}
 
-		datafile_.close();
+		file1.close();
+
+		loadRecs();
 	}
 
-	void AidApp::listProducts() const { //print stuff
+	void AidApp::listProducts() const { 
 
 		double totalCost = 0.0;
 
@@ -137,7 +137,7 @@ namespace sict {
 	int AidApp::searchProducts(const char* sku) const { //search a product by sku
 
 		int index = -1;
-	
+
 		for (int i = 0; i < noOfProducts_; i++) {
 
 			if (strcmp(product_[i]->sku(), sku) == 0) {
@@ -147,12 +147,13 @@ namespace sict {
 
 		cout << endl;
 		product_[index]->write(cout, false);
-		cout << endl << endl;
+		cout << endl;	
+		cout << endl;
 		return index;
 	}
 
 	void AidApp::addQty(const char* sku) { //update Qty of a product
-		
+
 		int index = -1;
 		int qty = 0;
 		index = searchProducts(sku);
@@ -164,11 +165,9 @@ namespace sict {
 		else {
 			cout << "Please enter the number of purchased items." << endl;
 			cin >> qty;
-			//cin.ignore(2000, '\n');
 
 			if (qty <= 0) {
 				cout << "Invalid quantity value" << endl;
-
 			}
 
 			else if (qty <= product_[index]->qtyNeeded()) {
@@ -176,44 +175,45 @@ namespace sict {
 				product_[index]->quantity(qty + product_[index]->quantity());
 				cout << "Updated!" << endl;
 				//cout << product_[index]->quantity() << endl;
-			//	cout << *product_[index] << endl;
+				//	cout << *product_[index] << endl;
 			}
 
 			else if (qty > product_[index]->qtyNeeded()) {
-				
-				int extraQty = qty - product_[index]->quantity();
 
+				int extraQty = qty - product_[index]->quantity();
 				int acceptQty = product_[index]->qtyNeeded() - product_[index]->quantity();
-				
+
 				cout << "Too many items; only " << product_[index]->qtyNeeded() <<
 					" is needed, please return the extra " << extraQty << " items " << endl;
 				product_[index]->quantity(acceptQty + product_[index]->quantity());
-						
-				cout << "Accepted" << acceptQty << endl;
 
+				cout << "Accepted" << acceptQty << endl;
 				cout << "New quantity" << product_[index]->quantity() << endl;
 				cout << *product_[index] << endl;
-			}	
+			}
 		}
 	}
 
 	void AidApp::addProduct(bool isPerishable) { //add a product
-	
+
+		cout << "noOfProducts" << noOfProducts_ << endl;
+
 		if (isPerishable == true) {
 			AmaPerishable* temp = new AmaPerishable;
 			cin >> *temp;
-			product_[++noOfProducts_] = temp;
+			product_[noOfProducts_] = temp;
+			
 		}
 		else {
 			AmaProduct* temp = new AmaProduct;
 			cin >> *temp;
-			product_[++noOfProducts_] = temp;
-		}	
+			product_[noOfProducts_] = temp;
+		}
 
-	//	cout << "noOfProducts" << noOfProducts_ << endl;
-	//	cout << *product_[noOfProducts_] << endl;
-
-		loadRecs();
+			cout << "noOfProducts" << noOfProducts_ << endl;
+			cout << *product_[noOfProducts_] << endl;
+			noOfProducts_++;
+			saveRecs();
 	}
 
 
@@ -224,10 +224,10 @@ namespace sict {
 		char sku[MAX_SKU_LEN] = { '\0' };
 
 		while (flag != 0) {
-		choice = menu();
-			 
+			choice = menu();
+
 			switch (choice) {
-			
+
 			case 1:
 				listProducts();
 				pause();
@@ -239,18 +239,15 @@ namespace sict {
 				break;
 			case 3:
 				addProduct(false);
-				loadRecs();
 				break;
-			case 4: 
+			case 4:
 				addProduct(true);
-				loadRecs();
 				break;
 			case 5:
 				cout << "Please enter the SKU: " << endl;
 				cin >> sku;
 				cin.ignore(2000, '\n');
 				addQty(sku);
-				loadRecs();
 				break;
 			case 0:
 				cout << "Goodbye!!" << endl;
@@ -265,5 +262,5 @@ namespace sict {
 		return 0;
 	}
 
-	
+
 }

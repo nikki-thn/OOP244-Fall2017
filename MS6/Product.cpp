@@ -138,6 +138,9 @@ namespace sict {
 		if (taxed_ == true) {
 			cost = price_ * (TAX + 1);
 		}
+		else {
+			cost = price();
+		}
 
 		return cost;
 	}
