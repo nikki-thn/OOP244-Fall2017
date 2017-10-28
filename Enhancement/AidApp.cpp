@@ -15,7 +15,7 @@ namespace sict {
 		int readIndex = 0;
 		char a;
 
-		do {
+		while (!datafile_.eof() && ok) {
 			datafile_ >> a;
 			datafile_.ignore();
 
@@ -33,7 +33,7 @@ namespace sict {
 				datafile_.close();
 			}
 
-		} while (!datafile_.eof() && ok);
+		}
 
 		noOfProducts_ = readIndex;
 
@@ -55,7 +55,7 @@ namespace sict {
 		loadRecs();
 	}
 
-	int AidApp::isYes() {
+int AidApp::isYes() {
 
 		char input;
 		bool yesOrNo;
@@ -86,53 +86,39 @@ namespace sict {
 
 		return yesOrNo;
 	}
+	
 	void AidApp::addProduct(bool isPerishable) { //add a product
 
 		int choice;
 		int found;
 
+		Product* ptr;
+		
 		if (isPerishable == true) {
 			AmaPerishable* temp = new AmaPerishable;
 			cin >> *temp;
-			found = searchProducts(temp->sku());
-			if (found != -1) {
-				cout << "Item is already exited. Would you like to update?" << endl;
-				choice = isYes();
-				if (choice == 1) {
-					product_[found] = temp;
-					cout << "Updated successfully!" << endl;
-					cout << *product_[found] << endl;
-				}
-				else if (choice == 0) {
-					product_[noOfProducts_] = temp;
-					cout << "Item is added" << endl;
-					cout << *product_[noOfProducts_] << endl;
-					noOfProducts_++;
-				}
-			}
+			ptr = temp;
 		}
 		else {
 			AmaProduct* temp = new AmaProduct;
 			cin >> *temp;
-			found = searchProducts(temp->sku());
-			if (found != -1) {
-				cout << "Item is already exited. Would you like to update?" << endl;
-				choice = isYes();
-				if (choice == 1) {
-					product_[found] = temp;
-					cout << "Updated successfully!" << endl;
-					cout << *product_[found] << endl;
-				}
-				else if (choice == 0) {
-					product_[noOfProducts_] = temp;
-					cout << "Item is added" << endl;
-					cout << *product_[noOfProducts_] << endl;
-					noOfProducts_++;
-				}
-			}
+			ptr = temp;
 		}
 
-
+		found = searchProducts(ptr->sku());
+		if (found != -1) {
+			cout << "Item is already exited. Would you like to update?" << endl;
+			choice = isYes();
+			if (choice == 1) {
+				updateItem(ptr, found);
+			}
+			else if (choice == 0) {
+				product_[noOfProducts_] = ptr;
+				cout << "Item is added" << endl;
+				cout << *product_[noOfProducts_] << endl;
+				noOfProducts_++;
+			}
+		}
 
 		saveRecs();
 	}
