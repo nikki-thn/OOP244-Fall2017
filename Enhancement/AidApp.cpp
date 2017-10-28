@@ -54,7 +54,7 @@ namespace sict {
 		file.close();
 		loadRecs();
 	}
-	
+
 	int AidApp::isYes() {
 
 		char input;
@@ -62,9 +62,9 @@ namespace sict {
 		int flag = 1;
 
 		while (flag != 0) {
-		cout << "(Y)es or (N)o? (C) to cancel. Only Y/y, N/n, C/c is accepted: ";
-		cin >> input;
-		cin.ignore(2000, '\n');
+			cout << "(Y)es or (N)o? (C) to cancel. Only Y/y, N/n, C/c is accepted: ";
+			cin >> input;
+			cin.ignore(2000, '\n');
 
 			if (input == 'N' || input == 'n') {
 				yesOrNo = 0;
@@ -133,8 +133,8 @@ namespace sict {
 		}
 
 
-			
-			saveRecs();
+
+		saveRecs();
 	}
 
 	void AidApp::addQty(const char* sku) { //update Qty of a product
@@ -212,11 +212,12 @@ namespace sict {
 		cout << "3- Add non-perishable" << endl;
 		cout << "4- Add perishable product" << endl;
 		cout << "5- Add to quatity of purchased products" << endl;
+		cout << "6- Delete products" << endl;
 		cout << "0- Exit program" << endl;
 
 		cin >> input;
 
-		if (input < 0 || input > 5) {
+		if (input < 0 || input > 6) {
 			input = -1;
 		}
 
@@ -228,27 +229,49 @@ namespace sict {
 	void AidApp::listProducts() const {
 
 		double totalCost = 0.0;
-
-		cout << " Row | SKU   | Product Name       | Cost  | QTY| Unit     |Need| Expiry   " << endl;
-		cout << "-----|-------|--------------------|-------|----|----------|----|----------" << endl;
+		bool isLow;
+		cout << " Row |Low| SKU   | Product Name       | Cost  | QTY| Unit     |Need| Expiry   " << endl;
+		cout << "-----|---|-------|--------------------|-------|----|----------|----|----------" << endl;
 
 		for (int i = 0; i < noOfProducts_; i++) {
 
+			isLow = lowStock(product_[i]);
+		//	cout <<"void AidApp::listProducts() const {" <<  isLow << endl;
+			int count = 1;
 			cout.width(4);
-			cout << i + 1 << " |" << *product_[i] << endl;
+			cout << i + 1 << " |";
 
-			if (i == 9) {
+			if (isLow)
+				cout << "***|" ;
+			else
+				cout << "   |";
+
+			cout << *product_[i] << endl;
+
+
+
+			if (((i + count) % 10) == 0 && noOfProducts_ > (i + count)) {
 				pause();
 			}
+
 
 			totalCost += *product_[i];//calculate totalCost
 		}
 
-		cout << "---------------------------------------------------------------------------" << endl;
+		cout << "-------------------------------------------------------------------------------" << endl;
 		cout.setf(ios::fixed);
 		cout.precision(2);
 		cout << "Total cost of support: $" << totalCost << endl;
 		cout.unsetf(ios::fixed);
+	}
+
+	bool AidApp::lowStock(Product* rhs) const {
+		bool isLow = false;
+
+			if (rhs->quantity() <= (int)(0.20* rhs->qtyNeeded()))
+				isLow = true;
+	
+		return isLow;
 	}
 
 
@@ -270,6 +293,26 @@ namespace sict {
 		}
 
 		return index;
+	}
+
+	void AidApp::deleteItem(const char* sku) {
+
+		int found = searchProducts(sku);
+		cout << "Confirm to delete. ";
+		int yes = isYes();
+
+		if (found != -1 && yes == 1) {
+			for (found; found < noOfProducts_; found++) {
+				product_[found] = product_[found + 1];
+			}
+			noOfProducts_--;
+		}
+		else {
+			cout << "Product not found" << endl;
+		}
+
+		saveRecs();
+
 	}
 
 
@@ -310,6 +353,11 @@ namespace sict {
 				addQty(sku);
 				break;
 
+			case 6:
+				cout << "Please enter the SKU: " << endl;
+				cin.getline(sku, MAX_SKU_LEN, '\n');
+				deleteItem(sku);
+				break;
 			case 0:
 				cout << "Goodbye!!" << endl;
 				flag = 0;
