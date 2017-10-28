@@ -62,7 +62,7 @@ int AidApp::isYes() {
 		int flag = 1;
 
 		while (flag != 0) {
-			cout << "(Y)es or (N)o? (C) to cancel. Only Y/y, N/n, C/c is accepted: ";
+			cout << "(Y)es to proceed or (N)o to cancel. Only Y/y, N/n is accepted: ";
 			cin >> input;
 			cin.ignore(2000, '\n');
 
@@ -72,11 +72,6 @@ int AidApp::isYes() {
 			}
 			else if (input == 'Y' || input == 'y') {
 				yesOrNo = 1;
-				flag = 0;
-			}
-			else if (input == 'C' || input == 'c') {
-				cout << "Cancelled task!" << endl;
-				yesOrNo = -1;
 				flag = 0;
 			}
 			else {
@@ -106,21 +101,31 @@ int AidApp::isYes() {
 		}
 
 		found = searchProducts(ptr->sku());
+
 		if (found != -1) {
 			cout << "Item is already exited. Would you like to update?" << endl;
 			choice = isYes();
 			if (choice == 1) {
 				updateItem(ptr, found);
-			}
-			else if (choice == 0) {
-				product_[noOfProducts_] = ptr;
-				cout << "Item is added" << endl;
-				cout << *product_[noOfProducts_] << endl;
-				noOfProducts_++;
-			}
+			}		
+		}
+
+		 if (found == -1 || choice == 0) {
+			product_[noOfProducts_] = ptr;
+			cout << "Item is added" << endl;
+			cout << *product_[noOfProducts_] << endl;
+			noOfProducts_++;
 		}
 
 		saveRecs();
+	}
+
+	void AidApp::updateItem(Product* rhs, int index) {
+
+		product_[index] = rhs;
+		cout << "Updated successfully!" << endl;
+		cout << *product_[index] << endl;
+		
 	}
 
 	void AidApp::addQty(const char* sku) { //update Qty of a product
@@ -128,6 +133,7 @@ int AidApp::isYes() {
 		int index = -1;
 		int qty = 0;
 		index = searchProducts(sku);
+		int choice;
 
 		if (index <= -1) {
 			cout << "NOT FOUND" << endl;
@@ -138,7 +144,15 @@ int AidApp::isYes() {
 			cin >> qty;
 
 			if (qty <= 0) {
-				cout << "Invalid quantity value" << endl;
+				cout << "Would you like to subtract current quantity:" << endl;
+				choice = isYes();
+				if (choice == 1 && product_[index]->quantity() >= qty) {
+					product_[index]->quantity(product_[index]->quantity() + qty);
+					cout << " - Updated quantity is " << product_[index]->quantity() << endl;
+				}
+				else {
+					cout << "Invalid quantity input or Cancelled" << endl;
+				}
 			}
 
 			else if (qty < product_[index]->qtyNeeded()) {
@@ -157,7 +171,6 @@ int AidApp::isYes() {
 				product_[index]->quantity(acceptQty + product_[index]->quantity());
 
 				cout << "Accepted " << acceptQty << " - Updated quantity is " << product_[index]->quantity() << endl;
-				cout << *product_[index] << endl;
 			}
 		}
 		saveRecs(); //to save changes
@@ -287,14 +300,15 @@ int AidApp::isYes() {
 		cout << "Confirm to delete. ";
 		int yes = isYes();
 
-		if (found != -1 && yes == 1) {
+		if (found == -1 && yes == 0) {
+			cout << "Product not found or Cancelled" << endl;
+			
+		}
+		else if (found != -1 && yes == 1) {
 			for (found; found < noOfProducts_; found++) {
 				product_[found] = product_[found + 1];
 			}
 			noOfProducts_--;
-		}
-		else {
-			cout << "Product not found" << endl;
 		}
 
 		saveRecs();
