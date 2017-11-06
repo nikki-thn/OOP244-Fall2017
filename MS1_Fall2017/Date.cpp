@@ -212,6 +212,16 @@ namespace sict {
 		if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
 			errorCode_ = DAY_ERROR;
 		}
+		
+		if (errCode_ = CIN_FAILED){
+		
+		*this = temp;
+		}
+		
+		else {
+			year_ = mon_ = day_ = 0;
+		}
+		
 
 		return istr;
 	}
