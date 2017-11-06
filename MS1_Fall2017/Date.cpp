@@ -173,9 +173,12 @@ namespace sict {
 	bool Date::bad()const {
 
 		bool hasError = false;
+		
+		if (!bad()) {
 
 		if (errorCode_ != NO_ERROR) {
 			hasError = true;
+		}
 		}
 
 		return hasError;
