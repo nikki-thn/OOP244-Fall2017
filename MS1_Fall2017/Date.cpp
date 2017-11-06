@@ -213,7 +213,7 @@ namespace sict {
 			errorCode_ = DAY_ERROR;
 		}
 		
-		if (errCode_ = CIN_FAILED){
+		if (errorCode_ = CIN_FAILED){
 		
 		*this = temp;
 		}
