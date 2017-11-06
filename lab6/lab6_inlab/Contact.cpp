@@ -4,8 +4,6 @@ OOP244 - Fall 2017
 Workshop 6 - In lab
 */
 
-//***ask about the number of times a destructor, constructor is called and when
-
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
