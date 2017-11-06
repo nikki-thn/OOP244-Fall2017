@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 6 - At home
+*/
+
 #ifndef SICT_CONTACT_H
 #define SICT_CONTACT_H
 
@@ -20,7 +26,7 @@ namespace sict {
 		Contact& operator= (const Contact&); //copy operator
 		Contact& operator+= (const long long); //+=operator
 	
-		bool validCheck(const long long);	//check phone's validity 
+		bool validCheck(const long long); //check phone's validity 
 		void extractNum(const long long, int&, int&, int&, int&); //to break down phone number
 		bool isEmpty() const; //returns true if object is empty
 		void display(); //query
