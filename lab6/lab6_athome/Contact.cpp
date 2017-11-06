@@ -1,9 +1,3 @@
-/*
-Nikki Truong - 112 214 174
-OOP244 - Fall 2017
-Workshop 6 - At home
-*/
-
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
@@ -32,7 +26,7 @@ namespace sict {
 			m_name[19] = '\0';
 
 			for (int i = 0; i < size; i++) {
-	
+
 				if (validCheck(sourcePhone[i])) { //call validCheck function to check phone	
 					m_numOfPhones++; //count number of valid number for memory allocation
 				}
@@ -50,19 +44,23 @@ namespace sict {
 				}
 			}
 		}
-		//else *this = Contact(); // else set object to safety state		
+		//else *this = Contact(); // else set object to safety state
+
 	}
 
 	Contact::~Contact() {
-	
-		delete [] m_phoneNum;
+
+		delete[] m_phoneNum;
 	}
-	
-	//copy constructor
+
+	//Copy constructor
 	Contact::Contact(const Contact& newContact) {
-		
-		m_phoneNum = nullptr;
-		*this = newContact;
+	
+		if (this != &newContact) {
+
+			m_phoneNum = nullptr;
+			*this = newContact;
+		}
 	}
 
 	//copy operator
@@ -89,9 +87,8 @@ namespace sict {
 		return *this;
 	}
 
-	//Add new phone number to current object
+	//+= operator to add a new number into the existing array phoneNum
 	Contact& Contact::operator+=(const long long newPhone) {
-
 
 		Contact temp = *this;
 
@@ -101,8 +98,8 @@ namespace sict {
 		if (validCheck(newPhone)) {
 
 			//increase the memory by one
-			m_phoneNum = new long long[m_numOfPhones++];
-
+			m_phoneNum = new long long[m_numOfPhones + 1];
+			m_numOfPhones++;
 			//copy all existing contact to the array of new size
 			for (int i = 0; i < m_numOfPhones; i++) {
 				m_phoneNum[i] = temp.m_phoneNum[i];
@@ -150,6 +147,7 @@ namespace sict {
 		if (m_name[0] != '\0') {
 			isEmpty = false;
 		}
+
 		return isEmpty;
 	}
 
@@ -176,6 +174,7 @@ namespace sict {
 			}
 		}
 		else {
+
 			cout << "Empty Contact!" << endl;
 		}
 	}
