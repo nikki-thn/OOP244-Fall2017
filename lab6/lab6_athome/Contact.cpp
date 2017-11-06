@@ -1,3 +1,11 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 6 - At home
+*/
+
+
+
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
