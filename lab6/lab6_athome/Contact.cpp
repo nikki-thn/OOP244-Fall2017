@@ -1,3 +1,9 @@
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 6 - At home
+*/
+
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
@@ -44,13 +50,11 @@ namespace sict {
 				}
 			}
 		}
-		//else *this = Contact(); // else set object to safety state
-		
+		//else *this = Contact(); // else set object to safety state		
 	}
 
 	Contact::~Contact() {
-		
-		//cout << "	Contact::~Contact() {" << endl;
+	
 		delete [] m_phoneNum;
 	}
 
@@ -148,7 +152,6 @@ namespace sict {
 		if (m_name[0] != '\0') {
 			isEmpty = false;
 		}
-
 		return isEmpty;
 	}
 
@@ -175,7 +178,6 @@ namespace sict {
 			}
 		}
 		else {
-
 			cout << "Empty Contact!" << endl;
 		}
 	}
