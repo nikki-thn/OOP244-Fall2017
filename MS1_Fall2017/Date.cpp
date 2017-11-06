@@ -214,7 +214,9 @@ namespace sict {
 		}
 		
 		if (errorCode_ != NO_ERROR){
-			year_ = mon_ = day_ = 0;
+			year_ = 0;
+			mon_ = 0;
+			day_ = 0;
 		}
 		
 
