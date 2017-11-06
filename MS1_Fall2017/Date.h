@@ -33,12 +33,12 @@ namespace sict {
 		Date(); //no parameter constructor
 		Date(int, int, int); //3 parameters constructor
 
-		bool operator==(const Date& rhs) const;
-		bool operator!=(const Date& rhs) const;
-		bool operator<(const Date& rhs) const;
-		bool operator>(const Date& rhs) const;
-		bool operator<=(const Date& rhs) const;
-		bool operator>=(const Date& rhs) const;
+		bool operator==(const Date& rhs) const; //true if two days are same
+		bool operator!=(const Date& rhs) const; // true if two days are NOT same
+		bool operator<(const Date& rhs) const; //true if current Date is 'less than' rhs
+		bool operator>(const Date& rhs) const; //true if current Date is 'greater than' rhs
+		bool operator<=(const Date& rhs) const; //true if current Date is 'less than or equal' rhs
+		bool operator>=(const Date& rhs) const; //true if current Date is 'greater or equal than' rhs
 
 		int errCode()const; 	//Returns the readErrorCode_ value.
 		bool bad()const;   	//Returns true if readErrorCode_ is not equal to zero.
