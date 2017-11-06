@@ -192,7 +192,7 @@ namespace sict {
 			errCode(CIN_FAILED);
 		}
 
-		else if if (year_ == 0 || mon_ == 0 || day_ == 0) {
+		else if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			errorCode_ = CIN_FAILED;
 		}
 
