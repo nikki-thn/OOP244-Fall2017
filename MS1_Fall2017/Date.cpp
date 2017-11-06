@@ -225,7 +225,7 @@ namespace sict {
 		ostr.width(2);
 		ostr << mon_ << "/";
 		ostr.width(2);
-		ostr << day_ << endl;
+		ostr << day_;
 		ostr.unsetf(ios::fixed);
 
 		return ostr;
