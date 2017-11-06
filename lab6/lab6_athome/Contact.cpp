@@ -57,43 +57,41 @@ namespace sict {
 	
 		delete [] m_phoneNum;
 	}
-
-	//Copy constructor
+	
+	//copy constructor
 	Contact::Contact(const Contact& newContact) {
-
-		if (this != &newContact) {
-			*this = newContact;
-		}
+		
+		m_phoneNum = nullptr;
+		*this = newContact;
 	}
 
-	//Copy operator
-	Contact& Contact::operator=(const Contact& newContact) {
+	//copy operator
+	Contact& Contact::operator= (const Contact& newContact) {
 
-		//self-assignment to check for address of the newContact, make sure they are not same
 		if (this != &newContact) {
-			//shallow copies
-			strcpy(m_name, newContact.m_name);
+
+			strncpy(m_name, newContact.m_name, 19);
+			m_name[19] = '\0';
 			m_numOfPhones = newContact.m_numOfPhones;
 
-			//allocate memory for phoneNum array
 			if (newContact.m_phoneNum != nullptr) {
 
 				m_phoneNum = new long long[m_numOfPhones];
 
-				//copy contact from newContact to current object
 				for (int i = 0; i < m_numOfPhones; i++) {
 					m_phoneNum[i] = newContact.m_phoneNum[i];
 				}
 			}
-		}
-		else {
-			*this = Contact();
+			else {
+				m_phoneNum = nullptr;
+			}
 		}
 		return *this;
 	}
 
-	//+= operator to add a new number into the existing array phoneNum
+	//Add new phone number to current object
 	Contact& Contact::operator+=(const long long newPhone) {
+
 
 		Contact temp = *this;
 
