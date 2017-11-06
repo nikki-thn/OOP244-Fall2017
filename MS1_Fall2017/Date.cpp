@@ -213,12 +213,7 @@ namespace sict {
 			errorCode_ = DAY_ERROR;
 		}
 		
-		if (errorCode_ = CIN_FAILED){
-		
-		*this = temp;
-		}
-		
-		else {
+		if (errorCode_ != CIN_FAILED){
 			year_ = mon_ = day_ = 0;
 		}
 		
