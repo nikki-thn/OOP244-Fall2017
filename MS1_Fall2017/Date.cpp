@@ -133,11 +133,11 @@ namespace sict {
 			isTrue = true;
 		}
 
-		if (year_ == rhs.year_ && mon_ <= rhs.mon_ && day_ <= rhs.day_) {
+		else if (year_ == rhs.year_ && mon_ <= rhs.mon_ && day_ <= rhs.day_) {
 			isTrue = true;
 		}
 
-		if (year_ == rhs.year_ && mon_ <= rhs.mon_) {
+		else if (year_ == rhs.year_ && mon_ <= rhs.mon_) {
 			isTrue = true;
 		}
 
@@ -152,11 +152,11 @@ namespace sict {
 			isTrue = true;
 		}
 
-		if (year_ == rhs.year_ && mon_ >= rhs.mon_ && day_ >= rhs.day_) {
+		else if (year_ == rhs.year_ && mon_ >= rhs.mon_ && day_ >= rhs.day_) {
 			isTrue = true;
 		}
 
-		if (year_ == rhs.year_ && mon_ >= rhs.mon_) {
+		else if (year_ == rhs.year_ && mon_ >= rhs.mon_) {
 			isTrue = true;
 		}
 
@@ -174,13 +174,10 @@ namespace sict {
 
 		bool hasError = false;
 		
-		if (!bad()) {
-
 		if (errorCode_ != NO_ERROR) {
 			hasError = true;
 		}
-		}
-
+		
 		return hasError;
 	}
 
@@ -195,24 +192,24 @@ namespace sict {
 			errCode(CIN_FAILED);
 		}
 
-		if (year_ == 0 || mon_ == 0 || day_ == 0) {
+		else if if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			errorCode_ = CIN_FAILED;
 		}
 
-		if (year_ >= min_year && year_ <= max_year && day_ >= 1 && day_ <= 31
+		else if (year_ >= min_year && year_ <= max_year && day_ >= 1 && day_ <= 31
 			&& mon_ >= 1 && mon_ <= 12) {
 			errorCode_ = NO_ERROR;
 		}
 
-		if (year_ != 0 && (year_ < min_year || year_ > max_year)) {
+		else if (year_ != 0 && (year_ < min_year || year_ > max_year)) {
 			errorCode_ = YEAR_ERROR;
 		}
 
-		if (year_ != 0 && mon_ != 0 && (mon_ < 1 || mon_ > 12)) {
+		else if (year_ != 0 && mon_ != 0 && (mon_ < 1 || mon_ > 12)) {
 			errorCode_ = MON_ERROR;
 		}
 
-		if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
+		else if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
 			errorCode_ = DAY_ERROR;
 		}
 		
