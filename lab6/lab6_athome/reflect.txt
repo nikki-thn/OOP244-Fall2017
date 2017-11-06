@@ -1,4 +1,17 @@
-1)	Explain why the copy assignment operator checks for self-assignment be-fore doing anything else.
-2)	Explain why a class that uses dynamic memory to hold its resources needs custom definitions of its copy constructor and its copy assignment opera-tor.
+/*
+Nikki Truong - 112 214 174
+OOP244 - Fall 2017
+Workshop 6 - At home
+*/
+
+1)	Explain why the copy assignment operator checks for self-assignment before doing anything else.
+    We have to check for self-assignment to prevent memory leak which might causes by self-assignment. Memory leak happens when we loss access to memory due to deletion or accidentally loss of pointer to that memory.
+    
+2)	Explain why a class that uses dynamic memory to hold its resources needs custom definitions of its copy constructor and its copy assignment operator.
+    Because unlike static memory, dynamic memory gets allocate as the program runs. To prevent objects share resources together and might lead to memory leak to one object if the other is deleted or out-of-scope, we give each object its own resources (dynamically allocated)
+
 3)	How did you avoid duplication of code?
+    I implemented two member functions validCheck and exactNUm to exact phone number and check for their validity before accepting into object. I also utilise the exactNum function to display the phone number in format as required
+    
 4)	List what you have learned in completing this workshop
+    I learned the usage and implementation of copy constructor and copy assignment. I learn to handle dynamic memory to give resources to an object. I understand better the usage of constructor + destructor, how they are called and what happened behind the code in the absence of copy constructor or copy assignment. I've got to construct member functions to perform tasks to avoid code duplications. 
