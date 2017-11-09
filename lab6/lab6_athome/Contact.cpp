@@ -3,7 +3,6 @@ Nikki Truong - 112 214 174
 OOP244 - Fall 2017
 Workshop 6 - At home
 */
-
 #include <iostream>
 #include <cstring>
 #include "Contact.h"
@@ -11,16 +10,14 @@ Workshop 6 - At home
 using namespace std;
 
 namespace sict {
-	
-	//no parameter constructor
-	Contact::Contact() { 
+
+	Contact::Contact() { //set object to safe empty state
 
 		m_name[0] = '\0';
 		m_numOfPhones = 0;
 		m_phoneNum = nullptr;
 	}
 
-	//3 parameters constructor
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
 		*this = Contact();
@@ -52,9 +49,10 @@ namespace sict {
 				}
 			}
 		}
+		//else *this = Contact(); // else set object to safety state
+
 	}
 
-	//destructor
 	Contact::~Contact() {
 
 		delete[] m_phoneNum;
@@ -107,7 +105,6 @@ namespace sict {
 			//increase the memory by one
 			m_phoneNum = new long long[m_numOfPhones + 1];
 			m_numOfPhones++;
-			
 			//copy all existing contact to the array of new size
 			for (int i = 0; i < m_numOfPhones; i++) {
 				m_phoneNum[i] = temp.m_phoneNum[i];
@@ -155,6 +152,7 @@ namespace sict {
 		if (m_name[0] != '\0') {
 			isEmpty = false;
 		}
+
 		return isEmpty;
 	}
 
