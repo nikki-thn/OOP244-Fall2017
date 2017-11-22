@@ -20,8 +20,6 @@ namespace sict {
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
-		*this = Contact();
-
 		int count = 0;
 
 		//if not empty, copy value into data members accordingly
@@ -29,6 +27,7 @@ namespace sict {
 
 			strncpy(m_name, sourceName, 19);
 			m_name[19] = '\0';
+			m_numOfPhones = 0;
 
 			for (int i = 0; i < size; i++) {
 
@@ -49,7 +48,7 @@ namespace sict {
 				}
 			}
 		}
-		//else *this = Contact(); // else set object to safety state
+		else *this = Contact(); // else set object to safety state
 
 	}
 
