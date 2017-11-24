@@ -20,8 +20,6 @@ namespace sict {
 
 	Contact::Contact(const char* sourceName, const long long* sourcePhone, int size) {
 
-		int count = 0;
-
 		//if not empty, copy value into data members accordingly
 		if (sourceName != nullptr) {
 
@@ -43,15 +41,18 @@ namespace sict {
 				if (validCheck(sourcePhone[j])) {
 
 					//copy into array m_phoneNum
-					m_phoneNum[count] = sourcePhone[j];
-					count++;
+					m_phoneNum[m_numOfPhones] = sourcePhone[j];
+					m_numOfPhones++;
 				}
 			}
 		}
-		else *this = Contact(); // else set object to safety state
-
+		else {
+			
+			*this = Contact(); // else set object to safety state
+		}
 	}
 
+	//Destructor
 	Contact::~Contact() {
 
 		delete[] m_phoneNum;
@@ -63,22 +64,24 @@ namespace sict {
 		if (this != &newContact) {
 
 			m_phoneNum = nullptr;
-			*this = newContact;
+			*this = newContact; //call copy operator
 		}
 	}
 
 	//copy operator
 	Contact& Contact::operator= (const Contact& newContact) {
 
+		//check for self-assignment
 		if (this != &newContact) {
-
+			
+			//perform copying
 			strncpy(m_name, newContact.m_name, 19);
 			m_name[19] = '\0';
 			m_numOfPhones = newContact.m_numOfPhones;
 
 			if (newContact.m_phoneNum != nullptr) {
-
-				m_phoneNum = new long long[m_numOfPhones];
+					
+				m_phoneNum = new long long[m_numOfPhones]; //allocate dynamic memory
 
 				for (int i = 0; i < m_numOfPhones; i++) {
 					m_phoneNum[i] = newContact.m_phoneNum[i];
@@ -155,7 +158,7 @@ namespace sict {
 		return isEmpty;
 	}
 
-	//query
+	//display object
 	void Contact::display() {
 
 		bool empty = isEmpty();
