@@ -15,6 +15,7 @@ namespace sict {
 		//if not empty, allocate memory and set object
 		if (errorMessage != nullptr) {
 			m_message = new char[strlen(errorMessage) + 1];
+			strcpy(m_message, errorMessage);
 		}
 		//else set object in safe empty state
 		else {
