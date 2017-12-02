@@ -4,7 +4,9 @@
 // Milestone 2
 
 #define _CRT_SECURE_NO_WARNINGS
+#include <cstring>
 #include "ErrorMessage.h"
+
 
 namespace sict {
 
@@ -66,7 +68,7 @@ namespace sict {
 
 		//if object is not empty, print out the error
 		if (!err.isClear())
-			os << err.m_message << std::endl;
+			os << err.m_message;
 		return os;
 	}
 
