@@ -28,15 +28,6 @@ namespace sict {
 		}
 	}
 
-	Hero& Hero::operator=(const Hero& hero) {
-		if (&hero != this) {
-			strcpy(m_name, hero.m_name);
-			m_health = hero.m_health;
-			m_attack = hero.m_attack;
-		}
-		return *this;
-	}
-
 	void Hero::operator-=(int attack) {
 
 		if (attack > 0) {
@@ -67,48 +58,41 @@ namespace sict {
 
 		if (empty == false) cout << hero.m_name;
 		else cout << "No hero";
-
 		return out;
 	}
 
 	const Hero& operator*(const Hero& first, const Hero& second) {
-		
+
 		Hero firstCopy = first;
 		Hero secondCopy = second;
-		Hero winnerHero;
-
+		const Hero* winnerHero = nullptr;
 		int numRounds = 1;
-		int winner = 0;
+
 		cout << "Ancient Battle! " << first << " vs " << second << " : ";
 
 		while (numRounds <= max_round) {
+
 			firstCopy -= second.attackStrength();
 			secondCopy -= first.attackStrength();
 
 			if (!firstCopy.isAlive() && secondCopy.isAlive() ||
 				(!firstCopy.isAlive() && !secondCopy.isAlive())) {
-				winner = 2;
-				winnerHero = second;
+
+				winnerHero = &second;
 				break;
 			}
 			else if (!secondCopy.isAlive() && firstCopy.isAlive()) {
-				winner = 1;
-				winnerHero = first;
+
+				winnerHero = &first;
 				break;
 			}
 			numRounds++;
 		}
 
-		cout << "Winner is ";
-			if (winner == 1)
-				cout << first;
-
-			else if (winner == 2)
-				cout << second;
-			
+		cout << "Winner is " << *winnerHero;
 		cout << " in " << numRounds << " rounds." << endl;
 
-		return winnerHero;
+		return *winnerHero;
 	}
 
 }
