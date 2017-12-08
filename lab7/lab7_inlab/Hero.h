@@ -1,3 +1,9 @@
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - inlab
+
+
 #ifndef SICT_HERO_H
 #define SICT_HERO_H
 
