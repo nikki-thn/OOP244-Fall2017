@@ -38,12 +38,6 @@ namespace sict {
 		}
 	}
 
-	int Hero::attackStrength() const {
-
-		bool empty = isEmpty();
-		if (empty == false) return m_attack;
-	}
-
 	//return true if object is empty
 	bool Hero::isEmpty() const {
 
