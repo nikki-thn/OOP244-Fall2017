@@ -75,8 +75,8 @@ namespace sict {
 			firstCopy -= second.attackStrength();
 			secondCopy -= first.attackStrength();
 
-			if (!firstCopy.isAlive() && secondCopy.isAlive() ||
-				(!firstCopy.isAlive() && !secondCopy.isAlive())) {
+			if ( (!firstCopy.isAlive() && secondCopy.isAlive()) ||
+				(!firstCopy.isAlive() && !secondCopy.isAlive()) ) {
 
 				winnerHero = &second;
 				break;
