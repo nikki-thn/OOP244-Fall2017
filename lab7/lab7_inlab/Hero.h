@@ -11,19 +11,18 @@ namespace sict {
 
 		char m_name[41];
 		int m_health;
-	    int m_attack;
+		int m_attack;
 
 	public:
-	
-		Hero(); 
+
+		Hero();
 		Hero(const char name[], int health, int attack);
-		Hero& operator=(const Hero&);
 
 		bool isAlive() const { return m_health > 0; } //returns true is hero is alive
 		void operator-=(int attack); //deduct strength from current object's health
 		int attackStrength() const; //return m_attack
 		bool isEmpty() const; //return true is object is empty
-        friend std::ostream& operator<<(std::ostream&, const Hero&); //helper function to insert name into ostream
+		friend std::ostream& operator<<(std::ostream&, const Hero&); //helper function to insert name into ostream
 
 	};
 
