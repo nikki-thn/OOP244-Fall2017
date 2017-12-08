@@ -1,3 +1,8 @@
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - inlab
+
 #include <cstring>
 #include <iostream>
 #include "Hero.h"
