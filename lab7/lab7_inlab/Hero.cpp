@@ -1,163 +1,114 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include <iostream>
 #include "Hero.h"
+
 using namespace std;
 
 namespace sict {
 
-	//////////////////////////////////////////////
-	// Default constructor
-	//
-	Hero::Hero()
-	{
+	Hero::Hero() {
+
 		m_name[0] = '\0';
-		m_maximumHealth = 0;
 		m_attack = 0;
 		m_health = 0;
 	}
 
-	///////////////////////////////////////////////////
-	// Constructor
-	// 
-	Hero::Hero(const char name[], int maximumHealth, int attack)
-	{
-		if (name != "" || name != '\0') {
+	Hero::Hero(const char name[], int health, int attack) {
 
+		if (strlen(name) < 40 && name[0] != '\0') {
 			strcpy(m_name, name);
-			m_maximumHealth = maximumHealth;
-			m_health = m_maximumHealth;
+			m_health = health;
 			m_attack = attack;
 		}
-
 		else {
-
-			*this = Hero();
+			m_name[0] = '\0';
+			m_attack = 0;
+			m_health = 0;
+			//*this = Hero(); **ask
 		}
 	}
 
-	/////////////////////////////////////////////////////////
-	// ostream helper overloaded operator <<
-	// 
-	ostream& operator<<(ostream& out, const Hero& h)
-	{
-		h.display(out);
+	Hero& Hero::operator=(const Hero& hero) {
+		if (&hero != this) {
+			strcpy(m_name, hero.m_name);
+			m_health = hero.m_health;
+			m_attack = hero.m_attack;
+		}
+		return *this;
+	}
+
+	void Hero::operator-=(int attack) {
+
+		if (attack > 0) {
+			m_health -= attack;
+		}
+		if (m_health <= 0) {
+			m_health = 0;
+		}
+	}
+
+	int Hero::attackStrength() const {
+
+		bool empty = isEmpty();
+		if (empty == false) return m_attack;
+	}
+
+	//return true if object is empty
+	bool Hero::isEmpty() const {
+
+		bool empty = false;
+		if (m_name[0] == '\0') 	empty = true;
+		return empty;
+	}
+
+	ostream& operator<<(ostream& out, const Hero& hero) {
+
+		bool empty = hero.isEmpty();
+
+		if (empty == false) cout << hero.m_name;
+		else cout << "No hero";
 
 		return out;
 	}
 
-	void Hero::display(std::ostream&) const {
-		bool empty = isEmpty();
+	const Hero& operator*(const Hero& first, const Hero& second) {
+		
+		Hero firstCopy = first;
+		Hero secondCopy = second;
+		Hero winnerHero;
 
-		if (empty == false) {
-			cout << m_name;
+		int numRounds = 1;
+		int winner = 0;
+		cout << "Ancient Battle! " << first << " vs " << second << " : ";
+
+		while (numRounds <= max_round) {
+			firstCopy -= second.attackStrength();
+			secondCopy -= first.attackStrength();
+
+			if (!firstCopy.isAlive() && secondCopy.isAlive() ||
+				(!firstCopy.isAlive() && !secondCopy.isAlive())) {
+				winner = 2;
+				winnerHero = second;
+				break;
+			}
+			else if (!secondCopy.isAlive() && firstCopy.isAlive()) {
+				winner = 1;
+				winnerHero = first;
+				break;
+			}
+			numRounds++;
 		}
+
+		cout << "Winner is ";
+			if (winner == 1)
+				cout << first;
+
+			else if (winner == 2)
+				cout << second;
+			
+		cout << " in " << numRounds << " rounds." << endl;
+
+		return winnerHero;
 	}
 
-	/////////////////////////////////////////////////
-	// Hero::isEmpty ()
-	// return true if the Hero object is uninitialized
-	//
-	bool Hero::isEmpty() const
-		{
-			bool empty = false;
-
-			if (m_name[0] == '\0') {
-
-				empty = true;
-			}
-
-			return empty;
-		}
-
-	/////////////////////////////////////////////////
-	// sets the Hero object's health back to full
-	//
-		void Hero::respawn()
-		{
-			m_health = m_maximumHealth;
-		}
-
-		void Hero::deductHealth(int attack)
-		{
-			m_health -= attack;
-		}
-
-		//////////////////////////////////////////////////////////////////
-		// Global helper function
-		// compute the damage that A inflicts on B 
-		// and of B on A
-		void applyDamage(Hero& A, Hero& B)
-		{
-			int b_attack = B.getAttack();
-			int a_attack = A.getAttack();
-
-			A.deductHealth(b_attack);
-			B.deductHealth(a_attack);
-		}
-				
-		//////////////////////////////////////////////////////////////////
-		// Global helper operator
-		// rather than type in fight(hercules, theseus), we use an operator
-		// so you can type in hercules * theseus
-		//
-		// returns a reference to the winner object
-		// 
-		// so that if hercules is stronger, 
-		// (hercules * theseus) == hercules
-		// will be true.
-		// 
-		// note the inputs are const, so that you can be sure that the heros will be unharmed during the fight.
-		//
-		const Hero & operator* (const Hero & first, const Hero & second) {
-			// Display the names of the people fighting
-
-			cout << "AncientBattle! " << first << " vs " << second << " : ";
-
-			// We want our heroes to exit the battle unharmed, so 
-			// we make the input arguments const.
-			// So how can we modify the objects during the fight?
-			// We make copies of them.
-			Hero A = first;
-			Hero B = second;
-			const Hero *winner = nullptr;
-
-			// Now A will fight B, and winner will point to the winner.    
-			// Main fight loop
-			unsigned int rounds = 0;
-			// loop while both are still alive
-			// fight for 100 rounds
-			while (A.isAlive() && B.isAlive() && rounds < 100)
-			{
-				rounds++;
-				applyDamage(A, B);
-			}
-
-			// if we got here, then one Hero is dead, or if both are alive then it was a draw.
-			bool draw;
-
-			if (A.isAlive() && B.isAlive()) { draw = true; }
-			else { draw = false; }
-
-			// if it was a draw, then we decide by tossing an unfair coin and always
-			// declare that A was the winner. 
-			if (draw)
-			{
-				winner = &first;
-			}
-			else if (A.isAlive())
-			{
-				winner = &first;
-			}
-			else
-			{
-				winner = &second;
-			}
-
-			// print out the winner
-			cout << "Winner is " << *winner << " in " << rounds << " rounds." << endl;
-
-			// return a reference to the winner
-			return *winner;
-		}
-	}
+}
