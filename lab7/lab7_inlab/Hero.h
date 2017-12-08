@@ -1,36 +1,34 @@
-#ifndef HERO_H
-#define HERO_H
+#ifndef SICT_HERO_H
+#define SICT_HERO_H
 
 #include <iostream>
 
 namespace sict {
-	class Hero {
-		char m_name[41];
-		int  m_attack;
-		int  m_maximumHealth;
-		int  m_health;
 
-		bool isEmpty() const;
+	const int max_round = 100;
+
+	class Hero {
+
+		char m_name[41];
+		int m_health;
+	    int m_attack;
 
 	public:
-		// constructors
-		Hero();
-		Hero(const char name[], int maximumHealth, int attack);
+	
+		Hero(); 
+		Hero(const char name[], int health, int attack);
+		Hero& operator=(const Hero&);
 
-		// member functions
-		bool isAlive() const { return m_health > 0; }
-		void respawn();
-		void deductHealth(int);
-		void display(std::ostream&) const;
-		int  getAttack() const { return m_attack; }
+		bool isAlive() const { return m_health > 0; } //returns true is hero is alive
+		void operator-=(int attack); //deduct strength from current object's health
+		int attackStrength() const; //return m_attack
+		bool isEmpty() const; //return true is object is empty
+        friend std::ostream& operator<<(std::ostream&, const Hero&); //helper function to insert name into ostream
 
-		// friend helper function to insert name into ostream
-		friend std::ostream& operator<<(std::ostream&, const Hero&);
 	};
 
-    void applyDamage (Hero& A, Hero& B);
-    const Hero & operator*(const Hero &, const Hero &);
+	const Hero& operator*(const Hero &, const Hero &);
+
 }
 
 #endif
-
