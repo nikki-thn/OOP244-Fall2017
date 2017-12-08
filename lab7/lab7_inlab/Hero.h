@@ -7,8 +7,6 @@
 #ifndef SICT_HERO_H
 #define SICT_HERO_H
 
-#include <iostream>
-
 namespace sict {
 
 	const int max_round = 100;
