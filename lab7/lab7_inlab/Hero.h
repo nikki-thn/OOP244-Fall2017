@@ -20,7 +20,7 @@ namespace sict {
 
 		bool isAlive() const { return m_health > 0; } //returns true is hero is alive
 		void operator-=(int attack); //deduct strength from current object's health
-		int attackStrength() const; //return m_attack
+		int attackStrength() const { return m_attack } ; //return m_attack
 		bool isEmpty() const; //return true is object is empty
 		friend std::ostream& operator<<(std::ostream&, const Hero&); //helper function to insert name into ostream
 
