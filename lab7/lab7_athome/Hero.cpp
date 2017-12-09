@@ -1,25 +1,70 @@
-#include "SuperHero.h"
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - at home
+
+#include <cstring>
+#include <iostream>
+#include "Hero.h"
 
 using namespace std;
 
 namespace sict {
 
-	SuperHero::SuperHero() {
-		m_bonusAttack = 0;
-		m_defend = 0;
+	Hero::Hero() {
+
+		m_name[0] = '\0';
+		m_attack = 0;
+		m_health = 0;
 	}
 
-	SuperHero::SuperHero(const char name[], int health, int attack, int bonusAttack, int defend) :
-		Hero(name, health, attack) {
-		m_bonusAttack = bonusAttack;
-		m_defend = defend;
+	Hero::Hero(const char name[], int health, int attack) {
+
+		if (strlen(name) < 40 && name[0] != '\0') {
+			strcpy(m_name, name);
+			m_health = health;
+			m_attack = attack;
+		}
+		else {
+			m_name[0] = '\0';
+			m_attack = 0;
+			m_health = 0;
+			//*this = Hero(); **ask
+		}
 	}
 
-	const SuperHero& operator* (const SuperHero& first, const SuperHero& second) {
+	void Hero::operator-=(int attack) {
 
-		SuperHero firstCopy = first;
-		SuperHero secondCopy = second;
-		const SuperHero* winnerHero = nullptr;
+		if (attack > 0) {
+			m_health -= attack;
+		}
+		if (m_health <= 0) {
+			m_health = 0;
+		}
+	}
+
+	//return true if object is empty
+	bool Hero::isEmpty() const {
+
+		bool empty = false;
+		if (m_name[0] == '\0') 	empty = true;
+		return empty;
+	}
+
+	ostream& operator<<(ostream& out, const Hero& hero) {
+
+		bool empty = hero.isEmpty();
+
+		if (empty == false) cout << hero.m_name;
+		else cout << "No hero";
+		return out;
+	}
+
+	const Hero& operator*(const Hero& first, const Hero& second) {
+
+		Hero firstCopy = first;
+		Hero secondCopy = second;
+		const Hero* winnerHero = nullptr;
 		int numRounds = 1;
 
 		cout << "Ancient Battle! " << first << " vs " << second << " : ";
@@ -29,15 +74,15 @@ namespace sict {
 			firstCopy -= second.attackStrength();
 			secondCopy -= first.attackStrength();
 
-			if ((!firstCopy.isAlive() && secondCopy.isAlive()) ||
+			if ((firstCopy.isAlive() && !secondCopy.isAlive()) ||
 				(!firstCopy.isAlive() && !secondCopy.isAlive())) {
 
-				winnerHero = &second;
+				winnerHero = &first;
 				break;
 			}
-			else if (!secondCopy.isAlive() && firstCopy.isAlive()) {
+			else if (secondCopy.isAlive() && !firstCopy.isAlive()) {
 
-				winnerHero = &first;
+				winnerHero = &second;
 				break;
 			}
 			numRounds++;
@@ -47,7 +92,6 @@ namespace sict {
 		cout << " in " << numRounds << " rounds." << endl;
 
 		return *winnerHero;
-
 	}
 
 }
