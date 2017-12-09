@@ -6,11 +6,11 @@
 
 1.	Does the Hero class need to know about the existence of the SuperHero class?
 
-    No it doesn't because it is a complete class by itself.
+    No, the Hero class doesn't need to know because it is a complete class by itself.
 
 2.	Does the SuperHero class need to know about the existence of the Hero class? 
 
-    Yes, it needs to because it is a derived class from Hero class aka it needs the Hero class to be completed. 
+    Yes, it needs to because SuperHero is derived from Hero class aka it needs the Hero class to be completed. 
 
 3.	The program prints out “Ancient Battle!” when 2 Heroes fight. It prints out “Super Fight!” when 2 SuperHeroes fight. When you tried to make a Hero fight a SuperHero, what did it print out?
 
