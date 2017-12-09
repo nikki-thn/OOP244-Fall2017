@@ -1,24 +1,37 @@
-#ifndef SICT_SUPERHERO_H
-#include "Hero.h"
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - at home
+
+
+#ifndef SICT_HERO_H
+#define SICT_HERO_H
 
 namespace sict {
 
-	class SuperHero : public Hero {
+	const int max_round = 100;
 
-		int m_bonusAttack;
-		int m_defend;
+	class Hero {
+
+		char m_name[41];
+		int m_health;
+		int m_attack;
 
 	public:
 
-		SuperHero();
-		SuperHero(const char name[], int health, int attack, int bonusAttack, int defend);
-		
-		int attackStrength() const { return this->attackStrength + m_bonusAttack; }
-		int defend() const { return m_defend; }
+		Hero();
+		Hero(const char name[], int health, int attack);
+
+		bool isAlive() const { return m_health > 0; } //returns true is hero is alive
+		void operator-=(int attack); //deduct strength from current object's health
+		int attackStrength() const { return m_attack; } //return m_attack
+		bool isEmpty() const; //return true is object is empty
+		friend std::ostream& operator<<(std::ostream&, const Hero&); //helper function to insert name into ostream
 
 	};
 
-	const SuperHero& operator* (const SuperHero& first, const SuperHero& second);
+	const Hero& operator*(const Hero &, const Hero &);
+
 }
 
 #endif
