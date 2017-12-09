@@ -1,30 +1,31 @@
-#ifndef SUPERHERO_H
-#define SUPERHERO_H
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - at home
+
+#ifndef SICT_SUPERHERO_H
+#define SICT_SUPERHERO_H
 
 #include "Hero.h"
+namespace sict {
 
-namespace sict{
+	class SuperHero : public Hero {
 
-    class SuperHero: public Hero {
-        int m_superPowerAttackBonus; // superpower:  attack bonus
-        int m_superPowerDefendBonus;      // superpower:  defense
+		int m_bonusAttack;
+		int m_defend;
 
-    public:
+	public:
 
-        // constructors  
-        SuperHero();
-        SuperHero(const char* name, 
-                int maximumHealth, 
-                int attack,
-                
-                int superPowerAttack, 
-                int superPowerDefend);
+		SuperHero();
+		SuperHero(const char name[], int health, int attack, int bonusAttack, int defend);
+		
+		int attackStrength() const; //return SuperHero attack
+		int defend() const { return m_defend; } //return defend
 
-        int getAttack() const; 
-        int getDefend() const; 
-     };
+	};
 
-    void applyDamage (SuperHero& A,  SuperHero& B);
-    const SuperHero & operator*(const SuperHero &, const SuperHero &);
+	//overload operator* for SuperHero class
+	const SuperHero& operator* (const SuperHero& first, const SuperHero& second);
 }
+
 #endif
