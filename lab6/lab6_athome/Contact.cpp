@@ -80,7 +80,8 @@ namespace sict {
 			m_numOfPhones = newContact.m_numOfPhones;
 
 			if (newContact.m_phoneNum != nullptr) {
-					
+				
+				delete []m_phoneNum;
 				m_phoneNum = new long long[m_numOfPhones]; //allocate dynamic memory
 
 				for (int i = 0; i < m_numOfPhones; i++) {
