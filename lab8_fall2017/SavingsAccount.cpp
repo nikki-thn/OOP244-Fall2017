@@ -16,7 +16,8 @@ namespace sict {
 	// TODO: display inserts the account information into an ostream			
 	void SavingsAccount::display(std::ostream& os){ 
 		os << "Account type: Savings" << std::endl;
-		Account::display(os);
+		//Account::display(os);
+		os << "Balance: $" << os.setf(std::ios::fixed) << os.precision(2) << balance() << std::endl;
 		os << "Interest Rate (%): " << os.precision(2) << m_interestRate << std::endl;
 	}
 

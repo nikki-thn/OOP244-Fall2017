@@ -43,8 +43,8 @@ namespace sict {
 		return wasSubstracted;
 	}
 
-	void Account::display(std::ostream& os) const {
-		os << "Balance: $" << os.setf(std::ios::fixed) << os.precision(2) << m_balance << std::endl;
-	}
+	//void Account::display(std::ostream& os) const {
+	//	os << "Balance: $" << os.setf(std::ios::fixed) << os.precision(2) << m_balance << std::endl;
+	//}
 
 }
