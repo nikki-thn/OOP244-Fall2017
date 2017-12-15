@@ -3,54 +3,27 @@
 #include <fstream>
 #include "NonPerishable.h"
 
+using namespace std;
+
 namespace sict {
 
 	//copy to m_name from parameter
-	void NonPerishable::name(const char* name) {
+	void NonPerishable::setName(const char* name) {
 
+		//if parameter is not empty, copy name
 		if (name != nullptr) {
 
-		//	if (m_name != nullptr) delete [] m_name;
-	 m_name = nullptr;
+			//if (m_name != nullptr) delete [] m_name; //clean up memory if any
 
+			m_name = nullptr;
 			m_name = new char[strlen(name) + 1];
 			strcpy(m_name, name);
 		}
+		//if parameter is empty, delete previous name
 		else {
-			delete[] m_name;
+			if (m_name != nullptr) delete[] m_name;
 			m_name = nullptr;
 		}
-	}
-
-	//return m_name member
-	const char* NonPerishable::name() const { return m_name; }
-
-	//return the cost after tax (if m_isTaxed true)
-	double NonPerishable::cost() const {
-
-		double prodCost = 0.0;
-
-		if (m_isTaxed == true) prodCost = m_price * (1 + tax_rate);
-		else prodCost = m_price;
-
-		return prodCost;
-	}
-
-	//copy to m_error from parameter
-	void NonPerishable::message(const char* errorMess) {
-
-		if (errorMess != nullptr) m_error.setMessage(errorMess);
-
-	}
-
-	//true is m_error has no content
-	bool NonPerishable::isClear() const {
-
-		bool clear = false;
-
-		if (m_error.isClear() == true) clear = true;
-
-		return clear;
 	}
 
 	//Zero-One argument Constructor 
@@ -59,6 +32,7 @@ namespace sict {
 		if (type != 'N') {
 			m_type = type;
 		}
+		else m_type = 'N';
 
 		m_sku[0] = '\0';
 		m_name = nullptr;
@@ -67,17 +41,16 @@ namespace sict {
 		m_needQty = 0;
 		m_price = 0.0;
 		m_isTaxed = true;
+		m_error.clear();
 	}
 
 	//Seven argument Constructor 
 	NonPerishable::NonPerishable(const char* sku, const char* pName, const char* unit, int currentQty,
 		bool isTaxed, double price, int needQty) {
 
-
-
 		if (sku != nullptr && pName != nullptr && unit != nullptr) {
 			strcpy(m_sku, sku);
-			name(pName);
+			setName(pName);
 			strcpy(m_unit, unit);
 			m_currentQty = currentQty;
 			m_isTaxed = isTaxed;
@@ -98,7 +71,6 @@ namespace sict {
 
 	//copy constructor
 	NonPerishable::NonPerishable(const NonPerishable& rhs) {
-
 		m_name = nullptr;
 		*this = rhs;
 	}
@@ -109,13 +81,17 @@ namespace sict {
 		if (this != &rhs) {
 
 			m_type = rhs.m_type;
-			strcpy(m_sku, rhs.m_sku);
+
+			if (strlen(rhs.m_sku) <= max_sku_length)
+				strcpy(m_sku, rhs.m_sku);
+
+			if (strlen(rhs.m_unit) <= max_sku_length)
+				strcpy(m_unit, rhs.m_unit);
 
 			delete[] m_name;
 			m_name = new char[strlen(rhs.m_name) + 1];
 			strcpy(m_name, rhs.m_name);
 
-			strcpy(m_unit, rhs.m_unit);
 			m_currentQty = rhs.m_currentQty;
 			m_needQty = rhs.m_needQty;
 			m_price = rhs.m_price;
@@ -135,32 +111,11 @@ namespace sict {
 
 		bool isSame = false;
 
-		if (sku != nullptr) {
+		if (sku != nullptr && m_name != nullptr) {
 			if (strcmp(m_sku, sku) == 0) isSame = true;
 		}
 		return isSame;
 	}
-
-	//return total costs of all items
-	double NonPerishable::total_cost() const {
-
-		double total = 0.0;
-
-		total += cost();
-		return total;
-	}
-
-	//reset m_qty to parameter
-	void NonPerishable::quantity(int qty) { m_currentQty = qty; }
-
-	//return true if object is not in an error state
-	bool NonPerishable::isEmpty() const { return m_error.isClear(); }
-
-	// return m_needQty
-	int NonPerishable::qtyNeeded() const { return m_needQty; }
-
-	// return m_currentQty
-	int NonPerishable::quantity() const { return m_currentQty; }
 
 	//return true if m_sku is greater than parameter
 	bool NonPerishable::operator>(const char*) const {
@@ -179,6 +134,7 @@ namespace sict {
 
 	bool NonPerishable::operator>(const Product& rhs) const {
 
+		//return strlen(m_name) > strlen(rhs.name);
 		return true;
 	}
 
@@ -186,38 +142,162 @@ namespace sict {
 
 		char a = ','; //char delimiter
 
-		if (!file.fail()) {
+		file << m_type << a << m_name << a << m_sku << a << cost() << a;
+		file << m_currentQty << a << m_unit << a << m_needQty;
 
-			file << m_type << a << m_name << a << m_sku << a << cost() << a;
-			file << m_currentQty << a << m_unit << a << m_needQty;
-
-			if (addNewLine == true) file << std::endl;
-
-		}
-
-		file.close();
+		if (addNewLine == true) file << std::endl;
 
 		return file;
 	}
+
 	std::fstream& NonPerishable::load(std::fstream& file) {
 		char a; //char delimiter
 
-		if (!file.fail()) {
-			while (file.eof()) {
-				file >> m_type >> a >> m_name >> a >> m_sku >> a;
-				file >> m_currentQty >> a >> m_unit >> a >> m_needQty;
-			}
+		char nameIn[max_name_length];
 
-			return file;
-		}
+		file.getline(m_sku, max_sku_length, '|');
+
+		file.getline(m_name, max_name_length, '|');
+		setName(nameIn);
+
+		file >> m_price >> a;
+
+		file >> m_isTaxed >> a;
+
+		file >> m_currentQty >> a;
+
+		file.getline(m_unit, max_unit_length, '|');
+
+		file >> m_needQty >> a;
+
+		return file;
 	}
 
 	std::ostream& NonPerishable::write(std::ostream& os, bool linear) const {
+
+
+		if (linear) {
+			os.setf(std::ios::left);
+			os.width(max_sku_length);
+			os << m_sku << "|";
+			os.width(20);
+			os << m_name << "|";
+			os.unsetf(std::ios::left);
+			os.width(7);
+			os.setf(std::ios::fixed);
+			os.precision(2);
+			os << cost() << "|";
+
+			os.width(4);
+			os << m_currentQty << "|";
+
+			os.setf(std::ios::left);
+			os.width(10);
+			os << m_unit << "|";
+			os.unsetf(std::ios::left);
+
+			os.width(4);
+			os << m_needQty << "|";
+		}
+
+		else {
+			os << "Sku: " << m_sku << std::endl;
+			os << "Name: " << m_name << std::endl;
+			os.setf(std::ios::fixed);
+			os.precision(2);
+			os << "Price: " << cost() << std::endl;
+			if (m_isTaxed) {
+				os << "Price after tax: " << cost() << std::endl;
+			}
+			else {
+				os << "Price after tax: N/A" << std::endl;
+			}
+			os << "Quantity on hand: " << m_currentQty << " " << m_unit << std::endl;
+			os << "Quantity needed: " << m_needQty << std::endl;
+		}
 
 		return os;
 	}
 
 	std::istream& NonPerishable::read(std::istream& is) {
+
+		bool isValid = false;
+
+		char taxIn = ' ';
+
+		if (!is.fail()) {
+
+			std::cout << "Sku: ";
+			is.getline(m_sku, max_sku_length, '\n');
+
+			cout << "Name: ";
+			is.getline(m_name, max_name_length, '\n');
+
+			cout << "Unit: ";
+			is.getline(m_unit, max_unit_length, '\n');
+
+			cout << "Taxed? (y/n): ";
+			is >> m_isTaxed;
+			is.ignore(200, '\n');
+
+			if (taxIn != 'N' && taxIn != 'n' && taxIn != 'Y' && taxIn != 'y') {
+				m_error.setMessage("Only (Y)es or (N)o are acceptable");
+				is.setstate(ios::failbit); //-- is.fail();
+				isValid = false;
+			}
+			else if (taxIn == 'N' || taxIn == 'n') {
+				m_isTaxed = false;
+			}
+			else if (taxIn == 'Y' || taxIn == 'y') {
+				m_isTaxed = true;
+			}
+
+			if (isValid == true) {
+				cout << "Price: ";
+				is >> m_price;
+				is.ignore(200, '\n');
+
+				if (!(m_price > 0.0)) {
+					m_error.setMessage("Invalid Price Entry");
+					is.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					m_price = 0.0;
+				}
+			}
+
+			if (isValid != false) {
+				cout << "Quantity On Hand: ";
+				is >> m_currentQty;
+
+				if (!(m_currentQty > 0)) {
+					m_error.setMessage("Invalid Quantity Entry");
+					is.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					m_currentQty = 0;
+				}
+			}
+
+			if (isValid != false) {
+				cout << "Quantity Needed: ";
+				is >> m_needQty;
+
+				if (!(m_needQty > 0)) {
+					m_error.setMessage("Invalid Quantity Needed Entry");
+					is.setstate(ios::failbit);
+					isValid = false;
+				}
+				else {
+					m_needQty = 0;
+				}
+			}
+
+			if (isValid == true) m_error.clear();
+			
+		}
 
 		return is;
 	}
@@ -236,11 +316,10 @@ namespace sict {
 		return in;
 	}
 
-	//
-	double operator+=(double& total, const Product& rhs) {
-		total = rhs.total_cost();
-
-		return total;
+	//add totalCost of current object with the double recieve and return reference
+	double operator+=(double& value, const Product& rhs) {
+		value += rhs.total_cost();
+		return value;
 	}
 
 	Product* CreateProduct() {

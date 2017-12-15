@@ -25,11 +25,19 @@ namespace sict {
 
 	protected:
 
-		void name(const char*); //copy to m_name from parameter
-		double cost() const; //return the cost after tax (if taxed)
-		void message(const char* errorMess); //copy to m_error from parameter
-		const char* name() const; //return m_name member
-		bool isClear() const; //true is m_error has no content
+		void setName(const char*); //copy to m_name from parameter
+		
+		//return m_name member
+		const char* NonPerishable::name() const { return m_name; }
+
+		//return the cost after tax (if m_isTaxed true)
+		double NonPerishable::cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
+
+		//copy to m_error from parameter
+		void NonPerishable::message(const char* errorMess) { if (errorMess) m_error.setMessage(errorMess); }
+
+		//true is m_error has no content
+		bool NonPerishable::isClear() const { return m_error.isClear(); }
 
 	public:
 
@@ -47,14 +55,24 @@ namespace sict {
 		std::istream& read(std::istream& is);
 
 		bool operator==(const char*) const;
-		double total_cost() const;
-		void quantity(int);
-		bool isEmpty() const;
-		int qtyNeeded() const;
-		int quantity() const;
 		bool operator>(const char*) const;
 		int operator+=(int);
 		bool operator>(const Product&) const;
+	
+		//reset m_qty to parameter
+		void NonPerishable::quantity(int qty) { m_currentQty = qty; }
+
+		//return true if object is not in an error state, no error means not empty??
+		bool NonPerishable::isEmpty() const { return m_sku[0] == '\0'; }
+
+		// return m_needQty
+		int NonPerishable::qtyNeeded() const { return m_needQty; }
+
+		// return m_currentQty
+		int NonPerishable::quantity() const { return m_currentQty; }
+	
+		//return total costs of all items
+		double NonPerishable::total_cost() const { return m_currentQty * cost(); }
 
 	};
 
