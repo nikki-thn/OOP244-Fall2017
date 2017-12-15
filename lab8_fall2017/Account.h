@@ -22,7 +22,7 @@ namespace sict {
 
 	public:
 		// TODO: constructor initializes account balance, defaults to 0.0 
-		Account(double);
+		Account(double balance = 0.0);
 
 		// TODO: credit adds +ve amount to the balance 
 		bool credit(double);
@@ -30,10 +30,10 @@ namespace sict {
 		// TODO: debit subtracts a +ve amount from the balance
 		bool debit(double);
 
-		void display(std::ostream&) const;
+		virtual void display(std::ostream&) const;
 	};
 
-	iAccount* CreateAccount(const char* account, double balance);
+	//iAccount* CreateAccount(const char* account, double balance);
 
 }
 #endif

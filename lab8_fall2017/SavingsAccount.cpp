@@ -6,6 +6,7 @@ namespace sict {
 	SavingsAccount::SavingsAccount(double balance, double interestRate) :
 			Account (balance) { 
 		if (interestRate > 0) m_interestRate = interestRate;
+		else m_interestRate = 0.0;
 	}
 
 	// TODO: perform month end transactions
@@ -14,19 +15,14 @@ namespace sict {
 	}
 
 	// TODO: display inserts the account information into an ostream			
-	void SavingsAccount::display(std::ostream& os){ 
+	void SavingsAccount::display(std::ostream& os) const{ 
+	
 		os << "Account type: Savings" << std::endl;
-		//Account::display(os);
-		os << "Balance: $" << os.setf(std::ios::fixed) << os.precision(2) << balance() << std::endl;
-		os << "Interest Rate (%): " << os.precision(2) << m_interestRate << std::endl;
+		Account::display(os);
+		os << "Interest Rate (%): ";
+		os.setf(std::ios::fixed);
+		os.precision(2);
+		os << m_interestRate * 100 << std::endl;
 	}
 
-	/*iAccount* CreateAccount(const char*, double) {
-		iAccount* pAccount = nullptr;
-
-		if (account[0] == 's' || account[0] == 'S') {
-			pAccount = new SavingsAccount(balance);
-		}
-
-	}*/
 }

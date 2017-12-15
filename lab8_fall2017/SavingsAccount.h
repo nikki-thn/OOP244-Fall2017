@@ -19,15 +19,14 @@ namespace sict {
 
 	public:
 		// TODO: constructor initializes balance and interest rate
-		SavingsAccount(double balanc = 0.0, double interestRate = 0.0);
-
+		SavingsAccount(double balance = 0.0, double interestRate = 0.0);
+		
 		// TODO: perform month end transactions
 		void monthEnd();
 
 		// TODO: display inserts the account information into an ostream			
-		void display(std::ostream&);
+		void display(std::ostream&) const;
 	};
 
-	iAccount* CreateAccount(const char*, double);
 }
 #endif

@@ -7,8 +7,10 @@
 // This file allocates an Account object in dynamic memory
 ///////////////////////////////////////////////////
 #include "SavingsAccount.h" 
+#include "Account.h"
 
 namespace sict {
+
 
 	// define interest rate
 	const double interest_rate = 0.05;
@@ -20,7 +22,7 @@ namespace sict {
 		iAccount* pAccount = nullptr;
 
 		if (account[0] == 's' || account[0] == 'S') {
-			pAccount = new SavingsAccount (balance);
+			pAccount = new SavingsAccount(balance, interest_rate);
 		}
 
 		return pAccount;
