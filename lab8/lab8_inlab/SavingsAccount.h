@@ -25,7 +25,7 @@ namespace sict {
 		void monthEnd();
 
 		// TODO: display inserts the account information into an ostream			
-		void display(std::ostream&);
+		void display(std::ostream&) const;
 	};
 
 }
