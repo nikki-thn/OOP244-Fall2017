@@ -1,33 +1,39 @@
+// OOP244 Workshop 8: Virtual Functions and Abstract Base Classes
+// File: Account.h
+// Version: 2.0
+// Date: 2017/12/11
+// Author: Chris Szalwinski, based on previous work by Heidar Davoudi
+// Description:
+// This file defines the Account class
+///////////////////////////////////////////////////
+
 #ifndef SICT_ACCOUNT_H__
 #define SICT_ACCOUNT_H__
 
-#include <iostream>
+#include "iAccount.h"
 
-using namespace std;
+namespace sict {
 
-namespace ict{
-   
-	class Account{
-		private:
-			double m_balance; // data member that stores the balance
+	class Account : public iAccount{
+		double m_balance;
 
-		protected:
-			double getBalance() const; // return the account balance
-			void setBalance( double ); // sets the account balance
+	protected:
+		double balance() const { return m_balance; } //return balance
 
-   		public:
-			// TODO: Write a prototype for constructor which initializes balance
-			Account();
-			Account(double);
+	public:
+		// TODO: constructor initializes account balance, defaults to 0.0 
+		Account(double balance = 0.0);
 
-			// TODDO: Write a function prototype for the virtual function credit 
-			virtual void credit (double);
+		// TODO: credit adds +ve amount to the balance 
+		bool credit(double);
 
-			// TODO: Write a function prototype for the virtual function debit
-			virtual bool debit (double);
+		// TODO: debit subtracts a +ve amount from the balance
+		bool debit(double);
 
-			// TODO: Write a function prototype for the virtual function display
-			virtual void display (ostream&) const = 0;
-   };
-};
+		virtual void display(std::ostream&) const;
+	};
+
+	//iAccount* CreateAccount(const char* account, double balance);
+
+}
 #endif

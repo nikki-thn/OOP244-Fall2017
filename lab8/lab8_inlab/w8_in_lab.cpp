@@ -1,76 +1,71 @@
-// BTP200 Workshop 8: Virtual Functions
-// File: w8_at_home.cpp
-// Version: 1.0
-// Date: 2017/03/15
-// Author: Heidar Davoudi
+// OOP244 Workshop 8: Virtual Functions and Abstract Base Classes
+// File: w8_in_lab.cpp
+// Version: 2.0
+// Date: 2017/12/11
+// Author: Chris Szalwinski, based on previous work by Heidar Davoudi
 // Description:
 // This file tests in_lab section of your workshop
 ///////////////////////////////////////////////////
 
 #include <iostream>
-#include "Account.h" 
-#include "SavingsAccount.h" 
+#include <cstring>
+#include "iAccount.h" 
 
-using namespace ict;
+using namespace sict;
 using namespace std;
 
-int main()
-{
-
-	// Create Account for Angelina
-
-	Account * Angelina_Account[2];
-    
-	// initialize Angelina Accounts (Both Saving)
-	
-	Angelina_Account[ 0 ] = new SavingsAccount( 400.0, 0.12 ); 
-
-	Angelina_Account[ 1 ] = new SavingsAccount( 600.0, 0.15 );
-
-	cout << "**************************" << endl;
-
-	cout << "DISPLAY Angelina Accounts:" << endl;
-
-	cout << "**************************" << endl;
-
-	Angelina_Account[0]->display(cout);
-
-	cout << "-----------------------" << endl;
-
-	Angelina_Account[1]->display(cout);
-
-	cout << "**************************" << endl ;
-
-	cout << "DEPOSIT $ 2000 $ into Angelina Accounts ..." << endl ;
-
-	for(int i=0 ; i < 2 ; i++){
-		Angelina_Account[i]->credit(2000);
+// display inserts account information for client
+//
+void display(const char* client, iAccount* const acct[], int n) {
+	int lineLength = strlen(client) + 22;
+	cout.fill('*');
+	cout.width(lineLength);
+	cout << "*" << endl;
+	cout << "DISPLAY Accounts for " << client << ":" << endl;
+	cout.width(lineLength);
+	cout << "*" << endl;
+	cout.fill(' ');
+	for (int i = 0; i < n; ++i) {
+		acct[i]->display(cout);
+		if (i < n - 1) cout << "-----------------------" << endl;
 	}
+	cout.fill('*');
+	cout.width(lineLength);
+	cout << "****************************" << endl << endl;
+	cout.fill(' ');
+}
 
-	cout << "WITHDRAW $ 1000 and $ 500 from Angelina Accounts ..." << endl ;
+// close a client's accounts
+// 
+void close(iAccount* acct[], int n) {
+	for (int i = 0; i < n; ++i) {
+		delete acct[i];
+		acct[i] = nullptr;
+	}
+}
 
-	Angelina_Account[0]->debit(1000);
+int main() {
+	// Create Accounts for Angelina
+	iAccount* Angelina[2];
 
-	Angelina_Account[1]->debit(500);
+	// initialize Angelina's Accounts
+	Angelina[0] = CreateAccount("Savings", 400.0);
+	Angelina[1] = CreateAccount("Savings", 400.0);
+	display("Angelina", Angelina, 2);
 
+	cout << "DEPOSIT $2000 into Angelina Accounts ..." << endl;
+	for (int i = 0; i < 2; i++)
+		Angelina[i]->credit(2000);
 
-	cout << "**************************" << endl;
+	cout << "WITHDRAW $1000 and $500 from Angelina's Accounts ... " << endl;
+	Angelina[0]->debit(1000);
+	Angelina[1]->debit(500);
+	cout << endl;
+	display("Angelina", Angelina, 2);
 
-	cout << "DISPLAY Angelina Accounts:" << endl;
+	Angelina[0]->monthEnd();
+	Angelina[1]->monthEnd();
+	display("Angelina", Angelina, 2);
 
-	cout << "**************************" << endl;
-
-	Angelina_Account[0]->display(cout);
-
-	cout << "Interest is: " << ((SavingsAccount *) Angelina_Account[0])->calculateInterest() << endl;
-
-	cout << "-----------------------" << endl;
-
-	Angelina_Account[1]->display(cout);
-
-	cout << "Interest is: " << ((SavingsAccount *) Angelina_Account[1])->calculateInterest() << endl;
-
-	cout << "-----------------------" << endl;
-
-	return 0;
+	close(Angelina, 2);
 }

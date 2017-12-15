@@ -1,41 +1,25 @@
-#include <iostream>
 #include "SavingsAccount.h"
 
+namespace sict {
 
-using namespace std;
+	// TODO: constructor initializes balance and interest rate
+	SavingsAccount::SavingsAccount(double balance, double interestRate) :
+			Account (balance) { 
+		if (interestRate > 0) m_interestRate = interestRate;
+		else m_interestRate = 0.0;
+	}
 
-namespace ict{ 
+	// TODO: perform month end transactions
+	void SavingsAccount::monthEnd(){
+		credit(balance()*m_interestRate);
+	}
+
+	// TODO: display inserts the account information into an ostream			
+	void SavingsAccount::display(std::ostream& os){ 
 	
-	// TODO: Implement SavingsAccount member functions here
-	//constructor
-	SavingsAccount::SavingsAccount (double balance, double interestRate) : Account (balance) {
-
-		if (interestRate < 0) {
-			m_interestRate = 0;
-		}
-		else if (interestRate > 0) {
-			m_interestRate = interestRate;
-		}
-
+		os << "Account type: Savings" << std::endl;
+	//	Account::display(os);
+		os << "Interest Rate (%): " << os.precision(2) << m_interestRate << std::endl;
 	}
 
-	//function returns amount of interest earns by an account
-	double SavingsAccount::calculateInterest () {
-		
-		double interestAmt = 0.0;
-
-		interestAmt = getBalance() * m_interestRate;
-
-		return interestAmt;
-	}
-
-	//function display account info
-	void SavingsAccount::display (ostream& os) const {
-		//Account::display(os);
-		cout << "Account type: Saving" << endl;
-		cout.setf(ios::fixed);
-		cout.precision(2);
-		cout << "Balance: $ " << getBalance() << endl;
-		cout << "Interest rate (%): " << m_interestRate * 100 << endl;
-	}
-};
+}

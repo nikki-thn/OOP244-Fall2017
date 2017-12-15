@@ -1,29 +1,32 @@
+// OOP244 Workshop 8: Virtual Functions and Abstract Base Classes
+// File: SavingAccount.h
+// Version: 2.0
+// Date: 2017/12/11
+// Author: Chris Szalwinski, based on previous work by Heidar Davoudi
+// Description:
+// This file defines the SavingsAccount class
+///////////////////////////////////////////////////
+
 #ifndef SICT_SAVINGSACCOUNT_H__
 #define SICT_SAVINGSACCOUNT_H__
 
 #include "Account.h"
 
-using namespace std;
+namespace sict {
 
-namespace ict{
+	class SavingsAccount : public Account {
+		double m_interestRate;
 
-	class SavingsAccount : public Account{
-
-		private:
-
-    		double m_interestRate; // interest rate (percentage) 
-		public:
+	public:
+		// TODO: constructor initializes balance and interest rate
+		SavingsAccount(double balance = 0.0, double interestRate = 0.0);
 		
-		// TODO: put prototypes here
-		SavingsAccount(double, double);
+		// TODO: perform month end transactions
+		void monthEnd();
 
-		//function returns amount of interest earns by an account
-		double calculateInterest ();
+		// TODO: display inserts the account information into an ostream			
+		void display(std::ostream&);
+	};
 
-		//function display account info
-		void display (ostream&) const;
-   };
-
-};
+}
 #endif
-
