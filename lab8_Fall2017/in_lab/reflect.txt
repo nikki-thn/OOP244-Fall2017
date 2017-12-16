@@ -1,0 +1,6 @@
+//Nikki Truong - 112 314 174
+
+
+1.	What is the difference between an abstract base class and a concrete class?
+2.	Identify the functions that shadow functions of the same name in your solution?
+3.	Explain what have you learned in this workshop.
