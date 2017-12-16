@@ -124,7 +124,6 @@ namespace sict {
 	int NonPerishable::operator+=(int unit) {
 
 		if (unit > 0) m_currentQty += unit;
-		else m_currentQty;
 
 		return m_currentQty;
 	}
