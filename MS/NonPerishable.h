@@ -1,3 +1,8 @@
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section E
+// Milestone 2
+
 #ifndef SICT_NON_PERISHABLE_H
 #define SICT_NON_PERISHABLE_H
 
@@ -26,7 +31,7 @@ namespace sict {
 	protected:
 
 		void setName(const char*); //copy to m_name from parameter
-		
+
 		//return m_name member
 		const char* name() const { return m_name; }
 
@@ -54,11 +59,11 @@ namespace sict {
 		std::ostream& write(std::ostream& os, bool linear)const;
 		std::istream& read(std::istream& is);
 
-		bool operator==(const char*) const;
-		bool operator>(const char*) const;
-		int operator+=(int);
-		bool operator>(const Product&) const;
-	
+		bool operator==(const char*) const; //compare name
+		bool operator>(const char*) const; //compare name, true if >
+		int operator+=(int); //increment currentQty
+		bool operator>(const Product&) const; //compare name
+											  
 		//reset m_qty to parameter
 		void quantity(int qty) { m_currentQty = qty; }
 
@@ -70,7 +75,7 @@ namespace sict {
 
 		// return m_currentQty
 		int quantity() const { return m_currentQty; }
-	
+
 		//return total costs of all items
 		double total_cost() const { return m_currentQty * cost(); }
 
