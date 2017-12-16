@@ -81,11 +81,9 @@ namespace sict {
 
 			m_type = rhs.m_type;
 
-			if (strlen(rhs.m_sku) <= max_sku_length)
-				strcpy(m_sku, rhs.m_sku);
+			strcpy(m_sku, rhs.m_sku);
 
-			if (strlen(rhs.m_unit) <= max_sku_length)
-				strcpy(m_unit, rhs.m_unit);
+			strcpy(m_unit, rhs.m_unit);
 
 			delete[] m_name;
 			m_name = new char[strlen(rhs.m_name) + 1];
@@ -295,7 +293,7 @@ namespace sict {
 			}
 
 			if (isValid == true) m_error.clear();
-			
+
 		}
 
 		return is;
