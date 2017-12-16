@@ -2,5 +2,16 @@
 
 
 1.	What is the difference between an abstract base class and a concrete class?
+    An abstract class base class has virtual member functions that allow polymorphism for derived class. Virtual functions are functions that has multiple overload and the object type at run-time will determined which overload is being called
+    
 2.	Identify the functions that shadow functions of the same name in your solution?
+    There are credit, debit, monthEnd and display
+    
 3.	Explain what have you learned in this workshop.
+    I gained a deeper understanding of polymorphism and how to implement them. I also understand the distinguish between an interface and an abstract class. How to build one and how to use them. I learned that to exclicit call a function with same name, we have to put class name qualifier to avoid error.
+
+
+
+Quiz reflection
+
+In the quiz I wrote abstract class has no data member and only contains pure virtual functions. Now I have learned that an abstract class can have its own data member, but we cannot have an instance of an abstract class. Interfact on the other hand doesn't have an implemtation, has no data members and contains only pure virtual functions. 
