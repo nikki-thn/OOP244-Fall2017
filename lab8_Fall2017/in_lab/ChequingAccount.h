@@ -1,3 +1,8 @@
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section B
+// Lab 7 - at home
+
 #ifndef SICT_CHEQUING_ACCOUNT_H
 #define SICT_CHEQUING_ACCOUNT_H 
 #include <iostream>

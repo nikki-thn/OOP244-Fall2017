@@ -9,12 +9,12 @@
 #include "SavingsAccount.h" 
 #include "Account.h"
 #include "ChequingAccount.h"
-namespace sict {
 
+namespace sict {
 
 	// define interest rate
 	const double interest_rate = 0.05;
-	const double transaction_fee = 0.05;
+	const double transaction_fee = 0.50;
 	const double monthly_fee = 2.00;
 
 	// TODO: Allocator function

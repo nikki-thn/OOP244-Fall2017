@@ -37,7 +37,7 @@ namespace sict {
 
 	void ChequingAccount::display(std::ostream& os) const {
 
-		os << "Account type: Chequing" << std::endl;
+		os << "Account type: Chequeing" << std::endl;
 		Account::display(os);
 		os.setf(std::ios::fixed);
 		os.precision(2);

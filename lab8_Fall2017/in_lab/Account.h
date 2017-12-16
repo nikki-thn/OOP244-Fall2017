@@ -33,7 +33,5 @@ namespace sict {
 		virtual void display(std::ostream&) const;
 	};
 
-	//iAccount* CreateAccount(const char* account, double balance);
-
 }
 #endif

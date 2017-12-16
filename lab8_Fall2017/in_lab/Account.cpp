@@ -1,7 +1,7 @@
 // Name: Nikki Truong
 // Student_id: 112 314 174
 // Section B
-// Lab 7 - at home
+// Lab 8 - at home
 
 // OOP244 Workshop 8: Virtual Functions and Abstract Base Classes
 // File: Account.cpp
@@ -34,6 +34,7 @@ namespace sict {
 	}
 
 	// TODO: debit subtracts a +ve amount from the balance
+
 	bool Account::debit(double amount) {
 
 		bool isSuccess = false;
