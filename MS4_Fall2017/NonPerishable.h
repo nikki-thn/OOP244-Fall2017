@@ -28,16 +28,16 @@ namespace sict {
 		void setName(const char*); //copy to m_name from parameter
 		
 		//return m_name member
-		const char* NonPerishable::name() const { return m_name; }
+		const char* name() const { return m_name; }
 
 		//return the cost after tax (if m_isTaxed true)
-		double NonPerishable::cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
+		double cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
 
 		//copy to m_error from parameter
-		void NonPerishable::message(const char* errorMess) { if (errorMess) m_error.message(errorMess); }
+		void message(const char* errorMess) { if (errorMess) m_error.message(errorMess); }
 
 		//true is m_error has no content
-		bool NonPerishable::isClear() const { return m_error.isClear(); }
+		bool isClear() const { return m_error.isClear(); }
 
 	public:
 
@@ -60,19 +60,19 @@ namespace sict {
 		bool operator>(const Product&) const;
 	
 		//reset m_qty to parameter
-		void NonPerishable::quantity(int qty) { m_currentQty = qty; }
+		void quantity(int qty) { m_currentQty = qty; }
 
 		//return true if object is not in an error state, no error means not empty??
-		bool NonPerishable::isEmpty() const { return m_sku[0] == '\0'; }
+		bool isEmpty() const { return m_sku[0] == '\0'; }
 
 		// return m_needQty
-		int NonPerishable::qtyNeeded() const { return m_needQty; }
+		int qtyNeeded() const { return m_needQty; }
 
 		// return m_currentQty
-		int NonPerishable::quantity() const { return m_currentQty; }
+		int quantity() const { return m_currentQty; }
 	
 		//return total costs of all items
-		double NonPerishable::total_cost() const { return m_currentQty * cost(); }
+		double total_cost() const { return m_currentQty * cost(); }
 
 	};
 
