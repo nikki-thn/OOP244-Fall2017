@@ -32,7 +32,7 @@ namespace sict {
 		bool isClear() const;
 
 		//replace the current message with the new message 
-		void setMessage(const char* str);
+		void message(const char* str);
 
 		//return address of current error message
 		const char* message()const;

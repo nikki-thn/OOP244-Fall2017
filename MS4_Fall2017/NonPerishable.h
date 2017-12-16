@@ -34,7 +34,7 @@ namespace sict {
 		double NonPerishable::cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
 
 		//copy to m_error from parameter
-		void NonPerishable::message(const char* errorMess) { if (errorMess) m_error.setMessage(errorMess); }
+		void NonPerishable::message(const char* errorMess) { if (errorMess) m_error.message(errorMess); }
 
 		//true is m_error has no content
 		bool NonPerishable::isClear() const { return m_error.isClear(); }

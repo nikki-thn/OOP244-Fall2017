@@ -48,7 +48,7 @@ namespace sict {
 		return isclear;
 	}
 
-	void ErrorMessage::setMessage(const char* str) {
+	void ErrorMessage::message(const char* str) {
 
 		if (str != nullptr) {
 			//clear memory and allocate memory for new message

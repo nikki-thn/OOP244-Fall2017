@@ -1,4 +1,3 @@
-#define  _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include <fstream>
 #include "NonPerishable.h"
@@ -97,7 +96,7 @@ namespace sict {
 			m_price = rhs.m_price;
 			m_isTaxed = rhs.m_isTaxed;
 
-			m_error.setMessage(rhs.m_error.message());
+			m_error.message(rhs.m_error.message());
 		}
 		else {
 			m_name = nullptr;
@@ -241,7 +240,7 @@ namespace sict {
 			is.ignore(200, '\n');
 
 			if (taxIn != 'N' && taxIn != 'n' && taxIn != 'Y' && taxIn != 'y') {
-				m_error.setMessage("Only (Y)es or (N)o are acceptable");
+				m_error.message("Only (Y)es or (N)o are acceptable");
 				is.setstate(ios::failbit); //-- is.fail();
 				isValid = false;
 			}
@@ -258,7 +257,7 @@ namespace sict {
 				is.ignore(200, '\n');
 
 				if (!(m_price > 0.0)) {
-					m_error.setMessage("Invalid Price Entry");
+					m_error.message("Invalid Price Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
 				}
@@ -272,7 +271,7 @@ namespace sict {
 				is >> m_currentQty;
 
 				if (!(m_currentQty > 0)) {
-					m_error.setMessage("Invalid Quantity Entry");
+					m_error.message("Invalid Quantity Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
 				}
@@ -286,7 +285,7 @@ namespace sict {
 				is >> m_needQty;
 
 				if (!(m_needQty > 0)) {
-					m_error.setMessage("Invalid Quantity Needed Entry");
+					m_error.message("Invalid Quantity Needed Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
 				}
@@ -302,14 +301,14 @@ namespace sict {
 		return is;
 	}
 
-	//cout
+	//display to ostream
 	std::ostream& operator<<(std::ostream& out, const Product& rhs) {
 
 		rhs.write(out, true);
 		return out;
 	}
 
-	//cin
+	//input from istream
 	std::istream& operator>>(std::istream& in, Product& rhs) {
 
 		rhs.read(in);
@@ -322,6 +321,7 @@ namespace sict {
 		return value;
 	}
 
+	//create NonPerishable pointer
 	Product* CreateProduct() {
 
 		Product * pNonperishable = new NonPerishable;
