@@ -19,28 +19,29 @@ namespace sict {
 	// TODO: constructor initializes account balance, defaults to 0.0 
 	Account::Account(double balance) {
 		if (balance > 0) m_balance = balance;
+		else m_balance = 0.0;
 	}
 
 	// TODO: credit adds +ve amount to the balance 
 	bool Account::credit(double amount) { 
 
-		bool wasAdded = false;
+		bool isSuccess = false;
 		if (amount > 0) {
 			m_balance += amount;
-			wasAdded = true;
+			isSuccess = true;
 		}
-		return wasAdded;
+		return isSuccess;
 	}
 
 	// TODO: debit subtracts a +ve amount from the balance
 	bool Account::debit(double amount) {
 
-		bool wasSubstracted = false;
-		if (amount > 0) {
+		bool isSuccess = false;
+		if (amount > 0 && m_balance > amount) {
 			m_balance -= amount;
-			wasSubstracted = true;
+			isSuccess = true;
 		}
-		return wasSubstracted;
+		return isSuccess;
 	}
 
 	void Account::display(std::ostream& os) const {

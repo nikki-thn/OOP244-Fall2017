@@ -19,7 +19,7 @@ namespace sict {
 
 	public:
 		// TODO: constructor initializes balance and interest rate
-		SavingsAccount(double balance = 0.0, double interestRate = 0.0);
+		SavingsAccount(double balance, double interestRate);
 		
 		// TODO: perform month end transactions
 		void monthEnd();

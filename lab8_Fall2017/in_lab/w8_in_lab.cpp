@@ -1,10 +1,10 @@
 // OOP244 Workshop 8: Virtual Functions and Abstract Base Classes
-// File: w8_in_lab.cpp
+// File: w8_at_home.cpp
 // Version: 2.0
 // Date: 2017/12/11
 // Author: Chris Szalwinski, based on previous work by Heidar Davoudi
 // Description:
-// This file tests in_lab section of your workshop
+// This file tests at_home section of your workshop
 ///////////////////////////////////////////////////
 
 #include <iostream>
@@ -50,7 +50,7 @@ int main() {
 
 	// initialize Angelina's Accounts
 	Angelina[0] = CreateAccount("Savings", 400.0);
-	Angelina[1] = CreateAccount("Savings", 400.0);
+	Angelina[1] = CreateAccount("Chequing", 400.0);
 	display("Angelina", Angelina, 2);
 
 	cout << "DEPOSIT $2000 into Angelina Accounts ..." << endl;

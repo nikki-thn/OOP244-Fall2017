@@ -11,10 +11,20 @@ namespace sict {
 		double m_monthlyFee;
 
 	public:
-		ChequingAccount(double balance = 0.0, double transactionFee = 0.0, double monthlyFee = 0.0);
+
+		// TODO: constructor initializes account balance and transaction fee
+		ChequingAccount(double , double , double );
+
+		// TODDO: credit adds +ve amount to the balance
 		bool credit(double);
+
+		// TODO: debit subtracts a +ve amount from the balance
 		bool debit(double);
+
+		// TODO: month end
 		void monthEnd();
+
+		// TODO: display inserts the account information into an ostream
 		void display(std::ostream&) const;
 	};
 
