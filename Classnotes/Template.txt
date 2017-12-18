@@ -1,1 +1,29 @@
+template function: we sometimes need to insatiate the function by specify the type of type T.
+For example, max<int> (parameter)
+             max <long> (parameter)
+             
+All template has to be in header file
 
+static_cast<> is a template function to perform casting, safer way to do casting; conversion between two types compiler will check if they are compatible (for example, conver a int to a pointer will give an error) **to use to conver between combatitle type (char and type are compatible )
+
+const_cast<toType>(tobeconverted): reject any expression that are not const, only work with constant
+
+dynamic_cast<Derived*> (object); do convertion at run time, work with object of a hierchy , will return pointer, should always check after convertion
+Ex: Hero* obj = new Superhero; // conversion will success since obj is superhero (base on the actual type at run time
+SuperHero s* = dynamic_cast<superhero*>(obj);
+if (nullptr != s) //sucess, we can use s as a valid object
+
+reinterpret_cast<> (); casting with no type check, should not use this
+
+template class
+
+template<typename T>
+class Array {
+    
+    T* m_data;
+    int m_size;
+
+public: 
+    void add(T item);
+
+};
