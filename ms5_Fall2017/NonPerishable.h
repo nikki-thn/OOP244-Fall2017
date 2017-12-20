@@ -21,7 +21,7 @@ namespace sict {
 		char m_type;
 		char m_sku[max_sku_length + 1];
 		char* m_name;
-		char m_unit[max_unit_length];
+		char m_unit[max_unit_length + 1];
 		int m_currentQty;
 		int m_needQty;
 		double m_price;
