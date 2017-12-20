@@ -264,7 +264,7 @@ namespace sict {
 			is.getline(m_unit, max_unit_length, '\n');
 
 			cout << "Taxed? (y/n): ";
-			is >> taxIn;
+			is.get(taxIn);
 
 			if (taxIn != 'N' && taxIn != 'n' && taxIn != 'Y' && taxIn != 'y') {
 				m_error.message("Only (Y)es or (N)o are acceptable");
@@ -282,13 +282,13 @@ namespace sict {
 				cout << "Price: ";
 				is >> price;
 
-				if (price <= 0.0) {
+				if (price > 0.0) {
+					m_price = price;
+				}
+				else {
 					m_error.message("Invalid Price Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
-				}
-				else {
-					m_price = price;
 				}
 			}
 
@@ -296,14 +296,14 @@ namespace sict {
 				cout << "Quantity On Hand: ";
 				is >> qty;
 
-				if (qty < 0) {
-					m_error.message("Invalid Quantity Entry");
-					is.setstate(ios::failbit);
-					isValid = false;
-				}
-				else if (qty >= 0) {
+				if (qty > 0) {
 					m_currentQty = qty;
 					qty = -1;
+				}
+				else  {
+					m_error.message("Invalid Quantity Entry");
+					is.setstate(ios::failbit);
+					isValid = false;		
 				}
 			}
 
@@ -311,13 +311,13 @@ namespace sict {
 				cout << "Quantity Needed: ";
 				is >> qty;
 
-				if (qty < 0) {
+				if (qty > 0) {
+					m_needQty = qty;
+				}
+				else {
 					m_error.message("Invalid Quantity Needed Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
-				}
-				else {
-					m_needQty = qty;
 				}
 			}
 
