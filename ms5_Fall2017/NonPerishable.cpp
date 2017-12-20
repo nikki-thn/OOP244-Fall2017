@@ -301,7 +301,7 @@ namespace sict {
 					is.setstate(ios::failbit);
 					isValid = false;
 				}
-				else {
+				else if (qty >= 0) {
 					m_currentQty = qty;
 					qty = -1;
 				}
