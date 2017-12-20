@@ -69,9 +69,9 @@ namespace sict {
 
 	std::ostream& operator<< (std::ostream& os, const ErrorMessage& err) {
 
-		//if object is not empty, print out the error
-		if (!err.isClear())
-			os << err.m_message;
+		if (!err.isClear()) {
+			os << err.message();
+		}
 		return os;
 	}
 

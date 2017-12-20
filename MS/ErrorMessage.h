@@ -19,7 +19,7 @@ namespace sict {
 		explicit ErrorMessage(const char* errorMessage = nullptr);
 
 		//destructor
-		virtual  ~ErrorMessage();
+		virtual ~ErrorMessage();
 
 		//restrict copy constructor & copy assignment
 		ErrorMessage(const ErrorMessage&) = delete;
@@ -36,11 +36,9 @@ namespace sict {
 
 		//return address of current error message
 		const char* message()const;
-
-		//friend to help print out the error message
-		friend std::ostream& operator<< (std::ostream&, const ErrorMessage&);
-
 	};
 
+	//helper print out the error message
+	std::ostream& operator<< (std::ostream&, const ErrorMessage&);
 }
 #endif
