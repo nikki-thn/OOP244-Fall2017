@@ -293,7 +293,7 @@ namespace sict {
 			}
 
 			if (isValid != false) {
-				cout << "Quantity On Hand: ";
+				cout << "Quantity On hand: ";
 				is >> qty;
 
 				if (qty > 0) {
