@@ -256,14 +256,14 @@ namespace sict {
 			std::cout << " Sku: ";
 			is.getline(m_sku, max_sku_length, '\n');
 
-			cout << "Name: ";
+			cout << " Name: ";
 			is.getline(nameIn, max_name_length, '\n');
 			setName(nameIn);
 
-			cout << "Unit: ";
+			cout << " Unit: ";
 			is.getline(m_unit, max_unit_length, '\n');
 
-			cout << "Taxed? (y/n): ";
+			cout << " Taxed? (y/n): ";
 			is.get(taxIn);
 
 			if (taxIn != 'N' && taxIn != 'n' && taxIn != 'Y' && taxIn != 'y') {
@@ -279,7 +279,7 @@ namespace sict {
 			}
 
 			if (isValid != false) {
-				cout << "Price: ";
+				cout << " Price: ";
 				is >> price;
 
 				if (price > 0.0) {
@@ -308,7 +308,7 @@ namespace sict {
 			}
 
 			if (isValid != false) {
-				cout << "Quantity Needed: ";
+				cout << " Quantity Needed: ";
 				is >> qty;
 
 				if (qty > 0) {
