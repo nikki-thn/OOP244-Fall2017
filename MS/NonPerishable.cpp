@@ -222,7 +222,7 @@ namespace sict {
 				os << "Name: " << m_name << std::endl;
 				os.setf(ios::fixed);
 				os.precision(2);
-				os << "Price: " << cost() << std::endl;
+				os << "Price: " << m_price << std::endl;
 
 				if (m_isTaxed) {
 					os << "Price after tax: " << cost() << std::endl;
