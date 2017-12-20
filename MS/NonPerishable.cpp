@@ -253,7 +253,7 @@ namespace sict {
 
 		if (!is.fail()) {
 
-			std::cout << "Sku: ";
+			std::cout << " Sku: ";
 			is.getline(m_sku, max_sku_length, '\n');
 
 			cout << "Name: ";
