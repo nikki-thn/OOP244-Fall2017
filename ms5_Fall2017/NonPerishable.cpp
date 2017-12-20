@@ -34,14 +34,13 @@ namespace sict {
 		if (sku != nullptr && pName != nullptr && unit != nullptr) {
 
 			int size = strlen(sku);
-			if (size < max_sku_length)
-				strcpy(m_sku, sku);
+			if (size < max_sku_length) strcpy(m_sku, sku);
 			else m_sku[0] = '\0';
 
 			setName(pName);
 
-			if (strlen(unit) < max_sku_length)
-				strcpy(m_unit, unit);
+			size = strlen(unit);
+			if (size < max_unit_length) strcpy(m_unit, unit);
 			else m_unit[0] = '\0';
 
 			m_currentQty = currentQty;
