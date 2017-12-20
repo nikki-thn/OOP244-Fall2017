@@ -308,7 +308,7 @@ namespace sict {
 			}
 
 			if (isValid != false) {
-				cout << " Quantity Needed: ";
+				cout << "Quantity Needed: ";
 				is >> qty;
 
 				if (qty > 0) {
