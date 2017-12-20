@@ -231,7 +231,7 @@ namespace sict {
 					os << "Price after tax: N/A" << std::endl;
 				}
 				os.unsetf(ios::fixed);
-				os << "Quantity on hand: " << m_currentQty << " " << m_unit << std::endl;
+				os << "Quantity On hand: " << m_currentQty << " " << m_unit << std::endl;
 				os << "Quantity needed: " << m_needQty << std::endl;
 			}
 		}
