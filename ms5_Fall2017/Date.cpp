@@ -1,7 +1,7 @@
-// Final Project Milestone 1
-
-//Nikki Truong - 112 314 174 - Section B
-//OOP244 - Fall 2017
+// Name: Nikki Truong
+// Student_id: 112 314 174
+// Section E
+// Milestone 2
 
 
 #include <iostream>

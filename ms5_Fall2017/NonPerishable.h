@@ -30,19 +30,11 @@ namespace sict {
 
 	protected:
 
-		void setName(const char*); //copy to m_name from parameter
-
-		//return m_name member
-		const char* name() const { return m_name; }
-
-		//return the cost after tax (if m_isTaxed true)
-		double cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
-
-		//copy to m_error from parameter
-		void message(const char* errorMess) { if (errorMess) m_error.message(errorMess); }
-
-		//true is m_error has no content
-		bool isClear() const { return m_error.isClear(); }
+		void setName(const char*); //copy to m_name from parameter		
+		const char* name() const; //return m_name member
+		double cost() const; //return the cost after tax (if m_isTaxed true)	
+		void message(const char* errorMess);//copy to m_error from parameter	
+		bool isClear() const; 	//true is m_error has no content
 
 	public:
 
@@ -60,34 +52,19 @@ namespace sict {
 		std::istream& read(std::istream& is);
 		int operator+=(int); //increment currentQty
 		bool operator==(const char*) const; //compare name
-
-
-
-		//return true if m_sku is greater than parameter 
-		bool operator>(const char* sku) const { return strcmp(m_sku, sku); }
-		
-		//compare m_name and parameter
-		bool operator>(const Product& rhs) const { return strcmp(m_name, rhs.name());}
-											  
-		//reset m_qty to parameter
-		void quantity(int qty) { m_currentQty = qty; }
-
-		//return true if object is not in an error state, no error means not empty??
-		bool isEmpty() const { return m_sku[0] == '\0'; }
-
-		// return m_needQty
-		int qtyNeeded() const { return m_needQty; }
-
-		// return m_currentQty
-		int quantity() const { return m_currentQty; }
-
-		//return total costs of all items
-		double total_cost() const { return m_currentQty * cost(); }
+	
+		bool operator>(const char* sku) const; //return true if m_sku is greater than parameter 
+		bool operator>(const Product& rhs) const; //compare m_name and parameter	
+		void quantity(int qty); //reset m_qty to parameter
+		bool isEmpty() const; //return true if object is empty
+		int qtyNeeded() const; 	// return m_needQty
+		int quantity() const; // return m_currentQty
+		double total_cost() const; //return total costs of all items
 
 	};
 
-	std::ostream& operator<<(std::ostream&, const NonPerishable&);
-	std::istream& operator>>(std::istream&, NonPerishable&);
+	std::ostream& operator<<(std::ostream&, const Product&);
+	std::istream& operator>>(std::istream&, Product&);
 	double operator+=(double&, const Product&);
 	Product* CreateProduct();
 }

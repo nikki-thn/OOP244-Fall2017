@@ -11,21 +11,6 @@ using namespace std;
 
 namespace sict {
 
-	//copy to m_name from parameter
-	void NonPerishable::setName(const char* name) {
-
-		if (name != nullptr) {
-			m_name = nullptr;
-			m_name = new char[strlen(name) + 1];
-			strcpy(m_name, name);
-		}
-		//if parameter is empty, delete previous name
-		else {
-			if (m_name != nullptr) delete[] m_name;
-			m_name = nullptr;
-		}
-	}
-
 	//Zero-One argument Constructor 
 	NonPerishable::NonPerishable(char type) {
 
@@ -70,9 +55,8 @@ namespace sict {
 
 	// Destructor
 	NonPerishable::~NonPerishable() {
-		if (m_name != nullptr) {
-			delete[] m_name;
-		}
+
+		delete[] m_name;
 	}
 
 	//copy constructor
@@ -107,6 +91,56 @@ namespace sict {
 		return *this;
 	}
 
+	//copy to m_name from parameter
+	void NonPerishable::setName(const char* name) {
+
+		if (name != nullptr) {
+
+			if (m_name != nullptr) {
+				delete[] m_name;
+				m_name = nullptr;
+			}
+			m_name = new char[strlen(name) + 1];
+			strcpy(m_name, name);
+		}
+		else {
+			m_name = nullptr;
+		}
+	}
+
+	//return m_name member
+	const char* NonPerishable::name() const { return m_name; }
+
+	//return the cost after tax (if m_isTaxed true)
+	double NonPerishable::cost() const { return m_isTaxed ? m_price * (1 + tax_rate) : m_price; }
+
+	//copy to m_error from parameter
+	void NonPerishable::message(const char* errorMess) { if (errorMess) m_error.message(errorMess); }
+
+	//true is m_error has no content
+	bool NonPerishable::isClear() const { return m_error.isClear(); }
+
+	//return true if m_sku is greater than parameter 
+	bool NonPerishable::operator>(const char* sku) const { return strcmp(m_sku, sku); }
+
+	//compare m_name and parameter
+	bool NonPerishable::operator>(const Product& rhs) const { return strcmp(m_name, rhs.name()); }
+
+	//reset m_qty to parameter
+	void NonPerishable::quantity(int qty) { m_currentQty = qty; }
+
+	//return true if object is not in an error state, no error means not empty??
+	bool NonPerishable::isEmpty() const { return m_sku[0] == '\0'; }
+
+	// return m_needQty
+	int NonPerishable::qtyNeeded() const { return m_needQty; }
+
+	// return m_currentQty
+	int NonPerishable::quantity() const { return m_currentQty; }
+
+	//return total costs of all items
+	double NonPerishable::total_cost() const { return m_currentQty * cost(); }
+
 	//returns true if m_sku and sku in parameter are same
 	bool NonPerishable::operator==(const char* sku) const {
 
@@ -130,7 +164,7 @@ namespace sict {
 
 		char a = ','; //char delimiter
 
-		file << m_type << a << m_sku  << a << m_name << a << m_price << a;
+		file << m_type << a << m_sku << a << m_name << a << m_price << a;
 		file << m_isTaxed << a << m_currentQty << a << m_unit << a << m_needQty;
 
 		if (addNewLine == true) file << std::endl;
@@ -183,14 +217,13 @@ namespace sict {
 				os.width(4);
 				os << m_needQty << "|";
 			}
-
 			else {
 				os << "Sku: " << m_sku << std::endl;
 				os << "Name: " << m_name << std::endl;
 				os.setf(ios::fixed);
 				os.precision(2);
 				os << "Price: " << cost() << std::endl;
-			
+
 				if (m_isTaxed) {
 					os << "Price after tax: " << cost() << std::endl;
 				}
@@ -215,7 +248,7 @@ namespace sict {
 
 		char taxIn = ' ';
 		char nameIn[max_name_length];
-		int qty = 0;
+		int qty = -1;
 		double price = 0.0;
 
 		if (!is.fail()) {
@@ -232,8 +265,6 @@ namespace sict {
 
 			cout << "Taxed? (y/n): ";
 			is >> taxIn;
-			is.ignore(200, '\n');
-
 
 			if (taxIn != 'N' && taxIn != 'n' && taxIn != 'Y' && taxIn != 'y') {
 				m_error.message("Only (Y)es or (N)o are acceptable");
@@ -265,13 +296,14 @@ namespace sict {
 				cout << "Quantity On Hand: ";
 				is >> qty;
 
-				if (m_currentQty < 0) {
+				if (qty < 0) {
 					m_error.message("Invalid Quantity Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
 				}
 				else {
 					m_currentQty = qty;
+					qty = -1;
 				}
 			}
 
@@ -279,7 +311,7 @@ namespace sict {
 				cout << "Quantity Needed: ";
 				is >> qty;
 
-				if (m_needQty < 0) {
+				if (qty < 0) {
 					m_error.message("Invalid Quantity Needed Entry");
 					is.setstate(ios::failbit);
 					isValid = false;
@@ -289,7 +321,7 @@ namespace sict {
 				}
 			}
 
-			if (isValid == true) m_error.clear();
+			if (isValid == true) m_error.clear(); 
 		}
 
 		return is;

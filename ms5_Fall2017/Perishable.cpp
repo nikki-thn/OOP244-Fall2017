@@ -18,7 +18,6 @@ namespace sict {
 
 		file << ',' << m_expired;
 		if (newLine) file << '\n';
-
 		return file;
 	}
 
@@ -27,7 +26,6 @@ namespace sict {
 		NonPerishable::load(file);
 
 		file >> m_expired;
-
 		return file;
 	}
 
@@ -35,9 +33,10 @@ namespace sict {
 
 		NonPerishable::write(os, linear);
 
-		if (linear) os << m_expired << std::endl;
-		else os << "Expiry date: " << m_expired << endl;
-
+		if (isClear()) {
+			if (linear) os << m_expired << std::endl;
+			else os << "Expiry date: " << m_expired << endl;
+		}
 		return os;
 	}
 
@@ -81,11 +80,13 @@ namespace sict {
 		rhs.write(os);
 		return os;
 	}
+
 	std::istream& operator>>(std::istream& is, Perishable& rhs) {
 
 		rhs.read(is);
 		return is;
 	}
+
 	Product* CreatePerishable() {
 		Product * pPerishable = new Perishable;
 		return pPerishable;
