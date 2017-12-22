@@ -4,7 +4,6 @@
 // Milestone 2
 
 #include <cstring>
-#include <fstream>
 #include "NonPerishable.h"
 
 using namespace std;
@@ -33,13 +32,13 @@ namespace sict {
 
 		if (sku != nullptr && pName != nullptr && unit != nullptr) {
 
-			int size = strlen(sku);
+			int size = strlen(sku); //size check sku
 			if (size < max_sku_length) strcpy(m_sku, sku);
 			else m_sku[0] = '\0';
 
 			setName(pName);
 
-			size = strlen(unit);
+			size = strlen(unit); //size check for unit
 			if (size < max_unit_length) strcpy(m_unit, unit);
 			else m_unit[0] = '\0';
 
@@ -61,8 +60,9 @@ namespace sict {
 
 	//copy constructor
 	NonPerishable::NonPerishable(const NonPerishable& rhs) {
-		m_name = nullptr;
-		*this = rhs;
+		
+		m_name = nullptr; 
+		*this = rhs; //call copy assignment
 	}
 
 	//copy assignment
@@ -95,7 +95,8 @@ namespace sict {
 	void NonPerishable::setName(const char* name) {
 
 		if (name != nullptr) {
-
+			
+			//if m_name is not null, deallocate old memory
 			if (m_name != nullptr) {
 				delete[] m_name;
 				m_name = nullptr;
