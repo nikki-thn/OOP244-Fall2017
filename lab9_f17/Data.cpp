@@ -108,7 +108,7 @@ namespace sict {
 		double grandTheftAvg = average(grandTheftAuto, n) / 1000000.0;
 
 		std::cout << "There are " << grandTheftAvg
-			<< " million Grand Theft Auto acidents on average a year" << std::endl;
+			<< " million Grand Theft Auto incidents on average a year" << std::endl;
 		std::cout.unsetf(std::ios::fixed);
 
 		// Q4. Print the min and max violentCrime rates
