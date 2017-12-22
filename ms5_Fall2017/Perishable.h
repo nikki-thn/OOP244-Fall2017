@@ -21,7 +21,7 @@ namespace sict {
 
 		std::fstream& store(std::fstream& file, bool newLine = true) const;
 		std::fstream& load(std::fstream& file);
-		std::ostream& write(std::ostream& os, bool linear = true);
+		std::ostream& write(std::ostream& os, bool linear = true) const;
 		std::istream& read(std::istream& is);
 
 		//return expiry date
