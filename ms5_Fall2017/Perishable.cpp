@@ -29,7 +29,7 @@ namespace sict {
 		return file;
 	}
 
-	std::ostream& Perishable::write(std::ostream& os, bool linear) {
+	std::ostream& Perishable::write(std::ostream& os, bool linear) const {
 
 		NonPerishable::write(os, linear);
 
