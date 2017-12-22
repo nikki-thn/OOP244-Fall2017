@@ -22,9 +22,9 @@ namespace sict {
 	//
 	template<typename T>
 	T max(const T* data, int n) {
-		T largest;
+		T largest = data[0];
 		for (int i = 0; i < n; i++) {
-			if (data[i] > data[i + 1]) largest = data[i];
+			if (data[i + 1] > data[i]) largest = data[i];
 		}
 		return largest;
 	}
@@ -34,9 +34,10 @@ namespace sict {
 	//
 	template<typename T>
 	T min(const T* data, int n) {
-		T smallest;
+		T smallest = data[0];
+
 		for (int i = 0; i < n; i++) {
-			if (data[i] < data[i + 1]) smallest = data[i];
+			if (data[i + 1] < data[i]) smallest = data[i];
 		}
 		return smallest;
 	}
@@ -46,7 +47,7 @@ namespace sict {
 	//    
 	template<typename T>
 	T sum(const T* data, int n) {
-		T total;
+		T total = 0;
 		for (int i = 0; i < n; i++) {
 			total = total + data[i];
 		}
@@ -57,12 +58,12 @@ namespace sict {
 	//
 	template<typename T>
 	double average(const T* data, int n) {
-		double avg;
+		double avg = 0;
 		for (int i = 0; i < n; i++) {
 			avg = avg + data[i]; //get total first
 		}
 		avg /= n; //divide toal / n to get average
-		return total;
+		return avg;
 	}
 
 	// read extracts n items from input and stores them in data
@@ -73,13 +74,17 @@ namespace sict {
 	template<typename T>
 	bool read(std::istream& input, T* data, int n) {
 		
-		bool success = true;
-		
-		for (int i = 0; i < n; i++) {
-			input << data[i];
-			input.ignore();
+		bool success = false;
+		T temp = 0;
 
-			if (input.fail()) success = false;	
+		for (int i = 0; i < n; i++) {
+
+			if (!input.fail()) {
+				input.ignore();
+				input >> temp;
+				data[i] = temp;
+				success = true;
+			}
 		}
 		return success;
 	}

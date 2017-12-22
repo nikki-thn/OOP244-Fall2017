@@ -89,29 +89,29 @@ namespace sict {
 		// - print answer correct to 2 decimal places.
 		// e..g "6.31 million";
 		// note that population is an integer, so dividing by 1000000 would yield "6"
-
+		std::cout.setf(std::ios::fixed);
 		std::cout.precision(2);
-		std::cout << population;
 
-
-
+		double populationAvg = average(population, n) / 1000000;
+		std::cout << "Population change from 2000 to 2004 is "
+			<< static_cast<double>(populationAvg) << " million" << std::endl;
 
 		// Q2. print whether violent crime rate has gone up or down between 2000 and 2005
 		std::cout << "Violent Crime trend is down" << std::endl;
 
-
-
-
-
 		// Q3 print the GTA number accurate to 0 decimal places
-		std::cout << "There are" << grandTheftAuto << "million Grand Theft Auto ncidents on average a year";
-		std::cout << std::endl;
-
-
+		double grandTheftAvg = average(grandTheftAuto, n) / 1000000;
+	
+		std::cout << "There are " << grandTheftAvg
+			<< " million Grand Theft Auto ncidents on average a year" << std::endl;
+		std::cout.unsetf(std::ios::fixed);
 
 		// Q4. Print the min and max violentCrime rates
-		std::cout << "The Minimum Violent Crime rate was" << min(violentCrimeRate, n);
-		std::cout << "The Maximum Violent Crime rate was" << max(violentCrimeRate, n);
+		std::cout << "The Minimum Violent Crime rate was "
+			<< static_cast<int>(min(violentCrimeRate, n)) << std::endl;
+
+		std::cout << "The Maximum Violent Crime rate was "
+			<< static_cast<int>(max(violentCrimeRate, n)) << std::endl;
 
 
 	}

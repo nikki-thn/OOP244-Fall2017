@@ -42,65 +42,59 @@ GrandTheftAuto_Rate,412.2,430.5,432.9,433.7,421.5
 //
 int main() {
 
-	//ifstream finput("crimedata.csv");
-	//if (!finput) {
-	//	cerr << "Cannot open file crimedata.csv" << endl;
-	//	return 1;
-	//}
+	ifstream finput("crimedata.csv");
+	if (!finput) {
+		cerr << "Cannot open file crimedata.csv" << endl;
+		return 1;
+	}
 
-	//// file format
-	//// -------------
-	//// n
-	//int n = 0;
-	//finput >> n;
-	//finput.ignore(2000, '\n');  // read the rest of the line
+	// file format
+	// -------------
+	// n
+	int n = 0;
+	finput >> n;
+	finput.ignore(2000, '\n');  // read the rest of the line
 
-	//							// allocate memory for n items
-	//int*    year = new int[n];
-	//int*    population = new int[n];
-	//int*    violentCrime = new int[n];
-	//double* violentCrimeRate = new double[n];
-	//int*    grandTheftAuto = new int[n];
-	//double* grandTheftAutoRate = new double[n];
+								// allocate memory for n items
+	int*    year = new int[n];
+	int*    population = new int[n];
+	int*    violentCrime = new int[n];
+	double* violentCrimeRate = new double[n];
+	int*    grandTheftAuto = new int[n];
+	double* grandTheftAutoRate = new double[n];
 
-	//////////////////////
-	//// Note: this is a simple file reader
-	//// - read each row in the same order it is found in the file
-	////
-	//if (!readRow(finput, "Year", year, n)) { return 1; }
-	//if (!readRow(finput, "Population", population, n)) { return 1; }
-	//if (!readRow(finput, "ViolentCrime", violentCrime, n)) { return 1; }
-	//if (!readRow(finput, "ViolentCrime_Rate", violentCrimeRate, n)) { return 1; }
-	//if (!readRow(finput, "GrandTheftAuto", grandTheftAuto, n)) { return 1; }
-	//if (!readRow(finput, "GrandTheftAuto_Rate", grandTheftAutoRate, n)) { return 1; }
+	////////////////////
+	// Note: this is a simple file reader
+	// - read each row in the same order it is found in the file
+	//
+	if (!readRow(finput, "Year", year, n)) { return 1; }
+	if (!readRow(finput, "Population", population, n)) { return 1; }
+	if (!readRow(finput, "ViolentCrime", violentCrime, n)) { return 1; }
+	if (!readRow(finput, "ViolentCrime_Rate", violentCrimeRate, n)) { return 1; }
+	if (!readRow(finput, "GrandTheftAuto", grandTheftAuto, n)) { return 1; }
+	if (!readRow(finput, "GrandTheftAuto_Rate", grandTheftAutoRate, n)) { return 1; }
 
-	//// display the data
-	//display("Year", year, n);
-	//display("Population", population, n);
-	//display("ViolentCrime", violentCrime, n);
-	//display("ViolentCrimeRate", violentCrimeRate, n);
-	//display("GrandTheftAuto", grandTheftAuto, n);
-	//display("GrandTheftAutoRate", grandTheftAutoRate, n);
-	//cout << endl;
+	// display the data
+	display("Year", year, n);
+	display("Population", population, n);
+	display("ViolentCrime", violentCrime, n);
+	display("ViolentCrimeRate", violentCrimeRate, n);
+	display("GrandTheftAuto", grandTheftAuto, n);
+	display("GrandTheftAutoRate", grandTheftAutoRate, n);
+	cout << endl;
 
-	//// Answer the validation questions
-	//answers(year, population, violentCrime, violentCrimeRate, grandTheftAuto, n);
+	// Answer the validation questions
+	answers(year, population, violentCrime, violentCrimeRate, grandTheftAuto, n);
 
-	//// deallocate memory
-	//delete[] year;
-	//delete[] population;
-	//delete[] violentCrime;
-	//delete[] violentCrimeRate;
-	//delete[] grandTheftAuto;
-	//delete[] grandTheftAutoRate;
+	// deallocate memory
+	delete[] year;
+	delete[] population;
+	delete[] violentCrime;
+	delete[] violentCrimeRate;
+	delete[] grandTheftAuto;
+	delete[] grandTheftAutoRate;
 
-	//// execution successful
+	// execution successful
 
-	char a [] = "abcdtb";
-	char b[10] = { '\0' };
-
-	strcpy(b, a);
-
-	cout << b;
 	return 0;
 }
