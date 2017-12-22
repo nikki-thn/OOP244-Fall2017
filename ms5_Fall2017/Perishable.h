@@ -28,9 +28,6 @@ namespace sict {
 		const Date& expiry() const { return m_expired; }
 	};
 
-
-	//std::ostream& operator<<(std::ostream&, Perishable&);
-	//std::istream& operator>>(std::istream&, Perishable&);
 	Product* CreatePerishable();
 }
 
