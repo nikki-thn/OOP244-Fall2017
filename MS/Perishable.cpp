@@ -18,6 +18,7 @@ namespace sict {
 
 		file << ',' << m_expired;
 		if (newLine) file << '\n';
+		
 		return file;
 	}
 
@@ -26,6 +27,7 @@ namespace sict {
 		NonPerishable::load(file);
 
 		file >> m_expired;
+		
 		return file;
 	}
 
@@ -37,6 +39,7 @@ namespace sict {
 			if (linear) os << m_expired;
 			else os << '\n' << "Expiry date: " << m_expired;
 		}
+		
 		return os;
 	}
 
@@ -71,6 +74,7 @@ namespace sict {
 				m_expired = temp;
 			}
 		}
+		
 		return is;
 	}
 
