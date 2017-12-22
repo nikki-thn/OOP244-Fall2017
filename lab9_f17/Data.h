@@ -11,6 +11,7 @@
 #define SICT_DATA_H
 
 #include <iostream>
+#include <cstring> 
 
 namespace sict {
 
