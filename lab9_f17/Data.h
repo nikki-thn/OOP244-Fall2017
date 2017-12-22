@@ -104,6 +104,7 @@ namespace sict {
 			std::cout << data[i];
 			std::cout.unsetf(std::ios::right);
 		}
+		std::cout << '\n';
 	}
 
 	bool readRow(std::istream& input, const char* name, int* data, int n);
