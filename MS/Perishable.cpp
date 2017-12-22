@@ -35,7 +35,7 @@ namespace sict {
 
 		if (isClear()) {
 			if (linear) os << m_expired << endl;
-			else os << '\n' << "Expiry date: " << m_expired << endl;
+			else os << '\n' << "Expiry date: " << m_expired;
 		}
 		return os;
 	}

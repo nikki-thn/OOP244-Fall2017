@@ -28,8 +28,8 @@ using namespace sict;
 using namespace std;
 
 int main() {
-	testNonPerishable();
-	cout << endl;
+	//testNonPerishable();
+	//cout << endl;
 	testPerishable();
 }
 
@@ -39,73 +39,73 @@ void testNonPerishable() {
 	fstream productFile("product.txt", ios::out);
 	NonPerishable product;
 	bool ok = true;
-	cout << "--Product test:" << endl;
-	cout << "----Taxed validation test:" << endl;
-	promptUser("abc", "abc", "abc", 'a');
-	cin >> product;
-	if (cin.fail()) {
-		cin.clear();
-		cin.ignore(2000, '\n');
-		cout << "Passed!" << endl
-			<< "Message should be:  Only (Y)es or (N)o are acceptable" << endl
-			<< "Your Error message: " << product << endl;
-	}
-	else {
-		ok = false;
-		cout << "Taxed validation failed" << endl;
-	}
-	pause_();
-	if (ok) {
-		cout << "----Price validation test:" << endl;
-		promptUser("abc", "abc", "abc", 'y', "abc");
-		cin >> product;
-		if (cin.fail()) {
-			cin.clear();
-			cin.ignore(2000, '\n');
-			cout << "Passed!" << endl
-				<< "Message should be:  Invalid Price Entry" << endl
-				<< "Your Error message: " << product << endl;
-		}
-		else {
-			ok = false;
-			cout << "Price validation failed" << endl;
-		}
-		pause_();
-	}
-	if (ok) {
-		cout << "----Quantity validation test:" << endl;
-		promptUser("abc", "abc", "abc", 'y', "10", "abc");
-		cin >> product;
-		if (cin.fail()) {
-			cin.clear();
-			cin.ignore(2000, '\n');
-			cout << "Passed!" << endl
-				<< "Message should be:  Invalid Quantity Entry" << endl
-				<< "Your Error message: " << product << endl;
-		}
-		else {
-			ok = false;
-			cout << "Quantity validaton failed" << endl;
-		}
-	}
-	pause_();
-	if (ok) {
-		cout << "----Quantity Needed validation test:" << endl;
-		promptUser("abc", "abc", "abc", 'y', "10", "10", "abc");
-		cin >> product;
-		if (cin.fail()) {
-			cin.clear();
-			cin.ignore(2000, '\n');
-			cout << "Passed!" << endl
-				<< "Message should be:  Invalid Quantity Needed Entry" << endl
-				<< "Your Error message: " << product << endl;
-		}
-		else {
-			ok = false;
-			cout << "Quantity Needed validaton failed" << endl;
-		}
-	}
-	pause_();
+	//cout << "--Product test:" << endl;
+	//cout << "----Taxed validation test:" << endl;
+	//promptUser("abc", "abc", "abc", 'a');
+	//cin >> product;
+	//if (cin.fail()) {
+	//	cin.clear();
+	//	cin.ignore(2000, '\n');
+	//	cout << "Passed!" << endl
+	//		<< "Message should be:  Only (Y)es or (N)o are acceptable" << endl
+	//		<< "Your Error message: " << product << endl;
+	//}
+	//else {
+	//	ok = false;
+	//	cout << "Taxed validation failed" << endl;
+	//}
+	//pause_();
+	//if (ok) {
+	//	cout << "----Price validation test:" << endl;
+	//	promptUser("abc", "abc", "abc", 'y', "abc");
+	//	cin >> product;
+	//	if (cin.fail()) {
+	//		cin.clear();
+	//		cin.ignore(2000, '\n');
+	//		cout << "Passed!" << endl
+	//			<< "Message should be:  Invalid Price Entry" << endl
+	//			<< "Your Error message: " << product << endl;
+	//	}
+	//	else {
+	//		ok = false;
+	//		cout << "Price validation failed" << endl;
+	//	}
+	//	pause_();
+	//}
+	//if (ok) {
+	//	cout << "----Quantity validation test:" << endl;
+	//	promptUser("abc", "abc", "abc", 'y', "10", "abc");
+	//	cin >> product;
+	//	if (cin.fail()) {
+	//		cin.clear();
+	//		cin.ignore(2000, '\n');
+	//		cout << "Passed!" << endl
+	//			<< "Message should be:  Invalid Quantity Entry" << endl
+	//			<< "Your Error message: " << product << endl;
+	//	}
+	//	else {
+	//		ok = false;
+	//		cout << "Quantity validaton failed" << endl;
+	//	}
+	//}
+	//pause_();
+	//if (ok) {
+	//	cout << "----Quantity Needed validation test:" << endl;
+	//	promptUser("abc", "abc", "abc", 'y', "10", "10", "abc");
+	//	cin >> product;
+	//	if (cin.fail()) {
+	//		cin.clear();
+	//		cin.ignore(2000, '\n');
+	//		cout << "Passed!" << endl
+	//			<< "Message should be:  Invalid Quantity Needed Entry" << endl
+	//			<< "Your Error message: " << product << endl;
+	//	}
+	//	else {
+	//		ok = false;
+	//		cout << "Quantity Needed validaton failed" << endl;
+	//	}
+	//}
+	//pause_();
 	if (ok) {
 		cout << "----Display test, the output of the Program and yours must match:" << endl;
 		promptUser("1234", "box", "kg", 'y', "123.45", "1", "5");
