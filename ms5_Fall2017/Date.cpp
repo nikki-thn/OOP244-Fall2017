@@ -12,10 +12,12 @@ using namespace std;
 namespace sict {
 
 	void Date::errCode(int errorCode) {
-
+		
+		//set errorCode to parameter
 		errorCode_ = errorCode;
 	}
 
+	//
 	int Date::mdays(int mon, int year)const {
 
 		int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, -1 };
