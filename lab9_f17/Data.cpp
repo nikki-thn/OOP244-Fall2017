@@ -92,18 +92,23 @@ namespace sict {
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(2);
 
-		double populationAvg = average(population, n) / 1000000;
+		double populationChg = (population[n - 1] - population[0]) / 1000000.0;
 		std::cout << "Population change from 2000 to 2004 is "
-			<< static_cast<double>(populationAvg) << " million" << std::endl;
+			<< populationChg << " million" << std::endl;
 
 		// Q2. print whether violent crime rate has gone up or down between 2000 and 2005
-		std::cout << "Violent Crime trend is down" << std::endl;
+		if (violentCrime[0] > violentCrime[n - 1]) {
+			std::cout << "Violent Crime trend is down" << std::endl;
+		}
+		else {
+			std::cout << "Violent Crime trend is up" << std::endl;
+		}
 
 		// Q3 print the GTA number accurate to 0 decimal places
-		double grandTheftAvg = average(grandTheftAuto, n) / 1000000;
-	
+		double grandTheftAvg = average(grandTheftAuto, n) / 1000000.0;
+
 		std::cout << "There are " << grandTheftAvg
-			<< " million Grand Theft Auto ncidents on average a year" << std::endl;
+			<< " million Grand Theft Auto acidents on average a year" << std::endl;
 		std::cout.unsetf(std::ios::fixed);
 
 		// Q4. Print the min and max violentCrime rates
