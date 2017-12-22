@@ -34,7 +34,7 @@ namespace sict {
 		NonPerishable::write(os, linear);
 
 		if (isClear()) {
-			if (linear) os << m_expired << endl;
+			if (linear) os << m_expired;
 			else os << '\n' << "Expiry date: " << m_expired;
 		}
 		return os;
