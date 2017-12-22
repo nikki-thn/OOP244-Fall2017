@@ -232,7 +232,7 @@ namespace sict {
 				}
 				os.unsetf(ios::fixed);
 				os << "Quantity On Hand: " << m_currentQty << " " << m_unit << std::endl;
-				os << "Quantity needed: " << m_needQty << std::endl;
+				os << "Quantity Needed: " << m_needQty << std::endl;
 			}
 		}
 		else {
