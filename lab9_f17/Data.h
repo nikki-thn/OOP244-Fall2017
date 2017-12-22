@@ -93,15 +93,15 @@ namespace sict {
 	template<typename T>
 	void display(const char* name, const T* data, int n) {
 		std::cout.width(COLUMN_WIDTH + 5);
-		std::cout.setf(ios::right);
+		std::cout.setf(std::ios::right);
 		std::cout << name;
-		std::cout.unsetf(ios::right);
+		std::cout.unsetf(std::ios::right);
 
 		for (int i = 0; i < n; i++) {
 			std::cout.width(COLUMN_WIDTH);
-			std::cout.setf(ios::right);
+			std::cout.setf(std::ios::right);
 			std::cout << data[i];
-			std::cout.unsetf(ios::right);
+			std::cout.unsetf(std::ios::right);
 		}
 	}
 
