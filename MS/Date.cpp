@@ -50,7 +50,6 @@ namespace sict {
 			comparator_ = year_ * 372 + mon_ * 13 + day;
 		}
 		else {
-
 			*this = Date(); //set current object to safety state
 		}
 	}
@@ -84,21 +83,16 @@ namespace sict {
 		if (year_ < rhs.year_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_) {
-
 			if (mon_ < rhs.mon_) {
 				isTrue = true;
 			}
-
 			else if (mon_ == rhs.mon_) {
 				if (day_ < rhs.day_) {
 					isTrue = true;
 				}
 			}
-
 		}
-
 		return isTrue;
 	}
 
@@ -109,9 +103,7 @@ namespace sict {
 		if (year_ > rhs.year_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_) {
-
 			if (mon_ > rhs.mon_) {
 				isTrue = true;
 			}
@@ -127,39 +119,35 @@ namespace sict {
 
 	//returns true if current object is less or equal than
 	bool Date::operator<=(const Date& rhs)const {
+		
 		bool isTrue = false;
 
 		if (year_ <= rhs.year_ && mon_ <= rhs.mon_ && day_ <= rhs.day_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_ && mon_ <= rhs.mon_ && day_ <= rhs.day_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_ && mon_ <= rhs.mon_) {
 			isTrue = true;
 		}
-
 		return isTrue;
 	}
 
 	//returns true if current object is greater or equal than
 	bool Date::operator>=(const Date& rhs)const {
+		
 		bool isTrue = false;
 
 		if (year_ >= rhs.year_ && mon_ >= rhs.mon_ && day_ >= rhs.day_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_ && mon_ >= rhs.mon_ && day_ >= rhs.day_) {
 			isTrue = true;
 		}
-
 		else if (year_ == rhs.year_ && mon_ >= rhs.mon_) {
 			isTrue = true;
 		}
-
 		return isTrue;
 	}
 
@@ -191,24 +179,19 @@ namespace sict {
 		if (istr.fail()) {
 			errCode(CIN_FAILED);
 		}
-
 		else if (year_ == 0 || mon_ == 0 || day_ == 0) {
 			errorCode_ = CIN_FAILED;
 		}
-
 		else if (year_ >= min_year && year_ <= max_year && day_ >= 1 && day_ <= 31
 			&& mon_ >= 1 && mon_ <= 12) {
 			errorCode_ = NO_ERROR;
 		}
-
 		else if (year_ != 0 && (year_ < min_year || year_ > max_year)) {
 			errorCode_ = YEAR_ERROR;
 		}
-
 		else if (year_ != 0 && mon_ != 0 && (mon_ < 1 || mon_ > 12)) {
 			errorCode_ = MON_ERROR;
 		}
-
 		else if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
 			errorCode_ = DAY_ERROR;
 		}
@@ -217,8 +200,7 @@ namespace sict {
 			year_ = 0;
 			mon_ = 0;
 			day_ = 0;
-		}
-		
+		}	
 
 		return istr;
 	}
@@ -229,13 +211,11 @@ namespace sict {
 		ostr.setf(ios::fixed);
 		ostr << year_ << "/";
 		ostr.unsetf(ios::fixed);
-	//	ostr.fill('0');
 		ostr.width(2);
 		ostr << mon_ << "/";
 		ostr.width(2);
 		ostr << day_;
 		
-
 		return ostr;
 	}
 
