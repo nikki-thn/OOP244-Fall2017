@@ -19,11 +19,11 @@ namespace sict {
 	const int SMALLEST_NUMBER = 0; // for max
 	const int COLUMN_WIDTH = 15; //output width
 
-								 // max returns the largest item in data
-								 //
+	// max returns the largest item in data
+	//
 	template<typename T>
 	T max(const T* data, int n) {
-		T largest = data[0];
+		T largest = LARGEST_NUMBER;
 		for (int i = 0; i < n; i++) {
 			if (data[i + 1] > data[i]) largest = data[i];
 		}
@@ -35,8 +35,7 @@ namespace sict {
 	//
 	template<typename T>
 	T min(const T* data, int n) {
-		T smallest = data[0];
-
+		T smallest = SMALLEST_NUMBER;
 		for (int i = 0; i < n; i++) {
 			if (data[i + 1] < data[i]) smallest = data[i];
 		}
@@ -47,7 +46,7 @@ namespace sict {
 	// sum returns the sum of n items in data
 	//    
 	template<typename T>
-	T sum(const T* data, int n) {
+	T sum(const T* data, int n) {	
 		T total = 0;
 		for (int i = 0; i < n; i++) {
 			total = total + data[i];
@@ -74,7 +73,6 @@ namespace sict {
 	//
 	template<typename T>
 	bool read(std::istream& input, T* data, int n) {
-
 		bool success = false;
 		T temp = 0;
 
@@ -93,6 +91,7 @@ namespace sict {
 	//
 	template<typename T>
 	void display(const char* name, const T* data, int n) {
+		
 		std::cout.width(COLUMN_WIDTH + 5);
 		std::cout.setf(std::ios::right);
 		std::cout << name;
