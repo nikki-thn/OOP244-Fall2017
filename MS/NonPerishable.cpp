@@ -167,7 +167,7 @@ namespace sict {
 		file << m_type << a << m_sku << a << m_name << a << m_price << a;
 		file << m_isTaxed << a << m_currentQty << a << m_unit << a << m_needQty;
 
-		if (addNewLine == true) file << std::endl;
+		if (addNewLine == true) file << endl;
 
 		return file;
 	}
@@ -218,21 +218,21 @@ namespace sict {
 				os << m_needQty << "|";
 			}
 			else {
-				os << "Sku: " << m_sku << std::endl;
-				os << "Name: " << m_name << std::endl;
+				os << "Sku: " << m_sku << endl;
+				os << "Name: " << m_name << endl;
 				os.setf(ios::fixed);
 				os.precision(2);
-				os << "Price: " << m_price << std::endl;
+				os << "Price: " << m_price << endl;
 
 				if (m_isTaxed) {
-					os << "Price after tax: " << cost() << std::endl;
+					os << "Price after tax: " << cost() << endl;
 				}
 				else {
-					os << "Price after tax: N/A" << std::endl;
+					os << "Price after tax: N/A" << endl;
 				}
 				os.unsetf(ios::fixed);
-				os << "Quantity On Hand: " << m_currentQty << " " << m_unit << std::endl;
-				os << "Quantity Needed: " << m_needQty;
+				os << "Quantity On Hand: " << m_currentQty << " " << m_unit << endl;
+				os << "Quantity Needed: " << m_needQty << endl;;
 			}
 		}
 		else {
