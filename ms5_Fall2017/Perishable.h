@@ -29,8 +29,8 @@ namespace sict {
 	};
 
 
-	std::ostream& operator<<(std::ostream&, Perishable&);
-	std::istream& operator>>(std::istream&, Perishable&);
+	//std::ostream& operator<<(std::ostream&, Perishable&);
+	//std::istream& operator>>(std::istream&, Perishable&);
 	Product* CreatePerishable();
 }
 

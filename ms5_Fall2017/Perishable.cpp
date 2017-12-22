@@ -34,8 +34,8 @@ namespace sict {
 		NonPerishable::write(os, linear);
 
 		if (isClear()) {
-			if (linear) os << m_expired << std::endl;
-			else os << "Expiry date: " << m_expired << endl;
+			if (linear) os << m_expired << endl;
+			else os << '\n' << "Expiry date: " << m_expired;
 		}
 		return os;
 	}
@@ -75,17 +75,17 @@ namespace sict {
 	}
 
 
-	std::ostream& operator<<(std::ostream& os, Perishable& rhs) {
+	//std::ostream& operator<<(std::ostream& os, Perishable& rhs) {
 
-		rhs.write(os);
-		return os;
-	}
+	//	rhs.write(os);
+	//	return os;
+	//}
 
-	std::istream& operator>>(std::istream& is, Perishable& rhs) {
+	//std::istream& operator>>(std::istream& is, Perishable& rhs) {
 
-		rhs.read(is);
-		return is;
-	}
+	//	rhs.read(is);
+	//	return is;
+	//}
 
 	Product* CreatePerishable() {
 		Product * pPerishable = new Perishable;
