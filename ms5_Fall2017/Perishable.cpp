@@ -74,19 +74,6 @@ namespace sict {
 		return is;
 	}
 
-
-	//std::ostream& operator<<(std::ostream& os, Perishable& rhs) {
-
-	//	rhs.write(os);
-	//	return os;
-	//}
-
-	//std::istream& operator>>(std::istream& is, Perishable& rhs) {
-
-	//	rhs.read(is);
-	//	return is;
-	//}
-
 	Product* CreatePerishable() {
 		Product * pPerishable = new Perishable;
 		return pPerishable;
