@@ -23,7 +23,7 @@ namespace sict {
 	//
 	template<typename T>
 	T max(const T* data, int n) {
-		T largest = LARGEST_NUMBER;
+		T largest = data[0];
 		for (int i = 0; i < n; i++) {
 			if (data[i + 1] > data[i]) largest = data[i];
 		}
@@ -35,7 +35,7 @@ namespace sict {
 	//
 	template<typename T>
 	T min(const T* data, int n) {
-		T smallest = SMALLEST_NUMBER;
+		T smallest = data[0];
 		for (int i = 0; i < n; i++) {
 			if (data[i + 1] < data[i]) smallest = data[i];
 		}
