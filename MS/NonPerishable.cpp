@@ -312,7 +312,7 @@ namespace sict {
 			if (isValid != false) {
 				cout << "Quantity Needed: ";
 				is >> qty;
-				is.ignore(200, '\n');
+				is.ignore();
 
 				if (qty > 0) {
 					m_needQty = qty;
