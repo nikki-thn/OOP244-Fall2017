@@ -281,6 +281,7 @@ namespace sict {
 			if (isValid != false) {
 				cout << " Price: ";
 				is >> price;
+				is.ignore(200, '\n');
 
 				if (price > 0.0) {
 					m_price = price;
@@ -295,6 +296,7 @@ namespace sict {
 			if (isValid != false) {
 				cout << "Quantity On hand: ";
 				is >> qty;
+				is.ignore(200, '\n');
 
 				if (qty > 0) {
 					m_currentQty = qty;
@@ -310,6 +312,7 @@ namespace sict {
 			if (isValid != false) {
 				cout << "Quantity Needed: ";
 				is >> qty;
+				is.ignore(200, '\n');
 
 				if (qty > 0) {
 					m_needQty = qty;
