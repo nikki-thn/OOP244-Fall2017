@@ -3,7 +3,6 @@
 // Section E
 // Milestone 2
 
-#define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
 #include "ErrorMessage.h"
 
@@ -51,6 +50,7 @@ namespace sict {
 	void ErrorMessage::message(const char* str) {
 
 		if (str != nullptr) {
+			
 			//clear memory and allocate memory for new message
 			delete[] m_message;
 			m_message = new char[strlen(str) + 1];
@@ -72,6 +72,7 @@ namespace sict {
 		if (!err.isClear()) {
 			os << err.message();
 		}
+		
 		return os;
 	}
 
