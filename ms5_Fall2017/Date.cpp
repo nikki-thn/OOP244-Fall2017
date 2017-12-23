@@ -231,13 +231,11 @@ namespace sict {
 		ostr.setf(ios::fixed);
 		ostr << year_ << "/";
 		ostr.unsetf(ios::fixed);
-	//	ostr.fill('0');
 		ostr.width(2);
 		ostr << mon_ << "/";
 		ostr.width(2);
 		ostr << day_;
 		
-
 		return ostr;
 	}
 
