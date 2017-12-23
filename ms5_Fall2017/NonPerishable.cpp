@@ -61,6 +61,7 @@ namespace sict {
 
 	//copy constructor
 	NonPerishable::NonPerishable(const NonPerishable& rhs) {
+		
 		m_name = nullptr;
 		*this = rhs;
 	}
@@ -95,11 +96,9 @@ namespace sict {
 	void NonPerishable::setName(const char* name) {
 
 		if (name != nullptr) {
-
-			if (m_name != nullptr) {
-				delete[] m_name;
-				m_name = nullptr;
-			}
+			
+			delete[] m_name;
+			m_name = nullptr;
 			m_name = new char[strlen(name) + 1];
 			strcpy(m_name, name);
 		}
