@@ -9,6 +9,7 @@
 #include<iostream>
 
 namespace sict {
+	
 	class ErrorMessage {
 
 		char* m_message; //to store an error message
