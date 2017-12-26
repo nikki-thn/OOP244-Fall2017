@@ -1,0 +1,12 @@
+﻿//Nikki Truong - 112 314 174
+//OOP244 - Section E
+//Reflect.txt
+
+
+1. Codes won't compile when function templates are moved to Data.cpp. Codes also won't compile when all functions are move to Data.h
+
+2. Templates work when they are moved to ws9_lab.cpp. It is not neccessary to define the function above main(), it doesn't require a forward declaration.
+
+3. Yes, I could do the same thing with overloading. However, templates allow us to perform the simify the task that applies to different data types by written one template. 
+
+4. Yes, they are equivalent, because a class is also a data type customized by user.
