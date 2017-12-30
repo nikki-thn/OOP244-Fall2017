@@ -45,7 +45,6 @@ int main() {
 	//b = c;
 	b.print(c);
 
-	cout << "fkfd" << endl;
 
 	return 0;
 }
