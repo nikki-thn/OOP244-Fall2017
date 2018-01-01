@@ -183,44 +183,37 @@ namespace sict {
 		return hasError;
 	}
 
-
 	std::istream& Date::read(std::istream& istr) {
 
 		char a;
 
+		if (!istr.fail()) {
+
 		istr >> year_ >> a >> mon_ >> a >> day_;
 
-		if (istr.fail()) {
-			errCode(CIN_FAILED);
+			if (year_ == 0 || mon_ == 0 || day_ == 0) {
+				errorCode_ = CIN_FAILED;
+			}
+			else if (year_ < min_year || year_ > max_year) {
+				errorCode_ = YEAR_ERROR;
+			}
+			else if (mon_ < 1 || mon_ > 12) {
+				errorCode_ = MON_ERROR;
+			}
+			else if (day_ < 1 || day_ > 31) {
+				errorCode_ = DAY_ERROR;
+			}
+			else {
+				errorCode_ = NO_ERROR;
+			}
+
 		}
 
-		else if (year_ == 0 || mon_ == 0 || day_ == 0) {
-			errorCode_ = CIN_FAILED;
-		}
-
-		else if (year_ >= min_year && year_ <= max_year && day_ >= 1 && day_ <= 31
-			&& mon_ >= 1 && mon_ <= 12) {
-			errorCode_ = NO_ERROR;
-		}
-
-		else if (year_ != 0 && (year_ < min_year || year_ > max_year)) {
-			errorCode_ = YEAR_ERROR;
-		}
-
-		else if (year_ != 0 && mon_ != 0 && (mon_ < 1 || mon_ > 12)) {
-			errorCode_ = MON_ERROR;
-		}
-
-		else if (day_ != 0 && mon_ != 0 && year_ != 0 && (day_ < 1 || day_ > 31)) {
-			errorCode_ = DAY_ERROR;
-		}
-		
-		if (errorCode_ != NO_ERROR){
+		if (errorCode_ > NO_ERROR) {
 			year_ = 0;
 			mon_ = 0;
 			day_ = 0;
 		}
-		
 
 		return istr;
 	}
