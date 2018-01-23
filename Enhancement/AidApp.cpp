@@ -207,7 +207,7 @@ int AidApp::isYes() {
 		int input = 0;
 		cout << "Disaste Aid Supply Management Program" << endl;
 		cout << "1- List products" << endl;
-		cout << "2- Display Product" << endl;
+		cout << "2- Display a Product" << endl;
 		cout << "3- Add non-perishable" << endl;
 		cout << "4- Add perishable product" << endl;
 		cout << "5- Add to quatity of purchased products" << endl;
@@ -267,7 +267,7 @@ int AidApp::isYes() {
 	bool AidApp::lowStock(Product* rhs) const {
 		bool isLow = false;
 
-			if (rhs->quantity() <= (int)(0.20* rhs->qtyNeeded()))
+			if (rhs->quantity() <= rhs->qtyNeeded())
 				isLow = true;
 	
 		return isLow;
