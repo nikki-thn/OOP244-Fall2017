@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "AidApp.h"
-
+#define _CRT_SECURE_NO_WARNINGS
 
 namespace sict {
 
