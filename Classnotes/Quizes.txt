@@ -1,6 +1,0 @@
-Quiz4:
-1. 
-2. Unary: ++, -- (prefix or postfix), binary: +=, -=, *=, /=, conditional operator: >=, <=, ==, !=
-3. How does member functions know which one is the current object.
-
-
